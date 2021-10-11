@@ -1,0 +1,32 @@
+.footer {
+  background-color: var(--black);
+  height: 318px;
+  width: 100%;
+  color: var(--white);
+  min-height: 318px;
+}
+.container {
+  padding-top: 42px;
+}
+
+.col1 {
+  padding-left: 48px;
+  font-weight: 400;
+  font-style: normal;
+}
+.col2 {
+  padding-left: 48px;
+  font-style: normal;
+  font-weight: 400;
+}
+.col2 .row {
+  margin-bottom: 35px;
+}
+.col3 {
+  padding-left: 48px;
+  font-style: normal;
+  font-weight: 400;
+}
+.container ul {
+  list-style: none;
+}

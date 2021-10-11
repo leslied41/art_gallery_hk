@@ -1,0 +1,11 @@
+/* font size. line height */
+:root {
+  --font-xs: 18px;
+  --font-sm: 25px;
+  --font-m: 35px;
+  --font-lg: 65px;
+  --lineheight-xs: 17.5px;
+  --lineheight-sm: 32px;
+  --lineheight-m: 36.5px;
+  --lineheight-lg: 58.5px;
+}

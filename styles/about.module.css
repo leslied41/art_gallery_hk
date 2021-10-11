@@ -1,0 +1,46 @@
+.main {
+  font-weight: 400;
+  line-height: 32px;
+}
+.firstSection {
+  margin: auto;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.secondSection {
+  padding-left: 50px;
+  padding-right: 50px;
+  margin: auto;
+  margin-top: 42px;
+}
+.thirdSection {
+  padding-left: 50px;
+  padding-right: 50px;
+
+  margin: auto;
+  margin-top: 120px;
+}
+.fourthSection {
+  padding-left: 50px;
+  padding-right: 50px;
+
+  margin: auto;
+  margin-top: 120px;
+}
+.fifthSection {
+  padding-left: 50px;
+  padding-right: 50px;
+
+  margin: auto;
+  margin-top: 120px;
+}
+.title {
+  margin-top: 158px;
+}
+.description {
+  margin-top: 118px;
+}
+.foundersBtn {
+  margin-top: 118px;
+  cursor: pointer;
+}

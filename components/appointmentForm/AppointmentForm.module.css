@@ -1,0 +1,22 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 39px;
+}
+.form input {
+  margin-bottom: 19px;
+  border: none;
+  border-bottom: 1px solid #000000;
+  padding: 5px 10px;
+  outline: none;
+}
+.form input:last-child {
+  align-self: start;
+  background-color: transparent;
+  border-bottom: none;
+  cursor: pointer;
+  color: #9b9b9b;
+}
+.form input::placeholder {
+  color: #9b9b9b;
+}

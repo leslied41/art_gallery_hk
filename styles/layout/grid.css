@@ -1,0 +1,9 @@
+.twoColumn-11 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 95px;
+}
+.threeColumn-211 {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 0.5fr;
+}

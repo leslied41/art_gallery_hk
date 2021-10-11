@@ -1,0 +1,11 @@
+.title {
+  margin-top: 42px;
+}
+.bio p {
+  margin-top: 20px;
+}
+.hr {
+  border: 1px solid #000000;
+  grid-column: 2 / span 1;
+  margin-top: 80px;
+}
