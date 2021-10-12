@@ -27,9 +27,13 @@ a {
   font-size: var(--font-xs);
   line-height: var(--lineheight-xs);
 }
-.hr {
+.hr-top {
   border: 1px solid #000000;
   margin-top: 28px;
+}
+.hr-bottom {
+  border: 1px solid #000000;
+  margin-top: 140px;
 }
 
 .section {

@@ -30,6 +30,13 @@ export default function About({ data }) {
         <div className="section">
           <StaticCard data={aboutSection} />
         </div>
+        {/* dropDownCard */}
+        <div className="section">
+          <DropDownCard data={terminologySection} />
+        </div>
+        <div className="section">
+          <DropDownCard data={missionStatementSection} />
+        </div>
         {/* second part */}
         {/* <div className="section">
           <div className={styles.foundersBtn} onClick={displayFounders}>
@@ -39,16 +46,11 @@ export default function About({ data }) {
           {isFoundersShown && <FoundersInfo founder={founder} />}
         </div> */}
         {/* third part */}
-        <div className="section">{<VisitUs visitUs={visitUsSection} />}</div>
+        <div className="section" id="visitUsLocation">
+          {<VisitUs visitUs={visitUsSection} />}
+        </div>
         {/* fourth part */}
         <div className="section">{<StaticCard data={connectSection} />}</div>
-        {/* dropDownCard */}
-        <div className="section">
-          <DropDownCard data={terminologySection} />
-        </div>
-        <div className="section">
-          <DropDownCard data={missionStatementSection} />
-        </div>
       </main>
     </>
   );

@@ -18,7 +18,7 @@ export default function DropDownCard({ data }) {
               {name} +
             </span>
           </div>
-          <div>{showCard || <hr className="hr" />}</div>
+          <div>{showCard || <hr className="hr-top" />}</div>
           <div className={styles.content}>
             {showCard && (
               <span className="h3">
@@ -30,6 +30,7 @@ export default function DropDownCard({ data }) {
               </span>
             )}
           </div>
+          <div>{showCard && <hr className="hr-bottom" />}</div>
         </div>
       </div>
     </>

@@ -1,13 +1,18 @@
-import Slider from "../components/slider/Slider";
+import ReactPlayer from "react-player";
 export default function Exhibition() {
   return (
     <>
-      <section>
+      <main>
         <div>
           <h1>Exhibition</h1>
-          <Slider />
+          <div>
+            <ReactPlayer
+              controls={true}
+              url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+            />
+          </div>
         </div>
-      </section>
+      </main>
     </>
   );
 }

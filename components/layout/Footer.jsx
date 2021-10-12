@@ -47,7 +47,9 @@ export default function Footer() {
                     <span className="h4">{businessHours}</span>
                   </li>
                   <li>
-                    <span className="h4">Book A Visit →</span>
+                    <Link href="/about/#visitUsLocation">
+                      <span className="h4">Book A Visit →</span>
+                    </Link>
                   </li>
                 </ul>
               </div>
