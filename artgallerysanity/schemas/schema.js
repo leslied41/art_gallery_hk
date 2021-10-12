@@ -16,6 +16,7 @@ import visitUs from "./visitUs";
 import settings from "./settings";
 import terminology from "./terminology";
 import missionStatement from "./missionStatement";
+import aboutSection from "./aboutSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -35,6 +36,7 @@ export default createSchema({
     connect,
     visitUs,
     terminology,
+    aboutSection,
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  overflow: hidden;
+  width: 400px;
+  height: 500px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.showSlide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+.hideSlide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}

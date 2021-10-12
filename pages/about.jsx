@@ -1,11 +1,10 @@
 import styles from "../styles/about.module.css";
 import FoundersInfo from "../components/about/FoundersInfo";
 import VisitUs from "../components/about/VisitUs";
-import Connect from "../components/about/Connect";
 import { useState, useEffect } from "react";
 import sanityClient from "../client.js";
-import BlockContent from "@sanity/block-content-to-react";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
+import StaticCard from "../components/staticCard/StaticCard";
 
 export default function About({ data }) {
   const [isFoundersShown, setIsFoundersShown] = useState(false);
@@ -16,11 +15,11 @@ export default function About({ data }) {
     id,
     name,
     founder,
-    aboutDescription,
-    visitUs,
-    connect,
-    terminology,
-    missionStatement,
+    aboutSection,
+    visitUsSection,
+    connectSection,
+    terminologySection,
+    missionStatementSection,
   } = data[0];
 
   // const { body } = aboutInfo[0];
@@ -29,44 +28,26 @@ export default function About({ data }) {
       <main className={styles.main}>
         {/* first part */}
         <div className="section">
-          <div className="twoColumn-11">
-            <div className="col"></div>
-            <div className="col">
-              <div className={styles.title}>
-                <span className="h1">About</span>
-              </div>
-              <div className={styles.description}>
-                <span className="h3">
-                  {
-                    <BlockContent
-                      blocks={aboutDescription}
-                      projectId="z3dq9mvc"
-                      dataset="production"
-                    />
-                  }
-                </span>
-              </div>
-              <div className={styles.foundersBtn} onClick={displayFounders}>
-                <span className="h2">Founders +</span>
-              </div>
-              {isFoundersShown || <hr className="hr" />}
-            </div>
-          </div>
+          <StaticCard data={aboutSection} />
         </div>
         {/* second part */}
-        <div className="section">
+        {/* <div className="section">
+          <div className={styles.foundersBtn} onClick={displayFounders}>
+            <span className="h2">Founders +</span>
+          </div>
+          {isFoundersShown || <hr className="hr" />}
           {isFoundersShown && <FoundersInfo founder={founder} />}
-        </div>
+        </div> */}
         {/* third part */}
-        <div className="section">{<VisitUs visitUs={visitUs} />}</div>
+        <div className="section">{<VisitUs visitUs={visitUsSection} />}</div>
         {/* fourth part */}
-        <div className="section">{<Connect connect={connect} />}</div>
+        <div className="section">{<StaticCard data={connectSection} />}</div>
         {/* dropDownCard */}
         <div className="section">
-          <DropDownCard data={terminology} />
+          <DropDownCard data={terminologySection} />
         </div>
         <div className="section">
-          <DropDownCard data={missionStatement} />
+          <DropDownCard data={missionStatementSection} />
         </div>
       </main>
     </>
@@ -75,7 +56,7 @@ export default function About({ data }) {
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(
-    `*[_type=='about']{id,name,founder,aboutDescription,visitUs,connect,terminology,missionStatement}`
+    `*[_type=='about']{founder,aboutSection,visitUsSection,connectSection,terminologySection,missionStatementSection}`
   );
 
   if (!data || !data.length) {

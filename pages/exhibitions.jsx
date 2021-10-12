@@ -1,3 +1,13 @@
+import Slider from "../components/slider/Slider";
 export default function Exhibition() {
-  return <h1>Exhibition page</h1>;
+  return (
+    <>
+      <section>
+        <div>
+          <h1>Exhibition</h1>
+          <Slider />
+        </div>
+      </section>
+    </>
+  );
 }
