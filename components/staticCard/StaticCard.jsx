@@ -9,9 +9,11 @@ const StaticCard = ({ data, form }) => {
       <div className="twoColumn-11">
         <div className="col"></div>
         <div className="col">
+          {/* display name */}
           <div className={styles.title}>
             <span className="h1">{name}</span>
           </div>
+          {/* display description */}
           <div className="words">
             <span className="h3">
               <BlockContent
@@ -21,7 +23,9 @@ const StaticCard = ({ data, form }) => {
               />
             </span>
           </div>
+          {/* if form exsits, display form */}
           <div>{form && form()}</div>
+          {/* if form response exists, display response */}
           {formResponse && (
             <div className="response">
               <span className="h3">
@@ -35,16 +39,19 @@ const StaticCard = ({ data, form }) => {
               </span>
             </div>
           )}
+          {/* if phone exists, display it */}
           {phone && (
             <div className="phone">
               <span className="h3">{phone}</span>
             </div>
           )}
+          {/* if emails exists, display it */}
           {email && (
             <div className="email">
               <span className="h3"> {email}</span>
             </div>
           )}
+          {/* if social media exists, display it */}
           {socialMedia && (
             <div className="socialMedia">
               {socialMedia.map((item, index) => {
