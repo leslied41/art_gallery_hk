@@ -2,6 +2,7 @@ import styles from "./Footer.module.css";
 import Link from "next/link";
 import { useGlobalSettings } from "../context/GlobalSettings";
 import BlockContent from "@sanity/block-content-to-react";
+import Links from "../links/Links";
 
 export default function Footer() {
   const settings = useGlobalSettings();
@@ -76,33 +77,9 @@ export default function Footer() {
               </div>
             </div>
             <div className={styles.col3}>
-              <ul>
-                <li>
-                  <Link href="/artists" exact>
-                    <span className="h4">Artists</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/exhibitions" exact>
-                    <span className="h4">Exhibitions</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/news" exact>
-                    <span className="h4"> News</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/publications" exact>
-                    <span className="h4"> Publications</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" exact>
-                    <span className="h4">About</span>
-                  </Link>
-                </li>
-              </ul>
+              <div>
+                <Links />
+              </div>
             </div>
           </div>
         </div>
