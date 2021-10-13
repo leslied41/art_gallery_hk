@@ -1,7 +1,7 @@
 export default {
   name: "connect",
   title: "Connect",
-  type: "document",
+  type: "object",
   fields: [
     {
       name: "name",

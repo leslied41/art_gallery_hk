@@ -1,8 +1,9 @@
 import styles from "./StaticCard.module.css";
 import BlockContent from "@sanity/block-content-to-react";
 
-const StaticCard = ({ data }) => {
-  const { name, description, phone, socialMedia, email } = data[0];
+const StaticCard = ({ data, form }) => {
+  const { name, description, phone, socialMedia, email, formResponse } =
+    data[0];
   return (
     <>
       <div className="twoColumn-11">
@@ -20,6 +21,20 @@ const StaticCard = ({ data }) => {
               />
             </span>
           </div>
+          <div>{form && form()}</div>
+          {formResponse && (
+            <div className="response">
+              <span className="h3">
+                {
+                  <BlockContent
+                    blocks={formResponse}
+                    projectId="z3dq9mvc"
+                    dataset="production"
+                  />
+                }
+              </span>
+            </div>
+          )}
           {phone && (
             <div className="phone">
               <span className="h3">{phone}</span>

@@ -1,10 +1,10 @@
 import styles from "../styles/about.module.css";
 import FoundersInfo from "../components/about/FoundersInfo";
-import VisitUs from "../components/about/VisitUs";
 import { useState, useEffect } from "react";
 import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
+import AppointmentForm from "../components/appointmentForm/AppointmentForm";
 
 export default function About({ data }) {
   const [isFoundersShown, setIsFoundersShown] = useState(false);
@@ -47,7 +47,7 @@ export default function About({ data }) {
         </div> */}
         {/* third part */}
         <div className="section" id="visitUsLocation">
-          {<VisitUs visitUs={visitUsSection} />}
+          {<StaticCard data={visitUsSection} form={AppointmentForm} />}
         </div>
         {/* fourth part */}
         <div className="section">{<StaticCard data={connectSection} />}</div>

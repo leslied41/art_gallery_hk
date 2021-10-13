@@ -1,7 +1,7 @@
 export default {
   name: "aboutSection",
   title: "About Section",
-  type: "document",
+  type: "object",
   fields: [
     {
       name: "name",

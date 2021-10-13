@@ -1,7 +1,7 @@
 export default {
   name: "terminology",
   title: "Terminology",
-  type: "document",
+  type: "object",
   fields: [
     {
       name: "name",

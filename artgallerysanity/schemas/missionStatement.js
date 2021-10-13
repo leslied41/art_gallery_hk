@@ -1,7 +1,7 @@
 export default {
   name: "missionStatement",
   title: "Mission Statement",
-  type: "document",
+  type: "object",
   fields: [
     {
       name: "name",
