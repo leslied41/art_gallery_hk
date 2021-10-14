@@ -3,8 +3,10 @@ import Link from "next/link";
 import { useGlobalSettings } from "../context/GlobalSettings";
 import BlockContent from "@sanity/block-content-to-react";
 import Links from "../links/Links";
+import { useTranslation } from "next-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation("common");
   const settings = useGlobalSettings();
   //console.log(settings);
   const {
@@ -23,6 +25,7 @@ export default function Footer() {
         <div className={styles.container}>
           <div className="threeColumn-211">
             <div className={styles.col1}>
+              <h2>{t("heading")}</h2>
               <ul>
                 <li>
                   <span className="h2">

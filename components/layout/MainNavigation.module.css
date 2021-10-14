@@ -6,4 +6,6 @@
 }
 .nav {
   writing-mode: vertical-rl;
+  position: absolute;
+  right: 10%;
 }

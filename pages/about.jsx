@@ -5,6 +5,26 @@ import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
 import AppointmentForm from "../components/appointmentForm/AppointmentForm";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+export const getStaticProps = async ({ locale }) => {
+  const data = await sanityClient.fetch(
+    `*[_type=='about']{founder,aboutSection,visitUsSection,connectSection,terminologySection,missionStatementSection}`
+  );
+
+  if (!data || !data.length) {
+    return {
+      props: {
+        data: [],
+        ...(await serverSideTranslations(locale, ["common"])),
+      },
+    };
+  } else {
+    return {
+      props: { data, ...(await serverSideTranslations(locale, ["common"])) },
+    };
+  }
+};
 
 export default function About({ data }) {
   const [isFoundersShown, setIsFoundersShown] = useState(false);
@@ -55,19 +75,3 @@ export default function About({ data }) {
     </>
   );
 }
-
-export const getStaticProps = async () => {
-  const data = await sanityClient.fetch(
-    `*[_type=='about']{founder,aboutSection,visitUsSection,connectSection,terminologySection,missionStatementSection}`
-  );
-
-  if (!data || !data.length) {
-    return {
-      props: { data: [] },
-    };
-  } else {
-    return {
-      props: { data },
-    };
-  }
-};

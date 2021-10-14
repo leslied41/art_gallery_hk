@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import sanityClient from "../client.js";
 import Layout from "../components/layout/Layout.jsx";
 import { AppProvider } from "../components/context/GlobalSettings";
+import { appWithTranslation } from "next-i18next";
 
 function MyApp({ Component, pageProps, data }) {
   //console.log(data);
@@ -23,4 +24,4 @@ MyApp.getInitialProps = async () => {
   return { data };
 };
 
-export default MyApp;
+export default appWithTranslation(MyApp);
