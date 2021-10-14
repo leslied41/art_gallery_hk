@@ -4,7 +4,7 @@ import Link from "next/link";
 const Links = () => {
   return (
     <>
-      <div>
+      <div className={styles.links}>
         <ul>
           <li>
             <Link href="/artists" exact>
