@@ -9,8 +9,18 @@ export default {
       type: "string",
     },
     {
+      name: "name_cn",
+      title: "Name Chinese",
+      type: "string",
+    },
+    {
       name: "description",
       title: "Description",
+      type: "blockContent",
+    },
+    {
+      name: "description_cn",
+      title: "Description Chinese",
       type: "blockContent",
     },
   ],

@@ -1,9 +1,37 @@
 import styles from "./StaticCard.module.css";
 import BlockContent from "@sanity/block-content-to-react";
+import { useState, useContext } from "react";
+import { I18nContext } from "react-i18next";
+import { i18n } from "next-i18next";
 
 const StaticCard = ({ data, form }) => {
-  const { name, description, phone, socialMedia, email, formResponse } =
-    data[0];
+  let Name;
+  let Description;
+  let FormResponse;
+
+  const {
+    i18n: { language },
+  } = useContext(I18nContext);
+  const {
+    name,
+    name_cn,
+    description,
+    description_cn,
+    phone,
+    socialMedia,
+    email,
+    formResponse,
+    formResponse_cn,
+  } = data[0];
+  if (i18n.language === "en") {
+    Name = name;
+    Description = description;
+    FormResponse = formResponse;
+  } else if (i18n.language === "tc") {
+    Name = name_cn;
+    Description = description_cn;
+    FormResponse = formResponse_cn;
+  }
   return (
     <>
       <div className="twoColumn-11">
@@ -11,13 +39,13 @@ const StaticCard = ({ data, form }) => {
         <div className="col">
           {/* display name */}
           <div className={styles.title}>
-            <span className="h1">{name}</span>
+            <span className="h1">{Name}</span>
           </div>
           {/* display description */}
           <div className="words">
             <span className="h3">
               <BlockContent
-                blocks={description}
+                blocks={Description}
                 projectId="z3dq9mvc"
                 dataset="production"
               />
@@ -31,7 +59,7 @@ const StaticCard = ({ data, form }) => {
               <span className="h3">
                 {
                   <BlockContent
-                    blocks={formResponse}
+                    blocks={FormResponse}
                     projectId="z3dq9mvc"
                     dataset="production"
                   />

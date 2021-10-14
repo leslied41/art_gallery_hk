@@ -8,6 +8,7 @@ export default {
       title: "Platform",
       type: "string",
     },
+
     {
       name: "url",
       title: "Url",

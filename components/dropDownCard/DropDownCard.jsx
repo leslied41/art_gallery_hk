@@ -1,9 +1,26 @@
 import styles from "./DropDownCard.module.css";
-import { useState } from "react";
 import BlockContent from "@sanity/block-content-to-react";
+import { useState, useContext } from "react";
+import { I18nContext } from "react-i18next";
+import { i18n } from "next-i18next";
 
 export default function DropDownCard({ data }) {
-  const { name, content } = data[0];
+  const {
+    i18n: { language },
+  } = useContext(I18nContext);
+
+  let Name;
+  let Content;
+
+  const { name, name_cn, content, content_cn } = data[0];
+
+  if (i18n.language === "en") {
+    Name = name;
+    Content = content;
+  } else if (i18n.language === "tc") {
+    Name = name_cn;
+    Content = content_cn;
+  }
   const [showCard, setshowCard] = useState(false);
   const handleClick = () => {
     setshowCard(!showCard);
@@ -15,7 +32,7 @@ export default function DropDownCard({ data }) {
         <div className="col">
           <div className="title">
             <span className="h2" onClick={handleClick}>
-              {name} +
+              {Name} +
             </span>
           </div>
           <div>{showCard || <hr className="hr-top" />}</div>
@@ -23,7 +40,7 @@ export default function DropDownCard({ data }) {
             {showCard && (
               <span className="h3">
                 <BlockContent
-                  blocks={content}
+                  blocks={Content}
                   projectId="z3dq9mvc"
                   dataset="production"
                 />
