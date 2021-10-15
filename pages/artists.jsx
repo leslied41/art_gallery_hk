@@ -1,4 +1,6 @@
 import Slider from "../components/slider/Slider";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 export default function Artists() {
   return (
     <>
@@ -10,4 +12,12 @@ export default function Artists() {
       </main>
     </>
   );
+}
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+      // Will be passed to the page component as props
+    },
+  };
 }

@@ -52,21 +52,8 @@ const StaticCard = ({ data, form }) => {
             </span>
           </div>
           {/* if form exsits, display form */}
-          <div>{form && form()}</div>
-          {/* if form response exists, display response */}
-          {formResponse && (
-            <div className="response">
-              <span className="h3">
-                {
-                  <BlockContent
-                    blocks={FormResponse}
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
-                }
-              </span>
-            </div>
-          )}
+          <div>{form && form(FormResponse)}</div>
+
           {/* if phone exists, display it */}
           {phone && (
             <div className="phone">
