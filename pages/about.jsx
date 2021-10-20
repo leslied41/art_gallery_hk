@@ -9,7 +9,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export const getStaticProps = async ({ locale }) => {
   const data = await sanityClient.fetch(
-    `*[_type=='about']{founder,aboutSection,visitUsSection,connectSection,terminologySection,missionStatementSection}`
+    `*[_type=='about']{founder,briefSection,visitUsSection,connectSection,terminologySection,missionStatementSection}`
   );
 
   if (!data || !data.length) {
@@ -32,10 +32,8 @@ export default function About({ data }) {
     setIsFoundersShown(!isFoundersShown);
   };
   const {
-    id,
-    name,
     founder,
-    aboutSection,
+    briefSection,
     visitUsSection,
     connectSection,
     terminologySection,
@@ -45,10 +43,10 @@ export default function About({ data }) {
   // const { body } = aboutInfo[0];
   return (
     <>
-      <main className={styles.main}>
+      <main>
         {/* first part */}
         <div className="section">
-          <StaticCard data={aboutSection} />
+          <StaticCard data={briefSection} />
         </div>
         {/* dropDownCard */}
         <div className="section">

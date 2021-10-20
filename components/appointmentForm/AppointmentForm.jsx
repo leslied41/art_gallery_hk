@@ -2,8 +2,10 @@ import styles from "./AppointmentForm.module.css";
 import { useForm } from "react-hook-form";
 import BlockContent from "@sanity/block-content-to-react";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const AppointmentForm = (FormResponse) => {
+  const router = useRouter();
   const [showRes, setShowRes] = useState(false);
   console.log(FormResponse);
   const {
@@ -40,7 +42,7 @@ const AppointmentForm = (FormResponse) => {
           <input
             name="fullName"
             type="text"
-            placeholder="Full Name"
+            placeholder={router.locale == "en" ? "Full Name" : "姓名"}
             {...register("fullName", { required: true, maxLength: 20 })}
           />
           <p className="red-text h4">
@@ -51,7 +53,7 @@ const AppointmentForm = (FormResponse) => {
           <input
             name="dateTime"
             type="datetime-local"
-            placeholder="Date & Time"
+            placeholder={router.locale == "en" ? "Date & Time" : "日期时间"}
             {...register("dateTime", { required: true, maxLength: 20 })}
           />
           <p className="red-text h4">
@@ -62,7 +64,7 @@ const AppointmentForm = (FormResponse) => {
           <input
             name="headCount"
             type="number"
-            placeholder="Head Count"
+            placeholder={router.locale == "en" ? "Head Count" : "人数"}
             {...register("headCount", { required: true, maxLength: 20 })}
           />
           <p className="red-text h4">
@@ -74,7 +76,11 @@ const AppointmentForm = (FormResponse) => {
           <input
             name="event"
             type="text"
-            placeholder="Which event are you planning to go?"
+            placeholder={
+              router.locale == "en"
+                ? "Which event are you planning to go?"
+                : "您想参加哪项活动"
+            }
             {...register("event", { required: true })}
           />
           <p className="red-text h4">
@@ -85,7 +91,7 @@ const AppointmentForm = (FormResponse) => {
           <input
             name="remarks"
             type="text"
-            placeholder="Remarks"
+            placeholder={router.locale == "en" ? "Remarks" : "评论"}
             {...register("remarks", { required: true })}
           />
           <p className="red-text h4">
@@ -96,7 +102,7 @@ const AppointmentForm = (FormResponse) => {
           <input
             name="email"
             type="email"
-            placeholder="Email"
+            placeholder={router.locale == "en" ? "Email" : "电子邮箱"}
             {...register("email", { required: true })}
           />
           <p className="red-text h4">
@@ -104,7 +110,11 @@ const AppointmentForm = (FormResponse) => {
           </p>
         </div>
 
-        <input name="sent" type="submit" value="SENT" />
+        <input
+          name="sent"
+          type="submit"
+          value={router.locale == "en" ? "SENT" : "发送"}
+        />
       </form>
       <div>
         {showRes && (

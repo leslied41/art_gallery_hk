@@ -1,11 +1,1 @@
-.navbar {
-  background-color: var(--black);
-  height: 200px;
-  padding-top: 1rem;
-  color: var(--white);
-}
-.nav {
-  writing-mode: vertical-rl;
-  position: absolute;
-  right: 10%;
-}
+

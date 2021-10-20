@@ -3,15 +3,18 @@ import BlockContent from "@sanity/block-content-to-react";
 import { useState, useContext } from "react";
 import { I18nContext } from "react-i18next";
 import { i18n } from "next-i18next";
+import { useRouter } from "next/router";
 
 const StaticCard = ({ data, form }) => {
+  const router = useRouter();
+  // console.log(router.locale);
   let Name;
   let Description;
   let FormResponse;
 
-  const {
-    i18n: { language },
-  } = useContext(I18nContext);
+  // const {
+  //   i18n: { language },
+  // } = useContext(I18nContext);
   const {
     name,
     name_cn,
@@ -22,12 +25,12 @@ const StaticCard = ({ data, form }) => {
     email,
     formResponse,
     formResponse_cn,
-  } = data[0];
-  if (i18n.language === "en") {
+  } = data;
+  if (router.locale === "en") {
     Name = name;
     Description = description;
     FormResponse = formResponse;
-  } else if (i18n.language === "tc") {
+  } else if (router.locale === "tc") {
     Name = name_cn;
     Description = description_cn;
     FormResponse = formResponse_cn;

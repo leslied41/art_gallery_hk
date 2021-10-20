@@ -3,7 +3,7 @@
   height: 318px;
   width: 100%;
   color: var(--white);
-  min-height: 318px;
+  height: 318px;
 }
 .container {
   padding-top: 42px;

@@ -1,5 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import styles from "../styles/publications.module.css";
 export default function Publications() {
   return <h1>Publications</h1>;
 }
