@@ -6,8 +6,13 @@ import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
 import { useState, useEffect } from "react";
 
-export default function Exhibition({ data }) {
-  const { briefSection, currentSection } = data[0];
+export default function Exhibition({
+  exPageData,
+  currentExpoData,
+  futureExpoData,
+}) {
+  const { briefSection } = exPageData[0];
+  //console.log(expoData);
   return (
     <>
       <main>
@@ -15,7 +20,10 @@ export default function Exhibition({ data }) {
           <StaticCard data={briefSection} />
         </div>
         <div className="section">
-          <DropDownCard data={currentSection} />
+          <DropDownCard data={currentExpoData} />
+        </div>
+        <div className="section">
+          <DropDownCard data={futureExpoData} />
         </div>
         <div className="section">
           <div>
@@ -30,20 +38,31 @@ export default function Exhibition({ data }) {
   );
 }
 export const getStaticProps = async ({ locale }) => {
-  const data = await sanityClient.fetch(
-    `*[_type=='exhibitions']{briefSection,currentSection}`
+  const exPageData = await sanityClient.fetch(
+    `*[_type=='exhibitions']{briefSection}`
   );
+  const currentExpoData = await sanityClient.fetch(
+    `*[_type=='exhibition'&& exhibition_status=='Current']`
+  );
+  const futureExpoData = await sanityClient.fetch(
+    `*[_type=='exhibition'&& exhibition_status=='Future']`
+  );
+  // if (!currentExpoData || !currentExpoData.length) {
+  //   return {
+  //     props: {
+  //       data: [],
+  //       ...(await serverSideTranslations(locale, ["common"])),
+  //     },
+  //   };
+  // } else {
+  return {
+    props: {
+      exPageData,
+      currentExpoData,
+      futureExpoData,
 
-  if (!data || !data.length) {
-    return {
-      props: {
-        data: [],
-        ...(await serverSideTranslations(locale, ["common"])),
-      },
-    };
-  } else {
-    return {
-      props: { data, ...(await serverSideTranslations(locale, ["common"])) },
-    };
-  }
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+  //}
 };

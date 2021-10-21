@@ -1,8 +1,19 @@
 export default {
   name: "exhibition",
   title: "Exhibition",
-  type: "object",
+  type: "document",
   fields: [
+    {
+      name: "exhibition_status",
+      title: "Exhibitions Status",
+      type: "string",
+      options: {
+        list: [
+          { title: "current", value: "Current" },
+          { title: "future", value: "Future" },
+        ],
+      },
+    },
     {
       name: "name_exo",
       title: "Name Exo",
@@ -29,4 +40,9 @@ export default {
       type: "image",
     },
   ],
+  preview: {
+    select: {
+      title: "name_exo",
+    },
+  },
 };

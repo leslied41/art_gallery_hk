@@ -27,10 +27,10 @@ export const getStaticProps = async ({ locale }) => {
 };
 
 export default function About({ data }) {
-  const [isFoundersShown, setIsFoundersShown] = useState(false);
-  const displayFounders = () => {
-    setIsFoundersShown(!isFoundersShown);
-  };
+  //const [isFoundersShown, setIsFoundersShown] = useState(false);
+  // const displayFounders = () => {
+  //   setIsFoundersShown(!isFoundersShown);
+  // };
   const {
     founder,
     briefSection,

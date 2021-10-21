@@ -44,29 +44,6 @@ export default {
         },
       ],
     },
-    {
-      name: "currentSection",
-      title: "Current Section",
-      type: "object",
-      fields: [
-        {
-          name: "name",
-          title: "Name",
-          type: "string",
-        },
-        {
-          name: "name_cn",
-          title: "Name Chinese",
-          type: "string",
-        },
-        {
-          name: "exhibition",
-          title: "Exhibition",
-          type: "array",
-          of: [{ type: "exhibition" }],
-        },
-      ],
-    },
   ],
   preview: {
     select: {
