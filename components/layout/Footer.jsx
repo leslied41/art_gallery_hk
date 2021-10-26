@@ -4,8 +4,10 @@ import { useGlobalSettings } from "../context/GlobalSettings";
 import BlockContent from "@sanity/block-content-to-react";
 import Links from "../links/Links";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 export default function Footer() {
+  const router = useRouter();
   const { t } = useTranslation("common");
   const settings = useGlobalSettings();
   //console.log(settings);
@@ -14,23 +16,27 @@ export default function Footer() {
     address,
     businessHours,
     orgnizationName,
+    orgnizationName_cn,
     phone,
     email,
     socialMedia,
   } = settings[0];
-  console.log(socialMedia);
+  //console.log(socialMedia);
   return (
     <>
       <div className={styles.footer}>
         <div className={styles.container}>
           <div className="threeColumn-211">
             <div className={styles.col1}>
-              <h2>{t("heading")}</h2>
               <ul>
                 <li>
                   <span className="h2">
                     <BlockContent
-                      blocks={orgnizationName}
+                      blocks={
+                        router.locale === "en"
+                          ? orgnizationName
+                          : orgnizationName_cn
+                      }
                       projectId="z3dq9mvc"
                       dataset="production"
                     />

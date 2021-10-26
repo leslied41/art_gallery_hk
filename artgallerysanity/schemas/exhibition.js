@@ -25,6 +25,16 @@ export default {
       type: "string",
     },
     {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "name_exo",
+        maxLength: 96,
+      },
+    },
+
+    {
       name: "date",
       title: "Date",
       type: "string",
@@ -38,6 +48,12 @@ export default {
       name: "image",
       title: "Image",
       type: "image",
+    },
+    {
+      name: "works",
+      title: "Works",
+      type: "array",
+      of: [{ type: "reference", to: { type: "work" } }],
     },
   ],
   preview: {

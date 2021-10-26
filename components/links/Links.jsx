@@ -1,8 +1,10 @@
 import styles from "./Links.module.css";
 import Link from "next/link";
 import LanguageSwitch from "../languageSwitch/LanguageSwitch";
+import { useTranslation } from "next-i18next";
 
 const Links = ({ lan }) => {
+  const { t } = useTranslation("common");
   if (lan) {
     return (
       <>
@@ -10,27 +12,27 @@ const Links = ({ lan }) => {
           <ul>
             <li>
               <Link href="/artists" exact>
-                <span className="h4">Artists</span>
+                <span className="h4">{t("artist")}</span>
               </Link>
             </li>
             <li>
               <Link href="/exhibitions" exact>
-                <span className="h4">Exhibitions</span>
+                <span className="h4">{t("exhibitions")}</span>
               </Link>
             </li>
             <li>
               <Link href="/news" exact>
-                <span className="h4"> News</span>
+                <span className="h4"> {t("news")}</span>
               </Link>
             </li>
             <li>
               <Link href="/publications" exact>
-                <span className="h4"> Publications</span>
+                <span className="h4"> {t("publications")}</span>
               </Link>
             </li>
             <li>
               <Link href="/about" exact>
-                <span className="h4">About</span>
+                <span className="h4">{t("about")}</span>
               </Link>
             </li>
             <li>
@@ -48,27 +50,27 @@ const Links = ({ lan }) => {
           <ul>
             <li>
               <Link href="/artists" exact>
-                <span className="h4">Artists</span>
+                <span className="h4">{t("artist")}</span>
               </Link>
             </li>
             <li>
               <Link href="/exhibitions" exact>
-                <span className="h4">Exhibitions</span>
+                <span className="h4">{t("exhibitions")}</span>
               </Link>
             </li>
             <li>
               <Link href="/news" exact>
-                <span className="h4"> News</span>
+                <span className="h4"> {t("news")}</span>
               </Link>
             </li>
             <li>
               <Link href="/publications" exact>
-                <span className="h4"> Publications</span>
+                <span className="h4"> {t("publications")}</span>
               </Link>
             </li>
             <li>
               <Link href="/about" exact>
-                <span className="h4">About</span>
+                <span className="h4">{t("about")}</span>
               </Link>
             </li>
           </ul>

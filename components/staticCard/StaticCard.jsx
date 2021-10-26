@@ -45,7 +45,7 @@ const StaticCard = ({ data, form }) => {
             <span className="h1">{Name}</span>
           </div>
           {/* display description */}
-          <div className="words">
+          <div className="words mt-118">
             <span className="h3">
               <BlockContent
                 blocks={Description}

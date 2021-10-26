@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@mui/material": "^5.0.4",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^2.21.0",
     "@sanity/image-url": "^1.0.1",

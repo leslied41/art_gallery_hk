@@ -9,6 +9,11 @@ export default {
       type: "blockContent",
     },
     {
+      name: "orgnizationName_cn",
+      title: "Orgnization Name Chinese",
+      type: "blockContent",
+    },
+    {
       name: "abbreviation",
       title: "Abbreviation",
       type: "string",

@@ -32,7 +32,6 @@ export default function About({ data }) {
   //   setIsFoundersShown(!isFoundersShown);
   // };
   const {
-    founder,
     briefSection,
     visitUsSection,
     connectSection,
@@ -45,30 +44,33 @@ export default function About({ data }) {
     <>
       <main>
         {/* first part */}
-        <div className="section">
+        <div className="section mt-158">
           <StaticCard data={briefSection} />
         </div>
         {/* dropDownCard */}
-        <div className="section">
-          <DropDownCard data={terminologySection} />
+        <div className="section mt-118">
+          <DropDownCard
+            data={terminologySection}
+            title={"Terminology"}
+            purewords={true}
+          />
         </div>
-        <div className="section">
-          <DropDownCard data={missionStatementSection} />
+        <div className="section mt-28">
+          <DropDownCard
+            data={missionStatementSection}
+            title={"Mission Statement"}
+            purewords={true}
+          />
         </div>
-        {/* second part */}
-        {/* <div className="section">
-          <div className={styles.foundersBtn} onClick={displayFounders}>
-            <span className="h2">Founders +</span>
-          </div>
-          {isFoundersShown || <hr className="hr" />}
-          {isFoundersShown && <FoundersInfo founder={founder} />}
-        </div> */}
+
         {/* third part */}
-        <div className="section" id="visitUsLocation">
+        <div className="section mt-176" id="visitUsLocation">
           {<StaticCard data={visitUsSection} form={AppointmentForm} />}
         </div>
         {/* fourth part */}
-        <div className="section">{<StaticCard data={connectSection} />}</div>
+        <div className="section mt-140">
+          {<StaticCard data={connectSection} />}
+        </div>
       </main>
     </>
   );

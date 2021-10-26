@@ -4,8 +4,10 @@ import { useRouter } from "next/router";
 import Links from "../links/Links";
 import Link from "next/link";
 import image0 from "../../public/images/image0.png";
+import { useTranslation } from "next-i18next";
 
 function Header() {
+  const { t } = useTranslation("common");
   const router = useRouter();
   const { pathname, asPath, query } = router;
   const changeLanEn = () => {
@@ -126,7 +128,7 @@ function Header() {
         </div>
         <div className={styles.title} ref={titleEl}>
           <Link href="/" exact>
-            <span>PHD Group</span>
+            <span>{t("organization_name")}</span>
           </Link>
         </div>
 

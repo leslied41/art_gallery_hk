@@ -12,18 +12,27 @@ export default function Exhibition({
   futureExpoData,
 }) {
   const { briefSection } = exPageData[0];
-  //console.log(expoData);
+  console.log(futureExpoData);
+
   return (
     <>
       <main>
-        <div className="section">
+        <div className="section mt-158">
           <StaticCard data={briefSection} />
         </div>
-        <div className="section">
-          <DropDownCard data={currentExpoData} />
+        <div className="section mt-118">
+          <DropDownCard
+            data={currentExpoData}
+            expoImageList={true}
+            title={"Current"}
+          />
         </div>
-        <div className="section">
-          <DropDownCard data={futureExpoData} />
+        <div className="section mt-28">
+          <DropDownCard
+            data={futureExpoData}
+            expoImageList={true}
+            title={"Forthcoming"}
+          />
         </div>
         <div className="section">
           <div>
@@ -37,6 +46,7 @@ export default function Exhibition({
     </>
   );
 }
+
 export const getStaticProps = async ({ locale }) => {
   const exPageData = await sanityClient.fetch(
     `*[_type=='exhibitions']{briefSection}`

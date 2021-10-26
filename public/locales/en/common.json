@@ -1,3 +1,10 @@
 {
-  "heading": "this is a head"
+  "organization_name": "PHD group",
+  "organization_full_name": "Property Holdings Development Groups",
+
+  "artist": "Artists",
+  "exhibitions": "Exhibitions",
+  "news": "News",
+  "publications": "Publications",
+  "about": "About"
 }
