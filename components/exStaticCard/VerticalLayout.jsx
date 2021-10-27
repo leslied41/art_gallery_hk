@@ -15,6 +15,7 @@ const VerticalLayout = ({
   introduction,
   introduction_cn,
 }) => {
+  console.log(12345);
   console.log(image);
   return (
     <>

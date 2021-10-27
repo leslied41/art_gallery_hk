@@ -53,6 +53,8 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
           {slicedExhibition.map((item, index) => {
             const { name_exo, name_exo_cn, date, date_cn, image, slug, _id } =
               item;
+            console.log(12345);
+            console.log(image);
             return (
               <div className="twoColumn-11" key={index}>
                 <Link href={"/exhibitions/" + slug.current}>
