@@ -41,13 +41,13 @@ const VerticalLayout = ({
           </div>
           <div className="col">
             <p className="h3">{name}</p>
-            <p className="h4">
+            <div className="h4">
               <BlockContent
                 blocks={introduction}
                 projectId="z3dq9mvc"
                 dataset="production"
               />
-            </p>
+            </div>
           </div>
         </div>
       </div>
