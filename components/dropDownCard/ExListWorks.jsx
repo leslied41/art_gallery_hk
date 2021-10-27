@@ -1,16 +1,8 @@
 import VerticalLayout from "../exStaticCard/VerticalLayout";
+import HorizontalLayout from "../exStaticCard/HorizontalLayout";
 const ExListWorks = ({ data, title, showCard, handleClick }) => {
-  const {
-    name_exo,
-    name_exo_cn,
-    date,
-    date_cn,
-    image,
-    image_parameter,
-    introduction,
-    introduction_cn,
-    works,
-  } = data;
+  const { works } = data;
+  console.log(works);
   // console.log(works);
   // works.map((item) => {
   //   const metaData = item.metadata;
@@ -34,11 +26,42 @@ const ExListWorks = ({ data, title, showCard, handleClick }) => {
           <>
             {works.map((work, index) => {
               const width = work.metadata.metadata.dimensions.width;
-              console.log(width);
-              if (width > 670) {
-                return <h1 key={index}>love</h1>;
-              } else if (width < 670) {
-                return <h1 key={index}>hate</h1>;
+              const aspectRatio = work.metadata.metadata.dimensions.aspectRatio;
+              const {
+                name,
+                name_cn,
+                image,
+                image_parameter,
+                introduction,
+                introduction_cn,
+              } = work;
+              console.log(aspectRatio, width);
+              if (width > 750 && aspectRatio > 1) {
+                return (
+                  <div key={index}>
+                    <VerticalLayout
+                      name={name}
+                      name_cn={name_cn}
+                      image={image}
+                      image_parameter={image_parameter}
+                      introduction={introduction}
+                      introduction_cn={introduction_cn}
+                    />
+                  </div>
+                );
+              } else {
+                return (
+                  <div key={index}>
+                    <HorizontalLayout
+                      name={name}
+                      name_cn={name_cn}
+                      image={image}
+                      image_parameter={image_parameter}
+                      introduction={introduction}
+                      introduction_cn={introduction_cn}
+                    />
+                  </div>
+                );
               }
             })}
           </>

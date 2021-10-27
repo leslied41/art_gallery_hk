@@ -7,6 +7,8 @@ function urlFor(source) {
   return builder.image(source);
 }
 const VerticalLayout = ({
+  name,
+  name_cn,
   image,
   image_parameter,
   introduction,
@@ -35,13 +37,14 @@ const VerticalLayout = ({
             </span>
           </div>
           <div className="col">
-            <span className="h4">
+            <p className="h3">{name}</p>
+            <p className="h4">
               <BlockContent
                 blocks={introduction}
                 projectId="z3dq9mvc"
                 dataset="production"
               />
-            </span>
+            </p>
           </div>
         </div>
       </div>

@@ -52,13 +52,13 @@ export default {
       name: "image",
       title: "Image",
       type: "image",
-      options: {
-        metadata: [
-          "dimensions", // Always included
-          "hasAlpha", // Always included
-          "isOpaque", // Always included
-        ],
-      },
+      // options: {
+      //   metadata: [
+      //     "dimensions", // Always included
+      //     "hasAlpha", // Always included
+      //     "isOpaque", // Always included
+      //   ],
+      // },
     },
     {
       name: "image_parameter",
