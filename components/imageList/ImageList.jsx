@@ -74,7 +74,7 @@ const ImageList = ({ workImages }) => {
                 style={targetIndex == index ? imgStyle2 : imgStyle1}
                 key={index}
               >
-                <Image
+                <img
                   src={urlFor(item.image.asset).url()}
                   alt="works"
                   className={styles.img}
@@ -88,7 +88,7 @@ const ImageList = ({ workImages }) => {
         {workImages.map((item, index) => {
           return (
             <div className={styles.pics} key={index}>
-              <Image
+              <img
                 src={urlFor(item.image.asset).url()}
                 alt="works"
                 style={{ width: "100%" }}

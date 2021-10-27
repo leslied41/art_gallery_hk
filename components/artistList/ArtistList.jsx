@@ -37,7 +37,7 @@ const ArtistList = ({ worksImages, artistsData }) => {
       <div className="col">
         {showImage && (
           <div className={styles.container}>
-            <Image
+            <img
               src={urlFor(targetImage.image.asset).url()}
               alt="works"
               className={styles.img}
