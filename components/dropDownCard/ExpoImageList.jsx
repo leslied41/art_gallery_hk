@@ -56,7 +56,10 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
               <div className="twoColumn-11" key={index}>
                 <Link href={"/exhibitions/" + slug.current}>
                   <div className="col">
-                    <div className={styles.content}>
+                    <div
+                      className={styles.content}
+                      style={{ cursor: "pointer" }}
+                    >
                       <img
                         src={urlFor(image.asset).width(624).height(437).url()}
                         alt={name_exo}
@@ -66,14 +69,19 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
                   </div>
                 </Link>
                 <div className="col">
-                  <div className={styles.content}>
-                    <p className="h3">
-                      {router.locale === "en" ? name_exo : name_exo_cn}
-                    </p>
-                    <p className="h3">
-                      {router.locale === "en" ? date : date_cn}
-                    </p>
-                  </div>
+                  <Link href={"/exhibitions/" + slug.current}>
+                    <div
+                      className={styles.content}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <p className="h3">
+                        {router.locale === "en" ? name_exo : name_exo_cn}
+                      </p>
+                      <p className="h3">
+                        {router.locale === "en" ? date : date_cn}
+                      </p>
+                    </div>
+                  </Link>
                 </div>
               </div>
             );
