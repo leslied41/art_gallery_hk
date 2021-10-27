@@ -34,10 +34,10 @@ export default createSchema({
     founder,
     socialMedia,
     exhibitions,
+    artists_page,
     exhibition,
     work,
     artist,
-    artists_page,
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

@@ -1,11 +1,9 @@
 import Link from "next/link";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
-import { I18nContext } from "react-i18next";
-import { i18n } from "next-i18next";
 import { useState, useContext, useEffect } from "react";
 import styles from "./ExpoImageList.module.css";
-
+import { useRouter } from "next/router";
 const builder = imageUrlBuilder(sanityClient);
 
 function urlFor(source) {
@@ -13,10 +11,10 @@ function urlFor(source) {
 }
 
 const ExpoImageList = ({ data, handleClick, showCard, title }) => {
-  const {
-    i18n: { language },
-  } = useContext(I18nContext);
+  const router = useRouter();
+
   const [loaded, setloaded] = useState(true);
+
   useEffect(() => {
     if (data.length < 5) {
       setloaded(false);
@@ -42,8 +40,7 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
                 : data[0].exhibition_status == "Current"
                 ? "目前"
                 : "未来"} */}
-              {title}
-              {showCard ? "-" : "+"}
+              {title} {showCard ? "-" : "+"}
             </span>
           </div>
           <div>{showCard || <hr className="hr-top" />}</div>
@@ -71,10 +68,10 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
                 <div className="col">
                   <div className={styles.content}>
                     <p className="h3">
-                      {i18n.language === "en" ? name_exo : name_exo_cn}
+                      {router.locale === "en" ? name_exo : name_exo_cn}
                     </p>
                     <p className="h3">
-                      {i18n.language === "en" ? date : date_cn}
+                      {router.locale === "en" ? date : date_cn}
                     </p>
                   </div>
                 </div>

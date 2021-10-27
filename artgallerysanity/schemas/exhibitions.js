@@ -1,6 +1,6 @@
 export default {
   name: "exhibitions",
-  title: "Exhibitions",
+  title: "Exhibitions Page",
   type: "document",
   fields: [
     {

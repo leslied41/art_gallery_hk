@@ -24,6 +24,11 @@ export default {
       type: "blockContent",
     },
     {
+      name: "profile",
+      title: "Profile",
+      type: "image",
+    },
+    {
       name: "slug",
       title: "Slug",
       type: "slug",

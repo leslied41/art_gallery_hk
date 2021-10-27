@@ -30,3 +30,7 @@
 .container ul {
   list-style: none;
 }
+.logo_container {
+  display: flex;
+  gap: 10px;
+}

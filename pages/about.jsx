@@ -1,11 +1,11 @@
 import styles from "../styles/about.module.css";
-import FoundersInfo from "../components/about/FoundersInfo";
 import { useState, useEffect } from "react";
 import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
 import AppointmentForm from "../components/appointmentForm/AppointmentForm";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import router, { useRouter } from "next/router";
 
 export const getStaticProps = async ({ locale }) => {
   const data = await sanityClient.fetch(
@@ -27,10 +27,7 @@ export const getStaticProps = async ({ locale }) => {
 };
 
 export default function About({ data }) {
-  //const [isFoundersShown, setIsFoundersShown] = useState(false);
-  // const displayFounders = () => {
-  //   setIsFoundersShown(!isFoundersShown);
-  // };
+  const router = useRouter();
   const {
     briefSection,
     visitUsSection,
@@ -39,7 +36,6 @@ export default function About({ data }) {
     missionStatementSection,
   } = data[0];
 
-  // const { body } = aboutInfo[0];
   return (
     <>
       <main>
@@ -51,14 +47,14 @@ export default function About({ data }) {
         <div className="section mt-118">
           <DropDownCard
             data={terminologySection}
-            title={"Terminology"}
+            title={router.locale == "en" ? "Terminology" : "術語"}
             purewords={true}
           />
         </div>
         <div className="section mt-28">
           <DropDownCard
             data={missionStatementSection}
-            title={"Mission Statement"}
+            title={router.locale == "en" ? "Mission Statement" : "使命聲明"}
             purewords={true}
           />
         </div>

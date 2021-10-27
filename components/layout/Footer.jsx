@@ -5,6 +5,8 @@ import BlockContent from "@sanity/block-content-to-react";
 import Links from "../links/Links";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import logo from "../../public/images/Frame.svg";
+import Image from "next/image";
 
 export default function Footer() {
   const router = useRouter();
@@ -30,17 +32,20 @@ export default function Footer() {
             <div className={styles.col1}>
               <ul>
                 <li>
-                  <span className="h2">
-                    <BlockContent
-                      blocks={
-                        router.locale === "en"
-                          ? orgnizationName
-                          : orgnizationName_cn
-                      }
-                      projectId="z3dq9mvc"
-                      dataset="production"
-                    />
-                  </span>
+                  <div className={styles.logo_container}>
+                    <Image src={logo} alt="logo" />
+                    <span className="h2">
+                      <BlockContent
+                        blocks={
+                          router.locale === "en"
+                            ? orgnizationName
+                            : orgnizationName_cn
+                        }
+                        projectId="z3dq9mvc"
+                        dataset="production"
+                      />
+                    </span>
+                  </div>
                 </li>
               </ul>
             </div>

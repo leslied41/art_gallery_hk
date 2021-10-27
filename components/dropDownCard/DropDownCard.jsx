@@ -10,6 +10,8 @@ import ExpoImageList from "./ExpoImageList";
 import PureWords from "./PureWords";
 import ExpoList from "../expoList/ExpoList";
 import ArtistWorksImageList from "./ArtistWorksImageList";
+import ArtistBio from "./ArtistBio";
+import ExListWorks from "./ExListWorks";
 
 export default function DropDownCard({
   data,
@@ -19,11 +21,13 @@ export default function DropDownCard({
   expoImageList,
   artistWorksImageList,
   artistBio,
+  exListWorks,
 }) {
   const [showCard, setshowCard] = useState(false);
   const handleClick = () => {
     setshowCard(!showCard);
   };
+  //console.log(data);
 
   return (
     <>
@@ -36,7 +40,7 @@ export default function DropDownCard({
         />
       )}
       {artistBio && (
-        <PureWords
+        <ArtistBio
           data={data}
           title={title}
           handleClick={handleClick}
@@ -61,6 +65,14 @@ export default function DropDownCard({
       )}
       {artistExpoList && (
         <ExpoList
+          data={data}
+          handleClick={handleClick}
+          showCard={showCard}
+          title={title}
+        />
+      )}
+      {exListWorks && (
+        <ExListWorks
           data={data}
           handleClick={handleClick}
           showCard={showCard}

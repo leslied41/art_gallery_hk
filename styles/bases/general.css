@@ -40,11 +40,17 @@ ul {
 .mb-19 {
   margin-bottom: 19px;
 }
+.mt-22 {
+  margin-top: 22px;
+}
 .mt-28 {
   margin-top: 28px;
 }
 .mt-49 {
   margin-top: 49px;
+}
+.mt-89 {
+  margin-top: 89px;
 }
 .mt-158 {
   margin-top: 158px;
@@ -58,12 +64,13 @@ ul {
 .mt-176 {
   margin-top: 176px;
 }
-.hr-top {
+hr {
   border: 1px solid #000000;
+}
+.hr-top {
   margin-top: 28px;
 }
 .hr-bottom {
-  border: 1px solid #000000;
   margin-top: 140px;
 }
 

@@ -1,6 +1,5 @@
 import ImageList from "../imageList/ImageList";
 const ArtistWorksImageList = ({ data, title, showCard, handleClick }) => {
-  console.log(data);
   return (
     <>
       <div className="twoColumn-11">
@@ -8,12 +7,13 @@ const ArtistWorksImageList = ({ data, title, showCard, handleClick }) => {
         <div className="col">
           <div className="title">
             <span className="h2" onClick={handleClick}>
-              {title}
+              {title} {showCard ? "-" : "+"}
             </span>
           </div>
           <div>{showCard || <hr className="hr-top" />}</div>
         </div>
       </div>
+
       <div className="works">{showCard && <ImageList workImages={data} />}</div>
 
       <div className="twoColumn-11">

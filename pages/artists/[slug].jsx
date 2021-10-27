@@ -8,7 +8,7 @@ import ImageList from "../../components/imageList/ImageList.jsx";
 import { set } from "react-hook-form";
 
 export default function Artist({ artistData, workImages, exposData }) {
-  console.log(exposData);
+  //console.log(exposData);
   const newArray = exposData.map((item) => {
     return item.exhibition;
   });
@@ -16,14 +16,14 @@ export default function Artist({ artistData, workImages, exposData }) {
   //const flatArray = mergedArray.flatMap((item) => [item]);
   const flatArray = [].concat.apply([], filteredArray);
   const arrayObject = flatArray.map((item) => JSON.stringify(item));
-  console.log(arrayObject);
+  //console.log(arrayObject);
   const mergedArray_json = [];
   arrayObject.forEach((item) => {
     if (!mergedArray_json.includes(item)) {
       mergedArray_json.push(item);
     }
   });
-  console.log(mergedArray_json);
+  //console.log(mergedArray_json);
   const mergedArray = [JSON.parse(mergedArray_json)];
   console.log(mergedArray);
 
@@ -33,8 +33,9 @@ export default function Artist({ artistData, workImages, exposData }) {
   };
   const router = useRouter();
   //console.log(artistData);
-  const { bio, bio_cn } = artistData[0];
+
   //console.log(workImages);
+
   return (
     <>
       <main>
@@ -44,14 +45,14 @@ export default function Artist({ artistData, workImages, exposData }) {
         <div className="section mt-49">
           <DropDownCard
             artistBio={true}
-            data={router.locale == "en" ? bio : bio_cn}
-            title={router.locale == "en" ? "Bio" : "传记"}
+            data={artistData[0]}
+            title={router.locale == "en" ? "Bio" : "傳記"}
           />
         </div>
         <div className="section mt-28">
           <DropDownCard
             data={workImages}
-            title={"Works"}
+            title={router.locale == "en" ? "Works" : "作品"}
             artistWorksImageList={true}
           />
         </div>
@@ -76,7 +77,7 @@ export async function getStaticProps({ locale, params }) {
   );
   // this is to fetch all the expos that one certain artis has ever participated.
   const exposData = await sanityClient.fetch(
-    `*[_type=='work'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]{_id,'exhibition':*[_type=='exhibition'&&references(^._id)]{name_exo,name_exo_cn,date,date_cn}}`
+    `*[_type=='work'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]{_id,'exhibition':*[_type=='exhibition'&&references(^._id)]{name_exo,name_exo_cn,date,date_cn,slug}}`
   );
   return {
     props: {

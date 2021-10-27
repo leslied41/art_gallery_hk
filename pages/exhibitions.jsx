@@ -5,12 +5,14 @@ import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Exhibition({
   exPageData,
   currentExpoData,
   futureExpoData,
 }) {
+  const router = useRouter();
   const { briefSection } = exPageData[0];
   console.log(futureExpoData);
 
@@ -24,14 +26,14 @@ export default function Exhibition({
           <DropDownCard
             data={currentExpoData}
             expoImageList={true}
-            title={"Current"}
+            title={router.locale == "en" ? "Current" : "現在"}
           />
         </div>
         <div className="section mt-28">
           <DropDownCard
             data={futureExpoData}
             expoImageList={true}
-            title={"Forthcoming"}
+            title={router.locale == "en" ? "Forthcoming" : "未來"}
           />
         </div>
         <div className="section">

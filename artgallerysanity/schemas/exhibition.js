@@ -50,6 +50,21 @@ export default {
       type: "image",
     },
     {
+      name: "image_parameter",
+      title: "Image Parameter",
+      type: "blockContent",
+    },
+    {
+      name: "introduction",
+      title: "Introduction",
+      type: "blockContent",
+    },
+    {
+      name: "introduction_cn",
+      title: "Introduction Chinese",
+      type: "blockContent",
+    },
+    {
       name: "works",
       title: "Works",
       type: "array",

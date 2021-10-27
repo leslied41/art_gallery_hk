@@ -3,19 +3,19 @@ import { i18n } from "next-i18next";
 import { useState, useContext, useEffect } from "react";
 import styles from "./PureWords.module.css";
 import BlockContent from "@sanity/block-content-to-react";
+import { useRouter } from "next/router";
 
 const PureWords = ({ data, handleClick, showCard, title }) => {
-  const {
-    i18n: { language },
-  } = useContext(I18nContext);
+  const router = useRouter();
 
   let Content;
-
+  //console.log(data);
   const { content, content_cn } = data;
-  if (i18n.language === "en") {
-    !content ? (Content = data) : (Content = content);
-  } else if (i18n.language === "tc") {
-    !content ? (Content = data) : (Content = content_cn);
+
+  if (router.locale === "en") {
+    Content = content;
+  } else if (router.locale === "tc") {
+    Content = content_cn;
   }
   return (
     <>
@@ -24,7 +24,7 @@ const PureWords = ({ data, handleClick, showCard, title }) => {
         <div className="col">
           <div className="title">
             <span className="h2" onClick={handleClick}>
-              {title} +
+              {title} {showCard ? "-" : "+"}
             </span>
           </div>
           <div>{showCard || <hr className="hr-top" />}</div>

@@ -23,13 +23,13 @@ export default {
       },
     },
     {
-      name: "description",
-      title: "Description ",
+      name: "introduction",
+      title: "Introduction ",
       type: "blockContent",
     },
     {
-      name: "description_cn",
-      title: "Description Chinese ",
+      name: "introduction_cn",
+      title: "Introduction Chinese ",
       type: "blockContent",
     },
     {
@@ -52,6 +52,18 @@ export default {
       name: "image",
       title: "Image",
       type: "image",
+      options: {
+        metadata: [
+          "dimensions", // Always included
+          "hasAlpha", // Always included
+          "isOpaque", // Always included
+        ],
+      },
+    },
+    {
+      name: "image_parameter",
+      title: "Image parameter ",
+      type: "blockContent",
     },
   ],
   preview: {

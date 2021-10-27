@@ -4,7 +4,6 @@ import styles from "./ImageList.module.css";
 import React, { useEffect, useState } from "react";
 
 const builder = imageUrlBuilder(sanityClient);
-
 function urlFor(source) {
   return builder.image(source);
 }
