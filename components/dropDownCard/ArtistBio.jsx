@@ -3,6 +3,7 @@ import styles from "./ArtistBio.module.css";
 import BlockContent from "@sanity/block-content-to-react";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
+import Image from "next/image";
 
 const builder = imageUrlBuilder(sanityClient);
 
@@ -20,7 +21,7 @@ const ArtistBio = ({ data, handleClick, showCard, title }) => {
         <div className={styles.col}>
           {showCard && (
             <div className={styles.profile}>
-              <img
+              <Image
                 src={urlFor(profile.asset).url()}
                 alt={"profile"}
                 className={styles.profileImg}

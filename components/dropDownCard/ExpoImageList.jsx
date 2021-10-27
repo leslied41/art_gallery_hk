@@ -4,6 +4,7 @@ import sanityClient from "../../client.js";
 import { useState, useContext, useEffect } from "react";
 import styles from "./ExpoImageList.module.css";
 import { useRouter } from "next/router";
+import Image from "next/image";
 const builder = imageUrlBuilder(sanityClient);
 
 function urlFor(source) {
@@ -19,7 +20,7 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
     if (data.length < 5) {
       setloaded(false);
     }
-  }, []);
+  }, [data.length]);
 
   const initialExhibition = data.slice(0, 4);
   const [slicedExhibition, setSlicedExhibition] = useState(initialExhibition);
@@ -60,7 +61,7 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
                       className={styles.content}
                       style={{ cursor: "pointer" }}
                     >
-                      <img
+                      <Image
                         src={urlFor(image.asset).width(624).height(437).url()}
                         alt={name_exo}
                         className={styles.profileImg}

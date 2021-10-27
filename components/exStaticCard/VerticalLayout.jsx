@@ -2,6 +2,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./VerticalLayout.module.css";
 import BlockContent from "@sanity/block-content-to-react";
+import Image from "next/image";
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
@@ -19,7 +20,7 @@ const VerticalLayout = ({
       <div>
         <div className="oneColumn">
           <div className={styles.topcontainer}>
-            <img
+            <Image
               src={urlFor(image.asset).url()}
               alt="works"
               className={styles.img}

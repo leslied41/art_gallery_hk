@@ -1,4 +1,3 @@
-import Slider from "../components/slider/Slider";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import StaticCard from "../components/staticCard/StaticCard";
 import sanityClient from "../client.js";

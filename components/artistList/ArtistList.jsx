@@ -4,6 +4,7 @@ import { useState } from "react";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ArtistList.module.css";
+import Image from "next/image";
 
 const builder = imageUrlBuilder(sanityClient);
 
@@ -36,7 +37,7 @@ const ArtistList = ({ worksImages, artistsData }) => {
       <div className="col">
         {showImage && (
           <div className={styles.container}>
-            <img
+            <Image
               src={urlFor(targetImage.image.asset).url()}
               alt="works"
               className={styles.img}

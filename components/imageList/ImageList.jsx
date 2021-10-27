@@ -2,6 +2,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ImageList.module.css";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -73,7 +74,7 @@ const ImageList = ({ workImages }) => {
                 style={targetIndex == index ? imgStyle2 : imgStyle1}
                 key={index}
               >
-                <img
+                <Image
                   src={urlFor(item.image.asset).url()}
                   alt="works"
                   className={styles.img}
@@ -87,7 +88,7 @@ const ImageList = ({ workImages }) => {
         {workImages.map((item, index) => {
           return (
             <div className={styles.pics} key={index}>
-              <img
+              <Image
                 src={urlFor(item.image.asset).url()}
                 alt="works"
                 style={{ width: "100%" }}

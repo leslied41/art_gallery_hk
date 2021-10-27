@@ -22,8 +22,8 @@ const ExpoList = ({ data, handleClick, showCard, title }) => {
                 {data.map((item, index) => {
                   const { name_exo, date, slug } = item;
                   return (
-                    <Link href={"/exhibitions/" + slug.current}>
-                      <li key={index}>
+                    <Link key={index} href={"/exhibitions/" + slug.current}>
+                      <li>
                         <p>{name_exo}</p>
                         <p>{date}</p>
                       </li>
