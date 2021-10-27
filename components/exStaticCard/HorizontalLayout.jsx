@@ -30,24 +30,28 @@ const HorizontalLayout = ({
             </div>
             <div>
               <span className="h5">
-                <BlockContent
-                  blocks={image_parameter}
-                  projectId="z3dq9mvc"
-                  dataset="production"
-                />
+                {image_parameter && (
+                  <BlockContent
+                    blocks={image_parameter}
+                    projectId="z3dq9mvc"
+                    dataset="production"
+                  />
+                )}
               </span>
             </div>
           </div>
           <div className="col">
             <div>
               <p className="h3">{name}</p>
-              <p className="h4">
-                <BlockContent
-                  blocks={introduction}
-                  projectId="z3dq9mvc"
-                  dataset="production"
-                />
-              </p>
+              <div className="h4">
+                {introduction && (
+                  <BlockContent
+                    blocks={introduction}
+                    projectId="z3dq9mvc"
+                    dataset="production"
+                  />
+                )}
+              </div>
             </div>
           </div>
           {/* <div className={styles.topcontainer}>
