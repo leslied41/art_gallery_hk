@@ -19,6 +19,8 @@ const ExStaticCard = ({ data }) => {
     introduction,
     introduction_cn,
   } = data;
+  console.log("exstaticcard");
+  console.log(image);
   return (
     <>
       <div className="twoColumn-11">
