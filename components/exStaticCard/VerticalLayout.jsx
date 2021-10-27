@@ -15,12 +15,13 @@ const VerticalLayout = ({
   introduction,
   introduction_cn,
 }) => {
+  console.log(image);
   return (
     <>
       <div>
         <div className="oneColumn">
           <div className={styles.topcontainer}>
-            <Image
+            <img
               src={urlFor(image.asset).url()}
               alt="works"
               className={styles.img}

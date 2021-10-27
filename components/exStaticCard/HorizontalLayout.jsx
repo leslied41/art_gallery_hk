@@ -22,7 +22,7 @@ const HorizontalLayout = ({
         <div className="twoColumn-11">
           <div className="col">
             <div className={styles.imgcontainer}>
-              <Image
+              <img
                 src={urlFor(image.asset).url()}
                 alt="works"
                 className={styles.img}

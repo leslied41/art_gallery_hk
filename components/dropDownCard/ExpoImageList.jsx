@@ -61,7 +61,7 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
                       className={styles.content}
                       style={{ cursor: "pointer" }}
                     >
-                      <Image
+                      <img
                         src={urlFor(image.asset).width(624).height(437).url()}
                         alt={name_exo}
                         className={styles.profileImg}
