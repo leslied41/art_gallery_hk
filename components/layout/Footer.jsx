@@ -3,8 +3,14 @@ import Link from "next/link";
 import { useGlobalSettings } from "../context/GlobalSettings";
 import BlockContent from "@sanity/block-content-to-react";
 import Links from "../links/Links";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import logo from "../../public/images/Frame.svg";
+import Image from "next/image";
 
 export default function Footer() {
+  const router = useRouter();
+  const { t } = useTranslation("common");
   const settings = useGlobalSettings();
   //console.log(settings);
   const {
@@ -12,11 +18,12 @@ export default function Footer() {
     address,
     businessHours,
     orgnizationName,
+    orgnizationName_cn,
     phone,
     email,
     socialMedia,
   } = settings[0];
-  console.log(socialMedia);
+  //console.log(socialMedia);
   return (
     <>
       <div className={styles.footer}>
@@ -25,13 +32,20 @@ export default function Footer() {
             <div className={styles.col1}>
               <ul>
                 <li>
-                  <span className="h2">
-                    <BlockContent
-                      blocks={orgnizationName}
-                      projectId="z3dq9mvc"
-                      dataset="production"
-                    />
-                  </span>
+                  <div className={styles.logo_container}>
+                    <Image src={logo} alt="logo" />
+                    <span className="h2">
+                      <BlockContent
+                        blocks={
+                          router.locale === "en"
+                            ? orgnizationName
+                            : orgnizationName_cn
+                        }
+                        projectId="z3dq9mvc"
+                        dataset="production"
+                      />
+                    </span>
+                  </div>
                 </li>
               </ul>
             </div>

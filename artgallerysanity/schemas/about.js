@@ -1,6 +1,6 @@
 export default {
   name: "about",
-  title: "About",
+  title: "About Page",
   type: "document",
   fields: [
     {
@@ -23,37 +23,173 @@ export default {
       type: "array",
       of: [{ type: "founder" }],
     },
+
     {
-      name: "aboutSection",
-      title: "About Section",
-      type: "array",
-      of: [{ type: "aboutSection" }],
+      name: "briefSection",
+      title: "Brief Section",
+      type: "object",
+      fields: [
+        {
+          name: "name",
+          title: "Name",
+          type: "string",
+        },
+        {
+          name: "name_cn",
+          title: "Name Chinese",
+          type: "string",
+        },
+        {
+          name: "description",
+          title: "Description",
+          type: "blockContent",
+        },
+        {
+          name: "description_cn",
+          title: "Description Chinese",
+          type: "blockContent",
+        },
+      ],
     },
 
     {
       name: "visitUsSection",
       title: "Visit Us Section",
-      type: "array",
-      of: [{ type: "visitUs" }],
+      type: "object",
+      fields: [
+        {
+          name: "name",
+          title: "Name",
+          type: "string",
+        },
+        {
+          name: "name_cn",
+          title: "Name Chinese",
+          type: "string",
+        },
+        {
+          name: "description",
+          title: "Description",
+          type: "blockContent",
+        },
+        {
+          name: "description_cn",
+          title: "Description Chinese",
+          type: "blockContent",
+        },
+        {
+          name: "formResponse",
+          title: "Form Response",
+          type: "blockContent",
+        },
+        {
+          name: "formResponse_cn",
+          title: "Form Response Chinese",
+          type: "blockContent",
+        },
+      ],
     },
 
     {
       name: "connectSection",
       title: "Connect Section",
-      type: "array",
-      of: [{ type: "connect" }],
+      type: "object",
+      fields: [
+        {
+          name: "name",
+          title: "Name",
+          type: "string",
+        },
+        {
+          name: "name_cn",
+          title: "Name Chinese",
+          type: "string",
+        },
+        {
+          name: "description",
+          title: "Description",
+          type: "blockContent",
+        },
+        {
+          name: "description_cn",
+          title: "Description Chinese",
+          type: "blockContent",
+        },
+        {
+          name: "phone",
+          title: "Phone",
+          type: "number",
+        },
+
+        {
+          name: "email",
+          title: "Email",
+          type: "string",
+        },
+
+        {
+          name: "socialMedia",
+          title: "Socail Media",
+          type: "array",
+          of: [{ type: "socialMedia" }],
+        },
+      ],
     },
+
     {
       name: "terminologySection",
       title: "Terminology Section",
-      type: "array",
-      of: [{ type: "terminology" }],
+      type: "object",
+      fields: [
+        {
+          name: "name",
+          title: "Name",
+          type: "string",
+        },
+        {
+          name: "name_cn",
+          title: "Name Chinese",
+          type: "string",
+        },
+        {
+          name: "content",
+          title: "Content",
+          type: "blockContent",
+        },
+        {
+          name: "content_cn",
+          title: "Content Chinese",
+          type: "blockContent",
+        },
+      ],
     },
+
     {
       name: "missionStatementSection",
       title: "Mission Statement Section",
-      type: "array",
-      of: [{ type: "missionStatement" }],
+      type: "object",
+      fields: [
+        {
+          name: "name",
+          title: "Name",
+          type: "string",
+        },
+        {
+          name: "name_cn",
+          title: "Name Chinese",
+          type: "string",
+        },
+        {
+          name: "content",
+          title: "Content",
+          type: "blockContent",
+        },
+        {
+          name: "content_cn",
+          title: "Content Chinese",
+          type: "blockContent",
+        },
+      ],
     },
   ],
   preview: {

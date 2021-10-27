@@ -11,12 +11,12 @@ import footer from "./settings";
 import about from "./about";
 import founder from "./founder";
 import socialMedia from "./socialMedia";
-import connect from "./connect";
-import visitUs from "./visitUs";
+import work from "./work.js";
 import settings from "./settings";
-import terminology from "./terminology";
-import missionStatement from "./missionStatement";
-import aboutSection from "./aboutSection";
+import exhibitions from "./exhibitions";
+import exhibition from "./exhibition";
+import artist from "./artist.js";
+import artists_page from "./artists_page.js";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -29,14 +29,15 @@ export default createSchema({
     // in the studio.
 
     settings,
-    missionStatement,
+
     about,
     founder,
     socialMedia,
-    connect,
-    visitUs,
-    terminology,
-    aboutSection,
+    exhibitions,
+    artists_page,
+    exhibition,
+    work,
+    artist,
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

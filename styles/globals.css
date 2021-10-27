@@ -2,3 +2,6 @@
 @import "./variables/colors.css";
 @import "./layout/grid.css";
 @import "./bases/general.css";
+@import "./utilies/utilies.css";
+@import "./variables/spacing.css";
+@import "./variables/typography.css";

@@ -1,3 +1,7 @@
+.oneColumn {
+  display: grid;
+  grid-template-columns: 1fr;
+}
 .twoColumn-11 {
   display: grid;
   grid-template-columns: 1fr 1fr;

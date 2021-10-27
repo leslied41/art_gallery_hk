@@ -1,13 +1,11 @@
 import Links from "../links/Links";
 import styles from "./MainNavigation.module.css";
+import LanguageSwitch from "../languageSwitch/LanguageSwitch";
+import Header from "../header/Header";
 export default function MainNavigation() {
   return (
     <>
-      <div className={styles.navbar}>
-        <div className={styles.nav}>
-          <Links />
-        </div>
-      </div>
+      <Header />
     </>
   );
 }

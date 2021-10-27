@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+.img {
+  height: 70%;
+  width: 70%;
+}

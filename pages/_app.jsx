@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import sanityClient from "../client.js";
 import Layout from "../components/layout/Layout.jsx";
 import { AppProvider } from "../components/context/GlobalSettings";
+import { appWithTranslation } from "next-i18next";
 
 function MyApp({ Component, pageProps, data }) {
   //console.log(data);
@@ -16,11 +17,11 @@ function MyApp({ Component, pageProps, data }) {
 
 MyApp.getInitialProps = async () => {
   const data = await sanityClient.fetch(
-    `*[_type=='settings']{orgnizationName,address,phone,socialMedia,businessHours,abbreviation}`
+    `*[_type=='settings']{orgnizationName,orgnizationName_cn,address,phone,socialMedia,businessHours,abbreviation}`
   );
   //console.log(data);
 
   return { data };
 };
 
-export default MyApp;
+export default appWithTranslation(MyApp);
