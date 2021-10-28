@@ -22,10 +22,13 @@ const VerticalLayout = ({
       <div>
         <div className="oneColumn">
           <div className={styles.topcontainer}>
-            <img
+            <Image
               src={urlFor(image.asset).url()}
               alt="works"
               className={styles.img}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="60% 40%"
             />
           </div>
         </div>
