@@ -51,7 +51,7 @@ export default function Exhibition({
 
 export const getStaticProps = async ({ locale }) => {
   const exPageData = await sanityClient.fetch(
-    `*[_type=='exhibitions']{briefSection}`
+    `*[_type=='pages'&&name=='Exhibitions']{briefSection}`
   );
   const currentExpoData = await sanityClient.fetch(
     `*[_type=='exhibition'&& exhibition_status=='Current']`

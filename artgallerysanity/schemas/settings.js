@@ -2,6 +2,16 @@ export default {
   name: "settings",
   title: "Settings",
   type: "document",
+  fieldsets: [
+    {
+      name: "translation",
+      title: "Translation",
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: true, // Defines if the fieldset should be collapsed by default or not
+      },
+    },
+  ],
   fields: [
     {
       name: "orgnizationName",
@@ -12,6 +22,7 @@ export default {
       name: "orgnizationName_cn",
       title: "Orgnization Name Chinese",
       type: "blockContent",
+      fieldset: "translation",
     },
     {
       name: "abbreviation",
@@ -24,6 +35,12 @@ export default {
       type: "text",
     },
     {
+      name: "address_cn",
+      title: "Address Chinese",
+      type: "text",
+      fieldset: "translation",
+    },
+    {
       name: "phone",
       title: "Phone",
       type: "number",
@@ -34,15 +51,27 @@ export default {
       type: "text",
     },
     {
+      name: "businessHours_cn",
+      title: "Business Hours Chinese",
+      type: "text",
+      fieldset: "translation",
+    },
+    {
       name: "email",
       title: "Email",
       type: "email",
     },
     {
-      name: "socialMedia",
-      title: "Socail Media",
+      name: "social",
+      title: "Social Media",
       type: "array",
-      of: [{ type: "socialMedia" }],
+      of: [{ type: "reference", to: { type: "socialMedia" } }],
     },
+    // {
+    //   name: "socialMedia",
+    //   title: "Socail Media",
+    //   type: "array",
+    //   of: [{ type: "socialMedia" }],
+    // },
   ],
 };

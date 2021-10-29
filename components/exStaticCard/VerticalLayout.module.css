@@ -1,8 +1,7 @@
 .topcontainer {
   width: 100%;
-  position: relative;
-  height: 600px;
+  display: block;
 }
-.img {
+/* .img {
   width: 100%;
-}
+} */

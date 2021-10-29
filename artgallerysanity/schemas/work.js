@@ -1,7 +1,17 @@
 export default {
   name: "work",
-  title: "Work",
+  title: "Works",
   type: "document",
+  fieldsets: [
+    {
+      name: "translation",
+      title: "Translation",
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: true, // Defines if the fieldset should be collapsed by default or not
+      },
+    },
+  ],
   fields: [
     {
       name: "name",
@@ -12,6 +22,7 @@ export default {
       name: "name_cn",
       title: "Name Chinese",
       type: "string",
+      fieldset: "translation",
     },
     {
       name: "slug",
@@ -31,16 +42,7 @@ export default {
       name: "introduction_cn",
       title: "Introduction Chinese ",
       type: "blockContent",
-    },
-    {
-      name: "info",
-      title: "Info ",
-      type: "blockContent",
-    },
-    {
-      name: "info_cn",
-      title: "Info Chinese ",
-      type: "blockContent",
+      fieldset: "translation",
     },
     {
       name: "author",

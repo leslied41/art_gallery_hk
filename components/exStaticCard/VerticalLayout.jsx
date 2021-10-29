@@ -26,9 +26,13 @@ const VerticalLayout = ({
               src={urlFor(image.asset).url()}
               alt="works"
               className={styles.img}
-              layout="fill"
+              // layout="fill"
               objectFit="cover"
-              objectPosition="60% 40%"
+              // objectPosition="60% 40%"
+              //when using layout fill, its parent element must be position relative and its parent must have a height.
+              layout="responsive"
+              width="1200"
+              height="500"
             />
           </div>
         </div>

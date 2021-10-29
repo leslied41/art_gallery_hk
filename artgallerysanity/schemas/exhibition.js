@@ -1,28 +1,28 @@
 export default {
   name: "exhibition",
-  title: "Exhibition",
+  title: "Exhibitions",
   type: "document",
-  fields: [
+  fieldsets: [
     {
-      name: "exhibition_status",
-      title: "Exhibitions Status",
-      type: "string",
+      name: "translation",
+      title: "Translation",
       options: {
-        list: [
-          { title: "current", value: "Current" },
-          { title: "future", value: "Future" },
-        ],
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: true, // Defines if the fieldset should be collapsed by default or not
       },
     },
+  ],
+  fields: [
     {
       name: "name_exo",
-      title: "Name Exo",
+      title: "Name",
       type: "string",
     },
     {
       name: "name_exo_cn",
-      title: "Name Exo Chinese",
+      title: "Name Chinese",
       type: "string",
+      fieldset: "translation",
     },
     {
       name: "slug",
@@ -33,15 +33,27 @@ export default {
         maxLength: 96,
       },
     },
+    {
+      name: "exhibition_status",
+      title: "Exhibitions Status",
+      type: "string",
+      options: {
+        list: [
+          { title: "current", value: "Current" },
+          { title: "future", value: "Future" },
+          { title: "past", value: "Past" },
+        ],
+      },
+    },
 
+    {
+      name: "introduction",
+      title: "Introduction",
+      type: "blockContent",
+    },
     {
       name: "date",
       title: "Date",
-      type: "string",
-    },
-    {
-      name: "date_cn",
-      title: "Date Chinese",
       type: "string",
     },
     {
@@ -55,20 +67,24 @@ export default {
       type: "blockContent",
     },
     {
-      name: "introduction",
-      title: "Introduction",
-      type: "blockContent",
-    },
-    {
-      name: "introduction_cn",
-      title: "Introduction Chinese",
-      type: "blockContent",
-    },
-    {
       name: "works",
       title: "Works",
       type: "array",
       of: [{ type: "reference", to: { type: "work" } }],
+    },
+
+    {
+      name: "date_cn",
+      title: "Date Chinese",
+      type: "string",
+      fieldset: "translation",
+    },
+
+    {
+      name: "introduction_cn",
+      title: "Introduction Chinese",
+      type: "blockContent",
+      fieldset: "translation",
     },
   ],
   preview: {

@@ -1,7 +1,17 @@
 export default {
   name: "artist",
-  title: "Artist",
+  title: "Artists",
   type: "document",
+  fieldsets: [
+    {
+      name: "translation",
+      title: "Translation",
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: true, // Defines if the fieldset should be collapsed by default or not
+      },
+    },
+  ],
   fields: [
     {
       name: "name",
@@ -12,21 +22,7 @@ export default {
       name: "name_cn",
       title: "Name Chinese",
       type: "string",
-    },
-    {
-      name: "description",
-      title: "Description",
-      type: "blockContent",
-    },
-    {
-      name: "description_cn",
-      title: "Description Chinese",
-      type: "blockContent",
-    },
-    {
-      name: "profile",
-      title: "Profile",
-      type: "image",
+      fieldset: "translation",
     },
     {
       name: "slug",
@@ -38,6 +34,23 @@ export default {
       },
     },
     {
+      name: "description",
+      title: "Description",
+      type: "blockContent",
+    },
+    {
+      name: "description_cn",
+      title: "Description Chinese",
+      type: "blockContent",
+      fieldset: "translation",
+    },
+    {
+      name: "profile",
+      title: "Profile",
+      type: "image",
+    },
+
+    {
       name: "bio",
       title: "Bio ",
       type: "blockContent",
@@ -46,6 +59,7 @@ export default {
       name: "bio_cn",
       title: "Bio Chinese ",
       type: "blockContent",
+      fieldset: "translation",
     },
   ],
   preview: {

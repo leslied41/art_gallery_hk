@@ -9,7 +9,14 @@ import router, { useRouter } from "next/router";
 
 export const getStaticProps = async ({ locale }) => {
   const data = await sanityClient.fetch(
-    `*[_type=='about']{founder,briefSection,visitUsSection,connectSection,terminologySection,missionStatementSection}`
+    `*[_type=='pages'&&name=='About']{briefSection,visitUsSection,connectSection{name,
+    name_cn,
+    description,
+    description_cn,
+    phone,
+    social[]->,
+    email,
+    },terminologySection,missionStatementSection}`
   );
 
   if (!data || !data.length) {
@@ -45,18 +52,10 @@ export default function About({ data }) {
         </div>
         {/* dropDownCard */}
         <div className="section mt-118">
-          <DropDownCard
-            data={terminologySection}
-            title={router.locale == "en" ? "Terminology" : "術語"}
-            purewords={true}
-          />
+          <DropDownCard data={terminologySection} purewords={true} />
         </div>
         <div className="section mt-28">
-          <DropDownCard
-            data={missionStatementSection}
-            title={router.locale == "en" ? "Mission Statement" : "使命聲明"}
-            purewords={true}
-          />
+          <DropDownCard data={missionStatementSection} purewords={true} />
         </div>
 
         {/* third part */}

@@ -21,7 +21,7 @@ export default function Footer() {
     orgnizationName_cn,
     phone,
     email,
-    socialMedia,
+    social,
   } = settings[0];
   //console.log(socialMedia);
   return (
@@ -80,7 +80,7 @@ export default function Footer() {
               </div>
               <div className={styles.row}>
                 <ul>
-                  {socialMedia.map((item, index) => {
+                  {social.map((item, index) => {
                     return (
                       <li key={index}>
                         <a href={item.url}>{item.platform}</a>

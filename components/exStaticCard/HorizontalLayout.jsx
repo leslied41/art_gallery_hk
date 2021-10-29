@@ -1,6 +1,6 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
-import styles from "./VerticalLayout.module.css";
+import styles from "./HorizontalLayout.module.css";
 import BlockContent from "@sanity/block-content-to-react";
 import Image from "next/image";
 const builder = imageUrlBuilder(sanityClient);

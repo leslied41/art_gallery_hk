@@ -21,7 +21,7 @@ const StaticCard = ({ data, form }) => {
     description,
     description_cn,
     phone,
-    socialMedia,
+    social,
     email,
     formResponse,
     formResponse_cn,
@@ -70,9 +70,9 @@ const StaticCard = ({ data, form }) => {
             </div>
           )}
           {/* if social media exists, display it */}
-          {socialMedia && (
+          {social && (
             <div className="socialMedia">
-              {socialMedia.map((item, index) => {
+              {social.map((item, index) => {
                 return (
                   <div key={index}>
                     <a href={item.url}>

@@ -21,7 +21,7 @@ export default function Artists({ data, artistsData, worksImages }) {
 }
 export async function getStaticProps({ locale }) {
   const data = await sanityClient.fetch(
-    `*[_type=='artists_page']{briefSection}`
+    `*[_type=='pages'&&name=='Artists']{briefSection}`
   );
   const worksImages = await sanityClient.fetch(
     `*[_type=='work']{image,author[]->{name,slug}}`
