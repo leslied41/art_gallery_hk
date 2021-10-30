@@ -80,3 +80,6 @@ hr {
   margin-left: auto;
   margin-right: auto;
 }
+.formContainer {
+  width: 100%;
+}

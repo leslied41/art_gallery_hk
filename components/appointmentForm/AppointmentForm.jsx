@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 const AppointmentForm = (FormResponse) => {
   const router = useRouter();
   const [showRes, setShowRes] = useState(false);
-  console.log(FormResponse);
+  //console.log(FormResponse);
   const {
     register,
     handleSubmit,
@@ -38,21 +38,23 @@ const AppointmentForm = (FormResponse) => {
   return (
     <div className="formContainer h3">
       <form className={styles.form} onSubmit={handleSubmit(onSubmitForm)}>
-        <div className="mb-19">
-          <input
-            name="fullName"
-            type="text"
-            placeholder={router.locale == "en" ? "Full Name" : "姓名"}
-            {...register("fullName", { required: true, maxLength: 20 })}
-          />
-          <p className="red-text h4">
-            {errors.fullName?.type === "required" && "Name is required"}
-          </p>
-        </div>
-        <div className="mb-19">
+        <input
+          name="fullName"
+          type="text"
+          placeholder={router.locale == "en" ? "Full Name" : "姓名"}
+          {...register("fullName", { required: true, maxLength: 20 })}
+        />
+        <p className="red-text h4">
+          {errors.fullName?.type === "required" && "Name is required"}
+        </p>
+
+        <div>
           <input
             name="dateTime"
-            type="datetime-local"
+            onFocus={(e) => {
+              e.target.type = "datetime-local";
+            }}
+            type="text"
             placeholder={router.locale == "en" ? "Date & Time" : "日期时间"}
             {...register("dateTime", { required: true, maxLength: 20 })}
           />
@@ -60,7 +62,7 @@ const AppointmentForm = (FormResponse) => {
             {errors.dateTime?.type === "required" && "Date & Time is required"}
           </p>
         </div>
-        <div className="mb-19">
+        <div>
           <input
             name="headCount"
             type="number"
@@ -72,7 +74,7 @@ const AppointmentForm = (FormResponse) => {
           </p>
         </div>
 
-        <div className="mb-19">
+        <div>
           <input
             name="event"
             type="text"
@@ -87,7 +89,7 @@ const AppointmentForm = (FormResponse) => {
             {errors.event?.type === "required" && "Event is required"}
           </p>
         </div>
-        <div className="mb-19">
+        <div>
           <input
             name="remarks"
             type="text"

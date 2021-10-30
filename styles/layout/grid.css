@@ -11,3 +11,7 @@
   display: grid;
   grid-template-columns: 1fr 0.5fr 0.5fr;
 }
+.col {
+  width: 100%;
+  overflow: hidden;
+}
