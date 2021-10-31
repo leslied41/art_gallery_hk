@@ -1,9 +1,7 @@
 .footer {
   background-color: var(--black);
-  height: 318px;
   width: 100%;
   color: var(--white);
-  height: 318px;
 }
 .container {
   padding-top: 42px;
