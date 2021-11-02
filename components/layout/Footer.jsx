@@ -28,7 +28,7 @@ export default function Footer() {
     <>
       <div className={styles.footer}>
         <div className={styles.container}>
-          <div className="threeColumn-211">
+          <div className={styles.grid}>
             <div className={styles.col1}>
               <ul>
                 <li>

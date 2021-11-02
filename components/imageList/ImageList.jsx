@@ -3,35 +3,25 @@ import sanityClient from "../../client.js";
 import styles from "./ImageList.module.css";
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
 const ImageList = ({ workImages }) => {
+  console.log(workImages);
   const [tempImage, settempImage] = React.useState("");
   const [model, setmodel] = React.useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
+
   const [zoom, setzoom] = useState(false);
-  const [imageCollection, setimageCollection] = useState([]);
-  const imagesEl = useRef();
+  const [clickTime, setclickTime] = useState(0);
+  const [pressed, setpressed] = useState(false);
 
-  useEffect(() => {
-    const imageCollection = imagesEl.current.querySelectorAll("img");
-    setimageCollection(imageCollection);
-
-    //console.log(imageCollection);
-    // [...imageCollection].map((image) => {
-    //   image.style.transform = "translate(50%,50%)";
-    // });
-    // if (zoom) {
-    //   [...imageCollection].map((image) => {});
-    // }
-
-    // if (!zoom) {
-    //   [...imageCollection].map((image) => {});
-    // }
-  }, [zoom]);
+  const mouseDown = (e) => {
+    setclickTime(new Date());
+  };
 
   const getImage = (image) => {
     settempImage(image);
@@ -51,45 +41,10 @@ const ImageList = ({ workImages }) => {
     objectFit: "cover",
   };
 
-  const resize = () => {
-    setzoom(!zoom);
-
-    if (!zoom) {
-      [...imageCollection].map((image) => {
-        //console.log(image);
-        image.style.transform = ` scale(2) `;
-      });
-    }
-    if (zoom) {
-      [...imageCollection].map((image) => {
-        //console.log(image);
-        image.style.transform = `scale(1)`;
-      });
-    }
-  };
-  const mouseMove = (e) => {
-    const clientX = e.clientX;
-    const clientY = e.clientY;
-
-    const containerWidth = e.target.offsetWidth;
-    const containerHeight = e.target.offsetHeight;
-
-    const x = clientX - containerWidth / 2;
-    const y = clientY - containerHeight / 2;
-
-    console.log(x, y, containerWidth, containerHeight);
-    if (zoom) {
-      [...imageCollection].map((image) => {
-        //console.log(image);
-        image.style.transform =
-          "translate(" + x + "px, " + y + "px) scale( 2 )";
-      });
-    }
-  };
   return (
     <>
       <div className={model ? styles.open : styles.close}>
-        <div className={styles.container} ref={imagesEl}>
+        <div className={styles.container}>
           <div
             className={styles.closeIcon}
             onClick={() => {
@@ -123,35 +78,81 @@ const ImageList = ({ workImages }) => {
           >
             Prev
           </div>
-          {workImages.map((item, index) => {
-            return (
-              <div
-                className={styles.pic}
-                style={targetIndex == index ? imgStyle2 : imgStyle1}
-                key={index}
-                onClick={resize}
-                onMouseMove={(e) => {
-                  mouseMove(e);
-                }}
-              >
-                <img
-                  src={urlFor(item.image.asset).url()}
-                  alt="works"
-                  className={styles.img_origin}
-                />
-              </div>
-            );
-          })}
+          <div>
+            <TransformWrapper
+              initialScale={1}
+              initialPositionX={0}
+              initialPositionY={0}
+              doubleClick={{ disabled: true }}
+            >
+              {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+                <>
+                  <TransformComponent>
+                    {workImages.map((item, index) => {
+                      return (
+                        <div
+                          className={styles.pic}
+                          style={targetIndex == index ? imgStyle2 : imgStyle1}
+                          key={index}
+                          onClick={(e) => {
+                            e.preventDefault();
+
+                            if (new Date() - clickTime < 150) {
+                              //console.log(zoom);
+                              setzoom(!zoom);
+                              if (zoom) {
+                                zoomIn(1);
+                                e.target.style.cursor = "zoom-out";
+                              } else if (!zoom) {
+                                zoomOut(1);
+                                e.target.style.cursor = "zoom-in";
+                              }
+                            }
+                          }}
+                          onMouseDown={(e) => {
+                            setpressed(true);
+                            mouseDown(e);
+                          }}
+                          onMouseMove={(e) => {
+                            if (pressed) {
+                              e.target.style.cursor = "grab";
+                            }
+                          }}
+                          onMouseUp={(e) => {
+                            setpressed(false);
+                            if (!zoom) {
+                              e.target.style.cursor = "zoom-out";
+                            } else if (zoom) {
+                              e.target.style.cursor = "zoom-in";
+                            }
+                          }}
+                        >
+                          <img
+                            src={urlFor(item.image.asset).url()}
+                            alt="works"
+                            // className={
+                            //   zoom ? styles.img_zoom : styles.img_origin
+                            // }
+                            className={styles.img_origin}
+                          />
+                        </div>
+                      );
+                    })}
+                  </TransformComponent>
+                </>
+              )}
+            </TransformWrapper>
+          </div>
         </div>
       </div>
       <div className={styles.gallery}>
         {workImages.map((item, index) => {
           return (
-            <div className={styles.pics} key={index}>
+            <div className={styles.pics} key={item.image.asset._ref}>
               <img
                 src={urlFor(item.image.asset).url()}
                 alt="works"
-                style={{ width: "100%" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 onClick={() => {
                   //getImage(item.image);
                   getIndex(index);

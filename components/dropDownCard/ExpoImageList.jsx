@@ -31,7 +31,7 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
 
   return (
     <>
-      <div className="twoColumn-11">
+      <div className={styles.grid}>
         <div className="col"></div>
         <div className="col">
           <div className="title">
@@ -53,10 +53,10 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
           {slicedExhibition.map((item, index) => {
             const { name_exo, name_exo_cn, date, date_cn, image, slug, _id } =
               item;
-            console.log(12345);
-            console.log(image);
+            // console.log(12345);
+            // console.log(image);
             return (
-              <div className="twoColumn-11" key={index}>
+              <div className={styles.grid} key={index}>
                 <Link href={"/exhibitions/" + slug.current}>
                   <div className="col">
                     <div
@@ -66,7 +66,7 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
                       <img
                         src={urlFor(image.asset).width(624).height(437).url()}
                         alt={name_exo}
-                        className={styles.profileImg}
+                        style={{ width: "100%" }}
                       />
                     </div>
                   </div>
@@ -89,7 +89,7 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
               </div>
             );
           })}
-          <div className="twoColumn-11">
+          <div className={styles.grid}>
             <div className="col">
               <div className={styles.content}>
                 {loaded && (

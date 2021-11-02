@@ -36,14 +36,14 @@ export default function Exhibition({
             title={router.locale == "en" ? "Forthcoming" : "未來"}
           />
         </div>
-        <div className="section">
+        {/* <div className="section">
           <div>
             <ReactPlayer
               controls={true}
               url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
             />
           </div>
-        </div>
+        </div> */}
       </main>
     </>
   );
