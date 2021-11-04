@@ -73,7 +73,7 @@ export async function getStaticProps({ locale, params }) {
     `*[slug.current=='${params.slug}']`
   );
   const workImages = await sanityClient.fetch(
-    `*[_type=='work'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]{image,'metadata':image.asset->{metadata}}`
+    `*[_type=='work'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]{image,image_parameter,'metadata':image.asset->{metadata}}`
   );
   // this is to fetch all the expos that one certain artis has ever participated.
   const exposData = await sanityClient.fetch(

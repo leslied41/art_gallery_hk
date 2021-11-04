@@ -21,9 +21,12 @@ const ArtistBio = ({ data, handleClick, showCard, title }) => {
         <div className={styles.col}>
           {showCard && (
             <div className={styles.profile}>
-              <img
+              <Image
                 src={urlFor(profile.asset).url()}
                 alt={"profile"}
+                width={600}
+                height={600}
+                layout="responsive"
                 className={styles.profileImg}
               />
             </div>

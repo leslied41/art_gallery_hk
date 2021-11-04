@@ -4,6 +4,8 @@ import styles from "./ImageList.module.css";
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import BlockContent from "@sanity/block-content-to-react";
+import useInView from "react-cool-inview";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -14,6 +16,11 @@ const ImageList = ({ workImages }) => {
   const [tempImage, settempImage] = React.useState("");
   const [model, setmodel] = React.useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
+
+  // const { observe, inView } = useInView({
+  //   onEnter: ({ unobserve }) => unobserve(),
+
+  // });
 
   const [zoom, setzoom] = useState(false);
   const [clickTime, setclickTime] = useState(0);
@@ -37,7 +44,7 @@ const ImageList = ({ workImages }) => {
   };
   const imgStyle2 = {
     width: "100%",
-    display: "block",
+    display: "flex",
     objectFit: "cover",
   };
 
@@ -83,7 +90,8 @@ const ImageList = ({ workImages }) => {
               initialScale={1}
               initialPositionX={0}
               initialPositionY={0}
-              doubleClick={{ disabled: true }}
+              doubleClick={{ mode: "reset" }}
+              wheel={{ disabled: true }}
             >
               {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                 <>
@@ -92,6 +100,7 @@ const ImageList = ({ workImages }) => {
                       return (
                         <div
                           className={styles.pic}
+                          //ref={observe}
                           style={targetIndex == index ? imgStyle2 : imgStyle1}
                           key={index}
                           onClick={(e) => {
@@ -128,11 +137,12 @@ const ImageList = ({ workImages }) => {
                           }}
                         >
                           <img
+                            //src={logo}
                             src={urlFor(item.image.asset).url()}
                             alt="works"
-                            // className={
-                            //   zoom ? styles.img_zoom : styles.img_origin
-                            // }
+                            // width={item.metadata.metadata.dimensions.width}
+                            // height={item.metadata.metadata.dimensions.height}
+
                             className={styles.img_origin}
                           />
                         </div>
@@ -143,16 +153,36 @@ const ImageList = ({ workImages }) => {
               )}
             </TransformWrapper>
           </div>
+          <div>
+            {workImages.map((item, index) => {
+              return (
+                <div
+                  className={styles.image_parameter}
+                  key={index}
+                  style={targetIndex == index ? imgStyle2 : imgStyle1}
+                >
+                  <BlockContent
+                    blocks={item.image_parameter}
+                    projectId="z3dq9mvc"
+                    dataset="production"
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
       <div className={styles.gallery}>
         {workImages.map((item, index) => {
           return (
             <div className={styles.pics} key={item.image.asset._ref}>
-              <img
-                src={urlFor(item.image.asset).url()}
+              <Image
+                src={urlFor(item.image.asset).height(500).width(400).url()}
                 alt="works"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                height={500}
+                width={400}
+                layout="responsive"
+                objectFit="cover"
                 onClick={() => {
                   //getImage(item.image);
                   getIndex(index);
