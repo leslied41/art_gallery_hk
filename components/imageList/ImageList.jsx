@@ -136,13 +136,14 @@ const ImageList = ({ workImages }) => {
                             }
                           }}
                         >
-                          <img
+                          <Image
                             //src={logo}
                             src={urlFor(item.image.asset).url()}
                             alt="works"
-                            // width={item.metadata.metadata.dimensions.width}
-                            // height={item.metadata.metadata.dimensions.height}
-
+                            layout="intrinsic"
+                            width={item.metadata.metadata.dimensions.width}
+                            height={item.metadata.metadata.dimensions.height}
+                            objectFit="contain"
                             className={styles.img_origin}
                           />
                         </div>
