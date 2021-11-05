@@ -1,6 +1,5 @@
 .col {
   height: 100%;
-  position: relative;
 }
 .profile {
   height: 100%;
@@ -11,10 +10,4 @@
   max-width: 100%;
   display: block;
   line-height: 0;
-}
-.hr_bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
 }

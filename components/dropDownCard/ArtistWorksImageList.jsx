@@ -1,4 +1,5 @@
 import ImageList from "../imageList/ImageList";
+import Collapsible from "../collapsible/Collapsible";
 const ArtistWorksImageList = ({ data, title, showCard, handleClick }) => {
   return (
     <>
@@ -10,16 +11,20 @@ const ArtistWorksImageList = ({ data, title, showCard, handleClick }) => {
               {title} {showCard ? "-" : "+"}
             </span>
           </div>
-          <div>{showCard || <hr className="hr-top" />}</div>
         </div>
       </div>
-
-      <div className="works">{showCard && <ImageList workImages={data} />}</div>
-
+      <Collapsible showCard={showCard}>
+        <div className="works">
+          <ImageList workImages={data} />
+        </div>
+      </Collapsible>
       <div className="twoColumn-11">
         <div className="col"></div>
         <div className="col">
-          <div>{showCard && <hr className="hr-bottom" />}</div>
+          <div>
+            {" "}
+            <hr className="hr-bottom" />
+          </div>
         </div>
       </div>
     </>

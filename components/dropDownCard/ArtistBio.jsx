@@ -4,7 +4,7 @@ import BlockContent from "@sanity/block-content-to-react";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import Image from "next/image";
-
+import Collapsible from "../collapsible/Collapsible";
 const builder = imageUrlBuilder(sanityClient);
 
 function urlFor(source) {
@@ -38,8 +38,8 @@ const ArtistBio = ({ data, handleClick, showCard, title }) => {
               {title} {showCard ? "-" : "+"}
             </span>
           </div>
-          <div>{showCard || <hr className="hr-top" />}</div>
-          {showCard && (
+
+          <Collapsible showCard={showCard}>
             <div className="mt-28">
               <span className="h3">
                 <BlockContent
@@ -49,8 +49,10 @@ const ArtistBio = ({ data, handleClick, showCard, title }) => {
                 />
               </span>
             </div>
-          )}
-          <div className={styles.hr_bottom}>{showCard && <hr />}</div>
+          </Collapsible>
+          <div className="hr-bottom">
+            <hr />
+          </div>
         </div>
       </div>
     </>

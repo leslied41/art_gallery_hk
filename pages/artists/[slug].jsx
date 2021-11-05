@@ -24,8 +24,9 @@ export default function Artist({ artistData, workImages, exposData }) {
     }
   });
   //console.log(mergedArray_json);
-  const mergedArray = [JSON.parse(mergedArray_json)];
-  console.log(mergedArray);
+  const mergedArray = mergedArray_json.map((item) => [JSON.parse(item)]);
+  //const mergedArray = [JSON.parse(mergedArray_json[0])];
+  //console.log(mergedArray);
 
   const [showCard, setshowCard] = useState(false);
   const handleClick = () => {
@@ -79,6 +80,7 @@ export async function getStaticProps({ locale, params }) {
   const exposData = await sanityClient.fetch(
     `*[_type=='work'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]{_id,'exhibition':*[_type=='exhibition'&&references(^._id)]{name_exo,name_exo_cn,date,date_cn,slug}}`
   );
+  console.log(exposData);
   return {
     props: {
       workImages,

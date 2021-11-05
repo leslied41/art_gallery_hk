@@ -6,6 +6,7 @@ import styles from "./ExpoImageList.module.css";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard.jsx";
+import Collapsible from "../collapsible/Collapsible.jsx";
 const builder = imageUrlBuilder(sanityClient);
 
 function urlFor(source) {
@@ -43,19 +44,12 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
         <div className="col">
           <div className="title">
             <span className="h2" onClick={handleClick}>
-              {/* {i18n.language === "en"
-                ? data[0].exhibition_status
-                : data[0].exhibition_status == "Current"
-                ? "目前"
-                : "未来"} */}
               {title} {showCard ? "-" : "+"}
             </span>
           </div>
-          <div>{showCard || <hr className="hr-top" />}</div>
         </div>
       </div>
-
-      {showCard && (
+      <Collapsible showCard={showCard} loaded={loaded}>
         <>
           {slicedExhibition.map((item, index) => {
             const { name_exo, name_exo_cn, date, date_cn, image, slug, _id } =
@@ -103,13 +97,17 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
             <div className="col">
               <div className={styles.content}></div>
             </div>
-            <div className="col"></div>
-            <div className="col">
-              <div>{showCard && <hr className="hr-bottom" />}</div>
-            </div>
           </div>
         </>
-      )}
+      </Collapsible>
+      <div className={styles.grid}>
+        <div className="col"></div>
+        <div className="col">
+          <div>
+            <hr className="hr-bottom" />
+          </div>
+        </div>
+      </div>
     </>
   );
 };
