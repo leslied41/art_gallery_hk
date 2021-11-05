@@ -3,12 +3,7 @@ import { useTranslation } from "next-i18next";
 
 export default function Landing() {
   const { t } = useTranslation("common");
-  return (
-    <>
-      <h1>Landing page</h1>
-      <h2>{t("heading")}</h2>
-    </>
-  );
+  return <></>;
 }
 
 export async function getStaticProps({ locale }) {

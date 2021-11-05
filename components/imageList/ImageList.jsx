@@ -5,7 +5,6 @@ import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import BlockContent from "@sanity/block-content-to-react";
-import useInView from "react-cool-inview";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -16,11 +15,6 @@ const ImageList = ({ workImages }) => {
   const [tempImage, settempImage] = React.useState("");
   const [model, setmodel] = React.useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
-
-  // const { observe, inView } = useInView({
-  //   onEnter: ({ unobserve }) => unobserve(),
-
-  // });
 
   const [zoom, setzoom] = useState(false);
   const [clickTime, setclickTime] = useState(0);

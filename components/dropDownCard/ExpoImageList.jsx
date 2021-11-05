@@ -5,6 +5,7 @@ import { useState, useContext, useEffect } from "react";
 import styles from "./ExpoImageList.module.css";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import LoadMoreCard from "../loadMoreCard/LoadMoreCard.jsx";
 const builder = imageUrlBuilder(sanityClient);
 
 function urlFor(source) {
@@ -12,6 +13,7 @@ function urlFor(source) {
 }
 
 const ExpoImageList = ({ data, handleClick, showCard, title }) => {
+  console.log(data);
   const router = useRouter();
 
   const [loaded, setloaded] = useState(true);
@@ -19,11 +21,16 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
   useEffect(() => {
     if (data.length < 5) {
       setloaded(false);
+    } else if (data.length >= 5) {
+      setloaded(true);
     }
-  }, [data.length]);
+  }, [data.length, showCard]);
 
-  const initialExhibition = data.slice(0, 4);
-  const [slicedExhibition, setSlicedExhibition] = useState(initialExhibition);
+  const [slicedExhibition, setSlicedExhibition] = useState(data);
+  useEffect(() => {
+    const initialExhibition = data.slice(0, 4);
+    setSlicedExhibition(initialExhibition);
+  }, [showCard]);
   const loadMore = () => {
     setSlicedExhibition(data);
     setloaded(!loaded);
@@ -91,15 +98,7 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
           })}
           <div className={styles.grid}>
             <div className="col">
-              <div className={styles.content}>
-                {loaded && (
-                  <div className={styles.darkSquare}>
-                    <span className={styles.loadmore} onClick={loadMore}>
-                      Load More+
-                    </span>
-                  </div>
-                )}
-              </div>
+              <LoadMoreCard loaded={loaded} loadMore={loadMore} />
             </div>
             <div className="col">
               <div className={styles.content}></div>
