@@ -50,12 +50,11 @@
   justify-content: center;
   overflow: hidden;
   z-index: 999;
-  background-color: orange;
+  background-color: white;
 }
 .container {
   height: 100%;
   width: auto;
-  overflow: hidden;
 }
 .pics {
   cursor: pointer;
@@ -65,9 +64,10 @@
   transition: all 350ms ease;
   cursor: zoom-in;
   max-height: 80vh;
-  width: 100%;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
+  display: flex;
 }
 .pics:hover {
   filter: opacity(0.8);
@@ -84,20 +84,20 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  color: wheat;
-  background-color: gray;
+  color: black;
+  background-color: none;
   z-index: 999;
 }
 .next {
   position: fixed;
   top: 50%;
-  right: 5%;
+  right: 10%;
   z-index: 999;
 }
 .prev {
   position: fixed;
   top: 50%;
-  left: 5%;
+  left: 10%;
   z-index: 999;
 }
 .image_parameter {

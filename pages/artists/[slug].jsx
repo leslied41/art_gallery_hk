@@ -5,7 +5,6 @@ import DropDownCard from "../../components/dropDownCard/DropDownCard.jsx";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import ImageList from "../../components/imageList/ImageList.jsx";
-import { set } from "react-hook-form";
 
 export default function Artist({ artistData, workImages, exposData }) {
   //console.log(exposData);

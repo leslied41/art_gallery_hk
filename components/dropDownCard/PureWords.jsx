@@ -10,7 +10,7 @@ const PureWords = ({ data, handleClick, showCard }) => {
 
   return (
     <>
-      <div className="twoColumn-11">
+      <div className={styles.grid}>
         <div className="col"></div>
         <div className="col">
           <div className="title">

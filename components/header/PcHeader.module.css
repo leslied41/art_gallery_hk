@@ -1,0 +1,56 @@
+.section {
+  position: relative;
+  cursor: pointer;
+}
+.links {
+  position: absolute;
+  writing-mode: vertical-rl;
+  top: 20px;
+  right: 1.4%;
+  color: var(--white);
+}
+.links:hover ~ svg .about {
+  fill: var(--black);
+}
+.icon {
+  position: absolute;
+}
+.exhIcon {
+  display: none;
+}
+.aboutIcon {
+  display: none;
+}
+.artIcon {
+  display: none;
+}
+.pubIcon {
+  display: none;
+}
+.title {
+  position: absolute;
+  top: 20px;
+  left: 1.4%;
+  color: var(--black);
+}
+.title:hover {
+  color: var(--white);
+}
+.title:hover + svg .exhibition {
+  fill: var(--black);
+}
+
+.about:hover {
+  fill: var(--black);
+}
+
+.publication:hover {
+  fill: var(--black);
+}
+.artists:hover {
+  fill: var(--black);
+}
+
+.exhibition:hover {
+  fill: var(--black);
+}

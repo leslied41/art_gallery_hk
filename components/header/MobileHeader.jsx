@@ -4,19 +4,26 @@ import { useRouter } from "next/router";
 import Links from "../links/Links";
 import Link from "next/link";
 import image0 from "../../public/images/image0.png";
+import image_artist from "../../public/images/artist.png";
 import { useTranslation } from "next-i18next";
 
 const MobileHeader = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const { pathname, asPath, query } = router;
-  const changeLanEn = () => {
-    //console.log("en");
-    router.push({ pathname, query }, asPath, { locale: "en" });
-  };
-  const changeLanTc = () => {
-    router.push({ pathname, query }, asPath, { locale: "tc" });
-  };
+  console.log(pathname);
+  console.log(query.slug);
+  const [headerImage, setheaderImage] = useState(image0);
+
+  useEffect(() => {
+    if (pathname == "/artists") {
+      setheaderImage(image_artist);
+    }
+    if (pathname == "/exhibitions") {
+      setheaderImage(image0);
+    }
+  }, [pathname, query]);
+
   return (
     <>
       <section className={styles.section}>
@@ -58,7 +65,7 @@ const MobileHeader = () => {
                 width="1"
                 height="1"
                 preserveAspectRatio="xMidYMid slice"
-                xlinkHref={image0.src}
+                xlinkHref={headerImage.src}
               ></image>
             </pattern>
           </defs>

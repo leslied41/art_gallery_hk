@@ -1,7 +1,7 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ImageList.module.css";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, createRef } from "react";
 import Image from "next/image";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import BlockContent from "@sanity/block-content-to-react";
@@ -11,15 +11,49 @@ function urlFor(source) {
   return builder.image(source);
 }
 const ImageList = ({ workImages }) => {
-  console.log(workImages);
+  //console.log(workImages);
   const [tempImage, settempImage] = React.useState("");
   const [model, setmodel] = React.useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
 
-  const [zoom, setzoom] = useState(false);
+  const [zoom, setzoom] = useState(true);
   const [clickTime, setclickTime] = useState(0);
   const [pressed, setpressed] = useState(false);
+  const [elRefs, setElRefs] = useState([]);
+  const prevRef = useRef();
 
+  useEffect(() => {
+    // add or remove refs
+    setElRefs((elRefs) =>
+      Array(workImages.length)
+        .fill()
+        .map((_, index) => elRefs[index] || createRef())
+    );
+  }, [workImages.length]);
+
+  useEffect(() => {
+    if (model) {
+      if (
+        elRefs[targetIndex].current.getBoundingClientRect().x <
+        prevRef.current.getBoundingClientRect().x
+      ) {
+        prevRef.current.style.color = "red";
+      } else {
+        prevRef.current.style.color = "black";
+      }
+    }
+  }, [targetIndex, zoom]);
+  const zoomup = () => {
+    elRefs[targetIndex].current.style.transform = `scale(2)`;
+  };
+  const zoomdown = () => {
+    elRefs[targetIndex].current.style.transform = `scale(1)`;
+  };
+  //I need to use useref to get the div pic 's element and get its getboudingclientreact,
+  //then get the three buttons next prev close's postion to check it they are overlapped.
+  //but now the problem is that useref cannnot be used in loop, as there be only one ref.
+  //therefore, I need to figure out how to get a ref collection and then according to the targetindex to
+  //get the displayed one to judge the overlap thing.
   const mouseDown = (e) => {
     setclickTime(new Date());
   };
@@ -31,15 +65,6 @@ const ImageList = ({ workImages }) => {
   const getIndex = (index) => {
     setTargetIndex(index);
     setmodel(true);
-  };
-  const imgStyle1 = {
-    width: "100%",
-    display: "none",
-  };
-  const imgStyle2 = {
-    width: "100%",
-    display: "flex",
-    objectFit: "cover",
   };
 
   return (
@@ -68,6 +93,7 @@ const ImageList = ({ workImages }) => {
           </div>
           <div
             className={styles.prev}
+            ref={prevRef}
             onClick={() => {
               if (targetIndex == 0) {
                 setTargetIndex(workImages.length - 1);
@@ -94,21 +120,41 @@ const ImageList = ({ workImages }) => {
                       return (
                         <div
                           className={styles.pic}
-                          //ref={observe}
-                          style={targetIndex == index ? imgStyle2 : imgStyle1}
+                          style={
+                            targetIndex == index
+                              ? {
+                                  width: "auto",
+                                  display: "flex",
+                                }
+                              : {
+                                  display: "none",
+                                }
+                          }
                           key={index}
                           onClick={(e) => {
                             e.preventDefault();
-
                             if (new Date() - clickTime < 150) {
-                              //console.log(zoom);
-                              setzoom(!zoom);
                               if (zoom) {
-                                zoomIn(1);
+                                zoomIn(0.691);
+                                //zoomup();
+                                console.log(
+                                  elRefs[
+                                    targetIndex
+                                  ].current.getBoundingClientRect().width
+                                );
+                                setzoom(false);
                                 e.target.style.cursor = "zoom-out";
                               } else if (!zoom) {
-                                zoomOut(1);
+                                zoomOut(0.691);
+                                //zoomdown();
+                                console.log(
+                                  elRefs[
+                                    targetIndex
+                                  ].current.getBoundingClientRect().width
+                                );
+
                                 e.target.style.cursor = "zoom-in";
+                                setzoom(true);
                               }
                             }
                           }}
@@ -118,7 +164,7 @@ const ImageList = ({ workImages }) => {
                           }}
                           onMouseMove={(e) => {
                             if (pressed) {
-                              e.target.style.cursor = "grab";
+                              e.target.style.cursor = "move";
                             }
                           }}
                           onMouseUp={(e) => {
@@ -130,7 +176,7 @@ const ImageList = ({ workImages }) => {
                             }
                           }}
                         >
-                          <Image
+                          {/* <Image
                             //src={logo}
                             src={urlFor(item.image.asset).url()}
                             alt="works"
@@ -139,6 +185,15 @@ const ImageList = ({ workImages }) => {
                             height={item.metadata.metadata.dimensions.height}
                             objectFit="contain"
                             className={styles.img_origin}
+                          /> */}
+                          <img
+                            src={urlFor(item.image.asset).url()}
+                            alt="works"
+                            ref={elRefs[index]}
+                            style={{
+                              height: "100%",
+                              objectFit: "contain",
+                            }}
                           />
                         </div>
                       );
@@ -154,7 +209,18 @@ const ImageList = ({ workImages }) => {
                 <div
                   className={styles.image_parameter}
                   key={index}
-                  style={targetIndex == index ? imgStyle2 : imgStyle1}
+                  style={
+                    targetIndex == index
+                      ? {
+                          width: "100%",
+                          display: "flex",
+                          objectFit: "cover",
+                        }
+                      : {
+                          width: "100%",
+                          display: "none",
+                        }
+                  }
                 >
                   <BlockContent
                     blocks={item.image_parameter}
