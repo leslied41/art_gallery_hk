@@ -9,7 +9,7 @@ const Links = ({ lan }) => {
     return (
       <>
         <div>
-          <ul>
+          <ul className={styles.links}>
             <li>
               <Link href="/artists" exact>
                 <span className="h4">{t("artist")}</span>

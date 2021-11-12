@@ -1,5 +1,6 @@
 .section {
   position: relative;
+  font-size: 0px;
   cursor: pointer;
 }
 .links {
@@ -14,6 +15,8 @@
 }
 .icon {
   position: absolute;
+  font-size: var(--font-xs);
+  line-height: var(--lineheight-xs);
 }
 .exhIcon {
   display: none;
@@ -32,6 +35,9 @@
   top: 20px;
   left: 1.4%;
   color: var(--black);
+  font-size: var(--font-xs);
+  line-height: var(--lineheight-xs);
+  cursor: pointer;
 }
 .title:hover {
   color: var(--white);

@@ -3,8 +3,6 @@ import styles from "./PcHeader.module.css";
 import { useRouter } from "next/router";
 import Links from "../links/Links";
 import Link from "next/link";
-import image0 from "../../public/images/image0.png";
-import image_artist from "../../public/images/artist.png";
 import { useTranslation } from "next-i18next";
 import { useGlobalSettings } from "../context/GlobalSettings";
 import imageUrlBuilder from "@sanity/image-url";
@@ -38,6 +36,8 @@ const PcHeader = () => {
   const [headerImage, setheaderImage] = useState(settings[0].exhibitions);
   const artists_image = settings[0].artists;
   const exhibition_image = settings[0].exhibitions;
+  const news_image = settings[0].news;
+  const about_image = settings[0].about;
 
   useEffect(() => {
     if (pathname == "/artists") {
@@ -45,6 +45,9 @@ const PcHeader = () => {
     }
     if (pathname == "/exhibitions") {
       setheaderImage(exhibition_image);
+    }
+    if (pathname == "/about") {
+      setheaderImage(about_image);
     }
   }, [pathname, query]);
 
@@ -196,14 +199,16 @@ const PcHeader = () => {
               height="1"
               patternContentUnits="objectBoundingBox"
             >
-              <image
-                id="image0"
-                width="1"
-                height="1"
-                preserveAspectRatio="xMidYMid slice"
-                xlinkHref={urlFor(headerImage.asset).url()}
-                //xlinkHref={image0.src}
-              ></image>
+              {headerImage && (
+                <image
+                  id="image0"
+                  width="1"
+                  height="1"
+                  preserveAspectRatio="xMidYMid slice"
+                  xlinkHref={urlFor(headerImage.asset).url()}
+                  //xlinkHref={image0.src}
+                ></image>
+              )}
             </pattern>
           </defs>
         </svg>

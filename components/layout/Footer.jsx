@@ -79,7 +79,7 @@ export default function Footer() {
                 </ul>
               </div>
               <div className={styles.row}>
-                <ul>
+                <ul className={styles.socialmedia}>
                   {social.map((item, index) => {
                     return (
                       <li key={index}>
@@ -91,7 +91,7 @@ export default function Footer() {
               </div>
             </div>
             <div className={styles.col3}>
-              <div>
+              <div className={styles.links}>
                 <Links />
               </div>
             </div>

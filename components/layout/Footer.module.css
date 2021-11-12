@@ -29,12 +29,15 @@
   font-style: normal;
   font-weight: 400;
 }
-.container ul {
+.socialmedia {
   list-style: none;
 }
 .logo_container {
   display: flex;
   gap: 10px;
+}
+.links {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 760px) {
