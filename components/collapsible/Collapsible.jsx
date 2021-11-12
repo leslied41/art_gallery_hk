@@ -20,7 +20,6 @@ const Collapsible = ({ showCard, loaded, children }) => {
               : { height: `${collapsibleEl.current.scrollHeight + 100}px` }
             : { height: "0px" }
         }
-        ref={collapsibleEl}
       >
         {children}
       </div>
