@@ -11,6 +11,10 @@ export default {
         collapsed: true, // Defines if the fieldset should be collapsed by default or not
       },
     },
+    {
+      name: "headerImage",
+      title: "Header Image",
+    },
   ],
   fields: [
     {
@@ -67,11 +71,29 @@ export default {
       type: "array",
       of: [{ type: "reference", to: { type: "socialMedia" } }],
     },
-    // {
-    //   name: "socialMedia",
-    //   title: "Socail Media",
-    //   type: "array",
-    //   of: [{ type: "socialMedia" }],
-    // },
+    {
+      name: "exhibitions",
+      title: "Exhibitions",
+      type: "image",
+      fieldset: "headerImage",
+    },
+    {
+      name: "artists",
+      title: "Artists",
+      type: "image",
+      fieldset: "headerImage",
+    },
+    {
+      name: "news",
+      title: "News",
+      type: "image",
+      fieldset: "headerImage",
+    },
+    {
+      name: "about",
+      title: "About",
+      type: "image",
+      fieldset: "headerImage",
+    },
   ],
 };

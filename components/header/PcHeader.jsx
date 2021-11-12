@@ -6,10 +6,21 @@ import Link from "next/link";
 import image0 from "../../public/images/image0.png";
 import image_artist from "../../public/images/artist.png";
 import { useTranslation } from "next-i18next";
+import { useGlobalSettings } from "../context/GlobalSettings";
+import imageUrlBuilder from "@sanity/image-url";
+import sanityClient from "../../client.js";
+
+const builder = imageUrlBuilder(sanityClient);
+function urlFor(source) {
+  return builder.image(source);
+}
+
 const PcHeader = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const { pathname, asPath, query } = router;
+  const settings = useGlobalSettings();
+  console.log(settings[0].exhibitions);
 
   const exhibitionCursor = useRef(null);
   const aboutCursor = useRef(null);
@@ -24,14 +35,16 @@ const PcHeader = () => {
   const linksEl = useRef(null);
   const [toLeft, setToLeft] = useState(0);
   const [toTop, setToTop] = useState(0);
-  const [headerImage, setheaderImage] = useState(image0);
+  const [headerImage, setheaderImage] = useState(settings[0].exhibitions);
+  const artists_image = settings[0].artists;
+  const exhibition_image = settings[0].exhibitions;
 
   useEffect(() => {
     if (pathname == "/artists") {
-      setheaderImage(image_artist);
+      setheaderImage(artists_image);
     }
     if (pathname == "/exhibitions") {
-      setheaderImage(image0);
+      setheaderImage(exhibition_image);
     }
   }, [pathname, query]);
 
@@ -188,7 +201,8 @@ const PcHeader = () => {
                 width="1"
                 height="1"
                 preserveAspectRatio="xMidYMid slice"
-                xlinkHref={headerImage.src}
+                xlinkHref={urlFor(headerImage.asset).url()}
+                //xlinkHref={image0.src}
               ></image>
             </pattern>
           </defs>
