@@ -13,6 +13,7 @@ import work from "./work.js";
 import settings from "./settings";
 import exhibition from "./exhibition";
 import artist from "./artist.js";
+import news from "./news.js";
 
 import pages from "./pages";
 
@@ -33,6 +34,7 @@ export default createSchema({
     exhibition,
     work,
     artist,
+    news,
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

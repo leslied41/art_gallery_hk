@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const LoadMoreCard = ({ loaded, loadMore }) => {
   return (
-    <div className={styles.content}>
+    <div>
       {loaded && (
         <div className={styles.darkSquare}>
           <Image src={loadmore} alt="darksquare" width={624} height={437} />

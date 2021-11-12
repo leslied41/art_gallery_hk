@@ -14,7 +14,7 @@ function urlFor(source) {
 }
 
 const ExpoImageList = ({ data, handleClick, showCard, title }) => {
-  console.log(data);
+  //console.log(data);
   const router = useRouter();
 
   const [loaded, setloaded] = useState(true);
@@ -59,9 +59,9 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
             return (
               <div className={styles.grid} key={index}>
                 <Link href={"/exhibitions/" + slug.current}>
-                  <div className="col">
+                  <div className="col mb-42">
                     <div
-                      className={styles.content}
+                      //className={styles.content}
                       style={{ cursor: "pointer" }}
                     >
                       <img
@@ -72,10 +72,10 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
                     </div>
                   </div>
                 </Link>
-                <div className="col">
+                <div className="col mb-42">
                   <Link href={"/exhibitions/" + slug.current}>
                     <div
-                      className={styles.content}
+                      //className={styles.content}
                       style={{ cursor: "pointer" }}
                     >
                       <p className="h3">
@@ -91,11 +91,11 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
             );
           })}
           <div className={styles.grid}>
-            <div className="col">
+            <div className="col mb-42">
               <LoadMoreCard loaded={loaded} loadMore={loadMore} />
             </div>
-            <div className="col">
-              <div className={styles.content}></div>
+            <div className="col mb-42">
+              <div></div>
             </div>
           </div>
         </>

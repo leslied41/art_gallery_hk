@@ -18,7 +18,6 @@ const PcHeader = () => {
   const router = useRouter();
   const { pathname, asPath, query } = router;
   const settings = useGlobalSettings();
-  console.log(settings[0].exhibitions);
 
   const exhibitionCursor = useRef(null);
   const aboutCursor = useRef(null);
@@ -33,7 +32,7 @@ const PcHeader = () => {
   const linksEl = useRef(null);
   const [toLeft, setToLeft] = useState(0);
   const [toTop, setToTop] = useState(0);
-  const [headerImage, setheaderImage] = useState(settings[0].exhibitions);
+  const [headerImage, setheaderImage] = useState();
   const artists_image = settings[0].artists;
   const exhibition_image = settings[0].exhibitions;
   const news_image = settings[0].news;
@@ -46,8 +45,14 @@ const PcHeader = () => {
     if (pathname == "/exhibitions") {
       setheaderImage(exhibition_image);
     }
+    if (pathname == "/") {
+      setheaderImage(exhibition_image);
+    }
     if (pathname == "/about") {
       setheaderImage(about_image);
+    }
+    if (pathname == "/news") {
+      setheaderImage(news_image);
     }
   }, [pathname, query]);
 
@@ -163,7 +168,9 @@ const PcHeader = () => {
             <Link href="/publications" exact>
               <path
                 d="M403 1024H760.2C746.2 980.675 742.011 929.68 758.893 872.593C781.308 796.796 841.656 753.036 903.548 708.157C909.521 703.825 915.509 699.483 921.478 695.101C850.393 547.257 719.037 433.869 559.267 386.793C548.159 395.923 536.761 404.894 525.312 413.906C432.664 486.833 336.604 562.444 362.635 746.53C376.31 843.233 390.124 938.894 403 1024Z"
-                fill="var(--dark-gray)"
+                fill={
+                  pathname == "/news" ? "url(#pattern0)" : "var(--dark-gray)"
+                }
                 ref={artistsContainer}
                 className={styles.artists}
               />
