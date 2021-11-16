@@ -2,23 +2,19 @@ import styles from "./PureWords.module.css";
 import BlockContent from "@sanity/block-content-to-react";
 import { useRouter } from "next/router";
 import Collapsible from "../collapsible/Collapsible";
+import { useContext } from "react";
+import { dropDownContext } from "./DropDownCard";
 
-const PureWords = ({ data, handleClick, showCard }) => {
+const PureWords = ({ data, handleClick }) => {
   const router = useRouter();
 
-  const { content, content_cn, name, name_cn } = data;
-
+  const { content, content_cn } = data;
+  const { showCard } = useContext(dropDownContext);
   return (
     <>
       <div className={styles.grid}>
         <div className="col"></div>
         <div className="col">
-          <div className="title">
-            <span className="h2" onClick={handleClick}>
-              {router.locale === "en" ? name : name_cn} {showCard ? "-" : "+"}
-            </span>
-          </div>
-
           <Collapsible showCard={showCard}>
             <div className="mt-28">
               <span className="h3">
@@ -30,10 +26,6 @@ const PureWords = ({ data, handleClick, showCard }) => {
               </span>
             </div>
           </Collapsible>
-
-          <div>
-            <hr className="hr-bottom" />
-          </div>
         </div>
       </div>
     </>

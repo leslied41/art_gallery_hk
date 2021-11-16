@@ -1,32 +1,51 @@
-import ImageList from "../imageList/ImageList";
+import ImageList from "../artist_works_imagelist/ImageList";
 import Collapsible from "../collapsible/Collapsible";
-const ArtistWorksImageList = ({ data, title, showCard, handleClick }) => {
+import styles from "./ArtistWorksImageList.module.css";
+import { useState, useEffect, useRef } from "react";
+import { useContext } from "react";
+import { dropDownContext } from "./DropDownCard";
+
+const ArtistWorksImageList = ({ data }) => {
+  const { showCard } = useContext(dropDownContext);
+  const [loaded, setloaded] = useState(true);
+  const [slicedWorkImages, setslicedWorkImages] = useState(data);
+  const ref = useRef();
+  useEffect(() => {
+    if (data.length < 4) {
+      setloaded(false);
+    } else if (data.length >= 4) {
+      setloaded(true);
+    }
+  }, [data]);
+  useEffect(() => {
+    const initialWorkImages = data.slice(0, 4);
+    setslicedWorkImages(initialWorkImages);
+  }, []);
+  useEffect(() => {
+    const initialWorkImages = data.slice(0, 4);
+
+    if (!showCard) {
+      setslicedWorkImages(initialWorkImages);
+      setloaded(true);
+    }
+  }, [showCard]);
+  const loadMore = () => {
+    setslicedWorkImages(data);
+    setloaded(!loaded);
+  };
   return (
     <>
-      <div className="twoColumn-11">
-        <div className="col"></div>
-        <div className="col">
-          <div className="title">
-            <span className="h2" onClick={handleClick}>
-              {title} {showCard ? "-" : "+"}
-            </span>
-          </div>
-        </div>
-      </div>
-      <Collapsible showCard={showCard}>
+      <Collapsible showCard={showCard} loaded={loaded}>
         <div className="works">
-          <ImageList workImages={data} />
+          <ImageList
+            workImages={data}
+            showCard={showCard}
+            slicedWorkImages={slicedWorkImages}
+            loaded={loaded}
+            loadMore={loadMore}
+          />
         </div>
       </Collapsible>
-      <div className="twoColumn-11">
-        <div className="col"></div>
-        <div className="col">
-          <div>
-            {" "}
-            <hr className="hr-bottom" />
-          </div>
-        </div>
-      </div>
     </>
   );
 };

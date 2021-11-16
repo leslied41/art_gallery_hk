@@ -1,6 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import sanityClient from "../client.js";
-import NewsList from "../components/newsList/NewsList.jsx";
+import NewsList from "../components/news_list/NewsList.jsx";
 import StaticCard from "../components/staticCard/StaticCard.jsx";
 import LoadMoreCard from "../components/loadMoreCard/LoadMoreCard.jsx";
 

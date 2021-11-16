@@ -1,7 +1,8 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import sanityClient from "../../client.js";
 import DropDownCard from "../../components/dropDownCard/DropDownCard.jsx";
-import ExStaticCard from "../../components/exStaticCard/ExStaticCard.jsx";
+import ExListWorks from "../../components/dropDownCard/ExListWorks.jsx";
+import ExStaticCard from "../../components/exhibitions_exhibition_staticcard/ExStaticCard.jsx";
 export default function Expo({ expoData }) {
   //console.log(expoData);
   return (
@@ -10,11 +11,9 @@ export default function Expo({ expoData }) {
         <ExStaticCard data={expoData[0]} />
       </div>
       <div className="section mt-118">
-        <DropDownCard
-          data={expoData[0]}
-          exListWorks={true}
-          title={"List of Works"}
-        />
+        <DropDownCard title={"List of Works"}>
+          <ExListWorks data={expoData[0]} />
+        </DropDownCard>
       </div>
     </>
   );

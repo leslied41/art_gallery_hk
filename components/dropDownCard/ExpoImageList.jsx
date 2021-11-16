@@ -7,16 +7,16 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard.jsx";
 import Collapsible from "../collapsible/Collapsible.jsx";
+import { dropDownContext } from "./DropDownCard";
 const builder = imageUrlBuilder(sanityClient);
 
 function urlFor(source) {
   return builder.image(source);
 }
 
-const ExpoImageList = ({ data, handleClick, showCard, title }) => {
-  //console.log(data);
+const ExpoImageList = ({ data }) => {
+  const { showCard } = useContext(dropDownContext);
   const router = useRouter();
-
   const [loaded, setloaded] = useState(true);
 
   useEffect(() => {
@@ -39,31 +39,17 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
 
   return (
     <>
-      <div className={styles.grid}>
-        <div className="col"></div>
-        <div className="col">
-          <div className="title">
-            <span className="h2" onClick={handleClick}>
-              {title} {showCard ? "-" : "+"}
-            </span>
-          </div>
-        </div>
-      </div>
-      <Collapsible showCard={showCard} loaded={loaded}>
+      <Collapsible showCard={showCard} loaded={loaded} delay={true}>
         <>
           {slicedExhibition.map((item, index) => {
             const { name_exo, name_exo_cn, date, date_cn, image, slug, _id } =
               item;
-            // console.log(12345);
-            // console.log(image);
+
             return (
               <div className={styles.grid} key={index}>
                 <Link href={"/exhibitions/" + slug.current}>
                   <div className="col mb-42">
-                    <div
-                      //className={styles.content}
-                      style={{ cursor: "pointer" }}
-                    >
+                    <div style={{ cursor: "pointer" }}>
                       <img
                         src={urlFor(image.asset).width(624).height(437).url()}
                         alt={name_exo}
@@ -74,10 +60,7 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
                 </Link>
                 <div className="col mb-42">
                   <Link href={"/exhibitions/" + slug.current}>
-                    <div
-                      //className={styles.content}
-                      style={{ cursor: "pointer" }}
-                    >
+                    <div style={{ cursor: "pointer" }}>
                       <p className="h3">
                         {router.locale === "en" ? name_exo : name_exo_cn}
                       </p>
@@ -100,14 +83,6 @@ const ExpoImageList = ({ data, handleClick, showCard, title }) => {
           </div>
         </>
       </Collapsible>
-      <div className={styles.grid}>
-        <div className="col"></div>
-        <div className="col">
-          <div>
-            <hr className="hr-bottom" />
-          </div>
-        </div>
-      </div>
     </>
   );
 };

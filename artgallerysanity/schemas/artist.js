@@ -49,6 +49,11 @@ export default {
       title: "Profile",
       type: "image",
     },
+    {
+      name: "masterpiece",
+      title: "Masterpiece",
+      type: "image",
+    },
 
     {
       name: "bio",

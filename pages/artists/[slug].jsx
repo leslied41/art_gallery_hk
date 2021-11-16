@@ -4,7 +4,9 @@ import StaticCard from "../../components/staticCard/StaticCard";
 import DropDownCard from "../../components/dropDownCard/DropDownCard.jsx";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import ImageList from "../../components/imageList/ImageList.jsx";
+import ArtistBio from "../../components/dropDownCard/ArtistBio.jsx";
+import ArtistWorksImageList from "../../components/dropDownCard/ArtistWorksImageList.jsx";
+import ExpoList from "../../components/artists_artist_exhibition_list/ExpoList.jsx";
 
 export default function Artist({ artistData, workImages, exposData }) {
   //console.log(exposData);
@@ -43,26 +45,20 @@ export default function Artist({ artistData, workImages, exposData }) {
           <StaticCard data={artistData[0]} />
         </div>
         <div className="section mt-49">
-          <DropDownCard
-            artistBio={true}
-            data={artistData[0]}
-            title={router.locale == "en" ? "Bio" : "傳記"}
-          />
+          <DropDownCard title={router.locale == "en" ? "Bio" : "傳記"}>
+            <ArtistBio data={artistData[0]} />
+          </DropDownCard>
         </div>
         <div className="section mt-28">
-          <DropDownCard
-            data={workImages}
-            title={router.locale == "en" ? "Works" : "作品"}
-            artistWorksImageList={true}
-          />
+          <DropDownCard title={router.locale == "en" ? "Works" : "作品"}>
+            <ArtistWorksImageList data={workImages} />
+          </DropDownCard>
         </div>
 
         <div className="section mt-28">
-          <DropDownCard
-            artistExpoList={true}
-            data={mergedArray}
-            title={router.locale == "en" ? "Exhibitions" : "展覽"}
-          />
+          <DropDownCard title={router.locale == "en" ? "Exhibitions" : "展覽"}>
+            <ExpoList data={mergedArray} />
+          </DropDownCard>
         </div>
       </main>
     </>

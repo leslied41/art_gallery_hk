@@ -1,13 +1,20 @@
 import styles from "./Collapsible.module.css";
 import { useRef, useEffect, useState } from "react";
 
-const Collapsible = ({ showCard, loaded, children }) => {
+const Collapsible = ({ showCard, loaded, children, delay }) => {
   const collapsibleEl = useRef();
   const [scrollHeight, setscrollHeight] = useState();
 
   useEffect(() => {
-    setscrollHeight(collapsibleEl.current.scrollHeight);
-  }, [loaded, showCard]);
+    if (delay) {
+      setTimeout(() => {
+        setscrollHeight(collapsibleEl.current.scrollHeight);
+      }, 500);
+    }
+    if (!delay) {
+      setscrollHeight(collapsibleEl.current.scrollHeight);
+    }
+  }, [showCard, loaded]);
   return (
     <>
       <div
@@ -16,8 +23,8 @@ const Collapsible = ({ showCard, loaded, children }) => {
         style={
           showCard
             ? scrollHeight
-              ? { height: `${scrollHeight + 100}px` }
-              : { height: `${collapsibleEl.current.scrollHeight + 100}px` }
+              ? { height: `${scrollHeight}px` }
+              : { height: `${collapsibleEl.current.scrollHeight}px` }
             : { height: "0px" }
         }
       >

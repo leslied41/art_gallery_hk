@@ -1,22 +1,13 @@
-import VerticalLayout from "../exStaticCard/VerticalLayout";
-import HorizontalLayout from "../exStaticCard/HorizontalLayout";
+import VerticalLayout from "../exhibitions_exhibition_staticcard/VerticalLayout";
+import HorizontalLayout from "../exhibitions_exhibition_staticcard/HorizontalLayout";
 import Collapsible from "../collapsible/Collapsible";
-const ExListWorks = ({ data, title, showCard, handleClick }) => {
+import { useContext } from "react";
+import { dropDownContext } from "./DropDownCard";
+const ExListWorks = ({ data }) => {
+  const { showCard } = useContext(dropDownContext);
   const { works } = data;
-  //console.log(works);
-
   return (
     <>
-      <div className="twoColumn-11">
-        <div className="col"></div>
-        <div className="col">
-          <div className="title">
-            <span className="h2" onClick={handleClick}>
-              {title} {showCard ? "-" : "+"}
-            </span>
-          </div>
-        </div>
-      </div>
       <Collapsible showCard={showCard}>
         <>
           {works.map((work, index) => {
@@ -61,14 +52,6 @@ const ExListWorks = ({ data, title, showCard, handleClick }) => {
           })}
         </>
       </Collapsible>
-      <div className="twoColumn-11">
-        <div className="col"></div>
-        <div className="col">
-          <div>
-            <hr className="hr-bottom" />
-          </div>
-        </div>
-      </div>
     </>
   );
 };

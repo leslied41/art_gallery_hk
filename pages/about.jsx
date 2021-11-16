@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
-import AppointmentForm from "../components/appointmentForm/AppointmentForm";
+import AppointmentForm from "../components/appointment_form/AppointmentForm";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import router, { useRouter } from "next/router";
+import PureWords from "../components/dropDownCard/PureWords";
 
 export const getStaticProps = async ({ locale }) => {
   const data = await sanityClient.fetch(
@@ -52,10 +53,16 @@ export default function About({ data }) {
         </div>
         {/* dropDownCard */}
         <div className="section mt-118">
-          <DropDownCard data={terminologySection} purewords={true} />
+          <DropDownCard title={router.locale == "en" ? "Terminology" : "術語"}>
+            <PureWords data={terminologySection} />
+          </DropDownCard>
         </div>
         <div className="section mt-28">
-          <DropDownCard data={missionStatementSection} purewords={true} />
+          <DropDownCard
+            title={router.locale == "en" ? "Misson Statement" : "使命"}
+          >
+            <PureWords data={missionStatementSection} />
+          </DropDownCard>
         </div>
 
         {/* third part */}

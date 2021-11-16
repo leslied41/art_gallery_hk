@@ -1,25 +1,20 @@
-/* .gallery {
+.gallery {
   column-count: 3;
   column-width: 33%;
   margin-top: var(--spacing-m);
 }
 
-@media (max-width: 991px) {
-  .gallery {
-    column-count: 2;
-  }
-}
-@media (max-width: 680px) {
+@media (max-width: 414px) {
   .gallery {
     column-count: 1;
     column-width: 100%;
   }
-} */
-.gallery {
+}
+/* .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-}
+} */
 .close {
   width: 100%;
   height: 100vh;
@@ -59,6 +54,7 @@
 .pics {
   cursor: pointer;
   height: 100%;
+  overflow: hidden;
 }
 .pic {
   transition: all 350ms ease;

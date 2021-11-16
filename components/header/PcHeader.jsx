@@ -178,7 +178,10 @@ const PcHeader = () => {
             <Link href="/about" exact>
               <path
                 d="M1440 1024H760.198C746.198 980.676 742.009 929.681 758.891 872.593C814.372 684.983 1102.24 693.65 1070.73 395.794C1055.27 249.742 1038.77 107.278 1025.95 0.000244141L1440 0.000252518V1024Z"
-                fill="var(--balck-gray)"
+                //fill="var(--balck-gray)"
+                fill={
+                  pathname == "/about" ? "url(#pattern0)" : "var(--balck-gray)"
+                }
                 className={styles.about}
                 ref={aboutContainer}
               />

@@ -6,6 +6,7 @@ import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import ExpoImageList from "../components/dropDownCard/ExpoImageList";
 
 export default function Exhibition({
   exPageData,
@@ -23,18 +24,14 @@ export default function Exhibition({
           <StaticCard data={briefSection} />
         </div>
         <div className="section mt-118">
-          <DropDownCard
-            data={currentExpoData}
-            expoImageList={true}
-            title={router.locale == "en" ? "Current" : "現在"}
-          />
+          <DropDownCard title={router.locale == "en" ? "Current" : "現在"}>
+            <ExpoImageList data={currentExpoData} />
+          </DropDownCard>
         </div>
         <div className="section mt-28">
-          <DropDownCard
-            data={futureExpoData}
-            expoImageList={true}
-            title={router.locale == "en" ? "Forthcoming" : "未來"}
-          />
+          <DropDownCard title={router.locale == "en" ? "Forthcoming" : "未來"}>
+            <ExpoImageList data={futureExpoData} />
+          </DropDownCard>
         </div>
         {/* <div className="section">
           <div>

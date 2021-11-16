@@ -1,22 +1,17 @@
-import { I18nContext } from "react-i18next";
-import { i18n } from "next-i18next";
 import { useState, useContext, useEffect } from "react";
 import styles from "./ExpoList.module.css";
 import Link from "next/link";
 import Collapsible from "../collapsible/Collapsible";
+import { dropDownContext } from "../dropDownCard/DropDownCard";
 
-const ExpoList = ({ data, handleClick, showCard, title }) => {
-  console.log(data);
+const ExpoList = ({ data }) => {
+  const { showCard } = useContext(dropDownContext);
+
   return (
     <>
-      <div className="twoColumn-11">
+      <div className={styles.grid}>
         <div className="col"></div>
         <div className="col">
-          <div className="title">
-            <span className="h2" onClick={handleClick}>
-              {title} {showCard ? "-" : "+"}
-            </span>
-          </div>
           <Collapsible showCard={showCard}>
             <div>
               <ul>
@@ -34,9 +29,6 @@ const ExpoList = ({ data, handleClick, showCard, title }) => {
               </ul>
             </div>
           </Collapsible>
-          <div>
-            <hr className="hr-bottom" />
-          </div>
         </div>
       </div>
     </>

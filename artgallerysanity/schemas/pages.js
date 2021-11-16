@@ -200,20 +200,9 @@ export default {
       },
       fields: [
         {
-          name: "name",
-          title: "Name",
-          type: "string",
-        },
-        {
           name: "content",
           title: "Content",
           type: "blockContent",
-        },
-        {
-          name: "name_cn",
-          title: "Name Chinese",
-          type: "string",
-          fieldset: "translation",
         },
 
         {
@@ -245,20 +234,9 @@ export default {
       },
       fields: [
         {
-          name: "name",
-          title: "Name",
-          type: "string",
-        },
-        {
           name: "content",
           title: "Content",
           type: "blockContent",
-        },
-        {
-          name: "name_cn",
-          title: "Name Chinese",
-          type: "string",
-          fieldset: "translation",
         },
 
         {
