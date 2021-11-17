@@ -12,6 +12,7 @@ export default function Exhibition({
   exPageData,
   currentExpoData,
   futureExpoData,
+  pastExpoData,
 }) {
   const router = useRouter();
   const { briefSection } = exPageData[0];
@@ -31,6 +32,11 @@ export default function Exhibition({
         <div className="section mt-28">
           <DropDownCard title={router.locale == "en" ? "Forthcoming" : "未來"}>
             <ExpoImageList data={futureExpoData} />
+          </DropDownCard>
+        </div>
+        <div className="section mt-28">
+          <DropDownCard title={router.locale == "en" ? "Past" : "往期"}>
+            <ExpoImageList data={pastExpoData} />
           </DropDownCard>
         </div>
         {/* <div className="section">
@@ -56,6 +62,9 @@ export const getStaticProps = async ({ locale }) => {
   const futureExpoData = await sanityClient.fetch(
     `*[_type=='exhibition'&& exhibition_status=='Future']`
   );
+  const pastExpoData = await sanityClient.fetch(
+    `*[_type=='exhibition'&& exhibition_status=='Past']`
+  );
   // if (!currentExpoData || !currentExpoData.length) {
   //   return {
   //     props: {
@@ -69,6 +78,7 @@ export const getStaticProps = async ({ locale }) => {
       exPageData,
       currentExpoData,
       futureExpoData,
+      pastExpoData,
 
       ...(await serverSideTranslations(locale, ["common"])),
     },

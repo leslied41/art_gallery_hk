@@ -11,7 +11,7 @@ export default function Expo({ expoData }) {
         <ExStaticCard data={expoData[0]} />
       </div>
       <div className="section mt-118">
-        <DropDownCard title={"List of Works"}>
+        <DropDownCard title={"Press Release"}>
           <ExListWorks data={expoData[0]} />
         </DropDownCard>
       </div>

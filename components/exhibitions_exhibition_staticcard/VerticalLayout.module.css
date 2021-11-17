@@ -5,3 +5,15 @@
 /* .img {
   width: 100%;
 } */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 95px;
+}
+@media screen and (max-width: 414px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

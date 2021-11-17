@@ -20,50 +20,51 @@ function urlFor(source) {
   return builder.image(source);
 }
 export default function Landing({ workImages }) {
-  console.log(workImages);
-  const onInit = () => {
-    console.log("lightGallery has been initialized");
-  };
-  const getImages = () => {
-    return workImages.map((image, index) => {
-      return (
-        <a
-          key={index}
-          className="gallery-item"
-          data-src={urlFor(image.image.asset).url()}
-        >
-          <Image
-            src={urlFor(image.image.asset).url()}
-            alt="name"
-            className={styles.thumbnail}
-            layout="fill"
-            style={{ width: "auto", height: "100%" }}
-            width={image.metadata.metadata.dimensions.width}
-            height={image.metadata.metadata.dimensions.height}
-          />
-        </a>
-      );
-    });
-  };
-  return (
-    <>
-      <div className="section">
-        <LightGallery
-          plugins={[lgZoom]}
-          counter={false}
-          download={false}
-          onInit={onInit}
-          prevHtml="Pre"
-          nextHtml="Next"
-          actualSize={false}
-          showZoomInOutIcons={true}
-          elementClassNames={styles.grid}
-        >
-          {getImages()}
-        </LightGallery>
-      </div>
-    </>
-  );
+  return <></>;
+  // console.log(workImages);
+  // const onInit = () => {
+  //   console.log("lightGallery has been initialized");
+  // };
+  // const getImages = () => {
+  //   return workImages.map((image, index) => {
+  //     return (
+  //       <a
+  //         key={index}
+  //         className="gallery-item"
+  //         data-src={urlFor(image.image.asset).url()}
+  //       >
+  //         <Image
+  //           src={urlFor(image.image.asset).url()}
+  //           alt="name"
+  //           className={styles.thumbnail}
+  //           layout="fill"
+  //           style={{ width: "auto", height: "100%" }}
+  //           width={image.metadata.metadata.dimensions.width}
+  //           height={image.metadata.metadata.dimensions.height}
+  //         />
+  //       </a>
+  //     );
+  //   });
+  // };
+  // return (
+  //   <>
+  //     <div className="section">
+  //       <LightGallery
+  //         plugins={[lgZoom]}
+  //         counter={false}
+  //         download={false}
+  //         onInit={onInit}
+  //         prevHtml="Pre"
+  //         nextHtml="Next"
+  //         actualSize={false}
+  //         showZoomInOutIcons={true}
+  //         elementClassNames={styles.grid}
+  //       >
+  //         {getImages()}
+  //       </LightGallery>
+  //     </div>
+  //   </>
+  // );
 }
 
 export async function getStaticProps({ locale }) {

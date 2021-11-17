@@ -23,7 +23,7 @@ const ExStaticCard = ({ data }) => {
   console.log(image);
   return (
     <>
-      <div className="twoColumn-11">
+      <div className={styles.grid}>
         <div className="col"></div>
         <div className="col">
           <div>

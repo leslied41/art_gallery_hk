@@ -62,7 +62,7 @@ const ImageList = ({ slicedWorkImages, loaded, loadMore, workImages }) => {
     }
     if (!isMobile) {
       return workImages.map((image, index) => {
-        console.log(image);
+        //console.log(image);
 
         return (
           <div key={index} data-src={urlFor(image.image.asset).url()}>

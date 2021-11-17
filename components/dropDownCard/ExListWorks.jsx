@@ -24,7 +24,7 @@ const ExListWorks = ({ data }) => {
             console.log(aspectRatio, width);
             if (width > 750 && aspectRatio > 1) {
               return (
-                <div key={index}>
+                <div key={index} className="mt-118">
                   <VerticalLayout
                     name={name}
                     name_cn={name_cn}
@@ -37,7 +37,7 @@ const ExListWorks = ({ data }) => {
               );
             } else {
               return (
-                <div key={index}>
+                <div key={index} className="mt-118">
                   <HorizontalLayout
                     name={name}
                     name_cn={name_cn}

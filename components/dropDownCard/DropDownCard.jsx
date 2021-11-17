@@ -30,7 +30,12 @@ export default function DropDownCard({ children, title }) {
           <div className="col"></div>
           <div className="col">
             <div>
-              <hr className="hr-bottom" />
+              <hr
+                className="hr-bottom"
+                style={
+                  showCard ? { marginTop: "130px" } : { marginTop: "28px" }
+                }
+              />
             </div>
           </div>
         </div>

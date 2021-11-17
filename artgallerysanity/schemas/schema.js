@@ -14,7 +14,7 @@ import settings from "./settings";
 import exhibition from "./exhibition";
 import artist from "./artist.js";
 import news from "./news.js";
-
+import interview from "./interview";
 import pages from "./pages";
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -30,6 +30,7 @@ export default createSchema({
     settings,
     pages,
     socialMedia,
+    interview,
 
     exhibition,
     work,

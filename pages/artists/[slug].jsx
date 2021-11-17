@@ -7,36 +7,33 @@ import { useState } from "react";
 import ArtistBio from "../../components/dropDownCard/ArtistBio.jsx";
 import ArtistWorksImageList from "../../components/dropDownCard/ArtistWorksImageList.jsx";
 import ExpoList from "../../components/artists_artist_exhibition_list/ExpoList.jsx";
+import InterviewsList from "../../components/dropDownCard/InterviewsList";
 
-export default function Artist({ artistData, workImages, exposData }) {
-  //console.log(exposData);
+export default function Artist({
+  artistData,
+  workImages,
+  exposData,
+  interviewsData,
+}) {
+  console.log(interviewsData);
   const newArray = exposData.map((item) => {
     return item.exhibition;
   });
   const filteredArray = newArray.filter((item) => item.length !== 0);
-  //const flatArray = mergedArray.flatMap((item) => [item]);
   const flatArray = [].concat.apply([], filteredArray);
   const arrayObject = flatArray.map((item) => JSON.stringify(item));
-  //console.log(arrayObject);
   const mergedArray_json = [];
   arrayObject.forEach((item) => {
     if (!mergedArray_json.includes(item)) {
       mergedArray_json.push(item);
     }
   });
-  //console.log(mergedArray_json);
   const mergedArray = mergedArray_json.map((item) => [JSON.parse(item)]);
-  //const mergedArray = [JSON.parse(mergedArray_json[0])];
-  //console.log(mergedArray);
-
   const [showCard, setshowCard] = useState(false);
   const handleClick = () => {
     setshowCard(!showCard);
   };
   const router = useRouter();
-  //console.log(artistData);
-
-  //console.log(workImages);
 
   return (
     <>
@@ -60,6 +57,12 @@ export default function Artist({ artistData, workImages, exposData }) {
             <ExpoList data={mergedArray} />
           </DropDownCard>
         </div>
+
+        <div className="section mt-28">
+          <DropDownCard title={router.locale == "en" ? "Interviews" : "專訪"}>
+            <InterviewsList data={interviewsData} />
+          </DropDownCard>
+        </div>
       </main>
     </>
   );
@@ -75,12 +78,16 @@ export async function getStaticProps({ locale, params }) {
   const exposData = await sanityClient.fetch(
     `*[_type=='work'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]{_id,'exhibition':*[_type=='exhibition'&&references(^._id)]{name_exo,name_exo_cn,date,date_cn,slug}}`
   );
+  const interviewsData = await sanityClient.fetch(
+    `*[_type=='interviews'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]`
+  );
   console.log(exposData);
   return {
     props: {
       workImages,
       artistData,
       exposData,
+      interviewsData,
       ...(await serverSideTranslations(locale, ["common"])),
       // Will be passed to the page component as props
     },

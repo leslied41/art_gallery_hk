@@ -19,7 +19,7 @@ const HorizontalLayout = ({
   return (
     <>
       <div>
-        <div className="twoColumn-11">
+        <div className={styles.grid}>
           <div className="col">
             <div className={styles.imgcontainer}>
               <img

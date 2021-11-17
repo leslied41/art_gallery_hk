@@ -36,24 +36,26 @@ const VerticalLayout = ({
             />
           </div>
         </div>
-        <div className="twoColumn-11 mt-22">
-          <div className="col">
-            <span className="h5">
-              <BlockContent
-                blocks={image_parameter}
-                projectId="z3dq9mvc"
-                dataset="production"
-              />
-            </span>
-          </div>
-          <div className="col">
-            <p className="h3">{name}</p>
-            <div className="h4">
-              <BlockContent
-                blocks={introduction}
-                projectId="z3dq9mvc"
-                dataset="production"
-              />
+        <div className="mt-22">
+          <div className={styles.grid}>
+            <div className="col">
+              <span className="h5">
+                <BlockContent
+                  blocks={image_parameter}
+                  projectId="z3dq9mvc"
+                  dataset="production"
+                />
+              </span>
+            </div>
+            <div className="col">
+              <p className="h3">{name}</p>
+              <div className="h4">
+                <BlockContent
+                  blocks={introduction}
+                  projectId="z3dq9mvc"
+                  dataset="production"
+                />
+              </div>
             </div>
           </div>
         </div>
