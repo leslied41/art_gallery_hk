@@ -18,6 +18,7 @@ const PcHeader = () => {
   const router = useRouter();
   const { pathname, asPath, query } = router;
   const settings = useGlobalSettings();
+  //console.log(settings[0]);
 
   const exhibitionCursor = useRef(null);
   const aboutCursor = useRef(null);
@@ -38,6 +39,21 @@ const PcHeader = () => {
   const news_image = settings[0].news;
   const about_image = settings[0].about;
 
+  const images_array = [
+    artists_image,
+    exhibition_image,
+    news_image,
+    about_image,
+  ];
+  //this is to preload the images displayed in header
+  useEffect(() => {
+    images_array.forEach((pic) => {
+      const img = new Image();
+      img.src = urlFor(pic.asset).url();
+    });
+  }, []);
+
+  //console.log(images_array);
   useEffect(() => {
     if (pathname == "/artists") {
       setheaderImage(artists_image);
