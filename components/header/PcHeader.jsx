@@ -33,42 +33,42 @@ const PcHeader = () => {
   const linksEl = useRef(null);
   const [toLeft, setToLeft] = useState(0);
   const [toTop, setToTop] = useState(0);
-  const [headerImage, setheaderImage] = useState();
+  const [useXlink, setuseXlink] = useState();
   const artists_image = settings[0].artists;
   const exhibition_image = settings[0].exhibitions;
   const news_image = settings[0].news;
   const about_image = settings[0].about;
 
-  const images_array = [
-    artists_image,
-    exhibition_image,
-    news_image,
-    about_image,
-  ];
+  // const images_array = [
+  //   artists_image,
+  //   exhibition_image,
+  //   news_image,
+  //   about_image,
+  // ];
   //this is to preload the images displayed in header
-  useEffect(() => {
-    images_array.forEach((pic) => {
-      const img = new Image();
-      img.src = urlFor(pic.asset).url();
-    });
-  }, []);
+  // useEffect(() => {
+  //   images_array.forEach((pic) => {
+  //     const img = new Image();
+  //     img.src = urlFor(pic.asset).url();
+  //   });
+  // }, []);
 
   //console.log(images_array);
   useEffect(() => {
     if (pathname == "/artists") {
-      setheaderImage(artists_image);
+      setuseXlink("#image0");
     }
     if (pathname == "/exhibitions") {
-      setheaderImage(exhibition_image);
+      setuseXlink("#image1");
     }
     if (pathname == "/") {
-      setheaderImage(exhibition_image);
+      setuseXlink("#image1");
     }
     if (pathname == "/about") {
-      setheaderImage(about_image);
+      setuseXlink("#image3");
     }
     if (pathname == "/news") {
-      setheaderImage(news_image);
+      setuseXlink("#image2");
     }
   }, [pathname, query]);
 
@@ -225,17 +225,39 @@ const PcHeader = () => {
               height="1"
               patternContentUnits="objectBoundingBox"
             >
-              {headerImage && (
-                <image
-                  id="image0"
-                  width="1"
-                  height="1"
-                  preserveAspectRatio="xMidYMid slice"
-                  xlinkHref={urlFor(headerImage.asset).url()}
-                  //xlinkHref={image0.src}
-                ></image>
-              )}
+              <use
+                xlinkHref={useXlink}
+                //transform="translate(0 -0.000139237) scale(0.000833333 0.000625174)"
+              />
             </pattern>
+            <image
+              id="image0"
+              width="1"
+              height="1"
+              preserveAspectRatio="xMidYMid slice"
+              xlinkHref={urlFor(artists_image.asset).url()}
+            ></image>
+            <image
+              id="image1"
+              width="1"
+              height="1"
+              preserveAspectRatio="xMidYMid slice"
+              xlinkHref={urlFor(exhibition_image.asset).url()}
+            ></image>
+            <image
+              id="image2"
+              width="1"
+              height="1"
+              preserveAspectRatio="xMidYMid slice"
+              xlinkHref={urlFor(news_image.asset).url()}
+            ></image>
+            <image
+              id="image3"
+              width="1"
+              height="1"
+              preserveAspectRatio="xMidYMid slice"
+              xlinkHref={urlFor(about_image.asset).url()}
+            ></image>
           </defs>
         </svg>
       </section>
