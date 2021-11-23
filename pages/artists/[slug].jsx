@@ -14,6 +14,7 @@ export default function Artist({
   workImages,
   exposData,
   interviewsData,
+  artistPageData,
 }) {
   //console.log(interviewsData);
   const newArray = exposData.map((item) => {
@@ -34,7 +35,8 @@ export default function Artist({
     setshowCard(!showCard);
   };
   const router = useRouter();
-  //console.log(artistData);
+  const { artist_dropdown } = artistPageData;
+
   return (
     <>
       <main>
@@ -42,24 +44,48 @@ export default function Artist({
           <StaticCard data={artistData[0]} />
         </div>
         <div className="section mt-49">
-          <DropDownCard title={router.locale == "en" ? "Bio" : "傳記"}>
+          <DropDownCard
+            title={
+              router.locale == "en"
+                ? artist_dropdown.first_name
+                : artist_dropdown.first_name_cn
+            }
+          >
             <ArtistBio data={artistData[0]} />
           </DropDownCard>
         </div>
         <div className="section mt-28">
-          <DropDownCard title={router.locale == "en" ? "Works" : "作品"}>
+          <DropDownCard
+            title={
+              router.locale == "en"
+                ? artist_dropdown.second_name
+                : artist_dropdown.second_name_cn
+            }
+          >
             <ArtistWorksImageList data={workImages} />
           </DropDownCard>
         </div>
 
         <div className="section mt-28">
-          <DropDownCard title={router.locale == "en" ? "Exhibitions" : "展覽"}>
+          <DropDownCard
+            title={
+              router.locale == "en"
+                ? artist_dropdown.third_name
+                : artist_dropdown.third_name_cn
+            }
+          >
             <ExpoList data={mergedArray} />
           </DropDownCard>
         </div>
 
         <div className="section mt-28">
-          <DropDownCard title={router.locale == "en" ? "Interviews" : "專訪"}>
+          <DropDownCard
+            title={
+              router.locale == "en"
+                ? artist_dropdown.fourth_name
+                : artist_dropdown.fourth_name_cn
+            }
+          >
             <InterviewsList data={interviewsData} />
           </DropDownCard>
         </div>
@@ -68,6 +94,9 @@ export default function Artist({
   );
 }
 export async function getStaticProps({ locale, params }) {
+  const artistPageData = await sanityClient.fetch(
+    `*[_type=='pages'&&name=='Artist'][0]{artist_dropdown}`
+  );
   const artistData = await sanityClient.fetch(
     `*[slug.current=='${params.slug}']`
   );
@@ -81,13 +110,14 @@ export async function getStaticProps({ locale, params }) {
   const interviewsData = await sanityClient.fetch(
     `*[_type=='interviews'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]`
   );
-  console.log(exposData);
+  //console.log(exposData);
   return {
     props: {
       workImages,
       artistData,
       exposData,
       interviewsData,
+      artistPageData,
       ...(await serverSideTranslations(locale, ["common"])),
       // Will be passed to the page component as props
     },

@@ -15,8 +15,7 @@ export default function Exhibition({
   pastExpoData,
 }) {
   const router = useRouter();
-  const { briefSection } = exPageData[0];
-  console.log(futureExpoData);
+  const { briefSection, exhis_dropdown } = exPageData[0];
 
   return (
     <>
@@ -25,17 +24,35 @@ export default function Exhibition({
           <StaticCard data={briefSection} />
         </div>
         <div className="section mt-118">
-          <DropDownCard title={router.locale == "en" ? "Current" : "現在"}>
+          <DropDownCard
+            title={
+              router.locale == "en"
+                ? exhis_dropdown?.first_name
+                : exhis_dropdown?.first_name_cn
+            }
+          >
             <ExpoImageList data={currentExpoData} />
           </DropDownCard>
         </div>
         <div className="section mt-28">
-          <DropDownCard title={router.locale == "en" ? "Forthcoming" : "未來"}>
+          <DropDownCard
+            title={
+              router.locale == "en"
+                ? exhis_dropdown?.second_name
+                : exhis_dropdown?.second_name_cn
+            }
+          >
             <ExpoImageList data={futureExpoData} />
           </DropDownCard>
         </div>
         <div className="section mt-28">
-          <DropDownCard title={router.locale == "en" ? "Past" : "往期"}>
+          <DropDownCard
+            title={
+              router.locale == "en"
+                ? exhis_dropdown?.third_name
+                : exhis_dropdown?.third_name_cn
+            }
+          >
             <ExpoImageList data={pastExpoData} />
           </DropDownCard>
         </div>
@@ -54,7 +71,7 @@ export default function Exhibition({
 
 export const getStaticProps = async ({ locale }) => {
   const exPageData = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='Exhibitions']{briefSection}`
+    `*[_type=='pages'&&name=='Exhibitions']{briefSection,exhis_dropdown}`
   );
   const currentExpoData = await sanityClient.fetch(
     `*[_type=='exhibition'&& exhibition_status=='Current']`
