@@ -22,7 +22,7 @@ export default {
       name: "briefSection",
       title: "Brief Section",
       type: "object",
-      hidden: ({ parent }) => parent?.name === "Artist" || "Exhibition",
+      hidden: ({ parent }) => parent?.name === "Artist",
       options: {
         collapsible: true, // Makes the whole fieldset collapsible
         collapsed: true, // Defines if the fieldset should be collapsed by default or not

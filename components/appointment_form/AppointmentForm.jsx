@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 const AppointmentForm = (FormResponse) => {
   const router = useRouter();
   const [showRes, setShowRes] = useState(false);
+  const [sending, setSending] = useState(false);
   //console.log(FormResponse);
   const {
     register,
@@ -15,6 +16,7 @@ const AppointmentForm = (FormResponse) => {
     reset,
   } = useForm();
   const onSubmitForm = async (values) => {
+    setSending(true);
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/contact`,
@@ -29,6 +31,7 @@ const AppointmentForm = (FormResponse) => {
       if (response.status == 200) {
         console.log("success");
         reset({});
+        setSending(false);
         setShowRes(true);
       }
     } catch (err) {
@@ -112,13 +115,18 @@ const AppointmentForm = (FormResponse) => {
           </p>
         </div>
 
-        <input
-          name="sent"
-          type="submit"
-          value={router.locale == "en" ? "SENT" : "发送"}
-        />
+        {sending ? (
+          <div>{router.locale == "en" ? "Sending..." : "发送中..."}</div>
+        ) : (
+          <input
+            name="sent"
+            type="submit"
+            value={router.locale == "en" ? "SENT" : "发送"}
+          />
+        )}
       </form>
       <div>
+        {/* {sending && <div>Sending...</div>} */}
         {showRes && (
           <BlockContent
             blocks={FormResponse}
