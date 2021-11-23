@@ -28,21 +28,19 @@ const InterviewsList = ({ data }) => {
                   interview_brief_cn,
                 } = interview;
                 return (
-                  <div key={_id}>
-                    <p className="h3">
-                      {router.locale == "en" ? title : title_cn}
-                      <span className="h4">
-                        <BlockContent
-                          blocks={
-                            router.locale === "en"
-                              ? interview_brief
-                              : interview_brief_cn
-                          }
-                          projectId="z3dq9mvc"
-                          dataset="production"
-                        />
-                      </span>
-                    </p>
+                  <div key={_id} className="h3">
+                    {router.locale == "en" ? title : title_cn}
+                    <div className="h4">
+                      <BlockContent
+                        blocks={
+                          router.locale === "en"
+                            ? interview_brief
+                            : interview_brief_cn
+                        }
+                        projectId="z3dq9mvc"
+                        dataset="production"
+                      />
+                    </div>
                   </div>
                 );
               })}

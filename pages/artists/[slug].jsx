@@ -15,7 +15,7 @@ export default function Artist({
   exposData,
   interviewsData,
 }) {
-  console.log(interviewsData);
+  //console.log(interviewsData);
   const newArray = exposData.map((item) => {
     return item.exhibition;
   });
@@ -34,7 +34,7 @@ export default function Artist({
     setshowCard(!showCard);
   };
   const router = useRouter();
-
+  //console.log(artistData);
   return (
     <>
       <main>

@@ -14,12 +14,19 @@ function urlFor(source) {
   return builder.image(source);
 }
 const ArtistBio = ({ data }) => {
-  const { showCard } = useContext(dropDownContext);
-  const { bio, bio_cn, profile } = data;
+  const { showCard, setshowCard } = useContext(dropDownContext);
+  const { bio, bio_cn, profile, bio_collapsed } = data;
   const router = useRouter();
-  console.log(router.locale);
+  //console.log(bio_collapsed);
   const [mobile, setmobile] = useState();
   useEffect(() => {
+    if (!bio_collapsed) {
+      setshowCard(false);
+    }
+    if (bio_collapsed) {
+      setshowCard(true);
+    }
+
     if (window.innerWidth > 760) {
       setmobile(false);
     }
@@ -54,14 +61,12 @@ const ArtistBio = ({ data }) => {
             </div>
           </div>
           <div className={styles.col}>
-            <div className="mt-28">
-              <span className="h3">
-                <BlockContent
-                  blocks={router.locale == "en" ? bio : bio_cn}
-                  projectId="z3dq9mvc"
-                  dataset="production"
-                />
-              </span>
+            <div className="mt-28 h3">
+              <BlockContent
+                blocks={router.locale == "en" ? bio : bio_cn}
+                projectId="z3dq9mvc"
+                dataset="production"
+              />
             </div>
           </div>
         </div>

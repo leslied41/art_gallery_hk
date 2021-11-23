@@ -14,7 +14,7 @@ export default function DropDownCard({ children, title }) {
 
   return (
     <>
-      <dropDownContext.Provider value={{ showCard }}>
+      <dropDownContext.Provider value={{ showCard, setshowCard }}>
         <div className={styles.grid}>
           <div className="col"></div>
           <div className="col">

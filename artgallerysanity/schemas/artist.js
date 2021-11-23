@@ -11,6 +11,14 @@ export default {
         collapsed: true, // Defines if the fieldset should be collapsed by default or not
       },
     },
+    {
+      name: "bio_section",
+      title: "Bio Section",
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: false, // Defines if the fieldset should be collapsed by default or not
+      },
+    },
   ],
   fields: [
     {
@@ -54,11 +62,17 @@ export default {
       title: "Masterpiece",
       type: "image",
     },
-
     {
       name: "bio",
       title: "Bio ",
       type: "blockContent",
+      fieldset: "bio_section",
+    },
+    {
+      name: "bio_collapsed",
+      title: "Open ",
+      type: "boolean",
+      fieldset: "bio_section",
     },
     {
       name: "bio_cn",
