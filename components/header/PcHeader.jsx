@@ -33,27 +33,13 @@ const PcHeader = () => {
   const linksEl = useRef(null);
   const [toLeft, setToLeft] = useState(0);
   const [toTop, setToTop] = useState(0);
+  const [scrolled, setscrolled] = useState(0);
   const [useXlink, setuseXlink] = useState();
   const artists_image = settings[0].artists;
   const exhibition_image = settings[0].exhibitions;
   const news_image = settings[0].news;
   const about_image = settings[0].about;
 
-  // const images_array = [
-  //   artists_image,
-  //   exhibition_image,
-  //   news_image,
-  //   about_image,
-  // ];
-  //this is to preload the images displayed in header
-  // useEffect(() => {
-  //   images_array.forEach((pic) => {
-  //     const img = new Image();
-  //     img.src = urlFor(pic.asset).url();
-  //   });
-  // }, []);
-
-  //console.log(images_array);
   useEffect(() => {
     if (pathname == "/artists") {
       setuseXlink("#image0");
@@ -71,15 +57,29 @@ const PcHeader = () => {
       setuseXlink("#image2");
     }
   }, [pathname, query]);
-
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      let scroll = window.scrollY;
+      setscrolled(scroll);
+    });
+  }, []);
   useEffect(() => {
     sectionEl.current.addEventListener("mousemove", (e) => {
       let x = e.clientX;
       let y = e.clientY;
       setToLeft(x);
-      setToTop(y);
+      setToTop(y + scrolled);
     });
-  }, []);
+    return () => {
+      sectionEl.current.removeEventListener("mousemove", (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+        setToLeft(x);
+        setToTop(y + scrolled);
+      });
+    };
+  }, [scrolled]);
+
   useEffect(() => {
     publicationContainer.current.addEventListener("mouseover", () => {
       publicationsCursor.current.style.display = "block";
