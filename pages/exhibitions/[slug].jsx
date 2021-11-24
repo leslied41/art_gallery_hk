@@ -19,9 +19,10 @@ export default function Expo({ expoData, exhiPageData }) {
               ? exhi_dropdown?.first_name
               : exhi_dropdown?.first_name_cn
           }
-        >
-          <ExListWorks data={expoData[0]} />
-        </DropDownCard>
+        ></DropDownCard>
+      </div>
+      <div className="section mt-118">
+        <ExListWorks data={expoData[0]} />
       </div>
     </>
   );
@@ -29,7 +30,7 @@ export default function Expo({ expoData, exhiPageData }) {
 
 export async function getStaticProps({ locale, params }) {
   const expoData = await sanityClient.fetch(
-    `*[slug.current=='${params.slug}']{name_exo,name_exo_cn,date,date_cn,image,image_parameter,introduction,introduction_cn,works[]->{name,name_cn,image,'metadata':image.asset->{metadata},image_parameter,introduction,introduction_cn,slug}}`
+    `*[slug.current=='${params.slug}']{name_exo,name_exo_cn,date,date_cn,image,'metadata':image.asset->{metadata},image_parameter,introduction,introduction_cn,works[]->{name,name_cn,image,'metadata':image.asset->{metadata},image_parameter,introduction,introduction_cn,slug}}`
   );
   const exhiPageData = await sanityClient.fetch(
     `*[_type=='pages'&&name=='Exhibition'][0]{exhi_dropdown}`

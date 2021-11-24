@@ -51,28 +51,32 @@ export default function About({ data }) {
           <StaticCard data={briefSection} />
         </div>
         {/* dropDownCard */}
-        <div className="section mt-118">
-          <DropDownCard
-            title={
-              router.locale == "en"
-                ? terminologySection.name
-                : terminologySection.name_cn
-            }
-          >
-            <PureWords data={terminologySection} />
-          </DropDownCard>
-        </div>
-        <div className="section mt-28">
-          <DropDownCard
-            title={
-              router.locale == "en"
-                ? missionStatementSection.name
-                : missionStatementSection.name_cn
-            }
-          >
-            <PureWords data={missionStatementSection} />
-          </DropDownCard>
-        </div>
+        {!terminologySection.hidden && (
+          <div className="section mt-118">
+            <DropDownCard
+              title={
+                router.locale == "en"
+                  ? terminologySection.name
+                  : terminologySection.name_cn
+              }
+            >
+              <PureWords data={terminologySection} />
+            </DropDownCard>
+          </div>
+        )}
+        {!missionStatementSection.hidden && (
+          <div className="section mt-28">
+            <DropDownCard
+              title={
+                router.locale == "en"
+                  ? missionStatementSection.name
+                  : missionStatementSection.name_cn
+              }
+            >
+              <PureWords data={missionStatementSection} />
+            </DropDownCard>
+          </div>
+        )}
 
         {/* third part */}
         <div className="section mt-176" id="visitUsLocation">

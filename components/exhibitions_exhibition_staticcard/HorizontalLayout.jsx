@@ -3,6 +3,7 @@ import sanityClient from "../../client.js";
 import styles from "./HorizontalLayout.module.css";
 import BlockContent from "@sanity/block-content-to-react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
@@ -14,18 +15,22 @@ const HorizontalLayout = ({
   image_parameter,
   introduction,
   introduction_cn,
+  width,
+  height,
 }) => {
-  console.log(name);
+  const router = useRouter();
   return (
     <>
       <div>
         <div className={styles.grid}>
           <div className="col">
             <div className={styles.imgcontainer}>
-              <img
+              <Image
                 src={urlFor(image.asset).url()}
                 alt="works"
-                className={styles.img}
+                width={width}
+                height={height}
+                layout="intrinsic"
               />
             </div>
             <div>
@@ -42,11 +47,13 @@ const HorizontalLayout = ({
           </div>
           <div className="col">
             <div>
-              <p className="h3">{name}</p>
+              <p className="h3">{router.locale == "en" ? name : name_cn}</p>
               <div className="h4">
                 {introduction && (
                   <BlockContent
-                    blocks={introduction}
+                    blocks={
+                      router.locale == "en" ? introduction : introduction_cn
+                    }
                     projectId="z3dq9mvc"
                     dataset="production"
                   />
@@ -54,34 +61,7 @@ const HorizontalLayout = ({
               </div>
             </div>
           </div>
-          {/* <div className={styles.topcontainer}>
-            <img
-              src={urlFor(image.asset).url()}
-              alt="works"
-              className={styles.img}
-            />
-          </div> */}
         </div>
-        {/* <div className="twoColumn-11 mt-22">
-          <div className="col">
-            <span className="h5">
-              <BlockContent
-                blocks={image_parameter}
-                projectId="z3dq9mvc"
-                dataset="production"
-              />
-            </span>
-          </div>
-          <div className="col">
-            <span className="h4">
-              <BlockContent
-                blocks={introduction}
-                projectId="z3dq9mvc"
-                dataset="production"
-              />
-            </span>
-          </div>
-        </div> */}
       </div>
     </>
   );

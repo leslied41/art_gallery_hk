@@ -9,12 +9,10 @@ import React, {
   useLayoutEffect,
 } from "react";
 import Image from "next/image";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import BlockContent from "@sanity/block-content-to-react";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard.jsx";
 import LightGallery from "lightgallery/react";
 import styles from "../../styles/Home.module.css";
-
 // import styles
 import "lightgallery/css/lightgallery.css";
 import "lightgallery/css/lg-zoom.css";

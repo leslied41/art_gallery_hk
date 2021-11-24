@@ -3,12 +3,27 @@ import sanityClient from "../../client.js";
 import styles from "./ExStaticCard.module.css";
 import BlockContent from "@sanity/block-content-to-react";
 import VerticalLayout from "./VerticalLayout.jsx";
+import HorizontalLayout from "./HorizontalLayout.jsx";
+import { useRef, useCallback } from "react";
+import LightGallery from "lightgallery/react";
+// import styles
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-thumbnail.css";
+// import plugins if you need
+import lgZoom from "lightgallery/plugins/zoom";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
 const ExStaticCard = ({ data }) => {
+  const lightGallery = useRef(null);
+  const onInit = useCallback((detail) => {
+    if (detail) {
+      lightGallery.current = detail.instance;
+    }
+  }, []);
   const {
     name_exo,
     name_exo_cn,
@@ -18,9 +33,14 @@ const ExStaticCard = ({ data }) => {
     image_parameter,
     introduction,
     introduction_cn,
+    metadata,
   } = data;
-  console.log("exstaticcard");
-  console.log(image);
+  // console.log("exstaticcard");
+  // console.log(data);
+  const height = metadata.metadata.dimensions.height;
+  const width = metadata.metadata.dimensions.width;
+  const aspectRatio = metadata.metadata.dimensions.aspectRatio;
+
   return (
     <>
       <div className={styles.grid}>
@@ -34,14 +54,40 @@ const ExStaticCard = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className="mt-89">
-        <VerticalLayout
-          image={image}
-          image_parameter={image_parameter}
-          introduction={introduction}
-          introduction_cn={introduction_cn}
-        />
-      </div>
+      <LightGallery
+        plugins={[lgZoom]}
+        counter={false}
+        download={false}
+        onInit={onInit}
+        prevHtml="Pre"
+        nextHtml="Next"
+        actualSize={false}
+        showZoomInOutIcons={true}
+      >
+        <div data-src={urlFor(image.asset).url()}>
+          <div className="mt-89">
+            {width > 750 && aspectRatio > 1 ? (
+              <VerticalLayout
+                image={image}
+                image_parameter={image_parameter}
+                introduction={introduction}
+                introduction_cn={introduction_cn}
+                width={width}
+                height={height}
+              />
+            ) : (
+              <HorizontalLayout
+                image={image}
+                image_parameter={image_parameter}
+                introduction={introduction}
+                introduction_cn={introduction_cn}
+                width={width}
+                height={height}
+              />
+            )}
+          </div>
+        </div>
+      </LightGallery>
     </>
   );
 };

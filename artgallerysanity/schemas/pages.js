@@ -209,6 +209,11 @@ export default {
       },
       fields: [
         {
+          name: "hidden",
+          title: "Hidden ",
+          type: "boolean",
+        },
+        {
           name: "name",
           title: "Name ",
           type: "string",
@@ -254,6 +259,11 @@ export default {
         collapsed: true, // Defines if the fieldset should be collapsed by default or not
       },
       fields: [
+        {
+          name: "hidden",
+          title: "Hidden ",
+          type: "boolean",
+        },
         {
           name: "name",
           title: "Name",
