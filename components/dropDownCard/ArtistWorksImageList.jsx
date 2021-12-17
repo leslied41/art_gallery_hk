@@ -36,7 +36,7 @@ const ArtistWorksImageList = ({ data }) => {
   return (
     <>
       <Collapsible showCard={showCard} loaded={loaded}>
-        <div className="works">
+        <div className={styles.works}>
           <ImageList
             workImages={data}
             showCard={showCard}

@@ -40,10 +40,10 @@ export default function Artist({
   return (
     <>
       <main>
-        <div className="section mt-158">
+        <div className="section mt-145">
           <StaticCard data={artistData[0]} />
         </div>
-        <div className="section mt-49">
+        <div className="section mt-145">
           <DropDownCard
             title={
               router.locale == "en"
@@ -54,7 +54,7 @@ export default function Artist({
             <ArtistBio data={artistData[0]} />
           </DropDownCard>
         </div>
-        <div className="section mt-28">
+        <div className="section mt-30">
           <DropDownCard
             title={
               router.locale == "en"
@@ -66,7 +66,7 @@ export default function Artist({
           </DropDownCard>
         </div>
 
-        <div className="section mt-28">
+        <div className="section mt-30">
           <DropDownCard
             title={
               router.locale == "en"
@@ -78,7 +78,7 @@ export default function Artist({
           </DropDownCard>
         </div>
 
-        <div className="section mt-28">
+        <div className="section mt-30 mb-145">
           <DropDownCard
             title={
               router.locale == "en"

@@ -9,21 +9,21 @@ export default function Expo({ expoData, exhiPageData }) {
   const { exhi_dropdown } = exhiPageData;
   return (
     <>
-      <div className="section mt-158">
+      <div className="section mt-145">
         <ExStaticCard data={expoData[0]} />
       </div>
-      <div className="section mt-118">
+      <div className="section mt-145">
         <DropDownCard
           title={
             router.locale == "en"
               ? exhi_dropdown?.first_name
               : exhi_dropdown?.first_name_cn
           }
-        ></DropDownCard>
+        >
+          <ExListWorks data={expoData[0]} />
+        </DropDownCard>
       </div>
-      <div className="section mt-118">
-        <ExListWorks data={expoData[0]} />
-      </div>
+      <div className="section mt-145"></div>
     </>
   );
 }

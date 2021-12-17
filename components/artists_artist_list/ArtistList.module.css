@@ -6,11 +6,19 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 95px;
+  column-gap: 50px;
+  margin-bottom: 115px;
+}
+.gap {
+  margin-bottom: 30px;
 }
 @media screen and (max-width: 414px) {
   .grid {
     display: grid;
     grid-template-columns: 1fr;
+    margin-bottom: 30px;
+  }
+  .gap {
+    margin-bottom: 20px;
   }
 }

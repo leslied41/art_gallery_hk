@@ -31,14 +31,18 @@ const StaticCard = ({ data, form }) => {
           </div>
           {/* display description */}
           {description && (
-            <div className="words mt-118">
-              <span className="h3">
-                <BlockContent
-                  blocks={router.locale === "en" ? description : description_cn}
-                  projectId="z3dq9mvc"
-                  dataset="production"
-                />
-              </span>
+            <div className="words">
+              <div className={styles.gap}>
+                <span className="h3">
+                  <BlockContent
+                    blocks={
+                      router.locale === "en" ? description : description_cn
+                    }
+                    projectId="z3dq9mvc"
+                    dataset="production"
+                  />
+                </span>
+              </div>
             </div>
           )}
           {/* if form exsits, display form */}

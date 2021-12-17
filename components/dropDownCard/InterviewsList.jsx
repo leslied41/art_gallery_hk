@@ -16,7 +16,7 @@ const InterviewsList = ({ data }) => {
         <div className="col"></div>
         <div className="col">
           <Collapsible showCard={showCard}>
-            <div className="mt-28">
+            <div className="mt-30">
               {data.map((interview) => {
                 const {
                   _id,
@@ -28,7 +28,7 @@ const InterviewsList = ({ data }) => {
                   interview_brief_cn,
                 } = interview;
                 return (
-                  <div key={_id} className="h3">
+                  <div key={_id} className="h3 mt-30">
                     {router.locale == "en" ? title : title_cn}
                     <div className="h4">
                       <BlockContent

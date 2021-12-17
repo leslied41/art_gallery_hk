@@ -17,18 +17,18 @@ const ArtistList = ({ artistsData }) => {
   const [targetImage, setTargetImage] = useState(null);
   const [mobile, setmobile] = useState();
   useEffect(() => {
-    if (window.innerWidth > 760) {
+    if (window.innerWidth > 414) {
       setmobile(false);
     }
-    if (window.innerWidth <= 760) {
+    if (window.innerWidth <= 414) {
       setmobile(true);
     }
     window.addEventListener("resize", () => {
       console.log(window.innerWidth);
-      if (window.innerWidth > 760) {
+      if (window.innerWidth > 414) {
         setmobile(false);
       }
-      if (window.innerWidth <= 760) {
+      if (window.innerWidth <= 414) {
         setmobile(true);
       }
     });
@@ -55,12 +55,12 @@ const ArtistList = ({ artistsData }) => {
         {!mobile && showImage && (
           <div className={styles.container}>
             <Image
-              src={urlFor(targetImage.asset).width(624).height(468).url()}
+              src={urlFor(targetImage.asset).width(647).height(431).url()}
               alt="works"
               objectFit="cover"
               layout="intrinsic"
-              width="624"
-              height="468"
+              width="647"
+              height="431"
             />
           </div>
         )}
@@ -70,7 +70,7 @@ const ArtistList = ({ artistsData }) => {
           {artistsData.map((artist, index) => {
             const { name, name_cn, slug, _id, masterpiece } = artist;
             return (
-              <div key={_id} className="mt-28">
+              <div key={_id} className={styles.gap}>
                 <Link href={"/artists/" + slug.current}>
                   <li
                     key={index}

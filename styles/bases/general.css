@@ -46,6 +46,9 @@ ul {
 .mt-28 {
   margin-top: 28px;
 }
+.mt-30 {
+  margin-top: 30px;
+}
 .mt-42 {
   margin-top: 42px;
 }
@@ -67,25 +70,53 @@ ul {
 .mt-140 {
   margin-top: 140px;
 }
+.mt-145 {
+  margin-top: 145px;
+}
 .mt-176 {
   margin-top: 176px;
+}
+.mb-145 {
+  margin-bottom: 145px;
 }
 hr {
   border: 1px solid #000000;
 }
 .hr-top {
-  margin-top: 28px;
+  margin-top: 30px;
 }
 .hr-bottom {
-  margin-top: 28px;
+  margin-top: 30px;
 }
 
 .section {
-  padding-left: 50px;
-  padding-right: 50px;
   margin-left: auto;
   margin-right: auto;
 }
 .formContainer {
   width: 100%;
+}
+.hr-bottom-show {
+  margin-top: 145px;
+}
+
+@media screen and (max-width: 414px) {
+  .hr-top {
+    margin-top: 20px;
+  }
+  .hr-bottom {
+    margin-top: 20px;
+  }
+  .hr-bottom-show {
+    margin-top: 65px;
+  }
+  .mt-30 {
+    margin-top: 20px;
+  }
+  .mt-145 {
+    margin-top: 65px;
+  }
+  .mb-145 {
+    margin-bottom: 65px;
+  }
 }

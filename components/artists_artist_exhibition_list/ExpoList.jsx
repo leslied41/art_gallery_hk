@@ -19,7 +19,7 @@ const ExpoList = ({ data }) => {
                   const { name_exo, date, slug } = item[0];
                   return (
                     <Link key={index} href={"/exhibitions/" + slug.current}>
-                      <li>
+                      <li className="mt-30">
                         <p>{name_exo}</p>
                         <p>{date}</p>
                       </li>

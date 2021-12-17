@@ -20,10 +20,10 @@ export default function Exhibition({
   return (
     <>
       <main>
-        <div className="section mt-158">
+        <div className="section mt-145">
           <StaticCard data={briefSection} />
         </div>
-        <div className="section mt-118">
+        <div className="section mt-145">
           <DropDownCard
             title={
               router.locale == "en"
@@ -34,7 +34,7 @@ export default function Exhibition({
             <ExpoImageList data={currentExpoData} />
           </DropDownCard>
         </div>
-        <div className="section mt-28">
+        <div className="section mt-30">
           <DropDownCard
             title={
               router.locale == "en"
@@ -45,7 +45,7 @@ export default function Exhibition({
             <ExpoImageList data={futureExpoData} />
           </DropDownCard>
         </div>
-        <div className="section mt-28">
+        <div className="section mt-30">
           <DropDownCard
             title={
               router.locale == "en"

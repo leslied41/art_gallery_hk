@@ -40,7 +40,7 @@ const VerticalLayout = ({
             />
           </div>
         </div>
-        <div className="mt-22">
+        <div className="mt-30">
           <div className={styles.grid}>
             <div className="col">
               <span className="h5">
@@ -53,7 +53,7 @@ const VerticalLayout = ({
             </div>
             <div className="col">
               <p className="h3">{router.locale == "en" ? name : name_cn}</p>
-              <div className="h4">
+              <div className="h4 mt-30">
                 <BlockContent
                   blocks={
                     router.locale == "en" ? introduction : introduction_cn

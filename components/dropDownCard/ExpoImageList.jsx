@@ -41,43 +41,52 @@ const ExpoImageList = ({ data }) => {
     <>
       <Collapsible showCard={showCard} loaded={loaded} delay={true}>
         <>
-          {slicedExhibition.map((item, index) => {
-            const { name_exo, name_exo_cn, date, date_cn, image, slug, _id } =
-              item;
+          {data.length === 0 ? (
+            <div className={styles.grid}>
+              <div className="col"></div>
+              <div className="col mt-30">
+                <div>To be announced</div>
+              </div>
+            </div>
+          ) : (
+            slicedExhibition.map((item, index) => {
+              const { name_exo, name_exo_cn, date, date_cn, image, slug, _id } =
+                item;
 
-            return (
-              <div className={styles.grid} key={index}>
-                <Link href={"/exhibitions/" + slug.current}>
-                  <div className="col mb-42">
-                    <div style={{ cursor: "pointer" }}>
-                      <img
-                        src={urlFor(image.asset).width(624).height(437).url()}
-                        alt={name_exo}
-                        style={{ width: "100%" }}
-                      />
-                    </div>
-                  </div>
-                </Link>
-                <div className="col mb-42">
+              return (
+                <div className={styles.grid} key={index}>
                   <Link href={"/exhibitions/" + slug.current}>
-                    <div style={{ cursor: "pointer" }}>
-                      <p className="h3">
-                        {router.locale === "en" ? name_exo : name_exo_cn}
-                      </p>
-                      <p className="h3">
-                        {router.locale === "en" ? date : date_cn}
-                      </p>
+                    <div className="col mt-30">
+                      <div style={{ cursor: "pointer" }}>
+                        <img
+                          src={urlFor(image.asset).width(624).height(437).url()}
+                          alt={name_exo}
+                          style={{ width: "100%" }}
+                        />
+                      </div>
                     </div>
                   </Link>
+                  <div className="col mt-30">
+                    <Link href={"/exhibitions/" + slug.current}>
+                      <div style={{ cursor: "pointer" }}>
+                        <p className="h3">
+                          {router.locale === "en" ? name_exo : name_exo_cn}
+                        </p>
+                        <p className="h3">
+                          {router.locale === "en" ? date : date_cn}
+                        </p>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
           <div className={styles.grid}>
-            <div className="col mb-42">
+            <div className="col mt-30">
               <LoadMoreCard loaded={loaded} loadMore={loadMore} />
             </div>
-            <div className="col mb-42">
+            <div className="col mt-30">
               <div></div>
             </div>
           </div>

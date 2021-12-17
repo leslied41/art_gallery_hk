@@ -33,7 +33,6 @@ const PcHeader = () => {
   const linksEl = useRef(null);
   const [toLeft, setToLeft] = useState(0);
   const [toTop, setToTop] = useState(0);
-  const [scrolled, setscrolled] = useState(0);
   const [useXlink, setuseXlink] = useState();
   const artists_image = settings[0].artists;
   const exhibition_image = settings[0].exhibitions;
@@ -57,28 +56,15 @@ const PcHeader = () => {
       setuseXlink("#image2");
     }
   }, [pathname, query]);
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      let scroll = window.scrollY;
-      setscrolled(scroll);
-    });
-  }, []);
+
   useEffect(() => {
     sectionEl.current.addEventListener("mousemove", (e) => {
       let x = e.clientX;
       let y = e.clientY;
       setToLeft(x);
-      setToTop(y + scrolled);
+      setToTop(y);
     });
-    return () => {
-      sectionEl.current.removeEventListener("mousemove", (e) => {
-        let x = e.clientX;
-        let y = e.clientY;
-        setToLeft(x);
-        setToTop(y + scrolled);
-      });
-    };
-  }, [scrolled]);
+  }, []);
 
   useEffect(() => {
     publicationContainer.current.addEventListener("mouseover", () => {
@@ -163,10 +149,12 @@ const PcHeader = () => {
         </div>
 
         <svg
-          preserveAspectRatio="xMinYMin meet"
+          //preserveAspectRatio="xMinYMin meet"
+          preserveAspectRatio="none"
           viewBox="0 0 1440 1024"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          style={{ width: "100vw", height: "100vh" }}
         >
           <g clipPath="url(#clip0_29:12)">
             <Link href="/artists" exact>

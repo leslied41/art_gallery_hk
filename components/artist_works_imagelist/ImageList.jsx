@@ -1,6 +1,6 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
-//import styles from "./ImageList.module.css";
+import styles from "./ImageList.module.css";
 import React, {
   useEffect,
   useState,
@@ -12,7 +12,6 @@ import Image from "next/image";
 import BlockContent from "@sanity/block-content-to-react";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard.jsx";
 import LightGallery from "lightgallery/react";
-import styles from "../../styles/Home.module.css";
 // import styles
 import "lightgallery/css/lightgallery.css";
 import "lightgallery/css/lg-zoom.css";
@@ -41,7 +40,7 @@ const ImageList = ({ slicedWorkImages, loaded, loadMore, workImages }) => {
   const getImages = useCallback(() => {
     if (isMobile) {
       return slicedWorkImages.map((image, index) => {
-        console.log(image);
+        //console.log(image);
 
         return (
           <div key={index} data-src={urlFor(image.image.asset).url()}>
@@ -60,18 +59,21 @@ const ImageList = ({ slicedWorkImages, loaded, loadMore, workImages }) => {
     }
     if (!isMobile) {
       return workImages.map((image, index) => {
-        //console.log(image);
+        //console.log(image.metadata.metadata.dimensions.aspectRatio);
 
         return (
-          <div key={index} data-src={urlFor(image.image.asset).url()}>
+          <div
+            key={index}
+            style={{ width: "100%", height: "100%", marginBottom: "30px" }}
+            data-src={urlFor(image.image.asset).url()}
+          >
             <Image
               src={urlFor(image.image.asset).url()}
-              alt=""
+              alt={index}
               className={styles.thumbnail}
-              layout="responsive"
-              width="100%"
-              height="100%"
-              objectFit="cover"
+              layout="intrinsic"
+              height={image.metadata.metadata.dimensions.height}
+              width={image.metadata.metadata.dimensions.width}
             />
           </div>
         );
@@ -118,8 +120,6 @@ const ImageList = ({ slicedWorkImages, loaded, loadMore, workImages }) => {
         counter={false}
         download={false}
         onInit={onInit}
-        prevHtml="Pre"
-        nextHtml="Next"
         actualSize={false}
         showZoomInOutIcons={true}
         elementClassNames={styles.grid}

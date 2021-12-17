@@ -8,10 +8,10 @@ export default function News({ newsPageData, newsData }) {
   const { briefSection } = newsPageData;
   return (
     <main>
-      <div className="section mt-158">
+      <div className="section mt-145">
         <StaticCard data={briefSection} />
       </div>
-      <div className="section mt-118">
+      <div className="section mt-145">
         <NewsList newsData={newsData} />
       </div>
     </main>

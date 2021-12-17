@@ -33,7 +33,7 @@ const HorizontalLayout = ({
                 layout="intrinsic"
               />
             </div>
-            <div>
+            <div className="mt-30">
               <span className="h5">
                 {image_parameter && (
                   <BlockContent
@@ -48,7 +48,7 @@ const HorizontalLayout = ({
           <div className="col">
             <div>
               <p className="h3">{router.locale == "en" ? name : name_cn}</p>
-              <div className="h4">
+              <div className="h4 mt-30">
                 {introduction && (
                   <BlockContent
                     blocks={

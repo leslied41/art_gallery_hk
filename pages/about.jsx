@@ -47,12 +47,12 @@ export default function About({ data }) {
     <>
       <main>
         {/* first part */}
-        <div className="section mt-158">
+        <div className="section mt-145">
           <StaticCard data={briefSection} />
         </div>
         {/* dropDownCard */}
         {!terminologySection.hidden && (
-          <div className="section mt-118">
+          <div className="section mt-145">
             <DropDownCard
               title={
                 router.locale == "en"
@@ -65,7 +65,7 @@ export default function About({ data }) {
           </div>
         )}
         {!missionStatementSection.hidden && (
-          <div className="section mt-28">
+          <div className="section mt-30">
             <DropDownCard
               title={
                 router.locale == "en"
@@ -79,11 +79,11 @@ export default function About({ data }) {
         )}
 
         {/* third part */}
-        <div className="section mt-176" id="visitUsLocation">
+        <div className="section mt-145" id="visitUsLocation">
           {<StaticCard data={visitUsSection} form={AppointmentForm} />}
         </div>
         {/* fourth part */}
-        <div className="section mt-140">
+        <div className="section mt-145 mb-145">
           {<StaticCard data={connectSection} />}
         </div>
       </main>
