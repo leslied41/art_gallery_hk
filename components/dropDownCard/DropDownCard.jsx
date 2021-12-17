@@ -30,10 +30,7 @@ export default function DropDownCard({ children, title }) {
           <div className="col"></div>
           <div className="col">
             <div>
-              <hr
-                className="hr-bottom"
-                className={showCard ? "hr-bottom-show" : "hr-bottom"}
-              />
+              <hr className={showCard ? "hr-bottom-show" : "hr-bottom"} />
             </div>
           </div>
         </div>
