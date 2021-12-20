@@ -1,9 +1,16 @@
 @import "../variables/typography.css";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
+}
+.tc {
+  font-family: "Noto Sans TC", sans-serif;
+}
+.en {
+  font-family: monospace;
 }
 body {
   min-height: 100vh;
