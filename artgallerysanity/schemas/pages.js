@@ -22,7 +22,8 @@ export default {
       name: "briefSection",
       title: "Brief Section",
       type: "object",
-      hidden: ({ parent }) => parent?.name === "Artist",
+      hidden: ({ parent }) =>
+        ["Artist", "Homepage", "Exhibition"].includes(parent?.name),
       options: {
         collapsible: true, // Makes the whole fieldset collapsible
         collapsed: true, // Defines if the fieldset should be collapsed by default or not
