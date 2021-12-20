@@ -7,6 +7,7 @@ import AppointmentForm from "../components/appointment_form/AppointmentForm";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import router, { useRouter } from "next/router";
 import PureWords from "../components/dropDownCard/PureWords";
+import Heads from "../components/head/Heads.jsx";
 
 export const getStaticProps = async ({ locale }) => {
   const data = await sanityClient.fetch(
@@ -17,7 +18,7 @@ export const getStaticProps = async ({ locale }) => {
     phone,
     social[]->,
     email,
-    },terminologySection,missionStatementSection}`
+    },terminologySection,missionStatementSection,seo}`
   );
 
   if (!data || !data.length) {
@@ -42,9 +43,11 @@ export default function About({ data }) {
     connectSection,
     terminologySection,
     missionStatementSection,
+    seo,
   } = data[0];
   return (
     <>
+      <Heads seo={seo} name={router.locale == "en" ? "About" : "关于"} />
       <main>
         {/* first part */}
         <div className="section mt-145">

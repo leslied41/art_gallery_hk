@@ -7,6 +7,7 @@ import StaticCard from "../components/staticCard/StaticCard";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import ExpoImageList from "../components/dropDownCard/ExpoImageList";
+import Heads from "../components/head/Heads.jsx";
 
 export default function Exhibition({
   exPageData,
@@ -15,10 +16,11 @@ export default function Exhibition({
   pastExpoData,
 }) {
   const router = useRouter();
-  const { briefSection, exhis_dropdown } = exPageData[0];
+  const { briefSection, exhis_dropdown, seo } = exPageData[0];
 
   return (
     <>
+      <Heads seo={seo} name={router.locale == "en" ? "Exhibitions" : "展出"} />
       <main>
         <div className="section mt-145">
           <StaticCard data={briefSection} />
@@ -71,7 +73,7 @@ export default function Exhibition({
 
 export const getStaticProps = async ({ locale }) => {
   const exPageData = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='Exhibitions']{briefSection,exhis_dropdown}`
+    `*[_type=='pages'&&name=='Exhibitions']{briefSection,exhis_dropdown,seo}`
   );
   const currentExpoData = await sanityClient.fetch(
     `*[_type=='exhibition'&& exhibition_status=='Current']`

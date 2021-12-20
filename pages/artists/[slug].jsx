@@ -8,6 +8,7 @@ import ArtistBio from "../../components/dropDownCard/ArtistBio.jsx";
 import ArtistWorksImageList from "../../components/dropDownCard/ArtistWorksImageList.jsx";
 import ExpoList from "../../components/artists_artist_exhibition_list/ExpoList.jsx";
 import InterviewsList from "../../components/dropDownCard/InterviewsList";
+import Heads from "../../components/head/Heads.jsx";
 
 export default function Artist({
   artistData,
@@ -35,10 +36,12 @@ export default function Artist({
     setshowCard(!showCard);
   };
   const router = useRouter();
-  const { artist_dropdown } = artistPageData;
+  const { artist_dropdown, seo } = artistPageData;
+  const { name, name_cn } = artistData[0];
 
   return (
     <>
+      <Heads seo={seo} name={router.locale == "en" ? name : name_cn} />
       <main>
         <div className="section mt-145">
           <StaticCard data={artistData[0]} />
@@ -95,7 +98,7 @@ export default function Artist({
 }
 export async function getStaticProps({ locale, params }) {
   const artistPageData = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='Artist'][0]{artist_dropdown}`
+    `*[_type=='pages'&&name=='Artist'][0]{artist_dropdown,seo}`
   );
   const artistData = await sanityClient.fetch(
     `*[slug.current=='${params.slug}']`

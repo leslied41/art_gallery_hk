@@ -3,12 +3,16 @@ import StaticCard from "../components/staticCard/StaticCard";
 import sanityClient from "../client.js";
 import ArtistList from "../components/artists_artist_list/ArtistList";
 import styles from "../styles/artists.module.css";
+import Heads from "../components/head/Heads.jsx";
+import { useRouter } from "next/router";
 
 export default function Artists({ data, artistsData, worksImages }) {
-  const { briefSection } = data[0];
+  const { briefSection, seo } = data[0];
+  const router = useRouter();
   //console.log(artistsData);
   return (
     <>
+      <Heads seo={seo} name={router.locale == "en" ? "Artists" : "藝術家"} />
       <main>
         <div className="section">
           <div className={styles.gap}>
@@ -26,7 +30,7 @@ export default function Artists({ data, artistsData, worksImages }) {
 }
 export async function getStaticProps({ locale }) {
   const data = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='Artists']{briefSection}`
+    `*[_type=='pages'&&name=='Artists']{briefSection,seo}`
   );
   // const worksImages = await sanityClient.fetch(
   //   `*[_type=='work']{image,author[]->{name,slug}}`

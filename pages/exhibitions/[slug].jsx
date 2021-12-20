@@ -4,11 +4,15 @@ import { useRouter } from "next/router";
 import DropDownCard from "../../components/dropDownCard/DropDownCard.jsx";
 import ExListWorks from "../../components/dropDownCard/ExListWorks.jsx";
 import ExStaticCard from "../../components/exhibitions_exhibition_staticcard/ExStaticCard.jsx";
+import Heads from "../../components/head/Heads.jsx";
+
 export default function Expo({ expoData, exhiPageData }) {
   const router = useRouter();
-  const { exhi_dropdown } = exhiPageData;
+  const { exhi_dropdown, seo } = exhiPageData;
+  const { name_exo, name_exo_cn } = expoData[0];
   return (
     <>
+      <Heads seo={seo} name={router.locale == "en" ? name_exo : name_exo_cn} />
       <div className="section mt-145">
         <ExStaticCard data={expoData[0]} />
       </div>
@@ -33,7 +37,7 @@ export async function getStaticProps({ locale, params }) {
     `*[slug.current=='${params.slug}']{name_exo,name_exo_cn,date,date_cn,image,'metadata':image.asset->{metadata},image_parameter,introduction,introduction_cn,works[]->{name,name_cn,image,'metadata':image.asset->{metadata},image_parameter,introduction,introduction_cn,slug}}`
   );
   const exhiPageData = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='Exhibition'][0]{exhi_dropdown}`
+    `*[_type=='pages'&&name=='Exhibition'][0]{exhi_dropdown,seo}`
   );
   return {
     props: {

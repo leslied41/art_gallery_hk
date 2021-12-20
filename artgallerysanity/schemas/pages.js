@@ -451,6 +451,82 @@ export default {
         },
       ],
     },
+    //seo and social medial sharing
+    {
+      name: "seo",
+      title: "SEO & Social Sharing",
+      type: "object",
+      description: "A fallback for pages that does not include these metadata",
+      fieldsets: [
+        {
+          name: "translation",
+          title: "Translation",
+          options: {
+            collapsible: true, // Makes the whole fieldset collapsible
+            collapsed: true, // Defines if the fieldset should be collapsed by default or not
+          },
+        },
+      ],
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: true, // Defines if the fieldset should be collapsed by default or not
+      },
+      fields: [
+        {
+          name: "title",
+          title: "Site Title",
+          type: "string",
+        },
+        {
+          name: "url",
+          title: "Site Url",
+          type: "url",
+        },
+
+        {
+          name: "title_cn",
+          title: "Site Title Chinese",
+          type: "string",
+          fieldset: "translation",
+        },
+        {
+          name: "description",
+          title: "Description",
+          type: "string",
+          description:
+            "Describe your social media for social engine and social media",
+        },
+        {
+          name: "description_cn",
+          title: "Description Chinese",
+          type: "string",
+          description:
+            "Describe your social media for social engine and social media",
+          fieldset: "translation",
+        },
+        {
+          name: "keywords",
+          title: "Keywords",
+          type: "tags",
+          description:
+            "Add keywords that describe your website to seach engine",
+        },
+        {
+          name: "keywords_cn",
+          title: "Keywords Chinese",
+          type: "tags",
+          description:
+            "Add keywords that describe your website to seach engine",
+          fieldset: "translation",
+        },
+        {
+          name: "preview_image",
+          title: "Preview Image",
+          type: "image",
+          description: "Preview image for social media sharing",
+        },
+      ],
+    },
   ],
   preview: {
     select: {
