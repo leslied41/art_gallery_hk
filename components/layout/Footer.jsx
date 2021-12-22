@@ -7,12 +7,18 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import logo from "../../public/images/Frame.svg";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export default function Footer() {
   const router = useRouter();
   const { t } = useTranslation("common");
-  const settings = useGlobalSettings();
-  //console.log(settings);
+  const { settings, popup } = useGlobalSettings();
+  const [popup_path, setpopup_path] = popup;
+  useEffect(() => {
+    setpopup_path(router.asPath);
+  }, [router.asPath]);
+  //console.log(popup_path);
+
   const {
     abbreviation,
     address,

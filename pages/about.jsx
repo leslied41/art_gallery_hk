@@ -8,6 +8,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import router, { useRouter } from "next/router";
 import PureWords from "../components/dropDownCard/PureWords";
 import Heads from "../components/head/Heads.jsx";
+import { useGlobalSettings } from "../components/context/GlobalSettings";
 
 export const getStaticProps = async ({ locale }) => {
   const data = await sanityClient.fetch(
@@ -37,6 +38,13 @@ export const getStaticProps = async ({ locale }) => {
 
 export default function About({ data }) {
   const router = useRouter();
+  const { settings, popup } = useGlobalSettings();
+  const [popup_path, setpopup_path] = popup;
+  useEffect(() => {
+    setpopup_path(router.asPath);
+  }, [router.asPath]);
+  //console.log(popup_path);
+  //console.log(router.asPath);
   const {
     briefSection,
     visitUsSection,

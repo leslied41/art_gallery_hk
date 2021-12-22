@@ -26,7 +26,7 @@ const Links = ({ lan }) => {
               </Link>
             </li>
             <li>
-              <Link href="/publications" exact>
+              <Link href="/study" exact>
                 <span className="h4"> {t("publications")}</span>
               </Link>
             </li>
@@ -64,7 +64,7 @@ const Links = ({ lan }) => {
               </Link>
             </li>
             <li>
-              <Link href="/publications" exact>
+              <Link href="/study" exact>
                 <span className="h4"> {t("publications")}</span>
               </Link>
             </li>

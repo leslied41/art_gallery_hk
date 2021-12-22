@@ -4,27 +4,23 @@ import NewsList from "../components/news_list/NewsList.jsx";
 import StaticCard from "../components/staticCard/StaticCard.jsx";
 import { useRouter } from "next/router";
 import Heads from "../components/head/Heads.jsx";
-import { useEffect } from "react";
-import { useGlobalSettings } from "../components/context/GlobalSettings.jsx";
+import ControlBtn from "../components/popup_control/ControlBtn.jsx";
 
-export default function News({ newsPageData, newsData }) {
+export default function Press({ newsPageData, newsData }) {
   const { briefSection, seo } = newsPageData;
   const router = useRouter();
-  const { settings, popup } = useGlobalSettings();
-  const [popup_path, setpopup_path] = popup;
-  useEffect(() => {
-    setpopup_path(router.asPath);
-  }, [router.asPath]);
-  //console.log(popup_path);
   return (
     <>
-      <Heads seo={seo} name={router.locale == "en" ? "News" : "新聞"} />
-      <main>
-        <div className="section mt-145">
-          <StaticCard data={briefSection} />
-        </div>
-        <div className="section mt-145">
-          <NewsList newsData={newsData} />
+      <Heads seo={seo} name={router.locale == "en" ? "Recommended" : "推薦"} />
+      <ControlBtn />
+      <main className="mb-145 layout ">
+        <div className={router.locale}>
+          <div className="section mt-145">
+            <StaticCard data={briefSection} />
+          </div>
+          <div className="section mt-145">
+            <NewsList newsData={newsData} />
+          </div>
         </div>
       </main>
     </>
@@ -32,7 +28,7 @@ export default function News({ newsPageData, newsData }) {
 }
 export async function getStaticProps({ locale }) {
   const newsPageData = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='News']{briefSection,seo}[0]`
+    `*[_type=='pages'&&name=='Recommended']{briefSection,seo}[0]`
   );
   const newsData = await sanityClient.fetch(`*[_type=='news']`);
   return {
@@ -44,3 +40,7 @@ export async function getStaticProps({ locale }) {
     },
   };
 }
+
+Press.getLayout = function getLayout(page) {
+  return <>{page}</>;
+};

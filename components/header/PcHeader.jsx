@@ -17,8 +17,7 @@ const PcHeader = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const { pathname, asPath, query } = router;
-  const settings = useGlobalSettings();
-  //console.log(settings[0]);
+  const { settings } = useGlobalSettings();
 
   const exhibitionCursor = useRef(null);
   const aboutCursor = useRef(null);

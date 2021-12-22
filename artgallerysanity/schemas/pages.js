@@ -528,6 +528,157 @@ export default {
         },
       ],
     },
+    //study about page collapsable section
+    {
+      name: "collapsable_first",
+      title: "Collapsable One",
+      hidden: ({ parent }) => parent?.name != "Study_About",
+      type: "object",
+      fieldsets: [
+        {
+          name: "translation",
+          title: "Translation",
+          options: {
+            collapsible: true, // Makes the whole fieldset collapsible
+            collapsed: true, // Defines if the fieldset should be collapsed by default or not
+          },
+        },
+      ],
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: true, // Defines if the fieldset should be collapsed by default or not
+      },
+      fields: [
+        {
+          name: "hidden",
+          title: "Hidden ",
+          type: "boolean",
+        },
+        {
+          name: "name",
+          title: "Name",
+          type: "string",
+        },
+        {
+          name: "content",
+          title: "Content",
+          type: "blockContent",
+        },
+        {
+          name: "name_cn",
+          title: "Name Chinese",
+          type: "string",
+          fieldset: "translation",
+        },
+
+        {
+          name: "content_cn",
+          title: "Content Chinese",
+          type: "blockContent",
+          fieldset: "translation",
+        },
+      ],
+    },
+    {
+      name: "collapsable_second",
+      title: "Collapsable Two",
+      hidden: ({ parent }) => parent?.name != "Study_About",
+      type: "object",
+      fieldsets: [
+        {
+          name: "translation",
+          title: "Translation",
+          options: {
+            collapsible: true, // Makes the whole fieldset collapsible
+            collapsed: true, // Defines if the fieldset should be collapsed by default or not
+          },
+        },
+      ],
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: true, // Defines if the fieldset should be collapsed by default or not
+      },
+      fields: [
+        {
+          name: "hidden",
+          title: "Hidden ",
+          type: "boolean",
+        },
+        {
+          name: "name",
+          title: "Name",
+          type: "string",
+        },
+        {
+          name: "content",
+          title: "Content",
+          type: "blockContent",
+        },
+        {
+          name: "name_cn",
+          title: "Name Chinese",
+          type: "string",
+          fieldset: "translation",
+        },
+
+        {
+          name: "content_cn",
+          title: "Content Chinese",
+          type: "blockContent",
+          fieldset: "translation",
+        },
+      ],
+    },
+    {
+      name: "collapsable_third",
+      title: "Collapsable Three",
+      hidden: ({ parent }) => parent?.name != "Study_About",
+      type: "object",
+      fieldsets: [
+        {
+          name: "translation",
+          title: "Translation",
+          options: {
+            collapsible: true, // Makes the whole fieldset collapsible
+            collapsed: true, // Defines if the fieldset should be collapsed by default or not
+          },
+        },
+      ],
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: true, // Defines if the fieldset should be collapsed by default or not
+      },
+      fields: [
+        {
+          name: "hidden",
+          title: "Hidden ",
+          type: "boolean",
+        },
+        {
+          name: "name",
+          title: "Name",
+          type: "string",
+        },
+        {
+          name: "content",
+          title: "Content",
+          type: "blockContent",
+        },
+        {
+          name: "name_cn",
+          title: "Name Chinese",
+          type: "string",
+          fieldset: "translation",
+        },
+
+        {
+          name: "content_cn",
+          title: "Content Chinese",
+          type: "blockContent",
+          fieldset: "translation",
+        },
+      ],
+    },
   ],
   preview: {
     select: {

@@ -3,12 +3,13 @@ import sanityClient from "../../client.js";
 import StaticCard from "../../components/staticCard/StaticCard";
 import DropDownCard from "../../components/dropDownCard/DropDownCard.jsx";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ArtistBio from "../../components/dropDownCard/ArtistBio.jsx";
 import ArtistWorksImageList from "../../components/dropDownCard/ArtistWorksImageList.jsx";
 import ExpoList from "../../components/artists_artist_exhibition_list/ExpoList.jsx";
 import InterviewsList from "../../components/dropDownCard/InterviewsList";
 import Heads from "../../components/head/Heads.jsx";
+import { useGlobalSettings } from "../../components/context/GlobalSettings.jsx";
 
 export default function Artist({
   artistData,
@@ -36,9 +37,15 @@ export default function Artist({
     setshowCard(!showCard);
   };
   const router = useRouter();
+  //console.log(router.asPath);
   const { artist_dropdown, seo } = artistPageData;
   const { name, name_cn } = artistData[0];
-
+  const { settings, popup } = useGlobalSettings();
+  const [popup_path, setpopup_path] = popup;
+  useEffect(() => {
+    setpopup_path(router.asPath);
+  }, [router.asPath]);
+  console.log(popup_path);
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? name : name_cn} />

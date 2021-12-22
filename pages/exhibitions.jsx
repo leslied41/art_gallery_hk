@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import ExpoImageList from "../components/dropDownCard/ExpoImageList";
 import Heads from "../components/head/Heads.jsx";
+import { useGlobalSettings } from "../components/context/GlobalSettings";
 
 export default function Exhibition({
   exPageData,
@@ -16,6 +17,12 @@ export default function Exhibition({
   pastExpoData,
 }) {
   const router = useRouter();
+  const { settings, popup } = useGlobalSettings();
+  const [popup_path, setpopup_path] = popup;
+  useEffect(() => {
+    setpopup_path(router.asPath);
+  }, [router.asPath]);
+  //console.log(popup_path);
   const { briefSection, exhis_dropdown, seo } = exPageData[0];
 
   return (
