@@ -19,7 +19,7 @@ const MobileHeader = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const { pathname, asPath, query } = router;
-  const settings = useGlobalSettings();
+  const { settings } = useGlobalSettings();
 
   const artists_image = settings[0].artists;
   const exhibition_image = settings[0].exhibitions;
