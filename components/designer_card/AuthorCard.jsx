@@ -18,7 +18,11 @@ const AuthorCard = () => {
               <span className="h3">
                 <p>
                   {router.locale == "en" ? "Web Design:" : "網站設計師"}{" "}
-                  <a href="https://antony-wong.com" target="_blank">
+                  <a
+                    href="https://antony-wong.com"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     Antony Wong
                   </a>
                 </p>
