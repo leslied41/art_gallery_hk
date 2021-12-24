@@ -2,6 +2,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import styles from "../styles/publications.module.css";
 import { useRef, useState, useEffect } from "react";
 import S_layout from "../components/s_layout/S_layout";
+
 //import Image from "next/image";
 
 export default function Publications() {

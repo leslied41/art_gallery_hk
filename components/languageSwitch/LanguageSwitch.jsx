@@ -25,17 +25,21 @@ const LanguageSwitch = () => {
     <ul>
       <li className="h4">
         <span
-          onClick={changeLanEn}
-          className={router.locale === "en" ? "active_en" : ""}
-        >
-          Eng
-        </span>
-        <span>/</span>
-        <span
           onClick={changeLanTc}
-          className={router.locale === "tc" ? "active_tc" : ""}
+          style={
+            router.locale === "en" ? { display: "block" } : { display: "none" }
+          }
         >
-          中
+          中文
+        </span>
+
+        <span
+          onClick={changeLanEn}
+          style={
+            router.locale === "tc" ? { display: "block" } : { display: "none" }
+          }
+        >
+          ENG
         </span>
       </li>
     </ul>

@@ -45,7 +45,7 @@ export default function Artist({
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);
-  console.log(popup_path);
+  //console.log(popup_path);
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? name : name_cn} />

@@ -15,7 +15,7 @@ export default function Expo({ expoData, exhiPageData }) {
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);
-  console.log(popup_path);
+  //console.log(popup_path);
   const { exhi_dropdown, seo } = exhiPageData;
   const { name_exo, name_exo_cn } = expoData[0];
   return (

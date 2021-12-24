@@ -9,6 +9,7 @@ import router, { useRouter } from "next/router";
 import PureWords from "../components/dropDownCard/PureWords";
 import Heads from "../components/head/Heads.jsx";
 import { useGlobalSettings } from "../components/context/GlobalSettings";
+import AuthorCard from "../components/designer_card/AuthorCard";
 
 export const getStaticProps = async ({ locale }) => {
   const data = await sanityClient.fetch(
@@ -94,8 +95,12 @@ export default function About({ data }) {
           {<StaticCard data={visitUsSection} form={AppointmentForm} />}
         </div>
         {/* fourth part */}
-        <div className="section mt-145 mb-145">
+        <div className="section mt-145">
           {<StaticCard data={connectSection} />}
+        </div>
+        {/* fifth part */}
+        <div className="section mt-145 mb-145">
+          <AuthorCard />
         </div>
       </main>
     </>

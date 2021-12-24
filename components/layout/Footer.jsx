@@ -29,7 +29,7 @@ export default function Footer() {
     email,
     social,
   } = settings[0];
-  //console.log(socialMedia);
+  console.log(email);
   return (
     <>
       <div className={styles.footer}>
@@ -61,24 +61,26 @@ export default function Footer() {
                   <li>
                     <span className="h4">{abbreviation}</span>
                   </li>
-                  <li>
+                  {/* <li>
                     <span className="h4">{address}</span>
                   </li>
                   <li>
                     <span className="h4">{businessHours}</span>
-                  </li>
+                  </li> */}
                   <li>
                     <Link href="/about/#visitUsLocation">
-                      <span className="h4">Book A Visit →</span>
+                      <span className="h4" style={{ cursor: "pointer" }}>
+                        Request an appointment →
+                      </span>
                     </Link>
                   </li>
                 </ul>
               </div>
               <div className={styles.row}>
                 <ul>
-                  <li>
+                  {/* <li>
                     <span className="h4">{phone}</span>
-                  </li>
+                  </li> */}
                   <li>
                     <span className="h4">{email}</span>
                   </li>
@@ -98,7 +100,7 @@ export default function Footer() {
             </div>
             <div className={styles.col3}>
               <div className={styles.links}>
-                <Links />
+                <Links lan="true" />
               </div>
             </div>
           </div>
