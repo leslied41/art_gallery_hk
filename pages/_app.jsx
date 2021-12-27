@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps, settings_data }) {
 
 MyApp.getInitialProps = async () => {
   const settings_data = await sanityClient.fetch(
-    `*[_type=='settings']{orgnizationName,orgnizationName_cn,address,phone,email,social[]->,businessHours,abbreviation,exhibitions,news,about,artists}`
+    `*[_type=='settings']{orgnizationName,orgnizationName_cn,address,phone,email,social[]->,businessHours,abbreviation,exhibitions,news,about,artists,landing}`
   );
   //console.log(data);
 

@@ -21,12 +21,14 @@ const PcHeader = () => {
 
   const exhibitionCursor = useRef(null);
   const aboutCursor = useRef(null);
+  const newsCursor = useRef(null);
   const artistsCursor = useRef(null);
-  const publicationsCursor = useRef(null);
-  const publicationContainer = useRef(null);
+  const studyCursor = useRef(null);
+  const studyContainer = useRef(null);
   const aboutContainer = useRef(null);
   const exhibitionContainer = useRef(null);
   const artistsContainer = useRef(null);
+  const newsContainer = useRef(null);
   const sectionEl = useRef(null);
   const titleEl = useRef(null);
   const linksEl = useRef(null);
@@ -37,16 +39,17 @@ const PcHeader = () => {
   const exhibition_image = settings[0].exhibitions;
   const news_image = settings[0].news;
   const about_image = settings[0].about;
+  const landing_image = settings[0].landing;
 
   useEffect(() => {
     if (pathname == "/artists") {
-      setuseXlink("#image0");
+      setuseXlink("#image4");
     }
     if (pathname == "/exhibitions") {
       setuseXlink("#image1");
     }
     if (pathname == "/") {
-      setuseXlink("#image1");
+      setuseXlink("#image0");
     }
     if (pathname == "/about") {
       setuseXlink("#image3");
@@ -66,12 +69,19 @@ const PcHeader = () => {
   }, []);
 
   useEffect(() => {
-    publicationContainer.current.addEventListener("mouseover", () => {
-      publicationsCursor.current.style.display = "block";
-      publicationsCursor.current.style.color = "var(--white)";
+    studyContainer.current.addEventListener("mouseover", () => {
+      studyCursor.current.style.display = "block";
+      studyCursor.current.style.color = "var(--white)";
     });
-    publicationContainer.current.addEventListener("mouseleave", () => {
-      publicationsCursor.current.style.display = "none";
+    studyContainer.current.addEventListener("mouseleave", () => {
+      studyCursor.current.style.display = "none";
+    });
+    newsContainer.current.addEventListener("mouseover", () => {
+      newsCursor.current.style.display = "block";
+      newsCursor.current.style.color = "var(--white)";
+    });
+    newsContainer.current.addEventListener("mouseleave", () => {
+      newsCursor.current.style.display = "none";
     });
     artistsContainer.current.addEventListener("mouseover", () => {
       artistsCursor.current.style.display = "block";
@@ -113,9 +123,12 @@ const PcHeader = () => {
     artistsCursor.current.style.position = "absolute";
     artistsCursor.current.style.left = `${toLeft + 5}px`;
     artistsCursor.current.style.top = `${toTop + 5}px`;
-    publicationsCursor.current.style.position = "absolute";
-    publicationsCursor.current.style.left = `${toLeft + 5}px`;
-    publicationsCursor.current.style.top = `${toTop + 5}px`;
+    newsCursor.current.style.position = "absolute";
+    newsCursor.current.style.left = `${toLeft + 5}px`;
+    newsCursor.current.style.top = `${toTop + 5}px`;
+    studyCursor.current.style.position = "absolute";
+    studyCursor.current.style.left = `${toLeft + 5}px`;
+    studyCursor.current.style.top = `${toTop + 5}px`;
   }, [toTop, toLeft]);
 
   return (
@@ -131,11 +144,15 @@ const PcHeader = () => {
           </span>
 
           <span className={styles.pubIcon} ref={artistsCursor}>
-            Publications
+            Artist
           </span>
 
-          <span className={styles.artIcon} ref={publicationsCursor}>
-            Artists
+          <span className={styles.artIcon} ref={studyCursor}>
+            Study
+          </span>
+
+          <span className={styles.newsIcon} ref={newsCursor}>
+            News
           </span>
         </div>
         <div className={styles.links} ref={linksEl}>
@@ -146,8 +163,132 @@ const PcHeader = () => {
             <span>{t("organization_name")}</span>
           </Link>
         </div>
-
         <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+          preserveAspectRatio="none"
+          fill="none"
+          style={{ width: "100vw", height: "100vh" }}
+          viewBox="0 0 1530 888"
+        >
+          <Link href="/news" exact>
+            <path
+              fill={
+                pathname == "/news" ? "url(#pattern0)" : "var(--balck-gray)"
+              }
+              fillRule="evenodd"
+              d="M781.52 1v175.341c0 93.437-33.466 184.843-96.261 263.121-62.836 78.277-96.26 169.684-96.26 263.12V887H250.19V462.499h107.408c114.532 0 207.401-92.85 207.401-207.359V1H781.52z"
+              clipRule="evenodd"
+              ref={newsContainer}
+              className={styles.news}
+            ></path>
+          </Link>
+          <Link href="/artists" exact>
+            <path
+              fill={
+                pathname == "/artists" ? "url(#pattern0)" : "var(--dark-gray)"
+              }
+              fillRule="evenodd"
+              d="M781.521 1h-.042v175.3c0 1.347.007 2.694.021 4.041-.941 92.043-34.341 181.96-96.24 259.121C622.424 517.739 589 609.146 589 702.582V887h385V702.541c0-93.436-33.466-184.843-96.26-263.121-61.93-77.148-95.291-167.05-96.24-259.079.014-1.333.021-2.666.021-4V1z"
+              clipRule="evenodd"
+              ref={artistsContainer}
+              className={styles.artists}
+            ></path>
+          </Link>
+          <Link href="/about" exact>
+            <path
+              fill={
+                pathname == "/about" ? "url(#pattern0)" : "var(--middle-gray)"
+              }
+              fillRule="evenodd"
+              d="M1529 290c-200.35 2.552-362 165.839-362 366.901V886.97h362V290z"
+              clipRule="evenodd"
+              ref={aboutContainer}
+              className={styles.about}
+            ></path>
+          </Link>
+          <Link href="/exhibitions" exact>
+            <path
+              fill={
+                pathname == "/" || pathname == "/exhibitions"
+                  ? "url(#pattern0)"
+                  : "var(--light-gray)"
+              }
+              fillRule="evenodd"
+              d="M565 1H1v886h249.191V462.499h107.408C472.131 462.499 565 369.649 565 255.14V1z"
+              clipRule="evenodd"
+              ref={exhibitionContainer}
+              className={styles.exhibition}
+            ></path>
+          </Link>
+          <Link href="/study" exact>
+            <path
+              fillRule="evenodd"
+              d="M781.48 1v175.3c0 93.436 33.424 184.843 96.26 263.12 62.795 78.278 96.261 169.685 96.261 263.121V887H1167V656.931c0-201.062 161.65-364.348 362-366.901V1H781.48z"
+              clipRule="evenodd"
+              ref={studyContainer}
+              className={styles.study}
+              fill={
+                pathname == "/study" ? "url(#pattern0)" : "var(--light-gray)"
+              }
+            ></path>
+          </Link>
+
+          <defs>
+            <pattern
+              id="pattern0"
+              width="1"
+              height="1"
+              patternContentUnits="objectBoundingBox"
+            >
+              <use
+                //transform="matrix(.00129 0 0 .0016 0 -.138)"
+                xlinkHref={useXlink}
+              ></use>
+            </pattern>
+            <image
+              id="image4"
+              width="1"
+              height="1"
+              preserveAspectRatio="xMidYMid slice"
+              xlinkHref={urlFor(artists_image.asset).url()}
+            ></image>
+
+            <image
+              id="image0"
+              width="1"
+              height="1"
+              preserveAspectRatio="xMidYMid slice"
+              xlinkHref={urlFor(landing_image.asset).url()}
+            ></image>
+
+            <image
+              id="image1"
+              width="1"
+              height="1"
+              preserveAspectRatio="xMidYMid slice"
+              xlinkHref={urlFor(exhibition_image.asset).url()}
+            ></image>
+
+            <image
+              id="image2"
+              width="1"
+              height="1"
+              preserveAspectRatio="xMidYMid slice"
+              xlinkHref={urlFor(news_image.asset).url()}
+            ></image>
+
+            <image
+              id="image3"
+              width="1"
+              height="1"
+              preserveAspectRatio="xMidYMid slice"
+              xlinkHref={urlFor(about_image.asset).url()}
+            ></image>
+          </defs>
+        </svg>
+
+        {/* <svg
           //preserveAspectRatio="xMinYMin meet"
           preserveAspectRatio="none"
           viewBox="0 0 1440 1024"
@@ -246,7 +387,7 @@ const PcHeader = () => {
               xlinkHref={urlFor(about_image.asset).url()}
             ></image>
           </defs>
-        </svg>
+        </svg> */}
       </section>
     </>
   );

@@ -10,7 +10,7 @@
   right: 1.4%;
   color: var(--white);
 }
-.links:hover ~ svg .about {
+.links:hover ~ svg .study {
   fill: var(--black);
 }
 .icon {
@@ -22,6 +22,9 @@
   display: none;
 }
 .aboutIcon {
+  display: none;
+}
+.newsIcon {
   display: none;
 }
 .artIcon {
@@ -57,6 +60,13 @@
   fill: var(--black);
 }
 
+.study:hover {
+  fill: var(--black);
+}
 .exhibition:hover {
+  fill: var(--black);
+}
+
+.news:hover {
   fill: var(--black);
 }

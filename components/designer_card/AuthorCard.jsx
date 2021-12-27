@@ -17,7 +17,7 @@ const AuthorCard = () => {
             <div className={styles.gap}>
               <span className="h3">
                 <p>
-                  {router.locale == "en" ? "Web Design:" : "網站設計師"}{" "}
+                  {router.locale == "en" ? "Web Design:" : "網站設計師:"}{" "}
                   <a
                     href="https://antony-wong.com"
                     target="_blank"
@@ -27,7 +27,7 @@ const AuthorCard = () => {
                   </a>
                 </p>
                 <p>
-                  {router.locale == "en" ? "Web Developer:" : "網站開發者"}{" "}
+                  {router.locale == "en" ? "Web Developer:" : "網站開發者:"}{" "}
                   Zhonghui Duan at Funkie Loopie
                 </p>
               </span>

@@ -88,6 +88,12 @@ export default {
       fieldset: "headerImage",
     },
     {
+      name: "landing",
+      title: "Landing",
+      type: "image",
+      fieldset: "headerImage",
+    },
+    {
       name: "news",
       title: "News",
       type: "image",

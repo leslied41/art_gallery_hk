@@ -25,6 +25,7 @@ const MobileHeader = () => {
   const exhibition_image = settings[0].exhibitions;
   const news_image = settings[0].news;
   const about_image = settings[0].about;
+  const landing_image = settings[0].landing;
 
   const [headerImage, setheaderImage] = useState();
 
@@ -36,7 +37,7 @@ const MobileHeader = () => {
       setheaderImage(exhibition_image);
     }
     if (pathname == "/") {
-      setheaderImage(exhibition_image);
+      setheaderImage(landing_image);
     }
     if (pathname == "/about") {
       setheaderImage(about_image);
