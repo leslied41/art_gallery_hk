@@ -54,14 +54,16 @@ const ArtistList = ({ artistsData }) => {
       <div className="col">
         {!mobile && showImage && (
           <div className={styles.container}>
-            <Image
-              src={urlFor(targetImage.asset).width(647).height(431).url()}
-              alt="works"
-              objectFit="cover"
-              layout="intrinsic"
-              width="647"
-              height="431"
-            />
+            {targetImage && (
+              <Image
+                src={urlFor(targetImage.asset).width(647).height(431).url()}
+                alt="works"
+                objectFit="cover"
+                layout="intrinsic"
+                width="647"
+                height="431"
+              />
+            )}
           </div>
         )}
       </div>

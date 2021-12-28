@@ -251,7 +251,7 @@ const PcHeader = () => {
               width="1"
               height="1"
               preserveAspectRatio="xMidYMid slice"
-              xlinkHref={urlFor(artists_image.asset).url()}
+              xlinkHref={artists_image ? urlFor(artists_image.asset).url() : ""}
             ></image>
 
             <image
@@ -259,7 +259,7 @@ const PcHeader = () => {
               width="1"
               height="1"
               preserveAspectRatio="xMidYMid slice"
-              xlinkHref={urlFor(landing_image.asset).url()}
+              xlinkHref={landing_image ? urlFor(landing_image.asset).url() : ""}
             ></image>
 
             <image
@@ -267,7 +267,9 @@ const PcHeader = () => {
               width="1"
               height="1"
               preserveAspectRatio="xMidYMid slice"
-              xlinkHref={urlFor(exhibition_image.asset).url()}
+              xlinkHref={
+                exhibition_image ? urlFor(exhibition_image.asset).url() : ""
+              }
             ></image>
 
             <image
@@ -275,7 +277,7 @@ const PcHeader = () => {
               width="1"
               height="1"
               preserveAspectRatio="xMidYMid slice"
-              xlinkHref={urlFor(news_image.asset).url()}
+              xlinkHref={news_image ? urlFor(news_image.asset).url() : ""}
             ></image>
 
             <image
@@ -283,7 +285,7 @@ const PcHeader = () => {
               width="1"
               height="1"
               preserveAspectRatio="xMidYMid slice"
-              xlinkHref={urlFor(about_image.asset).url()}
+              xlinkHref={about_image ? urlFor(about_image.asset).url() : ""}
             ></image>
           </defs>
         </svg>

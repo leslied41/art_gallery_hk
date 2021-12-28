@@ -34,7 +34,7 @@ export default function Landing({ pageData }) {
 
 export async function getStaticProps({ locale }) {
   const pageData = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='Homepage'][0]`
+    `*[_type=='pages'&&name=='Landing'][0]`
   );
   return {
     props: {
