@@ -50,14 +50,16 @@ const ArtistBio = ({ data }) => {
         <div className={styles.grid}>
           <div className={styles.col}>
             <div className="mt-30">
-              <Image
-                src={urlFor(profile.asset).width(654).height(437).url()}
-                alt={"profile"}
-                width={654}
-                height={437}
-                layout="intrinsic"
-                className={styles.profileImg}
-              />
+              {profile && (
+                <Image
+                  src={urlFor(profile.asset).width(654).height(437).url()}
+                  alt={"profile"}
+                  width={654}
+                  height={437}
+                  layout="intrinsic"
+                  className={styles.profileImg}
+                />
+              )}
             </div>
           </div>
           <div className={styles.col}>
