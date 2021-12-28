@@ -58,7 +58,7 @@ const AppointmentForm = (FormResponse) => {
               e.target.type = "datetime-local";
             }}
             type="text"
-            placeholder={router.locale == "en" ? "Date & Time" : "日期时间"}
+            placeholder={router.locale == "en" ? "Date & Time" : "日期時間"}
             {...register("dateTime", { required: true, maxLength: 20 })}
           />
           <p className="red-text h4">
@@ -69,7 +69,7 @@ const AppointmentForm = (FormResponse) => {
           <input
             name="headCount"
             type="number"
-            placeholder={router.locale == "en" ? "Head Count" : "人数"}
+            placeholder={router.locale == "en" ? "Head Count" : "人數"}
             {...register("headCount", { required: true, maxLength: 20 })}
           />
           <p className="red-text h4">
@@ -84,7 +84,7 @@ const AppointmentForm = (FormResponse) => {
             placeholder={
               router.locale == "en"
                 ? "Which event are you planning to go?"
-                : "您想参加哪项活动"
+                : "您參加的活動"
             }
             {...register("event", { required: true })}
           />
@@ -96,7 +96,7 @@ const AppointmentForm = (FormResponse) => {
           <input
             name="remarks"
             type="text"
-            placeholder={router.locale == "en" ? "Remarks" : "评论"}
+            placeholder={router.locale == "en" ? "Remarks" : "評論"}
             {...register("remarks", { required: true })}
           />
           <p className="red-text h4">
@@ -107,7 +107,7 @@ const AppointmentForm = (FormResponse) => {
           <input
             name="email"
             type="email"
-            placeholder={router.locale == "en" ? "Email" : "电子邮箱"}
+            placeholder={router.locale == "en" ? "Email" : "電子郵箱"}
             {...register("email", { required: true })}
           />
           <p className="red-text h4">
@@ -116,12 +116,12 @@ const AppointmentForm = (FormResponse) => {
         </div>
 
         {sending ? (
-          <div>{router.locale == "en" ? "Sending..." : "发送中..."}</div>
+          <div>{router.locale == "en" ? "Sending..." : "發送中..."}</div>
         ) : (
           <input
             name="sent"
             type="submit"
-            value={router.locale == "en" ? "SENT" : "发送"}
+            value={router.locale == "en" ? "SENT" : "發送"}
           />
         )}
       </form>
