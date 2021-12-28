@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useGlobalSettings } from "../components/context/GlobalSettings.jsx";
 
 export default function News({ newsPageData, newsData }) {
+  console.log(newsData);
   const { briefSection, seo } = newsPageData;
   const router = useRouter();
   const { settings, popup } = useGlobalSettings();
@@ -44,4 +45,5 @@ export async function getStaticProps({ locale }) {
     },
     revalidate: 10,
   };
+  console.log(newsData);
 }
