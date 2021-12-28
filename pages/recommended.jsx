@@ -40,6 +40,7 @@ export async function getStaticProps({ locale }) {
       ...(await serverSideTranslations(locale, ["common"])),
       // Will be passed to the page component as props
     },
+    revalidate: 10,
   };
 }
 
