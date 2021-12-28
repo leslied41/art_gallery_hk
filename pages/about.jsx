@@ -33,6 +33,7 @@ export const getStaticProps = async ({ locale }) => {
   } else {
     return {
       props: { data, ...(await serverSideTranslations(locale, ["common"])) },
+      revalidate: 10,
     };
   }
 };
