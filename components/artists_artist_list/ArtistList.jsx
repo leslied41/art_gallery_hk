@@ -83,17 +83,19 @@ const ArtistList = ({ artistsData }) => {
                     <div>{router.locale == "en" ? name : name_cn}</div>
                     {mobile && (
                       <div style={{ marginTop: "18px" }}>
-                        <Image
-                          src={urlFor(masterpiece.asset)
-                            .width(624)
-                            .height(468)
-                            .url()}
-                          alt="works"
-                          objectFit="cover"
-                          layout="intrinsic"
-                          width="389"
-                          height="292"
-                        />
+                        {masterpiece && (
+                          <Image
+                            src={urlFor(masterpiece.asset)
+                              .width(624)
+                              .height(468)
+                              .url()}
+                            alt="works"
+                            objectFit="cover"
+                            layout="intrinsic"
+                            width="389"
+                            height="292"
+                          />
+                        )}
                       </div>
                     )}
                   </li>
