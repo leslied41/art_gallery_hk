@@ -128,7 +128,6 @@ export async function getStaticProps({ locale, params }) {
       exposData,
       interviewsData,
       artistPageData,
-      ...(await serverSideTranslations(locale, ["common"])),
       // Will be passed to the page component as props
     },
   };

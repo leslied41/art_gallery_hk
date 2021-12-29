@@ -1,6 +1,5 @@
 import ReactPlayer from "react-player";
 import styles from "../styles/exhibitions.module.css";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
@@ -105,8 +104,6 @@ export const getStaticProps = async ({ locale }) => {
       currentExpoData,
       futureExpoData,
       pastExpoData,
-
-      ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 10,
   };

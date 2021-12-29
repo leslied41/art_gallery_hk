@@ -4,7 +4,6 @@ import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
 import AppointmentForm from "../components/appointment_form/AppointmentForm";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import router, { useRouter } from "next/router";
 import PureWords from "../components/dropDownCard/PureWords";
 import Heads from "../components/head/Heads.jsx";
@@ -22,23 +21,25 @@ export const getStaticProps = async ({ locale }) => {
     email,
     },terminologySection,missionStatementSection,seo}`
   );
+  const settings_data = await sanityClient.fetch(
+    `*[_type=='settings']{orgnizationName,orgnizationName_cn,address,phone,email,social[]->,businessHours,abbreviation,exhibitions,news,about,artists,landing}`
+  );
 
   if (!data || !data.length) {
     return {
       props: {
         data: [],
-        ...(await serverSideTranslations(locale, ["common"])),
       },
     };
   } else {
     return {
-      props: { data, ...(await serverSideTranslations(locale, ["common"])) },
+      props: { data, settings_data },
       revalidate: 10,
     };
   }
 };
 
-export default function About({ data }) {
+export default function About({ data, settings_data }) {
   const router = useRouter();
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;

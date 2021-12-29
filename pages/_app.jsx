@@ -2,7 +2,6 @@ import "../styles/globals.css";
 import sanityClient from "../client.js";
 import Layout from "../components/layout/Layout.jsx";
 import { AppProvider } from "../components/context/GlobalSettings";
-import { appWithTranslation } from "next-i18next";
 import { useState } from "react";
 function MyApp({ Component, pageProps, settings_data }) {
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
@@ -24,4 +23,4 @@ MyApp.getInitialProps = async () => {
   return { settings_data };
 };
 
-export default appWithTranslation(MyApp);
+export default MyApp;

@@ -51,7 +51,6 @@ export async function getStaticProps({ locale, params }) {
     props: {
       expoData,
       exhiPageData,
-      ...(await serverSideTranslations(locale, ["common"])),
       // Will be passed to the page component as props
     },
   };
