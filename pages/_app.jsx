@@ -19,7 +19,7 @@ MyApp.getInitialProps = async () => {
   const settings_data = await sanityClient.fetch(
     `*[_type=='settings']{orgnizationName,orgnizationName_cn,address,phone,email,social[]->,businessHours,abbreviation,exhibitions,news,about,artists,landing}`
   );
-  //console.log(data);
+  console.log(data);
 
   return { settings_data };
 };
