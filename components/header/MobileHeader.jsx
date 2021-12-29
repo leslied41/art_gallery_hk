@@ -5,7 +5,6 @@ import Links from "../links/Links";
 import Link from "next/link";
 // import image0 from "../../public/images/image0.png";
 // import image_artist from "../../public/images/artist.png";
-import { useTranslation } from "next-i18next";
 import { useGlobalSettings } from "../context/GlobalSettings";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
@@ -16,7 +15,6 @@ function urlFor(source) {
 }
 
 const MobileHeader = () => {
-  const { t } = useTranslation("common");
   const router = useRouter();
   const { pathname, asPath, query } = router;
   const { settings } = useGlobalSettings();
@@ -56,7 +54,7 @@ const MobileHeader = () => {
         </div>
         <div className={styles.title}>
           <Link href="/" exact>
-            <span>{t("organization_name")}</span>
+            <span>{router.locale == "en" ? "PHD Group" : "PHD集團"}</span>
           </Link>
         </div>
         <svg

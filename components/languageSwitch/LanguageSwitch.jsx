@@ -1,6 +1,4 @@
 import { useState, useContext } from "react";
-import { I18nContext } from "react-i18next";
-import { i18n } from "next-i18next";
 import { useRouter } from "next/router";
 
 const LanguageSwitch = () => {

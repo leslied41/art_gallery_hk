@@ -3,8 +3,6 @@ import styles from "./Header.module.css";
 import { useRouter } from "next/router";
 import Links from "../links/Links";
 import Link from "next/link";
-import image0 from "../../public/images/image0.png";
-import { useTranslation } from "next-i18next";
 import MobileHeader from "./MobileHeader";
 import PcHeader from "./PcHeader";
 
