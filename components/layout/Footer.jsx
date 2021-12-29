@@ -11,7 +11,6 @@ import { useEffect } from "react";
 
 export default function Footer() {
   const router = useRouter();
-  const { t } = useTranslation("common");
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
   useEffect(() => {

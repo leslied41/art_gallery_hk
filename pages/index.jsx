@@ -1,5 +1,3 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
 import sanityClient from "../client.js";
 import LightGallery from "lightgallery/react";
 import imageUrlBuilder from "@sanity/image-url";
@@ -39,7 +37,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       pageData,
-      ...(await serverSideTranslations(locale, ["common"])),
+
       // Will be passed to the page component as props
     },
     revalidate: 10,

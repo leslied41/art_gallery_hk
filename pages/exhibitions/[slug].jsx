@@ -1,4 +1,3 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import sanityClient from "../../client.js";
 import { useRouter } from "next/router";
 import DropDownCard from "../../components/dropDownCard/DropDownCard.jsx";
@@ -51,7 +50,7 @@ export async function getStaticProps({ locale, params }) {
     props: {
       expoData,
       exhiPageData,
-      ...(await serverSideTranslations(locale, ["common"])),
+
       // Will be passed to the page component as props
     },
   };

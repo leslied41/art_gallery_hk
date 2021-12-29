@@ -1,4 +1,3 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import StaticCard from "../components/staticCard/StaticCard";
 import sanityClient from "../client.js";
 import ArtistList from "../components/artists_artist_list/ArtistList";
@@ -48,7 +47,7 @@ export async function getStaticProps({ locale }) {
     props: {
       data,
       artistsData,
-      ...(await serverSideTranslations(locale, ["common"])),
+
       // Will be passed to the page component as props
     },
     revalidate: 10,

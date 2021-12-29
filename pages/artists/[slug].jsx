@@ -1,4 +1,3 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import sanityClient from "../../client.js";
 import StaticCard from "../../components/staticCard/StaticCard";
 import DropDownCard from "../../components/dropDownCard/DropDownCard.jsx";
@@ -128,8 +127,6 @@ export async function getStaticProps({ locale, params }) {
       exposData,
       interviewsData,
       artistPageData,
-      ...(await serverSideTranslations(locale, ["common"])),
-      // Will be passed to the page component as props
     },
   };
 }

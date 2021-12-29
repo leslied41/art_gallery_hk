@@ -4,7 +4,6 @@ import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
 import AppointmentForm from "../components/appointment_form/AppointmentForm";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import router, { useRouter } from "next/router";
 import PureWords from "../components/dropDownCard/PureWords";
 import Heads from "../components/head/Heads.jsx";
@@ -27,12 +26,11 @@ export const getStaticProps = async ({ locale }) => {
     return {
       props: {
         data: [],
-        ...(await serverSideTranslations(locale, ["common"])),
       },
     };
   } else {
     return {
-      props: { data, ...(await serverSideTranslations(locale, ["common"])) },
+      props: { data },
       revalidate: 10,
     };
   }
