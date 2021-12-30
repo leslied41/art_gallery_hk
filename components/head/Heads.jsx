@@ -18,7 +18,9 @@ const Heads = ({ seo, name }) => {
         <title>
           {router.locale == "en"
             ? `${seo?.title}${name ? "-" + name : ""}`
-            : `${seo?.title_cn}${name ? "-" + name : ""}`}
+            : `${seo?.title_cn ? seo?.title_cn : seo?.title}${
+                name ? "-" + name : ""
+              }`}
         </title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" key="description" content={seo?.description} />
