@@ -2,21 +2,14 @@ import styles from "./StaticCard.module.css";
 import BlockContent from "@sanity/block-content-to-react";
 import { useState, useContext } from "react";
 import { useRouter } from "next/router";
+import AppointmentForm from "../appointment_form/AppointmentForm";
 
 const StaticCard = ({ data, form }) => {
   const router = useRouter();
+  console.log(data);
 
-  const {
-    name,
-    name_cn,
-    description,
-    description_cn,
-    phone,
-    social,
-    email,
-    formResponse,
-    formResponse_cn,
-  } = data;
+  const { name, name_cn, description, description_cn, phone, social, email } =
+    data;
 
   return (
     <>
@@ -46,10 +39,7 @@ const StaticCard = ({ data, form }) => {
             </div>
           )}
           {/* if form exsits, display form */}
-          <div>
-            {form &&
-              form(router.locale === "en" ? formResponse : formResponse_cn)}
-          </div>
+          <div>{form && <AppointmentForm formdata={data} />}</div>
 
           {/* if phone exists, display it */}
           {phone && (

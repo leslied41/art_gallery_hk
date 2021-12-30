@@ -79,8 +79,11 @@ const ArtistList = ({ artistsData }) => {
                     onMouseOver={() => {
                       overArtist(slug);
                     }}
+                    style={{ cursor: "pointer" }}
                   >
-                    <div>{router.locale == "en" ? name : name_cn}</div>
+                    <div>
+                      {router.locale == "en" ? name : name_cn ? name_cn : name}
+                    </div>
                     {mobile && (
                       <div style={{ marginTop: "18px" }}>
                         {masterpiece && (

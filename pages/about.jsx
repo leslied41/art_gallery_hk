@@ -91,7 +91,7 @@ export default function About({ data }) {
 
         {/* third part */}
         <div className="section mt-145" id="visitUsLocation">
-          {<StaticCard data={visitUsSection} form={AppointmentForm} />}
+          {<StaticCard data={visitUsSection} form={true} />}
         </div>
         {/* fourth part */}
         <div className="section mt-145">

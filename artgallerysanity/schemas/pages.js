@@ -84,6 +84,14 @@ export default {
             collapsed: true, // Defines if the fieldset should be collapsed by default or not
           },
         },
+        {
+          name: "form",
+          title: "Form",
+          options: {
+            collapsible: true, // Makes the whole fieldset collapsible
+            collapsed: true, // Defines if the fieldset should be collapsed by default or not
+          },
+        },
       ],
       fields: [
         {
@@ -96,10 +104,90 @@ export default {
           title: "Description",
           type: "blockContent",
         },
+
         {
-          name: "formResponse",
-          title: "Form Response",
+          name: "full_name",
+          title: "Full Name",
+          type: "string",
+          fieldset: "form",
+        },
+        {
+          name: "full_name_cn",
+          title: "Full Name Chinese",
+          type: "string",
+          fieldset: "form",
+        },
+        {
+          name: "date",
+          title: "Date",
+          type: "string",
+          fieldset: "form",
+        },
+        {
+          name: "date_cn",
+          title: "Date Chinese",
+          type: "string",
+          fieldset: "form",
+        },
+        {
+          name: "head_count",
+          title: "Head Count",
+          type: "string",
+          fieldset: "form",
+        },
+        {
+          name: "head_count_cn",
+          title: "Head Count Chinese",
+          type: "string",
+          fieldset: "form",
+        },
+        {
+          name: "event",
+          title: "Event",
+          type: "string",
+          fieldset: "form",
+        },
+        {
+          name: "event_cn",
+          title: "Event Chinese",
+          type: "string",
+          fieldset: "form",
+        },
+        {
+          name: "remarks",
+          title: "Remarks",
+          type: "string",
+          fieldset: "form",
+        },
+        {
+          name: "remarks_cn",
+          title: "Remakrs Chinese",
+          type: "string",
+          fieldset: "form",
+        },
+        {
+          name: "form_email",
+          title: "Email",
+          type: "string",
+          fieldset: "form",
+        },
+        {
+          name: "form_email_cn",
+          title: "Email Chinese",
+          type: "string",
+          fieldset: "form",
+        },
+        {
+          name: "response",
+          title: "Response",
           type: "blockContent",
+          fieldset: "form",
+        },
+        {
+          name: "response_cn",
+          title: "Response Chinese",
+          type: "blockContent",
+          fieldset: "form",
         },
         {
           name: "name_cn",
@@ -111,13 +199,6 @@ export default {
         {
           name: "description_cn",
           title: "Description Chinese",
-          type: "blockContent",
-          fieldset: "translation",
-        },
-
-        {
-          name: "formResponse_cn",
-          title: "Form Response Chinese",
           type: "blockContent",
           fieldset: "translation",
         },

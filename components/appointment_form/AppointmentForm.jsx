@@ -4,7 +4,24 @@ import BlockContent from "@sanity/block-content-to-react";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-const AppointmentForm = (FormResponse) => {
+const AppointmentForm = ({ formdata }) => {
+  //console.log(formdata);
+  const {
+    form_email,
+    form_email_cn,
+    full_name,
+    full_name_cn,
+    date,
+    date_cn,
+    event,
+    event_cn,
+    head_count,
+    head_count_cn,
+    remarks,
+    remarks_cn,
+    response,
+    response_cn,
+  } = formdata;
   const router = useRouter();
   const [showRes, setShowRes] = useState(false);
   const [sending, setSending] = useState(false);
@@ -44,7 +61,15 @@ const AppointmentForm = (FormResponse) => {
         <input
           name="fullName"
           type="text"
-          placeholder={router.locale == "en" ? "Full Name" : "姓名"}
+          placeholder={
+            router.locale == "en"
+              ? full_name
+                ? full_name
+                : "Full Name"
+              : full_name_cn
+              ? full_name_cn
+              : "姓名"
+          }
           {...register("fullName", { required: true, maxLength: 20 })}
         />
         <p className="red-text h4">
@@ -58,7 +83,15 @@ const AppointmentForm = (FormResponse) => {
               e.target.type = "datetime-local";
             }}
             type="text"
-            placeholder={router.locale == "en" ? "Date & Time" : "日期時間"}
+            placeholder={
+              router.locale == "en"
+                ? date
+                  ? date
+                  : "Date & Time"
+                : date_cn
+                ? date_cn
+                : "日期 & 時間"
+            }
             {...register("dateTime", { required: true, maxLength: 20 })}
           />
           <p className="red-text h4">
@@ -69,7 +102,15 @@ const AppointmentForm = (FormResponse) => {
           <input
             name="headCount"
             type="number"
-            placeholder={router.locale == "en" ? "Head Count" : "人數"}
+            placeholder={
+              router.locale == "en"
+                ? head_count
+                  ? head_count
+                  : "Head Count"
+                : head_count_cn
+                ? head_count_cn
+                : "人數"
+            }
             {...register("headCount", { required: true, maxLength: 20 })}
           />
           <p className="red-text h4">
@@ -83,8 +124,12 @@ const AppointmentForm = (FormResponse) => {
             type="text"
             placeholder={
               router.locale == "en"
-                ? "Which event are you planning to go?"
-                : "您參加的活動"
+                ? event
+                  ? event
+                  : "Which event are you planning to go ?"
+                : event_cn
+                ? event_cn
+                : "您想參加那項活動？"
             }
             {...register("event", { required: true })}
           />
@@ -96,7 +141,15 @@ const AppointmentForm = (FormResponse) => {
           <input
             name="remarks"
             type="text"
-            placeholder={router.locale == "en" ? "Remarks" : "評論"}
+            placeholder={
+              router.locale == "en"
+                ? remarks
+                  ? remarks
+                  : "Remarks"
+                : remarks_cn
+                ? remarks_cn
+                : "評論"
+            }
             {...register("remarks", { required: true })}
           />
           <p className="red-text h4">
@@ -107,7 +160,15 @@ const AppointmentForm = (FormResponse) => {
           <input
             name="email"
             type="email"
-            placeholder={router.locale == "en" ? "Email" : "電子郵箱"}
+            placeholder={
+              router.locale == "en"
+                ? form_email
+                  ? form_email
+                  : "Email"
+                : form_email_cn
+                ? form_email_cn
+                : "電子郵箱"
+            }
             {...register("email", { required: true })}
           />
           <p className="red-text h4">
@@ -129,7 +190,7 @@ const AppointmentForm = (FormResponse) => {
         {/* {sending && <div>Sending...</div>} */}
         {showRes && (
           <BlockContent
-            blocks={FormResponse}
+            blocks={router.locale == "en" ? response : response_cn}
             projectId="z3dq9mvc"
             dataset="production"
           />
