@@ -2,6 +2,7 @@
   background-color: var(--black);
   width: 100%;
   color: var(--white);
+  height: auto;
 }
 .container {
   padding: 50px;

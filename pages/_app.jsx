@@ -4,12 +4,31 @@ import Layout from "../components/layout/Layout.jsx";
 import { AppProvider } from "../components/context/GlobalSettings";
 import { appWithTranslation } from "next-i18next";
 import { useState } from "react";
+import { useRouter } from "next/router";
 function MyApp({ Component, pageProps, settings_data }) {
+  const router = useRouter();
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
 
   //console.log(data);
   return (
     <AppProvider data={settings_data}>
+      {router.asPath == "/" ? (
+        <style jsx global>
+          {`
+            body {
+              background: black;
+            }
+          `}
+        </style>
+      ) : (
+        <style jsx global>
+          {`
+            body {
+              background: white;
+            }
+          `}
+        </style>
+      )}
       {getLayout(<Component {...pageProps} />)}
     </AppProvider>
   );
