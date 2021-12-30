@@ -30,7 +30,9 @@ const Heads = ({ seo, name }) => {
           content={
             router.locale == "en"
               ? `${seo?.title}${name ? "-" + name : ""}`
-              : `${seo?.title_cn}${name ? "-" + name : ""}`
+              : `${seo?.title_cn ? seo?.title_cn : seo?.title}${
+                  name ? "-" + name : ""
+                }`
           }
         />
         <meta property="og:site_name" key="og:site_name" content={seo?.title} />
