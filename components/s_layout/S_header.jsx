@@ -2,6 +2,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
 import Link from "next/link";
 import ControlBtn from "../popup_control/ControlBtn";
+import styles from "./S_header.module.css";
 
 const S_header = () => {
   return (

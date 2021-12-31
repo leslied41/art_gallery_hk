@@ -13,7 +13,7 @@ const ControlBtn = () => {
       <div
         style={{
           position: "fixed",
-          left: "20px",
+          right: "20px",
           top: "20px",
           fontSize: "2em",
           cursor: "pointer",
@@ -29,14 +29,14 @@ const ControlBtn = () => {
       <div
         style={{
           position: "fixed",
-          right: "20px",
+          left: "20px",
           top: "20px",
           fontSize: "2em",
           cursor: "pointer",
         }}
         onClick={() => {
           //console.log("cliclded");
-          router.push(popup_path);
+          router.back();
         }}
       >
         <BiArrowBack />
