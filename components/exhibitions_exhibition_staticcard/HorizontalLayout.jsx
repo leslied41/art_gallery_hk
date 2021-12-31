@@ -47,8 +47,13 @@ const HorizontalLayout = ({
           </div>
           <div className="col">
             <div>
-              <p className="h3">{router.locale == "en" ? name : name_cn}</p>
-              <div className="h4 mt-30">
+              {(name || name_cn) && (
+                <>
+                  <p className="h3">{router.locale == "en" ? name : name_cn}</p>
+                  <div className="mt-30"></div>
+                </>
+              )}
+              <div className="h4 ">
                 {introduction && (
                   <BlockContent
                     blocks={

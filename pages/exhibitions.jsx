@@ -53,7 +53,7 @@ export default function Exhibition({
             <ExpoImageList data={futureExpoData} />
           </DropDownCard>
         </div>
-        <div className="section mt-30">
+        <div className="section mt-30 mb-145">
           <DropDownCard
             title={
               router.locale == "en"
