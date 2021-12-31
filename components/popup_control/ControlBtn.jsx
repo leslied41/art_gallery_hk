@@ -17,6 +17,7 @@ const ControlBtn = () => {
           top: "20px",
           fontSize: "2em",
           cursor: "pointer",
+          zIndex: "99",
         }}
         onClick={() => {
           //console.log("cliclded");
@@ -33,6 +34,7 @@ const ControlBtn = () => {
           top: "20px",
           fontSize: "2em",
           cursor: "pointer",
+          zIndex: "99",
         }}
         onClick={() => {
           //console.log("cliclded");
