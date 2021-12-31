@@ -9,7 +9,7 @@
 }
 .grid {
   display: grid;
-  grid-template-columns: 1fr 0.5fr 0.5fr;
+  grid-template-columns: 1fr 1fr;
   column-gap: 50px;
 }
 
@@ -20,14 +20,14 @@
 .col2 {
   font-style: normal;
   font-weight: 400;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 50px;
 }
 .col2 .row {
   margin-bottom: 40px;
 }
-.col3 {
-  font-style: normal;
-  font-weight: 400;
-}
+
 .socialmedia {
   list-style: none;
 }
@@ -45,7 +45,7 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
     column-gap: 13px;
   }
@@ -55,11 +55,6 @@
     padding-bottom: 40px;
   }
   .col2 {
-    grid-row: 2 / span 1;
-    grid-column: 1 / span 1;
-  }
-  .col3 {
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 1;
+    column-gap: 13px;
   }
 }

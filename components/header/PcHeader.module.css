@@ -4,7 +4,7 @@
   cursor: pointer;
 }
 .links {
-  position: absolute;
+  position: fixed;
   writing-mode: vertical-rl;
   top: 20px;
   right: 1.4%;
@@ -34,7 +34,7 @@
   display: none;
 }
 .title {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 1.4%;
   color: var(--black);

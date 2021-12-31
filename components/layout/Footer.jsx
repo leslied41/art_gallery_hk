@@ -55,51 +55,53 @@ export default function Footer() {
               </ul>
             </div>
             <div className={styles.col2}>
-              <div className={styles.row}>
-                <ul>
-                  <li>
-                    <span className="h4">{abbreviation}</span>
-                  </li>
-                  {/* <li>
+              <div>
+                <div className={styles.row}>
+                  <ul>
+                    <li>
+                      <span className="h4">{abbreviation}</span>
+                    </li>
+                    {/* <li>
                     <span className="h4">{address}</span>
                   </li>
                   <li>
                     <span className="h4">{businessHours}</span>
                   </li> */}
-                  <li>
-                    <Link href="/about/#visitUsLocation">
-                      <span className="h4" style={{ cursor: "pointer" }}>
-                        Request an appointment →
-                      </span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div className={styles.row}>
-                <ul>
-                  {/* <li>
+                    <li>
+                      <Link href="/about/#visitUsLocation">
+                        <span className="h4" style={{ cursor: "pointer" }}>
+                          Request an appointment →
+                        </span>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+                <div className={styles.row}>
+                  <ul>
+                    {/* <li>
                     <span className="h4">{phone}</span>
                   </li> */}
-                  <li>
-                    <span className="h4">{email}</span>
-                  </li>
-                </ul>
+                    <li>
+                      <span className="h4">{email}</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className={styles.row}>
+                  <ul className={styles.socialmedia}>
+                    {social.map((item, index) => {
+                      return (
+                        <li key={index}>
+                          <a href={item.url}>{item.platform}</a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
               </div>
-              <div className={styles.row}>
-                <ul className={styles.socialmedia}>
-                  {social.map((item, index) => {
-                    return (
-                      <li key={index}>
-                        <a href={item.url}>{item.platform}</a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </div>
-            <div className={styles.col3}>
-              <div className={styles.links}>
-                <Links lan="true" />
+              <div>
+                <div className={styles.links}>
+                  <Links lan="true" />
+                </div>
               </div>
             </div>
           </div>
