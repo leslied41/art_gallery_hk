@@ -11,41 +11,35 @@ const S_header = () => {
   const [moveDis, setmoveDis] = useState({ x: 0, y: 0 });
   const [startingPoint, setstartingPoint] = useState({ x: 0, y: 0 });
   const [moving, setmoving] = useState(false);
+  const [windowHeight, setwindowHeight] = useState();
+  const [windowWidth, setwindowWidth] = useState();
+  useEffect(() => {
+    setwindowHeight(window.innerHeight);
+    setwindowWidth(window.innerWidth);
+  }, []);
 
   const move = () => {
     if (moveDis.x > 0) {
       moveDis.x = 0;
     }
+    if (moveDis.x < windowWidth - 4368) {
+      moveDis.x = windowWidth - 4368;
+    }
+
     if (moveDis.y > 0) {
       moveDis.y = 0;
     }
+    if (moveDis.y < windowHeight - 2169) {
+      moveDis.y = windowHeight - 2169;
+    }
+
     svg.current.style.transform =
       "translate(" + moveDis.x + "px, " + moveDis.y + "px) ";
   };
   return (
     <>
       <ControlBtn />
-      {/* <div
-        style={{
-          position: "fixed",
-          left: "20px",
-          top: "20px",
-          fontSize: "2em",
-        }}
-      >
-        <AiOutlineClose />
-      </div> */}
 
-      {/* <div
-        style={{
-          position: "fixed",
-          right: "20px",
-          top: "20px",
-          fontSize: "2em",
-        }}
-      >
-        <BiArrowBack />
-      </div> */}
       <div style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
         <svg
           ref={svg}
