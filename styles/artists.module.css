@@ -1,7 +1,7 @@
 .gap {
   margin-top: 145px;
 }
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 768px) {
   .gap {
     margin-top: 65px;
   }

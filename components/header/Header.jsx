@@ -18,19 +18,19 @@ function Header() {
 
   useLayoutEffect(() => {
     window.addEventListener("resize", () => {
-      if (window.innerWidth < 414) {
+      if (window.innerWidth < 768) {
         setisMobile(true);
         //console.log(isMobile);
-      } else if (window.innerWidth >= 414) {
+      } else if (window.innerWidth >= 768) {
         setisMobile(false);
         //console.log(isMobile);
       }
     });
     return () => {
       window.removeEventListener("resize", () => {
-        if (window.innerWidth < 414) {
+        if (window.innerWidth < 768) {
           setisMobile(true);
-        } else if (window.innerWidth >= 414) {
+        } else if (window.innerWidth >= 768) {
           setisMobile(false);
         }
       });

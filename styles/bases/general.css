@@ -6,12 +6,17 @@
   margin: 0;
   scroll-behavior: smooth;
 }
-
+@font-face {
+  font-family: "Zichtbaar";
+  src: url("../../public/fonts/Web/Zichtbaar-Regular.woff");
+  font-weight: 400;
+  font-style: normal;
+}
 .tc {
   font-family: "Noto Sans TC", sans-serif;
 }
 .en {
-  font-family: monospace;
+  font-family: Zichtbaar;
 }
 body {
   min-height: 100vh;

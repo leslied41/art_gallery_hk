@@ -46,7 +46,7 @@ const ImageList = ({ slicedWorkImages, loaded, loadMore, workImages }) => {
           <div key={index} data-src={urlFor(image.image.asset).url()}>
             <Image
               src={urlFor(image.image.asset).url()}
-              alt=""
+              alt={index}
               className={styles.thumbnail}
               layout="responsive"
               width="100%"
@@ -86,28 +86,28 @@ const ImageList = ({ slicedWorkImages, loaded, loadMore, workImages }) => {
   }, [slicedWorkImages]);
 
   useEffect(() => {
-    if (window.innerWidth < 414) {
+    if (window.innerWidth < 768) {
       setisMobile(true);
-    } else if (window.innerWidth >= 414) {
+    } else if (window.innerWidth >= 768) {
       setisMobile(false);
     }
   }, []);
 
   useLayoutEffect(() => {
     window.addEventListener("resize", () => {
-      if (window.innerWidth < 414) {
+      if (window.innerWidth < 768) {
         setisMobile(true);
         //console.log(isMobile);
-      } else if (window.innerWidth >= 414) {
+      } else if (window.innerWidth >= 768) {
         setisMobile(false);
         //console.log(isMobile);
       }
     });
     return () => {
       window.removeEventListener("resize", () => {
-        if (window.innerWidth < 414) {
+        if (window.innerWidth < 768) {
           setisMobile(true);
-        } else if (window.innerWidth >= 414) {
+        } else if (window.innerWidth >= 768) {
           setisMobile(false);
         }
       });
@@ -127,8 +127,10 @@ const ImageList = ({ slicedWorkImages, loaded, loadMore, workImages }) => {
         {getImages()}
       </LightGallery>
       {isMobile && (
-        <div className={styles.grid}>
-          <LoadMoreCard loaded={loaded} loadMore={loadMore} />
+        <div style={{ marginTop: "18px" }}>
+          <div className={styles.grid}>
+            <LoadMoreCard loaded={loaded} loadMore={loadMore} />
+          </div>
         </div>
       )}
     </>

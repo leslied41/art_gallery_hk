@@ -3,14 +3,14 @@
 }
 .img {
   width: auto;
-  max-width: 100%;
+  width: 100%;
 }
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 50px;
 }
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 768px) {
   .grid {
     display: grid;
     grid-template-columns: 1fr;

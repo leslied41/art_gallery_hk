@@ -9,6 +9,7 @@
   top: 20px;
   right: 1.4%;
   color: var(--white);
+  z-index: 99;
 }
 .links:hover ~ svg .study {
   fill: var(--black);
@@ -41,6 +42,7 @@
   font-size: var(--font-xs);
   line-height: var(--lineheight-xs);
   cursor: pointer;
+  z-index: 99;
 }
 .title:hover {
   color: var(--white);

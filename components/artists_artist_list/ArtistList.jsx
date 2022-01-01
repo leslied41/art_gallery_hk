@@ -17,18 +17,18 @@ const ArtistList = ({ artistsData }) => {
   const [targetImage, setTargetImage] = useState(null);
   const [mobile, setmobile] = useState();
   useEffect(() => {
-    if (window.innerWidth > 414) {
+    if (window.innerWidth > 768) {
       setmobile(false);
     }
-    if (window.innerWidth <= 414) {
+    if (window.innerWidth <= 768) {
       setmobile(true);
     }
     window.addEventListener("resize", () => {
       console.log(window.innerWidth);
-      if (window.innerWidth > 414) {
+      if (window.innerWidth > 768) {
         setmobile(false);
       }
-      if (window.innerWidth <= 414) {
+      if (window.innerWidth <= 768) {
         setmobile(true);
       }
     });
@@ -95,8 +95,8 @@ const ArtistList = ({ artistsData }) => {
                             alt="works"
                             objectFit="cover"
                             layout="intrinsic"
-                            width="389"
-                            height="292"
+                            width="624"
+                            height="468"
                           />
                         )}
                       </div>
