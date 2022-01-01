@@ -128,6 +128,7 @@ export async function getStaticProps({ locale, params }) {
       interviewsData,
       artistPageData,
     },
+    revalidate: 10,
   };
 }
 export async function getStaticPaths() {

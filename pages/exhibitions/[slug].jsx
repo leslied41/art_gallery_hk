@@ -53,6 +53,7 @@ export async function getStaticProps({ locale, params }) {
 
       // Will be passed to the page component as props
     },
+    revalidate: 10,
   };
 }
 export async function getStaticPaths() {
