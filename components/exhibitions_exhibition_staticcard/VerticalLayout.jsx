@@ -27,13 +27,11 @@ const VerticalLayout = ({
       <div>
         <div className="oneColumn">
           <div className={styles.topcontainer}>
-            <Image
+            <img
               src={urlFor(image.asset).url()}
-              width={width}
-              height={height}
-              alt="works"
+              alt={image.asset._ref}
               className={styles.img}
-              layout="intrinsic"
+
               // layout="fill"
               // objectPosition="60% 40%"
               //when using layout fill, its parent element must be position relative and its parent must have a height.

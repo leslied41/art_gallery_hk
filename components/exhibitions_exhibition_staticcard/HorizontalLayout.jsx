@@ -25,12 +25,14 @@ const HorizontalLayout = ({
         <div className={styles.grid}>
           <div className="col">
             <div className={styles.imgcontainer}>
-              <Image
+              <img
                 src={urlFor(image.asset).url()}
-                alt="works"
-                width={width}
-                height={height}
-                layout="intrinsic"
+                alt={image.asset._ref}
+                style={{ width: "100%" }}
+                // layout="responsive"
+                // width="100%"
+                // height="100%"
+                // objectFit="cover"
               />
             </div>
             <div className="mt-30">

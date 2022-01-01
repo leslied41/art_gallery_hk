@@ -2,9 +2,9 @@
   width: 100%;
   display: block;
 }
-/* .img {
+.img {
   width: 100%;
-} */
+}
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
