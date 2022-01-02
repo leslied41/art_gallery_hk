@@ -140,3 +140,7 @@ hr {
     margin-bottom: 65px;
   }
 }
+/* light gallery */
+.lg-backdrop {
+  background-color: white;
+}
