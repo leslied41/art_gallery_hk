@@ -8,11 +8,14 @@
   writing-mode: vertical-rl;
   top: 20px;
   right: 1.4%;
-  color: var(--white);
+  color: var(--black);
   z-index: 99;
 }
 .links:hover ~ svg .study {
   fill: var(--black);
+}
+.links:hover {
+  color: var(--white);
 }
 .icon {
   position: absolute;

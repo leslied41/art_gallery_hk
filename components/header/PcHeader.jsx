@@ -70,9 +70,11 @@ const PcHeader = () => {
     studyContainer.current.addEventListener("mouseover", () => {
       studyCursor.current.style.display = "block";
       studyCursor.current.style.color = "var(--white)";
+      linksEl.current.style.color = "var(--white)";
     });
     studyContainer.current.addEventListener("mouseleave", () => {
       studyCursor.current.style.display = "none";
+      linksEl.current.style.color = "var(--black)";
     });
     newsContainer.current.addEventListener("mouseover", () => {
       newsCursor.current.style.display = "block";
@@ -108,7 +110,7 @@ const PcHeader = () => {
       titleEl.current.style.color = "var(--white)";
     });
     linksEl.current.addEventListener("mouseover", () => {
-      titleEl.current.style.color = "var(--black)";
+      linksEl.current.style.color = "var(--white)";
     });
   }, []);
   useEffect(() => {
