@@ -47,9 +47,10 @@
   cursor: pointer;
   z-index: 99;
 }
-.title:hover {
+/* .title:hover {
   color: var(--white);
-}
+} */
+
 .title:hover + svg .exhibition {
   fill: var(--black);
 }

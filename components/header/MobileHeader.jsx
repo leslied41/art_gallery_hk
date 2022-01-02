@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import styles from "./PcHeader.module.css";
+import styles from "./MobileHeader.module.css";
 import { useRouter } from "next/router";
 import Links from "../links/Links";
 import Link from "next/link";
@@ -16,6 +16,7 @@ function urlFor(source) {
 
 const MobileHeader = () => {
   const router = useRouter();
+
   const { pathname, asPath, query } = router;
   const { settings } = useGlobalSettings();
 

@@ -16,7 +16,8 @@ const PcHeader = () => {
   const router = useRouter();
   const { pathname, asPath, query } = router;
   const { settings } = useGlobalSettings();
-
+  const linksEl = useRef();
+  const titleEl = useRef();
   const exhibitionCursor = useRef(null);
   const aboutCursor = useRef(null);
   const newsCursor = useRef(null);
@@ -28,11 +29,11 @@ const PcHeader = () => {
   const artistsContainer = useRef(null);
   const newsContainer = useRef(null);
   const sectionEl = useRef(null);
-  const titleEl = useRef(null);
-  const linksEl = useRef(null);
   const [toLeft, setToLeft] = useState(0);
   const [toTop, setToTop] = useState(0);
   const [useXlink, setuseXlink] = useState();
+  const [scroll_position, setscroll_position] = useState();
+  const [svg_height, setsvg_height] = useState();
   const artists_image = settings[0].artists;
   const exhibition_image = settings[0].exhibitions;
   const news_image = settings[0].news;
@@ -106,11 +107,12 @@ const PcHeader = () => {
       exhibitionCursor.current.style.display = "none";
       titleEl.current.style.color = "var(--black)";
     });
-    titleEl.current.addEventListener("mouseover", () => {
-      titleEl.current.style.color = "var(--white)";
-    });
+
     linksEl.current.addEventListener("mouseover", () => {
       linksEl.current.style.color = "var(--white)";
+    });
+    linksEl.current.addEventListener("mouseleave", () => {
+      linksEl.current.style.color = "var(--black)";
     });
   }, []);
   useEffect(() => {
@@ -130,6 +132,87 @@ const PcHeader = () => {
     studyCursor.current.style.left = `${toLeft + 5}px`;
     studyCursor.current.style.top = `${toTop + 5}px`;
   }, [toTop, toLeft]);
+
+  useEffect(() => {
+    sectionEl.current && setsvg_height(sectionEl.current.offsetHeight);
+
+    window.addEventListener("resize", () => {
+      if (sectionEl.current) {
+        setsvg_height(sectionEl.current.offsetHeight);
+      }
+    });
+
+    setscroll_position(window.pageYOffset);
+    window.addEventListener("scroll", () => {
+      setscroll_position(window.pageYOffset);
+    });
+
+    //titleEl
+    titleEl.current.addEventListener("mouseover", () => {
+      if (scroll_position < svg_height) {
+        titleEl.current.style.color = "var(--white)";
+      } else {
+        titleEl.current.style.color = "var(--black)";
+      }
+    });
+    titleEl.current.addEventListener("mouseleave", () => {
+      if (scroll_position < svg_height) {
+        titleEl.current.style.color = "var(--black)";
+      }
+    });
+    //linksEl
+    linksEl.current.addEventListener("mouseover", () => {
+      if (scroll_position < svg_height) {
+        linksEl.current.style.color = "var(--white)";
+      } else {
+        linksEl.current.style.color = "var(--black)";
+      }
+    });
+    linksEl.current.addEventListener("mouseleave", () => {
+      if (scroll_position < svg_height) {
+        linksEl.current.style.color = "var(--black)";
+      }
+    });
+
+    return () => {
+      setsvg_height();
+      setscroll_position();
+      window.removeEventListener("scroll", () => {
+        setscroll_position(window.pageYOffset);
+      });
+      window.removeEventListener("resize", () => {
+        setsvg_height(sectionEl.current.offsetHeight);
+      });
+      if (titleEl.current) {
+        titleEl.current.removeEventListener("mouseover", () => {
+          if (scroll_position < svg_height) {
+            titleEl.current.style.color = "var(--white)";
+          } else {
+            titleEl.current.style.color = "var(--black)";
+          }
+        });
+        titleEl.current.removeEventListener("mouseleave", () => {
+          if (scroll_position < svg_height) {
+            titleEl.current.style.color = "var(--black)";
+          }
+        });
+      }
+      if (linksEl.current) {
+        linksEl.current.removeEventListener("mouseover", () => {
+          if (scroll_position < svg_height) {
+            linksEl.current.style.color = "var(--white)";
+          } else {
+            linksEl.current.style.color = "var(--black)";
+          }
+        });
+        linksEl.current.removeEventListener("mouseleave", () => {
+          if (scroll_position < svg_height) {
+            linksEl.current.style.color = "var(--black)";
+          }
+        });
+      }
+    };
+  }, [scroll_position, svg_height]);
 
   return (
     <>

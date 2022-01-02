@@ -7,11 +7,15 @@ import MobileHeader from "./MobileHeader";
 import PcHeader from "./PcHeader";
 
 function Header() {
+  const router = useRouter();
+  // const linksEl = useRef();
+  // const titleEl = useRef();
+
   const [isMobile, setisMobile] = useState();
   useEffect(() => {
-    if (window.innerWidth < 414) {
+    if (window.innerWidth < 768) {
       setisMobile(true);
-    } else if (window.innerWidth >= 414) {
+    } else if (window.innerWidth >= 768) {
       setisMobile(false);
     }
   }, []);
@@ -39,6 +43,14 @@ function Header() {
 
   return (
     <>
+      {/* <div className={styles.links} ref={linksEl}>
+        <Links lan="true" />
+      </div>
+      <div className={styles.title} ref={titleEl}>
+        <Link href="/" exact>
+          <span>{router.locale == "en" ? "PHD Group" : "PHD集團"}</span>
+        </Link>
+      </div> */}
       {isMobile && <MobileHeader />}
       {!isMobile && <PcHeader />}
     </>

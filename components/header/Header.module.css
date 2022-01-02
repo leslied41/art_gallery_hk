@@ -2,12 +2,14 @@
   position: relative;
   cursor: pointer;
 }
+
 .links {
-  position: absolute;
+  position: fixed;
   writing-mode: vertical-rl;
   top: 20px;
   right: 1.4%;
-  color: var(--white);
+  color: var(--black);
+  z-index: 99;
 }
 .icon {
   position: absolute;
@@ -25,7 +27,12 @@
   display: none;
 }
 .title {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 1.4%;
+  color: var(--black);
+  font-size: var(--font-xs);
+  line-height: var(--lineheight-xs);
+  cursor: pointer;
+  z-index: 99;
 }
