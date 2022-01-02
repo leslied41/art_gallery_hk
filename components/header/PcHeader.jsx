@@ -252,7 +252,7 @@ const PcHeader = () => {
           preserveAspectRatio="none"
           fill="none"
           style={{ width: "100vw" }}
-          viewBox="1 1 1528 886"
+          viewBox="0 0 1530 888"
         >
           <Link href="/news" exact>
             <path
