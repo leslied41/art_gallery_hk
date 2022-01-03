@@ -45,7 +45,7 @@ const ExpoImageList = ({ data }) => {
             <div className={styles.grid}>
               <div className="col"></div>
               <div className="col mt-30">
-                <div>To be announced</div>
+                <div className="h3">To be announced</div>
               </div>
             </div>
           ) : (
@@ -69,7 +69,7 @@ const ExpoImageList = ({ data }) => {
                   <div className="col mt-30">
                     <Link href={"/exhibitions/" + slug.current}>
                       <div style={{ cursor: "pointer" }}>
-                        <p className="h3">
+                        <p className="h2">
                           {router.locale === "en" ? name_exo : name_exo_cn}
                         </p>
                         <p className="h3">

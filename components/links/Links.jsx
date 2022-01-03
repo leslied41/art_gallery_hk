@@ -11,39 +11,27 @@ const Links = ({ lan }) => {
           <ul className={styles.links}>
             <li>
               <Link href="/artists" exact>
-                <span className="h4">
-                  {router.locale == "en" ? "Artist" : "藝術家"}
-                </span>
+                <span>{router.locale == "en" ? "Artist" : "藝術家"}</span>
               </Link>
             </li>
             <li>
               <Link href="/exhibitions" exact>
-                <span className="h4">
-                  {router.locale == "en" ? "Exhibitions" : "展出"}
-                </span>
+                <span>{router.locale == "en" ? "Exhibitions" : "展出"}</span>
               </Link>
             </li>
             <li>
               <Link href="/news" exact>
-                <span className="h4">
-                  {" "}
-                  {router.locale == "en" ? "News" : "新聞"}
-                </span>
+                <span> {router.locale == "en" ? "News" : "新聞"}</span>
               </Link>
             </li>
             <li>
               <Link href="/study" exact>
-                <span className="h4">
-                  {" "}
-                  {router.locale == "en" ? "Study" : "書齋"}
-                </span>
+                <span> {router.locale == "en" ? "Study" : "書齋"}</span>
               </Link>
             </li>
             <li>
               <Link href="/about" exact>
-                <span className="h4">
-                  {router.locale == "en" ? "About" : "關於我們"}
-                </span>
+                <span>{router.locale == "en" ? "About" : "關於我們"}</span>
               </Link>
             </li>
             <li>
@@ -61,27 +49,27 @@ const Links = ({ lan }) => {
           <ul>
             <li>
               <Link href="/artists" exact>
-                <span className="h4">artist</span>
+                <span>artist</span>
               </Link>
             </li>
             <li>
               <Link href="/exhibitions" exact>
-                <span className="h4">exhibitions</span>
+                <span>exhibitions</span>
               </Link>
             </li>
             <li>
               <Link href="/news" exact>
-                <span className="h4"> news</span>
+                <span> news</span>
               </Link>
             </li>
             <li>
               <Link href="/study" exact>
-                <span className="h4"> publications</span>
+                <span> publications</span>
               </Link>
             </li>
             <li>
               <Link href="/about" exact>
-                <span className="h4">about</span>
+                <span>about</span>
               </Link>
             </li>
           </ul>

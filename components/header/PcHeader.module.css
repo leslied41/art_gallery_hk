@@ -43,8 +43,6 @@
   top: 20px;
   left: 1.4%;
   color: var(--white);
-  font-size: var(--font-xs);
-  line-height: var(--lineheight-xs);
   cursor: pointer;
   z-index: 99;
   mix-blend-mode: exclusion;

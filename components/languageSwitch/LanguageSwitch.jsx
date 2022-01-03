@@ -21,7 +21,7 @@ const LanguageSwitch = () => {
   };
   return (
     <ul>
-      <li className="h4">
+      <li>
         <span
           onClick={changeLanTc}
           style={

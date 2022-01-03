@@ -18,8 +18,12 @@ export default function DropDownCard({ children, title }) {
         <div className={styles.grid}>
           <div className="col"></div>
           <div className="col">
-            <div className="title" style={{ cursor: "pointer" }}>
-              <span className="h2" onClick={handleClick}>
+            <div
+              className="title"
+              style={{ cursor: "pointer" }}
+              onClick={handleClick}
+            >
+              <span className="h2">
                 {title} {showCard ? "-" : "+"}
               </span>
             </div>

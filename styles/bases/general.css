@@ -46,6 +46,10 @@ ul {
   font-size: var(--font-xs);
   line-height: var(--lineheight-xs);
 }
+.h5 {
+  font-size: 20px;
+  line-height: 21px;
+}
 /* font color */
 .red-text {
   color: red;
@@ -120,8 +124,6 @@ hr {
   .layout {
     padding: 0 13px;
   }
-}
-@media screen and (max-width: 414px) {
   .hr-top {
     margin-top: 20px;
   }
@@ -140,7 +142,25 @@ hr {
   .mb-145 {
     margin-bottom: 65px;
   }
+  /* font size */
+  .h1 {
+    font-size: 40px;
+    line-height: var(--lineheight-lg);
+  }
+  .h2 {
+    font-size: 30px;
+    line-height: var(--lineheight-m);
+  }
+  .h3 {
+    font-size: 20px;
+    line-height: 25.5px;
+  }
+  .h4 {
+    font-size: 15px;
+    line-height: var(--lineheight-xs);
+  }
 }
+
 /* light gallery */
 .lg-backdrop {
   background-color: white !important;

@@ -239,11 +239,15 @@ const PcHeader = () => {
           </span>
         </div>
         <div className={styles.links} ref={linksEl}>
-          <Links lan="true" />
+          <span className="h2">
+            <Links lan="true" />
+          </span>
         </div>
         <div className={styles.title} ref={titleEl}>
           <Link href="/" exact>
-            <span>{router.locale == "en" ? "PHD Group" : "PHD集團"}</span>
+            <span className="h2">
+              {router.locale == "en" ? "PHD Group" : "PHD集團"}
+            </span>
           </Link>
         </div>
         <svg

@@ -18,6 +18,8 @@ const ControlBtn = () => {
           fontSize: "2em",
           cursor: "pointer",
           zIndex: "99",
+          color: "white",
+          mixBlendMode: "exclusion",
         }}
         onClick={() => {
           //console.log("cliclded");
@@ -35,6 +37,8 @@ const ControlBtn = () => {
           fontSize: "2em",
           cursor: "pointer",
           zIndex: "99",
+          color: "white",
+          mixBlendMode: "exclusion",
         }}
         onClick={() => {
           //console.log("cliclded");

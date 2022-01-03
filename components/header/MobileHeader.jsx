@@ -51,11 +51,15 @@ const MobileHeader = () => {
     <>
       <section className={styles.section}>
         <div className={styles.links}>
-          <Links lan="true" />
+          <span className="h5">
+            <Links lan="true" />
+          </span>
         </div>
         <div className={styles.title}>
           <Link href="/" exact>
-            <span>{router.locale == "en" ? "PHD Group" : "PHD集團"}</span>
+            <span className="h5">
+              {router.locale == "en" ? "PHD Group" : "PHD集團"}
+            </span>
           </Link>
         </div>
         <svg

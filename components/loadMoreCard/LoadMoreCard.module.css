@@ -10,9 +10,6 @@
 .loadmore {
   position: absolute;
   color: var(--white);
-  font-size: var(--font-m);
-  line-height: var(--lineheight-s);
-  font-weight: 400;
   top: 2%;
   left: 2%;
 }

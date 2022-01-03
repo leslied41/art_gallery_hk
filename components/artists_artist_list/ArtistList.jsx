@@ -67,7 +67,7 @@ const ArtistList = ({ artistsData }) => {
           </div>
         )}
       </div>
-      <div className="col h3">
+      <div className="col h2">
         <ul>
           {artistsData.map((artist, index) => {
             const { name, name_cn, slug, _id, masterpiece } = artist;

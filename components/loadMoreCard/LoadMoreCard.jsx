@@ -8,7 +8,9 @@ const LoadMoreCard = ({ loaded, loadMore }) => {
       {loaded && (
         <div className={styles.darkSquare} onClick={loadMore}>
           <Image src={loadmore} alt="darksquare" width={624} height={437} />
-          <span className={styles.loadmore}>Load More+</span>
+          <div className={styles.loadmore}>
+            <span className="h2">Load More +</span>
+          </div>
         </div>
       )}
     </div>

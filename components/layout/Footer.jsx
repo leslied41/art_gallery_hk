@@ -100,7 +100,9 @@ export default function Footer() {
               </div>
               <div>
                 <div className={styles.links}>
-                  <Links lan="true" />
+                  <span className="h4">
+                    <Links lan="true" />
+                  </span>
                 </div>
               </div>
             </div>
