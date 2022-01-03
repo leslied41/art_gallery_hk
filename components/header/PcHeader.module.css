@@ -15,6 +15,7 @@
 .links:hover ~ svg .study {
   fill: var(--black);
 }
+
 /* .links:hover {
   color: var(--white);
 } */

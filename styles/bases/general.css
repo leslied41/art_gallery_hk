@@ -166,10 +166,10 @@ hr {
   background-color: white !important;
 }
 .lg-next:before {
-  content: "Next" !important;
+  content: "" !important;
 }
 .lg-prev:after {
-  content: "Prev" !important;
+  content: "" !important;
 }
 .lg-next,
 .lg-prev {
