@@ -20,6 +20,7 @@
 }
 body {
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 a {
   color: inherit;
@@ -142,5 +143,39 @@ hr {
 }
 /* light gallery */
 .lg-backdrop {
-  background-color: white;
+  background-color: white !important;
+}
+.lg-next:before {
+  content: "Next" !important;
+}
+.lg-prev:after {
+  content: "Prev" !important;
+}
+.lg-next,
+.lg-prev {
+  background-color: transparent !important;
+  color: #000000 !important;
+
+  font-size: 25px !important;
+}
+.lg-next.lg-icon {
+  font-family: "Zichtbaar" !important;
+}
+.lg-prev.lg-icon {
+  font-family: "Zichtbaar" !important;
+}
+.lg-zoom-in {
+  display: none;
+}
+.lg-zoom-out {
+  display: none;
+}
+.lg-toolbar .lg-close:after {
+  content: "Close" !important ;
+  color: #000000;
+  font-family: "Zichtbaar" !important;
+}
+.lg-toolbar {
+  left: unset !important;
+  right: 20px;
 }

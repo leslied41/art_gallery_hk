@@ -71,11 +71,11 @@ const PcHeader = () => {
     studyContainer.current.addEventListener("mouseover", () => {
       studyCursor.current.style.display = "block";
       studyCursor.current.style.color = "var(--white)";
-      linksEl.current.style.color = "var(--white)";
+      //linksEl.current.style.color = "var(--white)";
     });
     studyContainer.current.addEventListener("mouseleave", () => {
       studyCursor.current.style.display = "none";
-      linksEl.current.style.color = "var(--black)";
+      //linksEl.current.style.color = "var(--black)";
     });
     newsContainer.current.addEventListener("mouseover", () => {
       newsCursor.current.style.display = "block";
@@ -101,19 +101,19 @@ const PcHeader = () => {
     exhibitionContainer.current.addEventListener("mouseover", () => {
       exhibitionCursor.current.style.display = "block";
       exhibitionCursor.current.style.color = "var(--white)";
-      titleEl.current.style.color = "var(--white)";
+      //titleEl.current.style.color = "var(--white)";
     });
     exhibitionContainer.current.addEventListener("mouseleave", () => {
       exhibitionCursor.current.style.display = "none";
-      titleEl.current.style.color = "var(--black)";
+      //titleEl.current.style.color = "var(--black)";
     });
 
-    linksEl.current.addEventListener("mouseover", () => {
-      linksEl.current.style.color = "var(--white)";
-    });
-    linksEl.current.addEventListener("mouseleave", () => {
-      linksEl.current.style.color = "var(--black)";
-    });
+    // linksEl.current.addEventListener("mouseover", () => {
+    //   linksEl.current.style.color = "var(--white)";
+    // });
+    // linksEl.current.addEventListener("mouseleave", () => {
+    //   linksEl.current.style.color = "var(--black)";
+    // });
   }, []);
   useEffect(() => {
     exhibitionCursor.current.style.position = "absolute";
@@ -133,86 +133,86 @@ const PcHeader = () => {
     studyCursor.current.style.top = `${toTop + 5}px`;
   }, [toTop, toLeft]);
 
-  useEffect(() => {
-    sectionEl.current && setsvg_height(sectionEl.current.offsetHeight);
+  // useEffect(() => {
+  //   sectionEl.current && setsvg_height(sectionEl.current.offsetHeight);
 
-    window.addEventListener("resize", () => {
-      if (sectionEl.current) {
-        setsvg_height(sectionEl.current.offsetHeight);
-      }
-    });
+  //   window.addEventListener("resize", () => {
+  //     if (sectionEl.current) {
+  //       setsvg_height(sectionEl.current.offsetHeight);
+  //     }
+  //   });
 
-    setscroll_position(window.pageYOffset);
-    window.addEventListener("scroll", () => {
-      setscroll_position(window.pageYOffset);
-    });
+  //   setscroll_position(window.pageYOffset);
+  //   window.addEventListener("scroll", () => {
+  //     setscroll_position(window.pageYOffset);
+  //   });
 
-    //titleEl
-    titleEl.current.addEventListener("mouseover", () => {
-      if (scroll_position < svg_height) {
-        titleEl.current.style.color = "var(--white)";
-      } else {
-        titleEl.current.style.color = "var(--black)";
-      }
-    });
-    titleEl.current.addEventListener("mouseleave", () => {
-      if (scroll_position < svg_height) {
-        titleEl.current.style.color = "var(--black)";
-      }
-    });
-    //linksEl
-    linksEl.current.addEventListener("mouseover", () => {
-      if (scroll_position < svg_height) {
-        linksEl.current.style.color = "var(--white)";
-      } else {
-        linksEl.current.style.color = "var(--black)";
-      }
-    });
-    linksEl.current.addEventListener("mouseleave", () => {
-      if (scroll_position < svg_height) {
-        linksEl.current.style.color = "var(--black)";
-      }
-    });
+  //   //titleEl
+  //   titleEl.current.addEventListener("mouseover", () => {
+  //     if (scroll_position < svg_height) {
+  //       titleEl.current.style.color = "var(--white)";
+  //     } else {
+  //       titleEl.current.style.color = "var(--black)";
+  //     }
+  //   });
+  //   titleEl.current.addEventListener("mouseleave", () => {
+  //     if (scroll_position < svg_height) {
+  //       titleEl.current.style.color = "var(--black)";
+  //     }
+  //   });
+  //   //linksEl
+  //   // linksEl.current.addEventListener("mouseover", () => {
+  //   //   if (scroll_position < svg_height) {
+  //   //     linksEl.current.style.color = "var(--white)";
+  //   //   } else {
+  //   //     linksEl.current.style.color = "var(--black)";
+  //   //   }
+  //   // });
+  //   // linksEl.current.addEventListener("mouseleave", () => {
+  //   //   if (scroll_position < svg_height) {
+  //   //     linksEl.current.style.color = "var(--black)";
+  //   //   }
+  //   // });
 
-    return () => {
-      setsvg_height();
-      setscroll_position();
-      window.removeEventListener("scroll", () => {
-        setscroll_position(window.pageYOffset);
-      });
-      window.removeEventListener("resize", () => {
-        setsvg_height(sectionEl.current.offsetHeight);
-      });
-      if (titleEl.current) {
-        titleEl.current.removeEventListener("mouseover", () => {
-          if (scroll_position < svg_height) {
-            titleEl.current.style.color = "var(--white)";
-          } else {
-            titleEl.current.style.color = "var(--black)";
-          }
-        });
-        titleEl.current.removeEventListener("mouseleave", () => {
-          if (scroll_position < svg_height) {
-            titleEl.current.style.color = "var(--black)";
-          }
-        });
-      }
-      if (linksEl.current) {
-        linksEl.current.removeEventListener("mouseover", () => {
-          if (scroll_position < svg_height) {
-            linksEl.current.style.color = "var(--white)";
-          } else {
-            linksEl.current.style.color = "var(--black)";
-          }
-        });
-        linksEl.current.removeEventListener("mouseleave", () => {
-          if (scroll_position < svg_height) {
-            linksEl.current.style.color = "var(--black)";
-          }
-        });
-      }
-    };
-  }, [scroll_position, svg_height]);
+  //   return () => {
+  //     setsvg_height();
+  //     setscroll_position();
+  //     window.removeEventListener("scroll", () => {
+  //       setscroll_position(window.pageYOffset);
+  //     });
+  //     window.removeEventListener("resize", () => {
+  //       setsvg_height(sectionEl.current.offsetHeight);
+  //     });
+  //     if (titleEl.current) {
+  //       titleEl.current.removeEventListener("mouseover", () => {
+  //         if (scroll_position < svg_height) {
+  //           titleEl.current.style.color = "var(--white)";
+  //         } else {
+  //           titleEl.current.style.color = "var(--black)";
+  //         }
+  //       });
+  //       titleEl.current.removeEventListener("mouseleave", () => {
+  //         if (scroll_position < svg_height) {
+  //           titleEl.current.style.color = "var(--black)";
+  //         }
+  //       });
+  //     }
+  //     if (linksEl.current) {
+  //       linksEl.current.removeEventListener("mouseover", () => {
+  //         if (scroll_position < svg_height) {
+  //           linksEl.current.style.color = "var(--white)";
+  //         } else {
+  //           linksEl.current.style.color = "var(--black)";
+  //         }
+  //       });
+  //       linksEl.current.removeEventListener("mouseleave", () => {
+  //         if (scroll_position < svg_height) {
+  //           linksEl.current.style.color = "var(--black)";
+  //         }
+  //       });
+  //     }
+  //   };
+  // }, [scroll_position, svg_height]);
 
   return (
     <>
@@ -256,9 +256,7 @@ const PcHeader = () => {
         >
           <Link href="/news" exact>
             <path
-              fill={
-                pathname == "/news" ? "url(#pattern0)" : "var(--balck-gray)"
-              }
+              fill={pathname == "/news" ? "url(#pattern0)" : "var(--white)"}
               fillRule="evenodd"
               d="M781.52 1v175.341c0 93.437-33.466 184.843-96.261 263.121-62.836 78.277-96.26 169.684-96.26 263.12V887H250.19V462.499h107.408c114.532 0 207.401-92.85 207.401-207.359V1H781.52z"
               clipRule="evenodd"
@@ -268,9 +266,7 @@ const PcHeader = () => {
           </Link>
           <Link href="/artists" exact>
             <path
-              fill={
-                pathname == "/artists" ? "url(#pattern0)" : "var(--dark-gray)"
-              }
+              fill={pathname == "/artists" ? "url(#pattern0)" : "var(--white)"}
               fillRule="evenodd"
               d="M781.521 1h-.042v175.3c0 1.347.007 2.694.021 4.041-.941 92.043-34.341 181.96-96.24 259.121C622.424 517.739 589 609.146 589 702.582V887h385V702.541c0-93.436-33.466-184.843-96.26-263.121-61.93-77.148-95.291-167.05-96.24-259.079.014-1.333.021-2.666.021-4V1z"
               clipRule="evenodd"
@@ -280,9 +276,7 @@ const PcHeader = () => {
           </Link>
           <Link href="/about" exact>
             <path
-              fill={
-                pathname == "/about" ? "url(#pattern0)" : "var(--middle-gray)"
-              }
+              fill={pathname == "/about" ? "url(#pattern0)" : "var(--white)"}
               fillRule="evenodd"
               d="M1529 290c-200.35 2.552-362 165.839-362 366.901V886.97h362V290z"
               clipRule="evenodd"
@@ -295,7 +289,7 @@ const PcHeader = () => {
               fill={
                 pathname == "/" || pathname == "/exhibitions"
                   ? "url(#pattern0)"
-                  : "var(--light-gray)"
+                  : "var(--white)"
               }
               fillRule="evenodd"
               d="M565 1H1v886h249.191V462.499h107.408C472.131 462.499 565 369.649 565 255.14V1z"
@@ -311,9 +305,7 @@ const PcHeader = () => {
               clipRule="evenodd"
               ref={studyContainer}
               className={styles.study}
-              fill={
-                pathname == "/study" ? "url(#pattern0)" : "var(--light-gray)"
-              }
+              fill={pathname == "/study" ? "url(#pattern0)" : "var(--white)"}
             ></path>
           </Link>
 

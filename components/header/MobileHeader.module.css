@@ -2,17 +2,19 @@
   position: fixed;
   top: 20px;
   left: 1.4%;
-  color: var(--black);
+  color: var(--white);
   font-size: var(--font-xs);
   line-height: var(--lineheight-xs);
   cursor: pointer;
   z-index: 99;
+  mix-blend-mode: exclusion;
 }
 .links {
   position: fixed;
   writing-mode: vertical-rl;
   top: 20px;
   right: 1.4%;
-  color: var(--black);
+  color: var(--white);
   z-index: 99;
+  mix-blend-mode: exclusion;
 }
