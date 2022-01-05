@@ -66,7 +66,7 @@ const MobileHeader = () => {
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
           preserveAspectRatio="none "
-          style={{ width: "100vw", height: "100vh" }}
+          style={{ width: "100vw" }}
           //preserveAspectRatio="xMinYMin meet"
           fill="none"
           viewBox="0 0 414 896"

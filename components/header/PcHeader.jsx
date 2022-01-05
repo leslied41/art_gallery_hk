@@ -97,6 +97,7 @@ const PcHeader = () => {
     });
     aboutContainer.current.addEventListener("mouseleave", () => {
       aboutCursor.current.style.display = "none";
+      //setover_about(false);
     });
     exhibitionContainer.current.addEventListener("mouseover", () => {
       exhibitionCursor.current.style.display = "block";
@@ -109,7 +110,9 @@ const PcHeader = () => {
     });
 
     // linksEl.current.addEventListener("mouseover", () => {
-    //   linksEl.current.style.color = "var(--white)";
+    //   if (over_about) {
+    //     aboutContainer.current.style.fill = "black";
+    //   }
     // });
     // linksEl.current.addEventListener("mouseleave", () => {
     //   linksEl.current.style.color = "var(--black)";

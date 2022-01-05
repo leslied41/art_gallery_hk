@@ -120,6 +120,8 @@ const ImageList = ({ slicedWorkImages, loaded, loadMore, workImages }) => {
         counter={false}
         download={false}
         onInit={onInit}
+        prevHtml="Pre"
+        nextHtml="Next"
         actualSize={false}
         showZoomInOutIcons={true}
         elementClassNames={styles.grid}
