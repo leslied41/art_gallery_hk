@@ -63,6 +63,15 @@ const S_header = () => {
     studyCursor.current.style.top = `${toTop + 15}px`;
     studyCursor.current.style.left = `${toLeft + 15}px`;
   }, [toLeft, toTop]);
+  const touchStart = (e) => {
+    //console.log(e.changedTouches[0].clientX);
+    e.cancelable && e.preventDefault();
+    setstartingPoint({
+      x: e.changedTouches[0].clientX - moveDis.x,
+      y: e.changedTouches[0].clientY - moveDis.y,
+    });
+    setmoving(true);
+  };
   return (
     <>
       <section ref={sectionEl}>
@@ -164,7 +173,15 @@ const S_header = () => {
               });
               setmoving(true);
             }}
+            onTouchStart={(e) => {
+              touchStart(e);
+            }}
+            //onTouchMove="touchMove(e)"
+            //onTouchEnd="touchEnd(e)"
             onMouseUp={() => {
+              setmoving(false);
+            }}
+            onTouchEnd={() => {
               setmoving(false);
             }}
             onMouseMove={(e) => {
@@ -175,6 +192,17 @@ const S_header = () => {
               setmoveDis({
                 x: e.clientX - startingPoint.x,
                 y: e.clientY - startingPoint.y,
+              });
+              move();
+            }}
+            onTouchMove={(e) => {
+              e.cancelable && e.preventDefault();
+              if (!moving) {
+                return;
+              }
+              setmoveDis({
+                x: e.changedTouches[0].clientX - startingPoint.x,
+                y: e.changedTouches[0].clientY - startingPoint.y,
               });
               move();
             }}
