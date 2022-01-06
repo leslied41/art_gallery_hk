@@ -454,7 +454,6 @@ const ImageList = ({
   const [clickTime, setclickTime] = useState(0);
   const prevRef = useRef();
   const [isMobile, setisMobile] = useState(null);
-  const [images, setimages] = useState(workImages);
   const [moveDis, setmoveDis] = useState({ x: 0, y: 0 });
   const [startingPoint, setstartingPoint] = useState({ x: 0, y: 0 });
   const [moving, setmoving] = useState(false);
@@ -487,23 +486,15 @@ const ImageList = ({
       }
     });
   }, []);
-  useEffect(() => {
-    if (isMobile) {
-      setimages(slicedWorkImages);
-    }
-    if (!isMobile) {
-      setimages(workImages);
-    }
-  }, [isMobile, loaded]);
 
   useEffect(() => {
     // add or remove refs
     setElRefs((elRefs) =>
-      Array(images.length)
+      Array(workImages.length)
         .fill()
         .map((_, index) => elRefs[index] || createRef())
     );
-  }, [images.length]);
+  }, [workImages.length]);
 
   useEffect(() => {
     if (model) {
@@ -583,7 +574,7 @@ const ImageList = ({
               height: "100vh",
             }}
           >
-            {images.map((item, index) => {
+            {workImages.map((item, index) => {
               return (
                 <div
                   key={index}
