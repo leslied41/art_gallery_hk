@@ -125,3 +125,7 @@
 .image_parameter {
   justify-content: center;
 }
+.thumbnail {
+  height: auto;
+  width: 100%;
+}

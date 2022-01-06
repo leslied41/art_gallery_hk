@@ -725,10 +725,14 @@ const ImageList = ({
           slicedWorkImages.map((item, index) => {
             return (
               <div className={styles.pics} key={item.image.asset._ref}>
-                <img
+                <Image
                   src={urlFor(item.image.asset).url()}
-                  alt="works"
-                  style={{ height: "auto", width: "100%" }}
+                  alt={index}
+                  className={styles.thumbnail}
+                  //style={{ height: "auto", width: "100%" }}
+                  layout="intrinsic"
+                  height={item.metadata.metadata.dimensions.height}
+                  width={item.metadata.metadata.dimensions.width}
                   onClick={() => {
                     //getImage(item.image);
                     getIndex(index);
@@ -741,10 +745,14 @@ const ImageList = ({
           workImages.map((item, index) => {
             return (
               <div className={styles.pics} key={item.image.asset._ref}>
-                <img
+                <Image
                   src={urlFor(item.image.asset).url()}
-                  alt="works"
-                  style={{ height: "auto", width: "100%" }}
+                  alt={index}
+                  className={styles.thumbnail}
+                  //style={{ height: "auto", width: "100%" }}
+                  layout="intrinsic"
+                  height={item.metadata.metadata.dimensions.height}
+                  width={item.metadata.metadata.dimensions.width}
                   onClick={() => {
                     //getImage(item.image);
                     getIndex(index);
