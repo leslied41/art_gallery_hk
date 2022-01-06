@@ -1,4 +1,5 @@
-.grid {
+/* light gallery */
+/* .grid {
   column-count: 3;
   column-width: 33%;
   gap: 30px;
@@ -14,26 +15,28 @@
     grid-template-columns: 1fr;
     gap: 18px;
   }
-}
-/* 
+} */
+/* my own coding */
 
+.gallery {
   column-count: 3;
   column-width: 33%;
-  margin-top: var(--spacing-m);
+  gap: 30px;
 }
 
-@media (max-width: 414px) {
+@media (max-width: 768px) {
   .gallery {
     column-count: 1;
     column-width: 100%;
+    gap: 18px;
   }
-} */
+}
 /* .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 } */
-/* .close {
+.close {
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -44,7 +47,7 @@
   justify-content: center;
   visibility: hidden;
   opacity: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
   z-index: 999;
   transform: scale(0);
   transition: opacity 4s ease, visibility 4s ease, transform 0.5s ease-in-out;
@@ -61,7 +64,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   z-index: 999;
   background-color: white;
 }
@@ -72,15 +75,15 @@
 .pics {
   cursor: pointer;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .pic {
   transition: all 350ms ease;
   cursor: zoom-in;
-  max-height: 80vh;
+  height: 80vh;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: flex;
 }
 .pics:hover {
@@ -90,15 +93,16 @@
 
 .img_origin {
   line-height: 0;
-  /* max-width: 100%; */
-/* max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .closeIcon {
   position: fixed;
   top: 20px;
   right: 20px;
-  color: black;
+  color: white;
+  mix-blend-mode: exclusion;
   background-color: none;
   z-index: 999;
 }
@@ -107,13 +111,17 @@
   top: 50%;
   right: 10%;
   z-index: 999;
+  color: white;
+  mix-blend-mode: exclusion;
 }
 .prev {
   position: fixed;
   top: 50%;
   left: 10%;
   z-index: 999;
+  color: white;
+  mix-blend-mode: exclusion;
 }
 .image_parameter {
   justify-content: center;
-} */
+}
