@@ -634,9 +634,24 @@ const ImageList = ({
                         mouseDown(e);
                         e.target.style.cursor = "grab";
                       }}
+                      onTouchStart={(e) => {
+                        e.cancelable && e.preventDefault();
+                        setstartingPoint({
+                          x: e.changedTouches[0].clientX - moveDis.x,
+                          y: e.changedTouches[0].clientY - moveDis.y,
+                        });
+                        setmoving(true);
+                        setimageSize({
+                          x: e.target.getBoundingClientRect().width,
+                          y: e.target.getBoundingClientRect().height,
+                        });
+                      }}
                       onMouseUp={(e) => {
                         setmoving(false);
                         e.target.style.cursor = "zoom-in";
+                      }}
+                      onTouchEnd={() => {
+                        setmoving(false);
                       }}
                       onMouseMove={(e) => {
                         e.preventDefault();
@@ -646,6 +661,17 @@ const ImageList = ({
                         setmoveDis({
                           x: e.clientX - startingPoint.x,
                           y: e.clientY - startingPoint.y,
+                        });
+                        move(e);
+                      }}
+                      onTouchMove={(e) => {
+                        e.cancelable && e.preventDefault();
+                        if (!moving) {
+                          return;
+                        }
+                        setmoveDis({
+                          x: e.changedTouches[0].clientX - startingPoint.x,
+                          y: e.changedTouches[0].clientY - startingPoint.y,
                         });
                         move(e);
                       }}

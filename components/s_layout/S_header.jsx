@@ -64,7 +64,7 @@ const S_header = () => {
     studyCursor.current.style.left = `${toLeft + 15}px`;
   }, [toLeft, toTop]);
   const touchStart = (e) => {
-    //console.log(e.changedTouches[0].clientX);
+    console.log(e.touches);
     e.cancelable && e.preventDefault();
     setstartingPoint({
       x: e.changedTouches[0].clientX - moveDis.x,
