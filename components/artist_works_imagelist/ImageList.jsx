@@ -724,7 +724,11 @@ const ImageList = ({
         {isMobile &&
           slicedWorkImages.map((item, index) => {
             return (
-              <div className={styles.pics} key={item.image.asset._ref}>
+              <div
+                className={styles.pics}
+                style={{ marginBottom: "18px" }}
+                key={item.image.asset._ref}
+              >
                 <Image
                   src={urlFor(item.image.asset).url()}
                   alt={index}
@@ -744,7 +748,11 @@ const ImageList = ({
         {!isMobile &&
           workImages.map((item, index) => {
             return (
-              <div className={styles.pics} key={item.image.asset._ref}>
+              <div
+                className={styles.pics}
+                style={{ marginBottom: "30px" }}
+                key={item.image.asset._ref}
+              >
                 <Image
                   src={urlFor(item.image.asset).url()}
                   alt={index}
