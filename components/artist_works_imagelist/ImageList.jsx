@@ -494,7 +494,7 @@ const ImageList = ({
     if (!isMobile) {
       setimages(workImages);
     }
-  }, [isMobile]);
+  }, [isMobile, loaded]);
 
   useEffect(() => {
     // add or remove refs
