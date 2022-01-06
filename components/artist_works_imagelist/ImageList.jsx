@@ -586,6 +586,7 @@ const ImageList = ({
             {images.map((item, index) => {
               return (
                 <div
+                  key={index}
                   style={
                     index == targetIndex
                       ? {
@@ -596,6 +597,7 @@ const ImageList = ({
                   }
                 >
                   <div
+                    key={index}
                     style={
                       index == targetIndex
                         ? {
@@ -609,6 +611,7 @@ const ImageList = ({
                     }
                   >
                     <img
+                      key={index}
                       src={urlFor(item.image.asset).url()}
                       alt="works"
                       style={
