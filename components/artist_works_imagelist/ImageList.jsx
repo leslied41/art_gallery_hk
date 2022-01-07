@@ -1,11 +1,16 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ImageList.module.css";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
-import { useEffect, useState, useRef, createRef, useCallback } from "react";
-import React from "react";
-React.useLayoutEffect = React.useEffect;
-
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  createRef,
+  useCallback,
+  useLayoutEffect,
+} from "react";
 import Image from "next/image";
 import BlockContent from "@sanity/block-content-to-react";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard.jsx";
@@ -470,7 +475,7 @@ const ImageList = ({
     }
   }, []);
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener("resize", () => {
       if (window.innerWidth < 768) {
         setisMobile(true);
@@ -525,34 +530,34 @@ const ImageList = ({
     if (iszoomed) {
       if (
         windowWidth - imageSize.x < 0 &&
-        moveDis.x < (windowWidth - imageSize.x) / 2
+        moveDis.x < windowWidth - imageSize.x
       ) {
-        moveDis.x = (windowWidth - imageSize.x) / 2;
+        moveDis.x = windowWidth - imageSize.x;
       }
 
       if (
         windowWidth - imageSize.x < 0 &&
-        moveDis.x > (imageSize.x - windowWidth) / 2
+        moveDis.x > imageSize.x - windowWidth
       ) {
-        moveDis.x = (imageSize.x - windowWidth) / 2;
+        moveDis.x = imageSize.x - windowWidth;
       }
       if (
         windowWidth - imageSize.x > 0 &&
-        moveDis.x > (windowWidth - imageSize.x) / 2
+        moveDis.x > windowWidth - imageSize.x
       ) {
-        moveDis.x = (windowWidth - imageSize.x) / 2;
+        moveDis.x = windowWidth - imageSize.x;
       }
       if (
         windowWidth - imageSize.x > 0 &&
-        moveDis.x < (imageSize.x - windowWidth) / 2
+        moveDis.x < imageSize.x - windowWidth
       ) {
-        moveDis.x = (imageSize.x - windowWidth) / 2;
+        moveDis.x = imageSize.x - windowWidth;
       }
-      if (moveDis.y > (imageSize.y - windowHeight * 0.8) / 2) {
-        moveDis.y = (imageSize.y - windowHeight * 0.8) / 2;
+      if (moveDis.y > imageSize.y - windowHeight) {
+        moveDis.y = imageSize.y - windowHeight;
       }
-      if (moveDis.y < (windowHeight * 0.8 - imageSize.y) / 2) {
-        moveDis.y = (windowHeight * 0.8 - imageSize.y) / 2;
+      if (moveDis.y < windowHeight - imageSize.y) {
+        moveDis.y = windowHeight - imageSize.y;
       }
 
       e.target.style.transform =
