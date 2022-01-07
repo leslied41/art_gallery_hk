@@ -541,18 +541,10 @@ const ImageList = ({
       ) {
         moveDis.x = (imageSize.x - windowWidth) / 2;
       }
-      if (
-        windowWidth - imageSize.x > 0 &&
-        moveDis.x > (windowWidth - imageSize.x) / 2
-      ) {
-        moveDis.x = (windowWidth - imageSize.x) / 2;
+      if (windowWidth - imageSize.x > 0) {
+        moveDis.x = 0;
       }
-      if (
-        windowWidth - imageSize.x > 0 &&
-        moveDis.x < (imageSize.x - windowWidth) / 2
-      ) {
-        moveDis.x = (imageSize.x - windowWidth) / 2;
-      }
+
       if (moveDis.y > (imageSize.y - windowHeight * 0.8) / 2) {
         moveDis.y = (imageSize.y - windowHeight * 0.8) / 2;
       }
