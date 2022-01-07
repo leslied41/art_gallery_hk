@@ -2,13 +2,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ImageList.module.css";
 
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  createRef,
-  useCallback,
-} from "react";
+import { useEffect, useState, useRef, createRef, useCallback } from "react";
 import React from "react";
 React.useLayoutEffect = React.useEffect;
 
