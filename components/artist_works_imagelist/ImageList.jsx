@@ -8,8 +8,9 @@ import React, {
   useRef,
   createRef,
   useCallback,
-  useLayoutEffect,
 } from "react";
+import React from "react";
+React.useLayoutEffect = React.useEffect;
 
 import Image from "next/image";
 import BlockContent from "@sanity/block-content-to-react";
@@ -448,9 +449,6 @@ const ImageList = ({
   loaded,
   loadMore,
 }) => {
-  if (typeof document === "undefined") {
-    React.useLayoutEffect = React.useEffect;
-  }
   const [model, setmodel] = React.useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
   const [iszoomed, setiszoomed] = useState(false);
@@ -478,7 +476,7 @@ const ImageList = ({
     }
   }, []);
 
-  useLayoutEffect(() => {
+  React.useLayoutEffect(() => {
     window.addEventListener("resize", () => {
       if (window.innerWidth < 768) {
         setisMobile(true);
