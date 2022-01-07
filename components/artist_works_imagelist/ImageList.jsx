@@ -1,7 +1,6 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ImageList.module.css";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 import React, {
   useEffect,
@@ -11,6 +10,7 @@ import React, {
   useCallback,
   useLayoutEffect,
 } from "react";
+
 import Image from "next/image";
 import BlockContent from "@sanity/block-content-to-react";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard.jsx";
@@ -448,6 +448,9 @@ const ImageList = ({
   loaded,
   loadMore,
 }) => {
+  if (typeof document === "undefined") {
+    React.useLayoutEffect = React.useEffect;
+  }
   const [model, setmodel] = React.useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
   const [iszoomed, setiszoomed] = useState(false);
