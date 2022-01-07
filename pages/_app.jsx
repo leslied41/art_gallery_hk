@@ -37,16 +37,15 @@ function MyApp({ Component, pageProps, settings_data }) {
 }
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
-  let pageProps = {};
-  if (Component.getInitialProps) {
-    pageProps = await App.getInitialProps(ctx);
-  }
+  // calls page's `getInitialProps` and fills `appProps.pageProps`
+  const appProps = await App.getInitialProps(ctx);
+
   const settings_data = await sanityClient.fetch(
     `*[_type=='settings']{orgnizationName,orgnizationName_cn,address,phone,email,social[]->,businessHours,abbreviation,exhibitions,news,about,artists,landing}`
   );
   //console.log(data);
 
-  return { settings_data, pageProps };
+  return { ...appProps, settings_data };
 };
 
 export default MyApp;
