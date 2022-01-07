@@ -37,8 +37,8 @@ export default function Artist({
   };
   const router = useRouter();
   //console.log(router.asPath);
-  const { artist_dropdown, seo } = artistPageData;
-  const { name, name_cn } = artistData[0];
+  const { artist_dropdown, seo } = artistPageData || {};
+  const { name, name_cn } = artistData[0] || {};
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
   useEffect(() => {

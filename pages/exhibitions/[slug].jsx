@@ -15,8 +15,8 @@ export default function Expo({ expoData, exhiPageData }) {
     setpopup_path(router.asPath);
   }, [router.asPath]);
   //console.log(popup_path);
-  const { exhi_dropdown, seo } = exhiPageData;
-  const { name_exo, name_exo_cn } = expoData[0];
+  const { exhi_dropdown, seo } = exhiPageData || {};
+  const { name_exo, name_exo_cn } = expoData[0] || {};
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? name_exo : name_exo_cn} />
