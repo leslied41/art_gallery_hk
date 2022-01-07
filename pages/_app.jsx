@@ -6,6 +6,7 @@ import { appWithTranslation } from "next-i18next";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import App from "next/app";
+
 function MyApp({ Component, pageProps, settings_data }) {
   const router = useRouter();
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
@@ -38,7 +39,7 @@ function MyApp({ Component, pageProps, settings_data }) {
 MyApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
   if (Component.getInitialProps) {
-    pageProps = await Component.getInitialProps(ctx);
+    pageProps = await App.getInitialProps(ctx);
   }
   const settings_data = await sanityClient.fetch(
     `*[_type=='settings']{orgnizationName,orgnizationName_cn,address,phone,email,social[]->,businessHours,abbreviation,exhibitions,news,about,artists,landing}`
