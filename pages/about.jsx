@@ -21,6 +21,9 @@ export const getStaticProps = async ({ locale }) => {
     email,
     },terminologySection,missionStatementSection,seo}`
   );
+  const settings_data = await sanityClient.fetch(
+    `*[_type=='settings']{orgnizationName,orgnizationName_cn,address,phone,email,social[]->,businessHours,abbreviation,exhibitions,news,about,artists,landing}`
+  );
 
   if (!data || !data.length) {
     return {
@@ -30,13 +33,13 @@ export const getStaticProps = async ({ locale }) => {
     };
   } else {
     return {
-      props: { data },
+      props: { data, settings_data },
       revalidate: 10,
     };
   }
 };
 
-export default function About({ data }) {
+export default function About({ data, settings_data }) {
   const router = useRouter();
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
