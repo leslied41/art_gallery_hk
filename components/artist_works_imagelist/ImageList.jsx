@@ -530,34 +530,34 @@ const ImageList = ({
     if (iszoomed) {
       if (
         windowWidth - imageSize.x < 0 &&
-        moveDis.x < windowWidth - imageSize.x
+        moveDis.x < (windowWidth - imageSize.x) / 2
       ) {
-        moveDis.x = windowWidth - imageSize.x;
+        moveDis.x = (windowWidth - imageSize.x) / 2;
       }
 
       if (
         windowWidth - imageSize.x < 0 &&
-        moveDis.x > imageSize.x - windowWidth
+        moveDis.x > (imageSize.x - windowWidth) / 2
       ) {
-        moveDis.x = imageSize.x - windowWidth;
+        moveDis.x = (imageSize.x - windowWidth) / 2;
       }
       if (
         windowWidth - imageSize.x > 0 &&
-        moveDis.x > windowWidth - imageSize.x
+        moveDis.x > (windowWidth - imageSize.x) / 2
       ) {
-        moveDis.x = windowWidth - imageSize.x;
+        moveDis.x = (windowWidth - imageSize.x) / 2;
       }
       if (
         windowWidth - imageSize.x > 0 &&
-        moveDis.x < imageSize.x - windowWidth
+        moveDis.x < (imageSize.x - windowWidth) / 2
       ) {
-        moveDis.x = imageSize.x - windowWidth;
+        moveDis.x = (imageSize.x - windowWidth) / 2;
       }
-      if (moveDis.y > imageSize.y - windowHeight) {
-        moveDis.y = imageSize.y - windowHeight;
+      if (moveDis.y > (imageSize.y - windowHeight * 0.8) / 2) {
+        moveDis.y = (imageSize.y - windowHeight * 0.8) / 2;
       }
-      if (moveDis.y < windowHeight - imageSize.y) {
-        moveDis.y = windowHeight - imageSize.y;
+      if (moveDis.y < (windowHeight * 0.8 - imageSize.y) / 2) {
+        moveDis.y = (windowHeight * 0.8 - imageSize.y) / 2;
       }
 
       e.target.style.transform =
