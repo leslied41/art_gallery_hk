@@ -54,6 +54,23 @@ const PcHeader = () => {
     if (pathname == "/news") {
       setuseXlink("#image2");
     }
+    return () => {
+      if (pathname == "/artists") {
+        setuseXlink();
+      }
+      if (pathname == "/exhibitions") {
+        setuseXlink();
+      }
+      if (pathname == "/") {
+        setuseXlink();
+      }
+      if (pathname == "/about") {
+        setuseXlink();
+      }
+      if (pathname == "/news") {
+        setuseXlink();
+      }
+    };
   }, [pathname, query]);
 
   useEffect(() => {

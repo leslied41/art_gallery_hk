@@ -162,7 +162,14 @@ const S_header = () => {
             height="2169"
             viewBox="0 0 4368 2169"
             fill="none"
-            style={{ zIndex: "1" }}
+            style={{
+              zIndex: "1",
+              position: "fixed",
+              top: "0",
+              bottom: "0",
+              left: "0",
+              right: "0",
+            }}
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             onMouseDown={(e) => {
