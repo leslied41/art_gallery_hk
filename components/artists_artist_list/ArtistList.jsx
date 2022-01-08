@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ArtistList.module.css";
@@ -16,7 +16,15 @@ const ArtistList = ({ artistsData }) => {
   const [showImage, setShowImage] = useState(false);
   const [targetImage, setTargetImage] = useState(null);
   const [mobile, setmobile] = useState();
+  const [toTop, settoTop] = useState(0);
+  const [stoTop, setstoTop] = useState();
+  const s_ref = useRef();
+  const image_ref = useRef();
   useEffect(() => {
+    setstoTop(
+      s_ref.current.getBoundingClientRect().top + window.scrollY ||
+        window.pageYOffset
+    );
     if (window.innerWidth > 768) {
       setmobile(false);
     }
@@ -24,7 +32,10 @@ const ArtistList = ({ artistsData }) => {
       setmobile(true);
     }
     window.addEventListener("resize", () => {
-      console.log(window.innerWidth);
+      setstoTop(
+        s_ref.current.getBoundingClientRect().top + window.scrollY ||
+          window.pageYOffset
+      );
       if (window.innerWidth > 768) {
         setmobile(false);
       }
@@ -33,6 +44,9 @@ const ArtistList = ({ artistsData }) => {
       }
     });
   }, []);
+  useEffect(() => {
+    image_ref.current.style.top = `${toTop - stoTop}px`;
+  }, [toTop, stoTop]);
   const overArtist = (slug) => {
     let targetArtist = artistsData.filter(
       (artist) => artist.slug.current == slug.current
@@ -51,9 +65,13 @@ const ArtistList = ({ artistsData }) => {
         leaverArtist();
       }}
     >
-      <div className="col">
-        {!mobile && showImage && (
-          <div className={styles.container}>
+      <div className="col" style={{ position: "relative" }} ref={s_ref}>
+        {!mobile && (
+          <div
+            className={styles.container}
+            ref={image_ref}
+            style={showImage ? { display: "block" } : { display: "none" }}
+          >
             {targetImage && (
               <Image
                 src={urlFor(targetImage.asset).width(647).height(431).url()}
@@ -76,8 +94,12 @@ const ArtistList = ({ artistsData }) => {
                 <Link href={"/artists/" + slug.current}>
                   <li
                     key={index}
-                    onMouseOver={() => {
+                    onMouseOver={(e) => {
                       overArtist(slug);
+                      settoTop(
+                        e.target.getBoundingClientRect().top + window.scrollY ||
+                          window.pageYOffset
+                      );
                     }}
                     style={{ cursor: "pointer" }}
                   >

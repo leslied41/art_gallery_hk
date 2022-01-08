@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
+  position: absolute;
 }
 
 .grid {

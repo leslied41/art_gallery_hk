@@ -78,7 +78,7 @@ const PcHeader = () => {
       const y = e.pageY;
       const x = e.pageX;
       const scrollTop = window.pageYOffset;
-      console.log(y - scrollTop);
+      //console.log(y - scrollTop);
       setToTop(y - scrollTop);
       setToLeft(x);
     });
