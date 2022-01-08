@@ -13,9 +13,11 @@ export default function Expo({ expoData, exhiPageData }) {
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();
+
   useEffect(() => {
-    useScrollTo(scrollTo);
+    scrollTo.current.scrollIntoView();
   }, []);
+
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);

@@ -14,9 +14,11 @@ export default function Artists({ data, artistsData, worksImages }) {
   const router = useRouter();
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
+
   useEffect(() => {
-    useScrollTo(scrollTo);
+    scrollTo.current.scrollIntoView();
   }, []);
+
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);

@@ -45,9 +45,11 @@ export default function About({ data, settings_data }) {
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();
+
   useEffect(() => {
-    useScrollTo(scrollTo);
+    scrollTo.current.scrollIntoView();
   }, []);
+
   //console.log(scrollTo.current);
 
   useEffect(() => {
