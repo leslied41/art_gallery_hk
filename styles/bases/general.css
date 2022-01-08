@@ -98,7 +98,9 @@ ul {
   margin-bottom: 145px;
 }
 hr {
-  border: 1px solid #000000;
+  border: none;
+  height: 1px;
+  color: black;
 }
 .hr-top {
   margin-top: 30px;

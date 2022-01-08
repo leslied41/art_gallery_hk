@@ -3,7 +3,7 @@ import { BiArrowBack } from "react-icons/bi";
 import Link from "next/link";
 import ControlBtn from "../popup_control/ControlBtn";
 import styles from "./S_header.module.css";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useLayoutEffect } from "react";
 import { set } from "react-hook-form";
 
 const S_header = () => {
@@ -27,6 +27,35 @@ const S_header = () => {
   const [moving, setmoving] = useState(false);
   const [windowHeight, setwindowHeight] = useState();
   const [windowWidth, setwindowWidth] = useState();
+  const [isMobile, setisMobile] = useState();
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setisMobile(true);
+    } else if (window.innerWidth >= 768) {
+      setisMobile(false);
+    }
+  }, []);
+
+  useLayoutEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 768) {
+        setisMobile(true);
+        //console.log(isMobile);
+      } else if (window.innerWidth >= 768) {
+        setisMobile(false);
+        //console.log(isMobile);
+      }
+    });
+    return () => {
+      window.removeEventListener("resize", () => {
+        if (window.innerWidth < 768) {
+          setisMobile(true);
+        } else if (window.innerWidth >= 768) {
+          setisMobile(false);
+        }
+      });
+    };
+  }, []);
   useEffect(() => {
     setwindowHeight(window.innerHeight);
     setwindowWidth(window.innerWidth);

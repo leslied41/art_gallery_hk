@@ -78,7 +78,7 @@ const PcHeader = () => {
       const y = e.pageY;
       const x = e.pageX;
       const scrollTop = window.pageYOffset;
-      console.log(y - scrollTop);
+      //console.log(y - scrollTop);
       setToTop(y - scrollTop);
       setToLeft(x);
     });
@@ -275,7 +275,7 @@ const PcHeader = () => {
           xmlnsXlink="http://www.w3.org/1999/xlink"
           preserveAspectRatio="none"
           fill="none"
-          style={{ width: "100vw" }}
+          style={{ width: "100%" }}
           viewBox="0 0 1530 888"
         >
           <Link href="/news" exact>

@@ -94,7 +94,7 @@ const MobileHeader = () => {
                   id="image1"
                   width="1"
                   height="1"
-                  preserveAspectRatio="xMidYMid slice"
+                  preserveAspectRatio="xMidYMid meet"
                   xlinkHref={urlFor(headerImage.asset).url()}
                 ></image>
               )}
