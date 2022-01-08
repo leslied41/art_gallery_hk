@@ -32,8 +32,6 @@ const PcHeader = () => {
   const [toLeft, setToLeft] = useState(0);
   const [toTop, setToTop] = useState(0);
   const [useXlink, setuseXlink] = useState();
-  const [scroll_position, setscroll_position] = useState();
-  const [svg_height, setsvg_height] = useState();
   const artists_image = settings[0].artists;
   const exhibition_image = settings[0].exhibitions;
   const news_image = settings[0].news;
@@ -60,10 +58,12 @@ const PcHeader = () => {
 
   useEffect(() => {
     sectionEl.current.addEventListener("mousemove", (e) => {
-      let x = e.clientX;
-      let y = e.clientY;
+      const y = e.pageY;
+      const x = e.pageX;
+      const scrollTop = window.pageYOffset;
+      console.log(y - scrollTop);
+      setToTop(y - scrollTop);
       setToLeft(x);
-      setToTop(y);
     });
   }, []);
 
@@ -119,19 +119,19 @@ const PcHeader = () => {
     // });
   }, []);
   useEffect(() => {
-    exhibitionCursor.current.style.position = "absolute";
+    exhibitionCursor.current.style.position = "fixed";
     exhibitionCursor.current.style.left = `${toLeft + 5}px`;
     exhibitionCursor.current.style.top = `${toTop + 5}px`;
-    aboutCursor.current.style.position = "absolute";
+    aboutCursor.current.style.position = "fixed";
     aboutCursor.current.style.left = `${toLeft + 5}px`;
     aboutCursor.current.style.top = `${toTop + 5}px`;
-    artistsCursor.current.style.position = "absolute";
+    artistsCursor.current.style.position = "fixed";
     artistsCursor.current.style.left = `${toLeft + 5}px`;
     artistsCursor.current.style.top = `${toTop + 5}px`;
-    newsCursor.current.style.position = "absolute";
+    newsCursor.current.style.position = "fixed";
     newsCursor.current.style.left = `${toLeft + 5}px`;
     newsCursor.current.style.top = `${toTop + 5}px`;
-    studyCursor.current.style.position = "absolute";
+    studyCursor.current.style.position = "fixed";
     studyCursor.current.style.left = `${toLeft + 5}px`;
     studyCursor.current.style.top = `${toTop + 5}px`;
   }, [toTop, toLeft]);
