@@ -36,7 +36,7 @@ const HorizontalLayout = ({
               />
             </div>
             <div className="mt-30">
-              <span className="h5">
+              <span className="h4">
                 {image_parameter && (
                   <BlockContent
                     blocks={image_parameter}
@@ -51,11 +51,11 @@ const HorizontalLayout = ({
             <div>
               {(name || name_cn) && (
                 <>
-                  <p className="h3">{router.locale == "en" ? name : name_cn}</p>
+                  <p className="h2">{router.locale == "en" ? name : name_cn}</p>
                   <div className="mt-30"></div>
                 </>
               )}
-              <div className="h4 ">
+              <div className="h3">
                 {introduction && (
                   <BlockContent
                     blocks={

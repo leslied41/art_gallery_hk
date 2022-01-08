@@ -39,10 +39,10 @@ const PcHeader = () => {
   const landing_image = settings[0].landing;
 
   useEffect(() => {
-    if (pathname == "/artists") {
+    if (pathname.indexOf("/artists") == 0) {
       setuseXlink("#image4");
     }
-    if (pathname == "/exhibitions") {
+    if (pathname.indexOf("/exhibitions") == 0) {
       setuseXlink("#image1");
     }
     if (pathname == "/") {
@@ -55,10 +55,10 @@ const PcHeader = () => {
       setuseXlink("#image2");
     }
     return () => {
-      if (pathname == "/artists") {
+      if (pathname.indexOf("/artists") == 0) {
         setuseXlink();
       }
-      if (pathname == "/exhibitions") {
+      if (pathname.indexOf("/exhibitions") == 0) {
         setuseXlink();
       }
       if (pathname == "/") {
@@ -290,7 +290,11 @@ const PcHeader = () => {
           </Link>
           <Link href="/artists" exact>
             <path
-              fill={pathname == "/artists" ? "url(#pattern0)" : "var(--white)"}
+              fill={
+                pathname.indexOf("/artists") == 0
+                  ? "url(#pattern0)"
+                  : "var(--white)"
+              }
               fillRule="evenodd"
               d="M781.521 1h-.042v175.3c0 1.347.007 2.694.021 4.041-.941 92.043-34.341 181.96-96.24 259.121C622.424 517.739 589 609.146 589 702.582V887h385V702.541c0-93.436-33.466-184.843-96.26-263.121-61.93-77.148-95.291-167.05-96.24-259.079.014-1.333.021-2.666.021-4V1z"
               clipRule="evenodd"
@@ -311,7 +315,7 @@ const PcHeader = () => {
           <Link href="/exhibitions" exact>
             <path
               fill={
-                pathname == "/" || pathname == "/exhibitions"
+                pathname == "/" || pathname.indexOf("/exhibitions") == 0
                   ? "url(#pattern0)"
                   : "var(--white)"
               }

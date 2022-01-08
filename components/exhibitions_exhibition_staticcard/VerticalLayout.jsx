@@ -41,7 +41,7 @@ const VerticalLayout = ({
         <div className="mt-30">
           <div className={styles.grid}>
             <div className="col">
-              <span className="h5">
+              <span className="h4">
                 <BlockContent
                   blocks={image_parameter}
                   projectId="z3dq9mvc"
@@ -52,12 +52,12 @@ const VerticalLayout = ({
             <div className="col">
               {(name || name_cn) && (
                 <>
-                  <p className="h3">{router.locale == "en" ? name : name_cn}</p>
+                  <p className="h2">{router.locale == "en" ? name : name_cn}</p>
                   <div className="mt-30"></div>
                 </>
               )}
 
-              <div className="h4">
+              <div className="h3">
                 <BlockContent
                   blocks={
                     router.locale == "en" ? introduction : introduction_cn
