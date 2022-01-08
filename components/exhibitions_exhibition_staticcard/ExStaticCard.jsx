@@ -17,7 +17,7 @@ const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
-const ExStaticCard = ({ data }) => {
+const ExStaticCard = ({ data, fowardref }) => {
   const lightGallery = useRef(null);
   const onInit = useCallback((detail) => {
     if (detail) {
@@ -44,7 +44,7 @@ const ExStaticCard = ({ data }) => {
   return (
     <>
       <div className={styles.grid}>
-        <div className="col"></div>
+        <div className="col" ref={fowardref}></div>
         <div className="col">
           <div>
             <span className="h1">{name_exo}</span>

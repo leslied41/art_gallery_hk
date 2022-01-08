@@ -3,11 +3,12 @@ import styles from "../styles/exhibitions.module.css";
 import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import ExpoImageList from "../components/dropDownCard/ExpoImageList";
 import Heads from "../components/head/Heads.jsx";
 import { useGlobalSettings } from "../components/context/GlobalSettings";
+import useScrollTo from "../components/scrollto/ScrollTo";
 
 export default function Exhibition({
   exPageData,
@@ -18,6 +19,10 @@ export default function Exhibition({
   const router = useRouter();
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
+  const scrollTo = useRef();
+  useEffect(() => {
+    useScrollTo(scrollTo);
+  }, []);
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);
@@ -29,7 +34,7 @@ export default function Exhibition({
       <Heads seo={seo} name={router.locale == "en" ? "Exhibitions" : "展出"} />
       <main>
         <div className="section mt-145">
-          <StaticCard data={briefSection} />
+          <StaticCard data={briefSection} fowardref={scrollTo} />
         </div>
         <div className="section mt-145">
           <DropDownCard

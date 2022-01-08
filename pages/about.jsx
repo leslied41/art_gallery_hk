@@ -1,5 +1,5 @@
 import styles from "../styles/about.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
@@ -9,6 +9,7 @@ import PureWords from "../components/dropDownCard/PureWords";
 import Heads from "../components/head/Heads.jsx";
 import { useGlobalSettings } from "../components/context/GlobalSettings";
 import AuthorCard from "../components/designer_card/AuthorCard";
+import useScrollTo from "../components/scrollto/ScrollTo";
 
 export const getStaticProps = async ({ locale }) => {
   const data = await sanityClient.fetch(
@@ -43,6 +44,12 @@ export default function About({ data, settings_data }) {
   const router = useRouter();
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
+  const scrollTo = useRef();
+  useEffect(() => {
+    useScrollTo(scrollTo);
+  }, []);
+  //console.log(scrollTo.current);
+
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);
@@ -58,11 +65,11 @@ export default function About({ data, settings_data }) {
   } = data[0];
   return (
     <>
-      <Heads seo={seo} name={router.locale == "en" ? "About" : "关于"} />
+      <Heads seo={seo} name={router.locale == "en" ? "About" : "關於我們"} />
       <main>
         {/* first part */}
         <div className="section mt-145">
-          <StaticCard data={briefSection} />
+          <StaticCard data={briefSection} fowardref={scrollTo} />
         </div>
         {/* dropDownCard */}
         {!terminologySection.hidden && (

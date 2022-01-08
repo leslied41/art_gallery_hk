@@ -4,7 +4,7 @@ import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import AppointmentForm from "../appointment_form/AppointmentForm";
 
-const StaticCard = ({ data, form }) => {
+const StaticCard = ({ data, form, fowardref }) => {
   const router = useRouter();
 
   const { name, name_cn, description, description_cn, phone, social, email } =
@@ -13,7 +13,7 @@ const StaticCard = ({ data, form }) => {
   return (
     <>
       <div className={styles.grid}>
-        <div className="col"></div>
+        <div className="col" ref={fowardref}></div>
         <div className="col">
           {/* display name */}
           <div className={styles.title}>

@@ -2,13 +2,14 @@ import sanityClient from "../../client.js";
 import StaticCard from "../../components/staticCard/StaticCard";
 import DropDownCard from "../../components/dropDownCard/DropDownCard.jsx";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ArtistBio from "../../components/dropDownCard/ArtistBio.jsx";
 import ArtistWorksImageList from "../../components/dropDownCard/ArtistWorksImageList.jsx";
 import ExpoList from "../../components/artists_artist_exhibition_list/ExpoList.jsx";
 import InterviewsList from "../../components/dropDownCard/InterviewsList";
 import Heads from "../../components/head/Heads.jsx";
 import { useGlobalSettings } from "../../components/context/GlobalSettings.jsx";
+import useScrollTo from "../../components/scrollto/ScrollTo.jsx";
 
 export default function Artist({
   artistData,
@@ -41,6 +42,10 @@ export default function Artist({
   const { name, name_cn } = artistData[0] || {};
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
+  const scrollTo = useRef();
+  useEffect(() => {
+    useScrollTo(scrollTo);
+  }, []);
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);
@@ -50,7 +55,7 @@ export default function Artist({
       <Heads seo={seo} name={router.locale == "en" ? name : name_cn} />
       <main>
         <div className="section mt-145">
-          <StaticCard data={artistData[0]} />
+          <StaticCard data={artistData[0]} fowardref={scrollTo} />
         </div>
         <div className="section mt-145">
           <DropDownCard
