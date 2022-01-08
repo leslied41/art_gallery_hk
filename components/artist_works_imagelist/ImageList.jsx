@@ -413,41 +413,44 @@ const ImageList = ({
               );
             })}
           </div>
-
-          <div
-            className={styles.closeIcon}
-            onClick={() => {
-              setmodel(false);
-            }}
-          >
-            close
-          </div>
-          <div
-            className={styles.next}
-            onClick={() => {
-              if (targetIndex == workImages.length - 1) {
-                setTargetIndex(0);
-              }
-              if (targetIndex != workImages.length - 1)
-                setTargetIndex(targetIndex + 1);
-            }}
-          >
-            Next
-          </div>
-          <div
-            className={styles.prev}
-            ref={prevRef}
-            onClick={() => {
-              if (targetIndex == 0) {
-                setTargetIndex(workImages.length - 1);
-              }
-              if (targetIndex != 0) {
-                setTargetIndex(targetIndex - 1);
-              }
-            }}
-          >
-            Prev
-          </div>
+          {!isMobile && (
+            <div className="h3">
+              <div
+                className={styles.closeIcon}
+                onClick={() => {
+                  setmodel(false);
+                }}
+              >
+                Close
+              </div>
+              <div
+                className={styles.next}
+                onClick={() => {
+                  if (targetIndex == workImages.length - 1) {
+                    setTargetIndex(0);
+                  }
+                  if (targetIndex != workImages.length - 1)
+                    setTargetIndex(targetIndex + 1);
+                }}
+              >
+                Next
+              </div>
+              <div
+                className={styles.prev}
+                ref={prevRef}
+                onClick={() => {
+                  if (targetIndex == 0) {
+                    setTargetIndex(workImages.length - 1);
+                  }
+                  if (targetIndex != 0) {
+                    setTargetIndex(targetIndex - 1);
+                  }
+                }}
+              >
+                Prev
+              </div>
+            </div>
+          )}
         </div>
       </div>
       {/* image gallery */}

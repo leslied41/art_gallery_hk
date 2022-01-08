@@ -101,28 +101,31 @@
 
 .closeIcon {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 2%;
+  right: 0.8%;
   color: white;
   mix-blend-mode: exclusion;
   background-color: none;
   z-index: 999;
+  cursor: pointer;
 }
 .next {
   position: fixed;
   top: 50%;
-  right: 10%;
+  right: 1.5%;
   z-index: 999;
   color: white;
   mix-blend-mode: exclusion;
+  cursor: pointer;
 }
 .prev {
   position: fixed;
   top: 50%;
-  left: 10%;
+  left: 1.5%;
   z-index: 999;
   color: white;
   mix-blend-mode: exclusion;
+  cursor: pointer;
 }
 .image_parameter {
   justify-content: center;
