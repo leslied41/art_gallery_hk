@@ -13,7 +13,7 @@
   font-style: normal;
 }
 .tc {
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: Zichtbaar, "Noto Sans TC", sans-serif;
 }
 .en {
   font-family: Zichtbaar;
@@ -98,7 +98,9 @@ ul {
   margin-bottom: 145px;
 }
 hr {
-  border: 1px solid #000000;
+  border: none;
+  height: 1px;
+  background-color: black;
 }
 .hr-top {
   margin-top: 30px;
