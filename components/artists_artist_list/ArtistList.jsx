@@ -32,10 +32,13 @@ const ArtistList = ({ artistsData }) => {
       setmobile(true);
     }
     window.addEventListener("resize", () => {
-      setstoTop(
-        s_ref.current.getBoundingClientRect().top + window.scrollY ||
-          window.pageYOffset
-      );
+      {
+        !mobile &&
+          setstoTop(
+            s_ref.current.getBoundingClientRect().top + window.scrollY ||
+              window.pageYOffset
+          );
+      }
       if (window.innerWidth > 768) {
         setmobile(false);
       }
@@ -44,9 +47,11 @@ const ArtistList = ({ artistsData }) => {
       }
     });
   }, []);
+
   useEffect(() => {
-    image_ref.current.style.top = `${toTop - stoTop}px`;
+    !mobile ? (image_ref.current.style.top = `${toTop - stoTop}px`) : null;
   }, [toTop, stoTop]);
+
   const overArtist = (slug) => {
     let targetArtist = artistsData.filter(
       (artist) => artist.slug.current == slug.current
