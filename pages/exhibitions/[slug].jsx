@@ -6,7 +6,6 @@ import ExStaticCard from "../../components/exhibitions_exhibition_staticcard/ExS
 import Heads from "../../components/head/Heads.jsx";
 import { useEffect, useRef } from "react";
 import { useGlobalSettings } from "../../components/context/GlobalSettings.jsx";
-import useScrollTo from "../../components/scrollto/ScrollTo.jsx";
 
 export default function Expo({ expoData, exhiPageData }) {
   const router = useRouter();

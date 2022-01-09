@@ -9,7 +9,6 @@ import PureWords from "../components/dropDownCard/PureWords";
 import Heads from "../components/head/Heads.jsx";
 import { useGlobalSettings } from "../components/context/GlobalSettings";
 import AuthorCard from "../components/designer_card/AuthorCard";
-import useScrollTo from "../components/scrollto/ScrollTo";
 
 export const getStaticProps = async ({ locale }) => {
   const data = await sanityClient.fetch(

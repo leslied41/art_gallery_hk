@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import Heads from "../components/head/Heads.jsx";
 import { useEffect, useRef } from "react";
 import { useGlobalSettings } from "../components/context/GlobalSettings.jsx";
-import useScrollTo from "../components/scrollto/ScrollTo.jsx";
 
 export default function News({ newsPageData, newsData }) {
   console.log(newsData);

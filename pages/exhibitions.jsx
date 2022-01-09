@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import ExpoImageList from "../components/dropDownCard/ExpoImageList";
 import Heads from "../components/head/Heads.jsx";
 import { useGlobalSettings } from "../components/context/GlobalSettings";
-import useScrollTo from "../components/scrollto/ScrollTo";
 
 export default function Exhibition({
   exPageData,

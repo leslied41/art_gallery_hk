@@ -206,6 +206,11 @@ const ImageList = ({
     }
   }, [targetIndex]);
 
+  const getIndex = (index) => {
+    setTargetIndex(index);
+    setmodel(true);
+  };
+
   const mouseDown = (e) => {
     setclickTime(new Date());
     setstartingPoint({
@@ -217,11 +222,6 @@ const ImageList = ({
       x: e.target.getBoundingClientRect().width,
       y: e.target.getBoundingClientRect().height,
     });
-  };
-
-  const getIndex = (index) => {
-    setTargetIndex(index);
-    setmodel(true);
   };
 
   const zoomin = (e) => {
@@ -266,7 +266,6 @@ const ImageList = ({
 
       e.target.style.transform =
         "translate(" + moveDis.x + "px, " + moveDis.y + "px) scale(2) ";
-      console.log(moveDis.x);
     }
   };
   return (
@@ -378,14 +377,16 @@ const ImageList = ({
                       }}
                       onTouchMove={(e) => {
                         e.cancelable && e.preventDefault();
-                        if (!moving) {
-                          return;
-                        }
+
                         setmoveDis({
                           x: e.changedTouches[0].clientX - startingPoint.x,
                           y: e.changedTouches[0].clientY - startingPoint.y,
                         });
-                        move(e);
+                        if (moving) {
+                          move(e);
+                        }
+                        if (!moving) {
+                        }
                       }}
                     />
                   </div>

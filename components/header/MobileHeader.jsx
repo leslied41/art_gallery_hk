@@ -29,10 +29,10 @@ const MobileHeader = () => {
   const [headerImage, setheaderImage] = useState();
 
   useEffect(() => {
-    if (pathname == "/artists") {
+    if (pathname.indexOf("/artists") == 0) {
       setheaderImage(artists_image);
     }
-    if (pathname == "/exhibitions") {
+    if (pathname.indexOf("/exhibitions") == 0) {
       setheaderImage(exhibition_image);
     }
     if (pathname == "/") {

@@ -9,7 +9,6 @@ import ExpoList from "../../components/artists_artist_exhibition_list/ExpoList.j
 import InterviewsList from "../../components/dropDownCard/InterviewsList";
 import Heads from "../../components/head/Heads.jsx";
 import { useGlobalSettings } from "../../components/context/GlobalSettings.jsx";
-import useScrollTo from "../../components/scrollto/ScrollTo.jsx";
 
 export default function Artist({
   artistData,

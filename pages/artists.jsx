@@ -6,7 +6,6 @@ import Heads from "../components/head/Heads.jsx";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import { useGlobalSettings } from "../components/context/GlobalSettings";
-import useScrollTo from "../components/scrollto/ScrollTo";
 
 export default function Artists({ data, artistsData, worksImages }) {
   const { briefSection, seo } = data[0];
