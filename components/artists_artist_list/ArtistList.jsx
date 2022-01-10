@@ -56,7 +56,7 @@ const ArtistList = ({ artistsData }) => {
     let targetArtist = artistsData.filter(
       (artist) => artist.slug.current == slug.current
     );
-    //console.log(targetArtist);
+    console.log(targetArtist);
     let targetImg = targetArtist[0].masterpiece;
     setTargetImage(targetImg);
     setShowImage(true);
