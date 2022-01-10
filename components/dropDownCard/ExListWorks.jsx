@@ -69,17 +69,17 @@ const ExListWorks = ({ data }) => {
     });
   }, []);
 
-  {
-    works &&
-      useEffect(() => {
-        // add or remove refs
+  useEffect(() => {
+    // add or remove refs
+    {
+      works &&
         setElRefs((elRefs) =>
           Array(works.length)
             .fill()
             .map((_, index) => elRefs[index] || createRef())
         );
-      }, [works.length]);
-  }
+    }
+  }, [works.length | null]);
 
   useEffect(() => {
     if (model) {
