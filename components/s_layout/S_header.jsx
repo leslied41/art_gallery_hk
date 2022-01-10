@@ -74,7 +74,7 @@ const S_header = () => {
   };
   return (
     <>
-      <section ref={sectionEl}>
+      <section ref={sectionEl} style={{ overscrollBehavior: "contain" }}>
         <ControlBtn />
 
         <div
