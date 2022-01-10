@@ -57,8 +57,8 @@ const ExpoImageList = ({ data }) => {
                 <div className={styles.grid} key={index}>
                   <Link href={"/exhibitions/" + slug.current}>
                     <div className="col mt-30">
-                      <div style={{ height: "437px" }}>
-                        {image && (
+                      {image && (
+                        <div style={{ height: "100%" }}>
                           <img
                             src={urlFor(image.asset)
                               .width(624)
@@ -67,8 +67,8 @@ const ExpoImageList = ({ data }) => {
                             alt={name_exo}
                             style={{ width: "100%", cursor: "pointer" }}
                           />
-                        )}
-                      </div>
+                        </div>
+                      )}
                     </div>
                   </Link>
                   <div className="col mt-30">
