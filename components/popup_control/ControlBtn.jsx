@@ -23,7 +23,7 @@ const ControlBtn = () => {
         }}
         onClick={() => {
           //console.log("cliclded");
-          router.push(popup_path);
+          router.push(popup_path || "/");
         }}
       >
         <AiOutlineClose />
