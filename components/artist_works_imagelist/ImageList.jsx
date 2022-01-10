@@ -152,6 +152,9 @@ const ImageList = ({
   loaded,
   loadMore,
 }) => {
+  if (!workImages) {
+    return;
+  }
   const [model, setmodel] = React.useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
   const [iszoomed, setiszoomed] = useState(false);
