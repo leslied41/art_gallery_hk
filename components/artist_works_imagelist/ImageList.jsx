@@ -1,8 +1,6 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ImageList.module.css";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-
 import React, {
   useEffect,
   useState,
@@ -14,137 +12,12 @@ import React, {
 import Image from "next/image";
 import BlockContent from "@sanity/block-content-to-react";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard.jsx";
-import LightGallery from "lightgallery/react";
-// import styles
-import "lightgallery/css/lightgallery.css";
-import "lightgallery/css/lg-zoom.css";
-import "lightgallery/css/lg-thumbnail.css";
-// import plugins if you need
-import lgZoom from "lightgallery/plugins/zoom";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
-// const ImageList = ({ slicedWorkImages, loaded, loadMore, workImages }) => {
-//   const lightGallery = useRef(null);
-//   const [iamges, setiamges] = useState(slicedWorkImages);
-//   const [isMobile, setisMobile] = useState();
 
-//   useEffect(() => {
-//     setiamges(slicedWorkImages);
-//   }, [slicedWorkImages]);
-//   //console.log(workImages);
-//   const onInit = useCallback((detail) => {
-//     if (detail) {
-//       lightGallery.current = detail.instance;
-//     }
-//   }, []);
-//   const getImages = useCallback(() => {
-//     if (isMobile) {
-//       return slicedWorkImages.map((image, index) => {
-//         //console.log(image);
-
-//         return (
-//           <div key={index} data-src={urlFor(image.image.asset).url()}>
-//             <Image
-//               src={urlFor(image.image.asset).url()}
-//               alt={index}
-//               className={styles.thumbnail}
-//               layout="responsive"
-//               width="100%"
-//               height="100%"
-//               objectFit="cover"
-//             />
-//           </div>
-//         );
-//       });
-//     }
-//     if (!isMobile) {
-//       return workImages.map((image, index) => {
-//         //console.log(image);
-//         const { image_parameter } = image;
-
-//         return (
-//           <div
-//             key={index}
-//             style={{ width: "100%", height: "100%", marginBottom: "30px" }}
-//             data-src={urlFor(image.image.asset).url()}
-//           >
-//             <Image
-//               src={urlFor(image.image.asset).url()}
-//               alt={index}
-//               className={styles.thumbnail}
-//               layout="intrinsic"
-//               height={image.metadata.metadata.dimensions.height}
-//               width={image.metadata.metadata.dimensions.width}
-//             />
-//           </div>
-//         );
-//       });
-//     }
-//   }, [slicedWorkImages]);
-
-//   useEffect(() => {
-//     lightGallery.current.refresh();
-//   }, [slicedWorkImages]);
-
-//   useEffect(() => {
-//     if (window.innerWidth < 768) {
-//       setisMobile(true);
-//     } else if (window.innerWidth >= 768) {
-//       setisMobile(false);
-//     }
-//   }, []);
-
-//   useLayoutEffect(() => {
-//     window.addEventListener("resize", () => {
-//       if (window.innerWidth < 768) {
-//         setisMobile(true);
-//         //console.log(isMobile);
-//       } else if (window.innerWidth >= 768) {
-//         setisMobile(false);
-//         //console.log(isMobile);
-//       }
-//     });
-//     return () => {
-//       window.removeEventListener("resize", () => {
-//         if (window.innerWidth < 768) {
-//           setisMobile(true);
-//         } else if (window.innerWidth >= 768) {
-//           setisMobile(false);
-//         }
-//       });
-//     };
-//   }, []);
-//   return (
-//     <>
-//       <LightGallery
-//         plugins={[lgZoom]}
-//         counter={false}
-//         download={false}
-//         onInit={onInit}
-//         prevHtml="Pre"
-//         nextHtml="Next"
-//         actualSize={false}
-//         showZoomInOutIcons={true}
-//         elementClassNames={styles.grid}
-//       >
-//         {getImages()}
-//       </LightGallery>
-//       {isMobile && (
-//         <div style={{ marginTop: "18px" }}>
-//           <div className={styles.grid}>
-//             <LoadMoreCard loaded={loaded} loadMore={loadMore} />
-//           </div>
-//         </div>
-//       )}
-//     </>
-//   );
-// };
-// export default ImageList;
-
-// rewrite these coding
 const ImageList = ({
   workImages,
   showCard,
@@ -152,9 +25,6 @@ const ImageList = ({
   loaded,
   loadMore,
 }) => {
-  if (!workImages) {
-    return;
-  }
   const [model, setmodel] = React.useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
   const [iszoomed, setiszoomed] = useState(false);
@@ -197,12 +67,13 @@ const ImageList = ({
 
   useEffect(() => {
     // add or remove refs
-    setElRefs((elRefs) =>
-      Array(workImages.length)
-        .fill()
-        .map((_, index) => elRefs[index] || createRef())
-    );
-  }, [workImages.length]);
+    workImages &&
+      setElRefs((elRefs) =>
+        Array(workImages.length)
+          .fill()
+          .map((_, index) => elRefs[index] || createRef())
+      );
+  }, [workImages.length || ""]);
 
   useEffect(() => {
     if (model) {

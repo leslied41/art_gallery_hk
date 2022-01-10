@@ -23,7 +23,7 @@ const StaticCard = ({ data, form, fowardref }) => {
           </div>
           {/* display description */}
           {description && (
-            <div className="words">
+            <div className="words mt-145">
               <div className={styles.gap}>
                 <span className="h3">
                   <BlockContent
@@ -41,17 +41,19 @@ const StaticCard = ({ data, form, fowardref }) => {
           <div>{form && <AppointmentForm formdata={data} />}</div>
 
           {/* if phone exists, display it */}
-          {phone && (
-            <div className="phone">
-              <span className="h3">{phone}</span>
-            </div>
-          )}
-          {/* if emails exists, display it */}
-          {email && (
-            <div className="email">
-              <span className="h3"> {email}</span>
-            </div>
-          )}
+          <div className="mt-145">
+            {phone && (
+              <div className="phone">
+                <span className="h3">{phone}</span>
+              </div>
+            )}
+            {/* if emails exists, display it */}
+            {email && (
+              <div className="email">
+                <span className="h3"> {email}</span>
+              </div>
+            )}
+          </div>
           {/* if social media exists, display it */}
           {social && (
             <div className="socialMedia">
