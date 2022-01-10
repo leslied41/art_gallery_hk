@@ -67,13 +67,12 @@ const ImageList = ({
 
   useEffect(() => {
     // add or remove refs
-    workImages &&
-      setElRefs((elRefs) =>
-        Array(workImages.length)
-          .fill()
-          .map((_, index) => elRefs[index] || createRef())
-      );
-  }, [workImages.length || ""]);
+    setElRefs((elRefs) =>
+      Array(workImages.length)
+        .fill()
+        .map((_, index) => elRefs[index] || createRef())
+    );
+  }, [workImages.length]);
 
   useEffect(() => {
     if (model) {

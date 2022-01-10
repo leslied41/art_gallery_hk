@@ -77,7 +77,7 @@ export default function Artist({
                 : artist_dropdown.second_name_cn
             }
           >
-            <ArtistWorksImageList data={workImages} />
+            {workImages && <ArtistWorksImageList data={workImages} />}
           </DropDownCard>
         </div>
 
