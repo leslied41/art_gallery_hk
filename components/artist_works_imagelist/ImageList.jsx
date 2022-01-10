@@ -165,6 +165,7 @@ const ImageList = ({
   const [windowHeight, setwindowHeight] = useState();
   const [windowWidth, setwindowWidth] = useState();
   const [elRefs, setElRefs] = useState([]);
+  const [swipeInitial, setswipeInitial] = useState({ x: null, y: null });
 
   useEffect(() => {
     setwindowHeight(window.innerHeight);
@@ -254,7 +255,8 @@ const ImageList = ({
         (imageSize.y - !iszoomed ? windowHeight * 0.8 : windowHeight) / 2
       ) {
         moveDis.y =
-          (imageSize.y - !iszoomed ? windowHeight * 0.8 : windowHeight) / 2;
+          (imageSize.y - !iszoomed ? windowHeight * 0.8 : windowHeight) / 2 +
+          50;
       }
       if (
         moveDis.y <
@@ -356,6 +358,10 @@ const ImageList = ({
                           x: e.target.getBoundingClientRect().width,
                           y: e.target.getBoundingClientRect().height,
                         });
+                        setswipeInitial({
+                          x: e.touches[0].clientX,
+                          y: e.touches[0].clientY,
+                        });
                       }}
                       onMouseUp={(e) => {
                         setmoving(false);
@@ -382,10 +388,52 @@ const ImageList = ({
                           x: e.changedTouches[0].clientX - startingPoint.x,
                           y: e.changedTouches[0].clientY - startingPoint.y,
                         });
+                        if (swipeInitial.x == null) {
+                          return;
+                        }
+                        if (swipeInitial.y == null) {
+                          return;
+                        }
+                        let diffX = swipeInitial.x - e.touches[0].clientX;
+                        let diffY = swipeInitial.y - e.touches[0].clientY;
+                        if (!iszoomed) {
+                          if (Math.abs(diffX) > Math.abs(diffY)) {
+                            // sliding horizontally
+                            if (diffX > 0) {
+                              // swiped left
+                              if (targetIndex == 0) {
+                                setTargetIndex(workImages.length - 1);
+                              }
+                              if (targetIndex != 0) {
+                                setTargetIndex(targetIndex - 1);
+                              }
+                              console.log("swiped left");
+                            } else {
+                              // swiped right
+                              if (targetIndex == workImages.length - 1) {
+                                setTargetIndex(0);
+                              }
+                              if (targetIndex != workImages.length - 1)
+                                setTargetIndex(targetIndex + 1);
+                              console.log("swiped right");
+                            }
+                          } else {
+                            // sliding vertically
+                            if (diffY > 0) {
+                              // swiped up
+                              setmodel(false);
+                              console.log("swiped up");
+                            } else {
+                              // swiped down
+                              setmodel(false);
+                              console.log("swiped down");
+                            }
+                          }
+                          setswipeInitial({ x: null, y: null });
+                        }
+
                         if (moving) {
                           move(e);
-                        }
-                        if (!moving) {
                         }
                       }}
                     />
