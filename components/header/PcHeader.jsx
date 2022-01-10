@@ -125,138 +125,50 @@ const PcHeader = () => {
       exhibitionCursor.current.style.display = "none";
       //titleEl.current.style.color = "var(--black)";
     });
-
-    // linksEl.current.addEventListener("mouseover", () => {
-    //   if (over_about) {
-    //     aboutContainer.current.style.fill = "black";
-    //   }
-    // });
-    // linksEl.current.addEventListener("mouseleave", () => {
-    //   linksEl.current.style.color = "var(--black)";
-    // });
   }, []);
   useEffect(() => {
     exhibitionCursor.current.style.position = "fixed";
-    exhibitionCursor.current.style.left = `${toLeft + 5}px`;
-    exhibitionCursor.current.style.top = `${toTop + 5}px`;
+    exhibitionCursor.current.style.left = `${toLeft + 10}px`;
+    exhibitionCursor.current.style.top = `${toTop + 10}px`;
     aboutCursor.current.style.position = "fixed";
-    aboutCursor.current.style.left = `${toLeft + 5}px`;
-    aboutCursor.current.style.top = `${toTop + 5}px`;
+    aboutCursor.current.style.left = `${toLeft + 10}px`;
+    aboutCursor.current.style.top = `${toTop + 10}px`;
     artistsCursor.current.style.position = "fixed";
-    artistsCursor.current.style.left = `${toLeft + 5}px`;
-    artistsCursor.current.style.top = `${toTop + 5}px`;
+    artistsCursor.current.style.left = `${toLeft + 10}px`;
+    artistsCursor.current.style.top = `${toTop + 10}px`;
     newsCursor.current.style.position = "fixed";
-    newsCursor.current.style.left = `${toLeft + 5}px`;
-    newsCursor.current.style.top = `${toTop + 5}px`;
+    newsCursor.current.style.left = `${toLeft + 10}px`;
+    newsCursor.current.style.top = `${toTop + 10}px`;
     studyCursor.current.style.position = "fixed";
-    studyCursor.current.style.left = `${toLeft + 5}px`;
-    studyCursor.current.style.top = `${toTop + 5}px`;
+    studyCursor.current.style.left = `${toLeft + 10}px`;
+    studyCursor.current.style.top = `${toTop + 10}px`;
   }, [toTop, toLeft]);
-
-  // useEffect(() => {
-  //   sectionEl.current && setsvg_height(sectionEl.current.offsetHeight);
-
-  //   window.addEventListener("resize", () => {
-  //     if (sectionEl.current) {
-  //       setsvg_height(sectionEl.current.offsetHeight);
-  //     }
-  //   });
-
-  //   setscroll_position(window.pageYOffset);
-  //   window.addEventListener("scroll", () => {
-  //     setscroll_position(window.pageYOffset);
-  //   });
-
-  //   //titleEl
-  //   titleEl.current.addEventListener("mouseover", () => {
-  //     if (scroll_position < svg_height) {
-  //       titleEl.current.style.color = "var(--white)";
-  //     } else {
-  //       titleEl.current.style.color = "var(--black)";
-  //     }
-  //   });
-  //   titleEl.current.addEventListener("mouseleave", () => {
-  //     if (scroll_position < svg_height) {
-  //       titleEl.current.style.color = "var(--black)";
-  //     }
-  //   });
-  //   //linksEl
-  //   // linksEl.current.addEventListener("mouseover", () => {
-  //   //   if (scroll_position < svg_height) {
-  //   //     linksEl.current.style.color = "var(--white)";
-  //   //   } else {
-  //   //     linksEl.current.style.color = "var(--black)";
-  //   //   }
-  //   // });
-  //   // linksEl.current.addEventListener("mouseleave", () => {
-  //   //   if (scroll_position < svg_height) {
-  //   //     linksEl.current.style.color = "var(--black)";
-  //   //   }
-  //   // });
-
-  //   return () => {
-  //     setsvg_height();
-  //     setscroll_position();
-  //     window.removeEventListener("scroll", () => {
-  //       setscroll_position(window.pageYOffset);
-  //     });
-  //     window.removeEventListener("resize", () => {
-  //       setsvg_height(sectionEl.current.offsetHeight);
-  //     });
-  //     if (titleEl.current) {
-  //       titleEl.current.removeEventListener("mouseover", () => {
-  //         if (scroll_position < svg_height) {
-  //           titleEl.current.style.color = "var(--white)";
-  //         } else {
-  //           titleEl.current.style.color = "var(--black)";
-  //         }
-  //       });
-  //       titleEl.current.removeEventListener("mouseleave", () => {
-  //         if (scroll_position < svg_height) {
-  //           titleEl.current.style.color = "var(--black)";
-  //         }
-  //       });
-  //     }
-  //     if (linksEl.current) {
-  //       linksEl.current.removeEventListener("mouseover", () => {
-  //         if (scroll_position < svg_height) {
-  //           linksEl.current.style.color = "var(--white)";
-  //         } else {
-  //           linksEl.current.style.color = "var(--black)";
-  //         }
-  //       });
-  //       linksEl.current.removeEventListener("mouseleave", () => {
-  //         if (scroll_position < svg_height) {
-  //           linksEl.current.style.color = "var(--black)";
-  //         }
-  //       });
-  //     }
-  //   };
-  // }, [scroll_position, svg_height]);
 
   return (
     <>
       <section className={styles.section} ref={sectionEl}>
         <div className={styles.icon}>
-          <span className={styles.exhIcon} ref={exhibitionCursor}>
-            Exhibitions
-          </span>
+          <div className="h2">
+            <span className={styles.exhIcon} ref={exhibitionCursor}>
+              Exhibitions
+            </span>
 
-          <span className={styles.aboutIcon} ref={aboutCursor}>
-            About
-          </span>
+            <span className={styles.aboutIcon} ref={aboutCursor}>
+              About
+            </span>
 
-          <span className={styles.pubIcon} ref={artistsCursor}>
-            Artist
-          </span>
+            <span className={styles.pubIcon} ref={artistsCursor}>
+              Artist
+            </span>
 
-          <span className={styles.artIcon} ref={studyCursor}>
-            Study
-          </span>
+            <span className={styles.artIcon} ref={studyCursor}>
+              Study
+            </span>
 
-          <span className={styles.newsIcon} ref={newsCursor}>
-            News
-          </span>
+            <span className={styles.newsIcon} ref={newsCursor}>
+              News
+            </span>
+          </div>
         </div>
         <div className={styles.links} ref={linksEl}>
           <span className="h2">
@@ -413,107 +325,6 @@ const PcHeader = () => {
             ></image>
           </defs>
         </svg>
-
-        {/* <svg
-          //preserveAspectRatio="xMinYMin meet"
-          preserveAspectRatio="none"
-          viewBox="0 0 1440 1024"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ width: "100vw", height: "100vh" }}
-        >
-          <g clipPath="url(#clip0_29:12)">
-            <Link href="/artists" exact>
-              <path
-                d="M620.071 0C660.736 54.6639 695.948 135.266 669.929 236.342C649.355 316.267 588.116 364.47 525.31 413.906C521.876 416.609 518.437 419.316 515 422.032V422.033C518.438 419.317 521.877 416.61 525.312 413.906L525.322 413.898C536.768 404.889 548.162 395.92 559.267 386.793C719.037 433.869 850.392 547.256 921.477 695.1C1006.75 632.504 1088.28 561.696 1070.73 395.794C1055.27 249.742 1038.77 107.278 1025.95 0.000244141L620.071 0Z"
-                fill={
-                  pathname == "/artists"
-                    ? "url(#pattern0)"
-                    : "var(--middle-gray)"
-                }
-                className={styles.publication}
-                ref={publicationContainer}
-              />
-            </Link>
-            <Link href="/publications" exact>
-              <path
-                d="M403 1024H760.2C746.2 980.675 742.011 929.68 758.893 872.593C781.308 796.796 841.656 753.036 903.548 708.157C909.521 703.825 915.509 699.483 921.478 695.101C850.393 547.257 719.037 433.869 559.267 386.793C548.159 395.923 536.761 404.894 525.312 413.906C432.664 486.833 336.604 562.444 362.635 746.53C376.31 843.233 390.124 938.894 403 1024Z"
-                fill={
-                  pathname == "/news" ? "url(#pattern0)" : "var(--dark-gray)"
-                }
-                ref={artistsContainer}
-                className={styles.artists}
-              />
-            </Link>
-            <Link href="/about" exact>
-              <path
-                d="M1440 1024H760.198C746.198 980.676 742.009 929.681 758.891 872.593C814.372 684.983 1102.24 693.65 1070.73 395.794C1055.27 249.742 1038.77 107.278 1025.95 0.000244141L1440 0.000252518V1024Z"
-                //fill="var(--balck-gray)"
-                fill={
-                  pathname == "/about" ? "url(#pattern0)" : "var(--balck-gray)"
-                }
-                className={styles.about}
-                ref={aboutContainer}
-              />
-            </Link>
-            <Link href="/exhibitions" exact>
-              <path
-                ref={exhibitionContainer}
-                d="M619.999 -0.0970479C660.694 54.5685 695.963 135.207 669.929 236.342C619.005 434.168 318.955 437.654 362.633 746.53C376.308 843.234 390.122 938.895 402.998 1024H-0.00195312L-0.00194709 -0.097168L619.999 -0.0970479Z"
-                className={styles.exhibition}
-                fill={
-                  pathname == "/exhibitions"
-                    ? "url(#pattern0)"
-                    : "var(--light-gray)"
-                }
-              />
-            </Link>
-          </g>
-          <defs>
-            <clipPath id="clip0_29:12">
-              <rect width="1440" height="1024" fill="white" />
-            </clipPath>
-            <pattern
-              id="pattern0"
-              width="1"
-              height="1"
-              patternContentUnits="objectBoundingBox"
-            >
-              <use
-                xlinkHref={useXlink}
-                //transform="translate(0 -0.000139237) scale(0.000833333 0.000625174)"
-              />
-            </pattern>
-            <image
-              id="image0"
-              width="1"
-              height="1"
-              preserveAspectRatio="xMidYMid slice"
-              xlinkHref={urlFor(artists_image.asset).url()}
-            ></image>
-            <image
-              id="image1"
-              width="1"
-              height="1"
-              preserveAspectRatio="xMidYMid slice"
-              xlinkHref={urlFor(exhibition_image.asset).url()}
-            ></image>
-            <image
-              id="image2"
-              width="1"
-              height="1"
-              preserveAspectRatio="xMidYMid slice"
-              xlinkHref={urlFor(news_image.asset).url()}
-            ></image>
-            <image
-              id="image3"
-              width="1"
-              height="1"
-              preserveAspectRatio="xMidYMid slice"
-              xlinkHref={urlFor(about_image.asset).url()}
-            ></image>
-          </defs>
-        </svg> */}
       </section>
     </>
   );

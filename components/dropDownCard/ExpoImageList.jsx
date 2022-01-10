@@ -57,12 +57,17 @@ const ExpoImageList = ({ data }) => {
                 <div className={styles.grid} key={index}>
                   <Link href={"/exhibitions/" + slug.current}>
                     <div className="col mt-30">
-                      <div style={{ cursor: "pointer" }}>
-                        <img
-                          src={urlFor(image.asset).width(624).height(437).url()}
-                          alt={name_exo}
-                          style={{ width: "100%" }}
-                        />
+                      <div style={{ height: "437px" }}>
+                        {image && (
+                          <img
+                            src={urlFor(image.asset)
+                              .width(624)
+                              .height(437)
+                              .url()}
+                            alt={name_exo}
+                            style={{ width: "100%", cursor: "pointer" }}
+                          />
+                        )}
                       </div>
                     </div>
                   </Link>

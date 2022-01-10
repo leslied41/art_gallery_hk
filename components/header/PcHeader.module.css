@@ -22,8 +22,6 @@
 } */
 .icon {
   position: absolute;
-  font-size: var(--font-xs);
-  line-height: var(--lineheight-xs);
   color: var(--white);
   mix-blend-mode: exclusion;
 }

@@ -56,6 +56,10 @@ ul {
   font-size: 20px;
   line-height: 21px;
 }
+.h6 {
+  font-size: 35px;
+  line-height: 32px;
+}
 /* font color */
 .red-text {
   color: red;

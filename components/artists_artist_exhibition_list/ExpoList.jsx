@@ -20,8 +20,8 @@ const ExpoList = ({ data }) => {
                   return (
                     <Link key={index} href={"/exhibitions/" + slug.current}>
                       <li className="mt-30">
-                        <p>{name_exo}</p>
-                        <p>{date}</p>
+                        <p className="h6">{name_exo}</p>
+                        <p className="h3">{date}</p>
                       </li>
                     </Link>
                   );

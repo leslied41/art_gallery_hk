@@ -28,9 +28,9 @@ const InterviewsList = ({ data }) => {
                   interview_brief_cn,
                 } = interview;
                 return (
-                  <div key={_id} className="h3 mt-30">
+                  <div key={_id} className="h6 mt-30">
                     {router.locale == "en" ? title : title_cn}
-                    <div className="h4">
+                    <div className="h3">
                       <BlockContent
                         blocks={
                           router.locale === "en"

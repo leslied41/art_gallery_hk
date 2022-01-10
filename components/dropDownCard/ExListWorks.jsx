@@ -69,14 +69,17 @@ const ExListWorks = ({ data }) => {
     });
   }, []);
 
-  useEffect(() => {
-    // add or remove refs
-    setElRefs((elRefs) =>
-      Array(works.length)
-        .fill()
-        .map((_, index) => elRefs[index] || createRef())
-    );
-  }, [works.length]);
+  {
+    works &&
+      useEffect(() => {
+        // add or remove refs
+        setElRefs((elRefs) =>
+          Array(works.length)
+            .fill()
+            .map((_, index) => elRefs[index] || createRef())
+        );
+      }, [works.length]);
+  }
 
   useEffect(() => {
     if (model) {
@@ -151,189 +154,190 @@ const ExListWorks = ({ data }) => {
               height: "100vh",
             }}
           >
-            {works.map((item, index) => {
-              const { image, image_parameter } = item;
-              return (
-                <div
-                  key={index}
-                  style={
-                    index == targetIndex
-                      ? {
-                          height: "100vh",
-                          width: "100vw",
-                        }
-                      : { display: "none" }
-                  }
-                >
+            {works &&
+              works.map((item, index) => {
+                const { image, image_parameter } = item;
+                return (
                   <div
                     key={index}
                     style={
                       index == targetIndex
-                        ? iszoomed
-                          ? {
-                              display: "flex",
-                              height: "100vh",
-                              overflow: "hidden",
-                              width: "100%",
-                              justifyContent: "center",
-                            }
-                          : {
-                              display: "flex",
-                              height: "80vh",
-                              overflow: "hidden",
-                              width: "100%",
-                              justifyContent: "center",
-                            }
+                        ? {
+                            height: "100vh",
+                            width: "100vw",
+                          }
                         : { display: "none" }
                     }
                   >
-                    <img
-                      key={index}
-                      src={urlFor(image.asset).url()}
-                      alt="works"
-                      style={
-                        index == targetIndex
-                          ? {
-                              display: "block",
-                              height: "100%",
-                              cursor: "zoom-in",
-                            }
-                          : { display: "none" }
-                      }
-                      ref={elRefs[index]}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        if (new Date() - clickTime < 150) {
-                          if (!iszoomed) {
-                            zoomin(e);
-                            setiszoomed(true);
-                          }
-                          if (iszoomed) {
-                            zoomout(e);
-                            setiszoomed(false);
-                            setmoveDis({ x: 0, y: 0 });
-                          }
-                        }
-                      }}
-                      onMouseDown={(e) => {
-                        e.preventDefault();
-                        mouseDown(e);
-                        e.target.style.cursor = "grab";
-                      }}
-                      onTouchStart={(e) => {
-                        e.cancelable && e.preventDefault();
-                        setstartingPoint({
-                          x: e.changedTouches[0].clientX - moveDis.x,
-                          y: e.changedTouches[0].clientY - moveDis.y,
-                        });
-                        setmoving(true);
-                        setimageSize({
-                          x: e.target.getBoundingClientRect().width,
-                          y: e.target.getBoundingClientRect().height,
-                        });
-                        setswipeInitial({
-                          x: e.touches[0].clientX,
-                          y: e.touches[0].clientY,
-                        });
-                      }}
-                      onMouseUp={(e) => {
-                        setmoving(false);
-                        e.target.style.cursor = "zoom-in";
-                      }}
-                      onTouchEnd={() => {
-                        setmoving(false);
-                      }}
-                      onMouseMove={(e) => {
-                        e.preventDefault();
-                        if (!moving) {
-                          return;
-                        }
-                        setmoveDis({
-                          x: e.clientX - startingPoint.x,
-                          y: e.clientY - startingPoint.y,
-                        });
-                        move(e);
-                      }}
-                      onTouchMove={(e) => {
-                        e.cancelable && e.preventDefault();
-
-                        setmoveDis({
-                          x: e.changedTouches[0].clientX - startingPoint.x,
-                          y: e.changedTouches[0].clientY - startingPoint.y,
-                        });
-                        if (swipeInitial.x == null) {
-                          return;
-                        }
-                        if (swipeInitial.y == null) {
-                          return;
-                        }
-                        let diffX = swipeInitial.x - e.touches[0].clientX;
-                        let diffY = swipeInitial.y - e.touches[0].clientY;
-                        if (!iszoomed) {
-                          if (Math.abs(diffX) > Math.abs(diffY)) {
-                            // sliding horizontally
-                            if (diffX > 0) {
-                              // swiped left
-                              if (targetIndex == 0) {
-                                setTargetIndex(works.length - 1);
-                              }
-                              if (targetIndex != 0) {
-                                setTargetIndex(targetIndex - 1);
-                              }
-                              console.log("swiped left");
-                            } else {
-                              // swiped right
-                              if (targetIndex == works.length - 1) {
-                                setTargetIndex(0);
-                              }
-                              if (targetIndex != works.length - 1)
-                                setTargetIndex(targetIndex + 1);
-                              console.log("swiped right");
-                            }
-                          } else {
-                            // sliding vertically
-                            if (diffY > 0) {
-                              // swiped up
-                              setmodel(false);
-                              console.log("swiped up");
-                            } else {
-                              // swiped down
-                              setmodel(false);
-                              console.log("swiped down");
-                            }
-                          }
-                          setswipeInitial({ x: null, y: null });
-                        }
-
-                        if (moving) {
-                          move(e);
-                        }
-                      }}
-                    />
-                  </div>
-                  {!iszoomed && (
                     <div
+                      key={index}
                       style={
                         index == targetIndex
-                          ? {
-                              display: "flex",
-                              height: "20vh",
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }
+                          ? iszoomed
+                            ? {
+                                display: "flex",
+                                height: "100vh",
+                                overflow: "hidden",
+                                width: "100%",
+                                justifyContent: "center",
+                              }
+                            : {
+                                display: "flex",
+                                height: "80vh",
+                                overflow: "hidden",
+                                width: "100%",
+                                justifyContent: "center",
+                              }
                           : { display: "none" }
                       }
                     >
-                      <BlockContent
-                        blocks={image_parameter}
-                        projectId="z3dq9mvc"
-                        dataset="production"
+                      <img
+                        key={index}
+                        src={urlFor(image.asset).url()}
+                        alt="works"
+                        style={
+                          index == targetIndex
+                            ? {
+                                display: "block",
+                                height: "100%",
+                                cursor: "zoom-in",
+                              }
+                            : { display: "none" }
+                        }
+                        ref={elRefs[index]}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (new Date() - clickTime < 150) {
+                            if (!iszoomed) {
+                              zoomin(e);
+                              setiszoomed(true);
+                            }
+                            if (iszoomed) {
+                              zoomout(e);
+                              setiszoomed(false);
+                              setmoveDis({ x: 0, y: 0 });
+                            }
+                          }
+                        }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          mouseDown(e);
+                          e.target.style.cursor = "grab";
+                        }}
+                        onTouchStart={(e) => {
+                          e.cancelable && e.preventDefault();
+                          setstartingPoint({
+                            x: e.changedTouches[0].clientX - moveDis.x,
+                            y: e.changedTouches[0].clientY - moveDis.y,
+                          });
+                          setmoving(true);
+                          setimageSize({
+                            x: e.target.getBoundingClientRect().width,
+                            y: e.target.getBoundingClientRect().height,
+                          });
+                          setswipeInitial({
+                            x: e.touches[0].clientX,
+                            y: e.touches[0].clientY,
+                          });
+                        }}
+                        onMouseUp={(e) => {
+                          setmoving(false);
+                          e.target.style.cursor = "zoom-in";
+                        }}
+                        onTouchEnd={() => {
+                          setmoving(false);
+                        }}
+                        onMouseMove={(e) => {
+                          e.preventDefault();
+                          if (!moving) {
+                            return;
+                          }
+                          setmoveDis({
+                            x: e.clientX - startingPoint.x,
+                            y: e.clientY - startingPoint.y,
+                          });
+                          move(e);
+                        }}
+                        onTouchMove={(e) => {
+                          e.cancelable && e.preventDefault();
+
+                          setmoveDis({
+                            x: e.changedTouches[0].clientX - startingPoint.x,
+                            y: e.changedTouches[0].clientY - startingPoint.y,
+                          });
+                          if (swipeInitial.x == null) {
+                            return;
+                          }
+                          if (swipeInitial.y == null) {
+                            return;
+                          }
+                          let diffX = swipeInitial.x - e.touches[0].clientX;
+                          let diffY = swipeInitial.y - e.touches[0].clientY;
+                          if (!iszoomed) {
+                            if (Math.abs(diffX) > Math.abs(diffY)) {
+                              // sliding horizontally
+                              if (diffX > 0) {
+                                // swiped left
+                                if (targetIndex == 0) {
+                                  setTargetIndex(works.length - 1);
+                                }
+                                if (targetIndex != 0) {
+                                  setTargetIndex(targetIndex - 1);
+                                }
+                                console.log("swiped left");
+                              } else {
+                                // swiped right
+                                if (targetIndex == works.length - 1) {
+                                  setTargetIndex(0);
+                                }
+                                if (targetIndex != works.length - 1)
+                                  setTargetIndex(targetIndex + 1);
+                                console.log("swiped right");
+                              }
+                            } else {
+                              // sliding vertically
+                              if (diffY > 0) {
+                                // swiped up
+                                setmodel(false);
+                                console.log("swiped up");
+                              } else {
+                                // swiped down
+                                setmodel(false);
+                                console.log("swiped down");
+                              }
+                            }
+                            setswipeInitial({ x: null, y: null });
+                          }
+
+                          if (moving) {
+                            move(e);
+                          }
+                        }}
                       />
                     </div>
-                  )}
-                </div>
-              );
-            })}
+                    {!iszoomed && (
+                      <div
+                        style={
+                          index == targetIndex
+                            ? {
+                                display: "flex",
+                                height: "20vh",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }
+                            : { display: "none" }
+                        }
+                      >
+                        <BlockContent
+                          blocks={image_parameter}
+                          projectId="z3dq9mvc"
+                          dataset="production"
+                        />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
           </div>
           {!isMobile && (
             <div className="h3">
@@ -376,56 +380,57 @@ const ExListWorks = ({ data }) => {
         </div>
       </div>
       <Collapsible showCard={showCard}>
-        {works.map((work, index) => {
-          const width = work.metadata.metadata.dimensions.width;
-          const height = work.metadata.metadata.dimensions.height;
+        {works &&
+          works.map((work, index) => {
+            const width = work.metadata.metadata.dimensions.width;
+            const height = work.metadata.metadata.dimensions.height;
 
-          const aspectRatio = work.metadata.metadata.dimensions.aspectRatio;
-          const {
-            name,
-            name_cn,
-            image,
-            image_parameter,
-            introduction,
-            introduction_cn,
-          } = work;
-          //console.log(aspectRatio, width);
-          return (
-            <div key={index} data-src={urlFor(image.asset).url()}>
-              {width > 750 && aspectRatio > 1 ? (
-                <div key={index} className="mt-145">
-                  <VerticalLayout
-                    name={name}
-                    name_cn={name_cn}
-                    image={image}
-                    image_parameter={image_parameter}
-                    introduction={introduction}
-                    introduction_cn={introduction_cn}
-                    width={width}
-                    height={height}
-                    index={index}
-                    getIndex={getIndex}
-                  />
-                </div>
-              ) : (
-                <div key={index} className="mt-145">
-                  <HorizontalLayout
-                    name={name}
-                    name_cn={name_cn}
-                    image={image}
-                    image_parameter={image_parameter}
-                    introduction={introduction}
-                    introduction_cn={introduction_cn}
-                    width={width}
-                    height={height}
-                    index={index}
-                    getIndex={getIndex}
-                  />
-                </div>
-              )}
-            </div>
-          );
-        })}
+            const aspectRatio = work.metadata.metadata.dimensions.aspectRatio;
+            const {
+              name,
+              name_cn,
+              image,
+              image_parameter,
+              introduction,
+              introduction_cn,
+            } = work;
+            //console.log(aspectRatio, width);
+            return (
+              <div key={index} data-src={urlFor(image.asset).url()}>
+                {width > 750 && aspectRatio > 1 ? (
+                  <div key={index} className="mt-145">
+                    <VerticalLayout
+                      name={name}
+                      name_cn={name_cn}
+                      image={image}
+                      image_parameter={image_parameter}
+                      introduction={introduction}
+                      introduction_cn={introduction_cn}
+                      width={width}
+                      height={height}
+                      index={index}
+                      getIndex={getIndex}
+                    />
+                  </div>
+                ) : (
+                  <div key={index} className="mt-145">
+                    <HorizontalLayout
+                      name={name}
+                      name_cn={name_cn}
+                      image={image}
+                      image_parameter={image_parameter}
+                      introduction={introduction}
+                      introduction_cn={introduction_cn}
+                      width={width}
+                      height={height}
+                      index={index}
+                      getIndex={getIndex}
+                    />
+                  </div>
+                )}
+              </div>
+            );
+          })}
       </Collapsible>
     </>
   );

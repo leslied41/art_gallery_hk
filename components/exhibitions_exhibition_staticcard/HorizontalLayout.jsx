@@ -27,19 +27,21 @@ const HorizontalLayout = ({
         <div className={styles.grid}>
           <div className="col">
             <div className={styles.imgcontainer}>
-              <img
-                key={index}
-                src={urlFor(image.asset).url()}
-                alt={image.asset._ref}
-                style={{ width: "100%" }}
-                // layout="responsive"
-                // width="100%"
-                // height="100%"
-                // objectFit="cover"
-                onClick={() => {
-                  getIndex(index);
-                }}
-              />
+              {image && (
+                <img
+                  key={index}
+                  src={urlFor(image.asset).url()}
+                  alt={image.asset._ref}
+                  style={{ width: "100%" }}
+                  // layout="responsive"
+                  // width="100%"
+                  // height="100%"
+                  // objectFit="cover"
+                  onClick={() => {
+                    getIndex(index);
+                  }}
+                />
+              )}
             </div>
             <div className="mt-30">
               <span className="h4">

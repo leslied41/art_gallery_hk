@@ -30,9 +30,11 @@ const ExStaticCard = ({ data, fowardref }) => {
   } = data;
   // console.log("exstaticcard");
   // console.log(data);
-  const height = metadata.metadata.dimensions.height;
-  const width = metadata.metadata.dimensions.width;
-  const aspectRatio = metadata.metadata.dimensions.aspectRatio;
+  const height = metadata ? metadata.metadata.dimensions.height : null;
+  const width = metadata ? metadata.metadata.dimensions.width : null;
+  const aspectRatio = metadata
+    ? metadata.metadata.dimensions.aspectRatio
+    : null;
   const [model, setmodel] = useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
   const [iszoomed, setiszoomed] = useState(false);
@@ -174,7 +176,7 @@ const ExStaticCard = ({ data, fowardref }) => {
                 }
               >
                 <img
-                  src={urlFor(image.asset).url()}
+                  src={image ? urlFor(image.asset).url() : null}
                   alt="works"
                   ref={image_ref}
                   style={{
