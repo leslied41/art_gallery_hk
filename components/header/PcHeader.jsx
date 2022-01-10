@@ -87,7 +87,7 @@ const PcHeader = () => {
   useEffect(() => {
     studyContainer.current.addEventListener("mouseover", () => {
       studyCursor.current.style.display = "block";
-      studyCursor.current.style.color = "var(--white)";
+      //studyCursor.current.style.color = "var(--white)";
       //linksEl.current.style.color = "var(--white)";
     });
     studyContainer.current.addEventListener("mouseleave", () => {
@@ -96,21 +96,21 @@ const PcHeader = () => {
     });
     newsContainer.current.addEventListener("mouseover", () => {
       newsCursor.current.style.display = "block";
-      newsCursor.current.style.color = "var(--white)";
+      //newsCursor.current.style.color = "var(--white)";
     });
     newsContainer.current.addEventListener("mouseleave", () => {
       newsCursor.current.style.display = "none";
     });
     artistsContainer.current.addEventListener("mouseover", () => {
       artistsCursor.current.style.display = "block";
-      artistsCursor.current.style.color = "var(--white)";
+      //artistsCursor.current.style.color = "var(--white)";
     });
     artistsContainer.current.addEventListener("mouseleave", () => {
       artistsCursor.current.style.display = "none";
     });
     aboutContainer.current.addEventListener("mouseover", () => {
       aboutCursor.current.style.display = "block";
-      aboutCursor.current.style.color = "var(--white)";
+      //aboutCursor.current.style.color = "var(--white)";
     });
     aboutContainer.current.addEventListener("mouseleave", () => {
       aboutCursor.current.style.display = "none";
@@ -118,7 +118,7 @@ const PcHeader = () => {
     });
     exhibitionContainer.current.addEventListener("mouseover", () => {
       exhibitionCursor.current.style.display = "block";
-      exhibitionCursor.current.style.color = "var(--white)";
+      //exhibitionCursor.current.style.color = "var(--white)";
       //titleEl.current.style.color = "var(--white)";
     });
     exhibitionContainer.current.addEventListener("mouseleave", () => {
