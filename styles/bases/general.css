@@ -15,10 +15,12 @@
 .tc {
   font-family: Zichtbaar, "Noto Sans TC", sans-serif;
   overflow-y: scroll;
+  height: 100vh;
 }
 .en {
   font-family: Zichtbaar;
   overflow-y: scroll;
+  height: 100vh;
 }
 
 body {
