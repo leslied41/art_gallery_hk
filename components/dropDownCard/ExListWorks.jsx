@@ -21,6 +21,7 @@ function urlFor(source) {
   return builder.image(source);
 }
 const ExListWorks = ({ data }) => {
+  console.log(data);
   const { showCard } = useContext(dropDownContext);
   const { works } = data;
 
@@ -79,7 +80,7 @@ const ExListWorks = ({ data }) => {
             .map((_, index) => elRefs[index] || createRef())
         );
     }
-  }, [works.length || null]);
+  }, [works ? works.length : null]);
 
   useEffect(() => {
     if (model) {

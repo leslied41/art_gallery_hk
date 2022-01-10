@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { dropDownContext } from "./DropDownCard";
 
 const ArtistWorksImageList = ({ data }) => {
+  console.log(data);
   const { showCard } = useContext(dropDownContext);
   const [loaded, setloaded] = useState(true);
   const [slicedWorkImages, setslicedWorkImages] = useState(data);

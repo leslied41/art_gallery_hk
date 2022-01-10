@@ -41,19 +41,18 @@ const StaticCard = ({ data, form, fowardref }) => {
           <div>{form && <AppointmentForm formdata={data} />}</div>
 
           {/* if phone exists, display it */}
-          <div className="mt-145">
-            {phone && (
+
+          {(phone || email) && (
+            <div className="mt-145">
               <div className="phone">
                 <span className="h3">{phone}</span>
               </div>
-            )}
-            {/* if emails exists, display it */}
-            {email && (
               <div className="email">
                 <span className="h3"> {email}</span>
               </div>
-            )}
-          </div>
+            </div>
+          )}
+
           {/* if social media exists, display it */}
           {social && (
             <div className="socialMedia">
