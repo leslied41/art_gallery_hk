@@ -17,6 +17,8 @@ const HorizontalLayout = ({
   introduction_cn,
   width,
   height,
+  index,
+  getIndex,
 }) => {
   const router = useRouter();
   return (
@@ -26,6 +28,7 @@ const HorizontalLayout = ({
           <div className="col">
             <div className={styles.imgcontainer}>
               <img
+                key={index}
                 src={urlFor(image.asset).url()}
                 alt={image.asset._ref}
                 style={{ width: "100%" }}
@@ -33,6 +36,9 @@ const HorizontalLayout = ({
                 // width="100%"
                 // height="100%"
                 // objectFit="cover"
+                onClick={() => {
+                  getIndex(index);
+                }}
               />
             </div>
             <div className="mt-30">

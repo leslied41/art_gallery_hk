@@ -18,19 +18,25 @@ const VerticalLayout = ({
   introduction_cn,
   width,
   height,
+  index,
+  getIndex,
 }) => {
   const router = useRouter();
   //console.log(12345);
-  console.log(width, height);
+  //console.log(width, height);
   return (
     <>
       <div>
         <div className="oneColumn">
           <div className={styles.topcontainer}>
             <img
+              key={index}
               src={urlFor(image.asset).url()}
               alt={image.asset._ref}
               className={styles.img}
+              onClick={() => {
+                getIndex(index);
+              }}
 
               // layout="fill"
               // objectPosition="60% 40%"
