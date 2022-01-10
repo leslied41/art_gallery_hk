@@ -79,7 +79,7 @@ const ExListWorks = ({ data }) => {
             .map((_, index) => elRefs[index] || createRef())
         );
     }
-  }, [works.length | null]);
+  }, [works.length || null]);
 
   useEffect(() => {
     if (model) {
