@@ -47,6 +47,7 @@ const NewsList = ({ newsData }) => {
           news_brief,
           news_brief_cn,
           image,
+          news_link,
         } = news;
         return (
           <div className={styles.grid} key={_id}>
@@ -63,14 +64,20 @@ const NewsList = ({ newsData }) => {
               </div>
             </div>
             <div className="col mb-42">
-              <p className="h2">{router.locale == "en" ? title : title_cn}</p>
-              <div className="h3">
-                <BlockContent
-                  blocks={router.locale == "en" ? news_brief : news_brief_cn}
-                  projectId="z3dq9mvc"
-                  dataset="production"
-                />
-              </div>
+              <a
+                href={news_link ? news_link : null}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <p className="h2">{router.locale == "en" ? title : title_cn}</p>
+                <div className="h3">
+                  <BlockContent
+                    blocks={router.locale == "en" ? news_brief : news_brief_cn}
+                    projectId="z3dq9mvc"
+                    dataset="production"
+                  />
+                </div>
+              </a>
             </div>
           </div>
         );

@@ -33,6 +33,7 @@ export default {
         maxLength: 96,
       },
     },
+    { name: "news_link", title: "News Link", type: "url" },
     { name: "news_brief", title: "News Brief", type: "blockContent" },
     {
       name: "news_brief_cn",
