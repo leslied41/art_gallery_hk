@@ -21,7 +21,7 @@ function urlFor(source) {
   return builder.image(source);
 }
 const ExListWorks = ({ data }) => {
-  console.log(data);
+  //console.log(data);
   const { showCard } = useContext(dropDownContext);
   const { works } = data;
 
@@ -300,10 +300,12 @@ const ExListWorks = ({ data }) => {
                               if (diffY > 0) {
                                 // swiped up
                                 setmodel(false);
+                                setiszoomed(false);
                                 console.log("swiped up");
                               } else {
                                 // swiped down
                                 setmodel(false);
+                                setiszoomed(false);
                                 console.log("swiped down");
                               }
                             }
@@ -345,6 +347,7 @@ const ExListWorks = ({ data }) => {
               <div
                 className={styles.closeIcon}
                 onClick={() => {
+                  setiszoomed(false);
                   setmodel(false);
                 }}
               >
@@ -353,6 +356,7 @@ const ExListWorks = ({ data }) => {
               <div
                 className={styles.next}
                 onClick={() => {
+                  setiszoomed(false);
                   if (targetIndex == works.length - 1) {
                     setTargetIndex(0);
                   }
@@ -366,6 +370,7 @@ const ExListWorks = ({ data }) => {
                 className={styles.prev}
                 ref={prevRef}
                 onClick={() => {
+                  setiszoomed(false);
                   if (targetIndex == 0) {
                     setTargetIndex(works.length - 1);
                   }

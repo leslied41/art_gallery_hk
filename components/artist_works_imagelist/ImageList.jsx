@@ -297,10 +297,12 @@ const ImageList = ({
                               if (diffY > 0) {
                                 // swiped up
                                 setmodel(false);
+                                setiszoomed(false);
                                 console.log("swiped up");
                               } else {
                                 // swiped down
                                 setmodel(false);
+                                setiszoomed(false);
                                 console.log("swiped down");
                               }
                             }
@@ -344,6 +346,7 @@ const ImageList = ({
                 className={styles.closeIcon}
                 onClick={() => {
                   setmodel(false);
+                  setiszoomed(false);
                 }}
               >
                 Close
@@ -351,6 +354,7 @@ const ImageList = ({
               <div
                 className={styles.next}
                 onClick={() => {
+                  setiszoomed(false);
                   if (targetIndex == workImages.length - 1) {
                     setTargetIndex(0);
                   }
@@ -364,6 +368,7 @@ const ImageList = ({
                 className={styles.prev}
                 ref={prevRef}
                 onClick={() => {
+                  setiszoomed(false);
                   if (targetIndex == 0) {
                     setTargetIndex(workImages.length - 1);
                   }
