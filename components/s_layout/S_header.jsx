@@ -103,7 +103,7 @@ const S_header = () => {
           <span
             className="h3"
             style={{
-              position: "absolute",
+              position: "fixed",
               color: "white",
               zIndex: "999",
               mixBlendMode: "exclusion",
@@ -116,7 +116,7 @@ const S_header = () => {
           <span
             className="h3"
             style={{
-              position: "absolute",
+              position: "fixed",
               color: "white",
               zIndex: "999",
               mixBlendMode: "exclusion",
@@ -129,7 +129,7 @@ const S_header = () => {
           <span
             className="h3"
             style={{
-              position: "absolute",
+              position: "fixed",
               color: "white",
               zIndex: "999",
               mixBlendMode: "exclusion",
@@ -142,7 +142,7 @@ const S_header = () => {
           <span
             className="h3"
             style={{
-              position: "absolute",
+              position: "fixed",
               color: "white",
               zIndex: "999",
               mixBlendMode: "exclusion",
@@ -155,7 +155,7 @@ const S_header = () => {
           <span
             className="h3"
             style={{
-              position: "absolute",
+              position: "fixed",
               color: "white",
               zIndex: "999",
               mixBlendMode: "exclusion",
@@ -180,6 +180,7 @@ const S_header = () => {
               left: "0",
               bottom: "0",
               right: "0",
+              zIndex: "1",
             }}
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -234,6 +235,7 @@ const S_header = () => {
                 style={{ cursor: "pointer" }}
                 onMouseOver={() => {
                   pressCursor.current.style.display = "block";
+                  console.log("over me");
                 }}
                 onMouseLeave={() => {
                   pressCursor.current.style.display = "none";
