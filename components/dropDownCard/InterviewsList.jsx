@@ -26,21 +26,30 @@ const InterviewsList = ({ data }) => {
                   content_cn,
                   interview_brief,
                   interview_brief_cn,
+                  interview_link,
                 } = interview;
                 return (
-                  <div key={_id} className="h6 mt-30">
-                    {router.locale == "en" ? title : title_cn}
-                    <div className="h3">
-                      <BlockContent
-                        blocks={
-                          router.locale === "en"
-                            ? interview_brief
-                            : interview_brief_cn
-                        }
-                        projectId="z3dq9mvc"
-                        dataset="production"
-                      />
-                    </div>
+                  <div key={_id} className="mt-30">
+                    <a
+                      href={interview_link ? interview_link : null}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <div className="h6">
+                        {router.locale == "en" ? title : title_cn}
+                      </div>
+                      <div className="h3">
+                        <BlockContent
+                          blocks={
+                            router.locale === "en"
+                              ? interview_brief
+                              : interview_brief_cn
+                          }
+                          projectId="z3dq9mvc"
+                          dataset="production"
+                        />
+                      </div>
+                    </a>
                   </div>
                 );
               })}

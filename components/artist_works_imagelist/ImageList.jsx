@@ -7,7 +7,6 @@ import React, {
   useRef,
   createRef,
   useCallback,
-  useLayoutEffect,
 } from "react";
 import Image from "next/image";
 import BlockContent from "@sanity/block-content-to-react";
@@ -51,9 +50,6 @@ const ImageList = ({
     } else if (window.innerWidth >= 768) {
       setisMobile(false);
     }
-  }, []);
-
-  useLayoutEffect(() => {
     window.addEventListener("resize", () => {
       if (window.innerWidth < 768) {
         setisMobile(true);
