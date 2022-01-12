@@ -20,11 +20,12 @@ const MobileHeader = () => {
   const { pathname, asPath, query } = router;
   const { settings } = useGlobalSettings();
 
-  const artists_image = settings[0].artists;
-  const exhibition_image = settings[0].exhibitions;
-  const news_image = settings[0].news;
-  const about_image = settings[0].about;
-  const landing_image = settings[0].landing;
+  const artists_image = settings[0].artists_mobile || settings[0].artists;
+  const exhibition_image =
+    settings[0].exhibitions_mobile || settings[0].exhibitions;
+  const news_image = settings[0].news_mobile || settings[0].news;
+  const about_image = settings[0].about_mobile || settings[0].about;
+  const landing_image = settings[0].landing_mobile || settings[0].landing;
 
   const [headerImage, setheaderImage] = useState();
 

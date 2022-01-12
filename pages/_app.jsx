@@ -40,7 +40,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
 
   const settings_data = await sanityClient.fetch(
-    `*[_type=='settings']{orgnizationName,orgnizationName_cn,address,phone,email,social[]->,businessHours,abbreviation,exhibitions,news,about,artists,landing}`
+    `*[_type=='settings']{orgnizationName,orgnizationName_cn,phone,email,social[]->,abbreviation,exhibitions,news,about,artists,landing,exhibitions_mobile,news_mobile,about_mobile,artists_mobile,landing_mobile}`
   );
   //console.log(data);
 
