@@ -7,12 +7,29 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import logo from "../../public/images/Frame.svg";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Footer() {
   const router = useRouter();
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
+  const [isMobile, setisMobile] = useState();
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setisMobile(true);
+    } else if (window.innerWidth >= 768) {
+      setisMobile(false);
+    }
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 768) {
+        setisMobile(true);
+        //console.log(isMobile);
+      } else if (window.innerWidth >= 768) {
+        setisMobile(false);
+        //console.log(isMobile);
+      }
+    });
+  }, []);
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);
@@ -28,7 +45,6 @@ export default function Footer() {
     email,
     social,
   } = settings[0];
-  console.log(email);
   return (
     <>
       <div className={styles.footer}>
@@ -101,7 +117,17 @@ export default function Footer() {
               <div>
                 <div className={styles.links}>
                   <span className="h4">
-                    <Links />
+                    <Links
+                      font_size={
+                        router.locale == "en"
+                          ? isMobile
+                            ? { fontSize: "13px" }
+                            : { fontSize: "16px" }
+                          : isMobile
+                          ? { fontSize: "17px" }
+                          : { fontSize: "20px" }
+                      }
+                    />
                   </span>
                 </div>
               </div>

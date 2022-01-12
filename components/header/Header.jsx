@@ -18,9 +18,6 @@ function Header() {
     } else if (window.innerWidth >= 768) {
       setisMobile(false);
     }
-  }, []);
-
-  useLayoutEffect(() => {
     window.addEventListener("resize", () => {
       if (window.innerWidth < 768) {
         setisMobile(true);
@@ -30,15 +27,6 @@ function Header() {
         //console.log(isMobile);
       }
     });
-    return () => {
-      window.removeEventListener("resize", () => {
-        if (window.innerWidth < 768) {
-          setisMobile(true);
-        } else if (window.innerWidth >= 768) {
-          setisMobile(false);
-        }
-      });
-    };
   }, []);
 
   return (
