@@ -24,20 +24,12 @@ export default {
       type: "string",
       fieldset: "translation",
     },
+    { name: "interview_link", title: "Interview Link", type: "url" },
     {
       title: "Interviewee",
       name: "interviewee",
       type: "reference",
       to: [{ type: "artist" }],
-    },
-    {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: {
-        source: "title",
-        maxLength: 96,
-      },
     },
     { name: "interview_brief", title: "Interview Brief", type: "blockContent" },
     {

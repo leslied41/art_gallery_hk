@@ -37,33 +37,13 @@ export default {
       title: "Abbreviation",
       type: "string",
     },
-    {
-      name: "address",
-      title: "Address",
-      type: "text",
-    },
-    {
-      name: "address_cn",
-      title: "Address Chinese",
-      type: "text",
-      fieldset: "translation",
-    },
+
     {
       name: "phone",
       title: "Phone",
       type: "number",
     },
-    {
-      name: "businessHours",
-      title: "Business Hours",
-      type: "text",
-    },
-    {
-      name: "businessHours_cn",
-      title: "Business Hours Chinese",
-      type: "text",
-      fieldset: "translation",
-    },
+
     {
       name: "email",
       title: "Email",
@@ -77,31 +57,61 @@ export default {
     },
     {
       name: "exhibitions",
-      title: "Exhibitions",
+      title: "Exhibitions for desktop",
+      type: "image",
+      fieldset: "headerImage",
+    },
+    {
+      name: "exhibitions_mobile",
+      title: "Exhibitions for mobile",
       type: "image",
       fieldset: "headerImage",
     },
     {
       name: "artists",
-      title: "Artists",
+      title: "Artists for desktop",
+      type: "image",
+      fieldset: "headerImage",
+    },
+    {
+      name: "artists_mobile",
+      title: "Artists for mobile",
       type: "image",
       fieldset: "headerImage",
     },
     {
       name: "landing",
-      title: "Landing",
+      title: "Landing for desktop",
+      type: "image",
+      fieldset: "headerImage",
+    },
+    {
+      name: "landing_mobile",
+      title: "Landing for mobile",
       type: "image",
       fieldset: "headerImage",
     },
     {
       name: "news",
-      title: "News",
+      title: "News for desktop",
+      type: "image",
+      fieldset: "headerImage",
+    },
+    {
+      name: "news_mobile",
+      title: "News for mobile",
       type: "image",
       fieldset: "headerImage",
     },
     {
       name: "about",
-      title: "About",
+      title: "About for desktop",
+      type: "image",
+      fieldset: "headerImage",
+    },
+    {
+      name: "about_mobile",
+      title: "About for mobile",
       type: "image",
       fieldset: "headerImage",
     },

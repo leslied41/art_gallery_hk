@@ -7,11 +7,14 @@ export default {
       name: "name",
       title: "Name",
       type: "string",
+      description:
+        "This name cannot be changed! Oherwise, the corresponding page will crash!!!",
     },
     {
       name: "slug",
       title: "Slug",
       type: "slug",
+      description: "Please do not change the slug!!!",
       options: {
         source: "name",
         maxLength: 96,

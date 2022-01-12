@@ -24,15 +24,6 @@ export default {
       type: "string",
       fieldset: "translation",
     },
-    {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: {
-        source: "title",
-        maxLength: 96,
-      },
-    },
     { name: "news_link", title: "News Link", type: "url" },
     { name: "news_brief", title: "News Brief", type: "blockContent" },
     {

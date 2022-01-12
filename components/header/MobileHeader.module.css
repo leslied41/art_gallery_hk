@@ -1,5 +1,5 @@
 .title {
-  position: fixed;
+  position: absolute;
   top: 20px;
   left: 1.4%;
   color: var(--white);
@@ -8,7 +8,7 @@
   mix-blend-mode: exclusion;
 }
 .links {
-  position: fixed;
+  position: absolute;
   writing-mode: vertical-rl;
   top: 20px;
   right: 1.4%;
