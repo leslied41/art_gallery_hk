@@ -172,7 +172,13 @@ const PcHeader = () => {
         </div>
         <div className={styles.links} ref={linksEl}>
           <span className="h2">
-            <Links lan="true" />
+            <Links
+              font_size={
+                router.locale == "en"
+                  ? { fontSize: "32px" }
+                  : { fontSize: "39px" }
+              }
+            />
           </span>
         </div>
         <div className={styles.title} ref={titleEl}>

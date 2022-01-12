@@ -178,13 +178,13 @@ const AppointmentForm = ({ formdata }) => {
 
         {sending ? (
           <div style={{ color: "#9b9b9b" }}>
-            {router.locale == "en" ? "SENT" : "發送中..."}
+            {router.locale == "en" ? "Sent" : "發送中..."}
           </div>
         ) : (
           <input
             name="sent"
             type="submit"
-            value={router.locale == "en" ? "send" : "發送"}
+            value={router.locale == "en" ? "Send" : "發送"}
           />
         )}
       </form>

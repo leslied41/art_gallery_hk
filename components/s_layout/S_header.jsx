@@ -27,26 +27,35 @@ const S_header = () => {
   const [moving, setmoving] = useState(false);
   const [windowHeight, setwindowHeight] = useState();
   const [windowWidth, setwindowWidth] = useState();
+  const [svg_height, setsvg_height] = useState();
+  const [svg_width, setsvg_width] = useState();
   useEffect(() => {
     setwindowHeight(window.innerHeight);
     setwindowWidth(window.innerWidth);
+    setsvg_height(svg.current.clientHeight);
+    setsvg_width(svg.current.clientWidth);
+    window.addEventListener("resize", () => {
+      setwindowHeight(window.innerHeight);
+      setwindowWidth(window.innerWidth);
+      setsvg_height(svg.current.clientHeight);
+      setsvg_width(svg.current.clientWidth);
+    });
   }, []);
 
   const move = () => {
     if (moveDis.x > 0) {
       moveDis.x = 0;
     }
-    if (moveDis.x < windowWidth - 4368) {
-      moveDis.x = windowWidth - 4368;
+    if (moveDis.x < windowWidth - svg_width) {
+      moveDis.x = windowWidth - svg_width;
     }
 
     if (moveDis.y > 0) {
       moveDis.y = 0;
     }
-    if (moveDis.y < windowHeight - 2169) {
-      moveDis.y = windowHeight - 2169;
+    if (moveDis.y < windowHeight - svg_height) {
+      moveDis.y = windowHeight - svg_height;
     }
-
     svg.current.style.transform =
       "translate(" + moveDis.x + "px, " + moveDis.y + "px) ";
   };
@@ -84,8 +93,8 @@ const S_header = () => {
             setToTop(e.pageY);
           }}
           style={{
-            height: "100vh",
-            width: "100vw",
+            height: "100%",
+            width: "100%",
             overflow: "hidden",
             cursor: "grab",
             position: "relative",
@@ -162,12 +171,14 @@ const S_header = () => {
             height="2169"
             viewBox="0 0 4368 2169"
             fill="none"
+            preserveAspectRatio="none"
             style={{
-              zIndex: "1",
+              height: "160%",
+              width: "160%",
               position: "fixed",
               top: "0",
-              bottom: "0",
               left: "0",
+              bottom: "0",
               right: "0",
             }}
             xmlns="http://www.w3.org/2000/svg"

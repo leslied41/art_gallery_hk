@@ -52,7 +52,13 @@ const MobileHeader = () => {
       <section className={styles.section}>
         <div className={styles.links}>
           <span className="h5">
-            <Links lan="true" />
+            <Links
+              font_size={
+                router.locale == "en"
+                  ? { fontSize: "18px" }
+                  : { fontSize: "22px" }
+              }
+            />
           </span>
         </div>
         <div className={styles.title}>
