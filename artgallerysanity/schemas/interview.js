@@ -38,17 +38,6 @@ export default {
       type: "blockContent",
       fieldset: "translation",
     },
-    {
-      name: "content",
-      title: "Content",
-      type: "blockContent",
-    },
-    {
-      name: "content_cn",
-      title: "Content Chinese",
-      type: "blockContent",
-      fieldset: "translation",
-    },
   ],
   preview: {
     select: {

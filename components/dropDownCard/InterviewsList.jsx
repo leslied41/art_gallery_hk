@@ -22,8 +22,6 @@ const InterviewsList = ({ data }) => {
                   _id,
                   title,
                   title_cn,
-                  content,
-                  content_cn,
                   interview_brief,
                   interview_brief_cn,
                   interview_link,
