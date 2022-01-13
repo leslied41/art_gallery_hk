@@ -8,7 +8,7 @@ import ControlBtn from "../components/popup_control/ControlBtn.jsx";
 export default function Recommended({ pageData, newsData }) {
   const { briefSection, seo } = pageData;
   const router = useRouter();
-  console.log(briefSection);
+  //console.log(briefSection);
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? "Recommended" : "推薦"} />
@@ -28,7 +28,7 @@ export default function Recommended({ pageData, newsData }) {
 }
 export async function getStaticProps({ locale }) {
   const pageData = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='Press'][0]`
+    `*[_type=='pages'&&name=='Gallery Press'][0]`
   );
 
   const newsData = await sanityClient.fetch(`*[_type=='news']`);
