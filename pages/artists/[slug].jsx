@@ -62,8 +62,8 @@ export default function Artist({
           <DropDownCard
             title={
               router.locale == "en"
-                ? artist_dropdown.first_name
-                : artist_dropdown.first_name_cn
+                ? artist_dropdown?.first_name
+                : artist_dropdown?.first_name_cn
             }
           >
             <ArtistBio data={artistData[0]} />
@@ -73,8 +73,8 @@ export default function Artist({
           <DropDownCard
             title={
               router.locale == "en"
-                ? artist_dropdown.second_name
-                : artist_dropdown.second_name_cn
+                ? artist_dropdown?.second_name
+                : artist_dropdown?.second_name_cn
             }
           >
             <ArtistWorksImageList data={workImages} />
@@ -85,8 +85,8 @@ export default function Artist({
           <DropDownCard
             title={
               router.locale == "en"
-                ? artist_dropdown.third_name
-                : artist_dropdown.third_name_cn
+                ? artist_dropdown?.third_name
+                : artist_dropdown?.third_name_cn
             }
           >
             <ExpoList data={mergedArray} />
@@ -97,8 +97,8 @@ export default function Artist({
           <DropDownCard
             title={
               router.locale == "en"
-                ? artist_dropdown.fourth_name
-                : artist_dropdown.fourth_name_cn
+                ? artist_dropdown?.fourth_name
+                : artist_dropdown?.fourth_name_cn
             }
           >
             <InterviewsList data={interviewsData} />
