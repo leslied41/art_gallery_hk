@@ -5,7 +5,6 @@ export const settingsContext = React.createContext({});
 
 export const AppProvider = ({ children, data }) => {
   const [popup_path, setpopup_path] = useState("");
-
   return (
     <settingsContext.Provider
       value={{

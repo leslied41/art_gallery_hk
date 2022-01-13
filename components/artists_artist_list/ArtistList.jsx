@@ -5,6 +5,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ArtistList.module.css";
 import Image from "next/image";
+import { useGlobalSettings } from "../context/GlobalSettings.jsx";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -18,8 +19,12 @@ const ArtistList = ({ artistsData }) => {
   const [mobile, setmobile] = useState();
   const [toTop, settoTop] = useState(0);
   const [stoTop, setstoTop] = useState();
+  const [atbottom, setatbottom] = useState(false);
   const s_ref = useRef();
   const image_ref = useRef();
+
+  //console.log(footerHeight);
+
   useEffect(() => {
     setstoTop(
       s_ref.current.getBoundingClientRect().top + window.scrollY ||
@@ -49,14 +54,21 @@ const ArtistList = ({ artistsData }) => {
   }, []);
 
   useEffect(() => {
-    !mobile ? (image_ref.current.style.top = `${toTop - stoTop}px`) : null;
-  }, [toTop, stoTop]);
+    if (atbottom) {
+      image_ref.current.style.bottom = `0px`;
+      image_ref.current.style.top = null;
+    }
+    if (!atbottom) {
+      image_ref.current.style.top = `${toTop - stoTop}px`;
+      image_ref.current.style.bottom = null;
+    }
+  }, [toTop, stoTop, atbottom]);
 
   const overArtist = (slug) => {
     let targetArtist = artistsData.filter(
       (artist) => artist.slug.current == slug.current
     );
-    console.log(targetArtist);
+    //console.log(targetArtist);
     let targetImg = targetArtist[0].masterpiece;
     setTargetImage(targetImg);
     setShowImage(true);
@@ -64,12 +76,7 @@ const ArtistList = ({ artistsData }) => {
   const leaverArtist = () => [setShowImage(false)];
 
   return (
-    <div
-      className={styles.grid}
-      onMouseLeave={() => {
-        leaverArtist();
-      }}
-    >
+    <div className={styles.grid}>
       <div className="col" style={{ position: "relative" }} ref={s_ref}>
         {!mobile && (
           <div
@@ -94,13 +101,32 @@ const ArtistList = ({ artistsData }) => {
         <ul>
           {artistsData.map((artist, index) => {
             const { name, name_cn, slug, _id, masterpiece } = artist;
+            const length = artistsData.length;
             return (
               <div key={_id} className={styles.gap}>
                 <Link href={"/artists/" + slug.current}>
                   <li
                     key={index}
+                    onMouseLeave={() => {
+                      leaverArtist();
+                    }}
                     onMouseOver={(e) => {
+                      console.log(length);
+
+                      if (
+                        [
+                          length - 1,
+                          length - 2,
+                          length - 3,
+                          length - 4,
+                        ].includes(index)
+                      ) {
+                        setatbottom(true);
+                      } else {
+                        setatbottom(false);
+                      }
                       overArtist(slug);
+
                       settoTop(
                         e.target.getBoundingClientRect().top + window.scrollY ||
                           window.pageYOffset

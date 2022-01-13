@@ -7,13 +7,14 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import logo from "../../public/images/Frame.svg";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function Footer() {
   const router = useRouter();
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
   const [isMobile, setisMobile] = useState();
+  const footer_ref = useRef();
   useEffect(() => {
     if (window.innerWidth < 768) {
       setisMobile(true);
@@ -47,7 +48,7 @@ export default function Footer() {
   } = settings[0];
   return (
     <>
-      <div className={styles.footer}>
+      <div className={styles.footer} ref={footer_ref}>
         <div className={styles.container}>
           <div className={styles.grid}>
             <div className={styles.col1}>
