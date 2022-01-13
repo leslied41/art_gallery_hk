@@ -26,6 +26,8 @@ const MobileHeader = () => {
   const news_image = settings[0].news_mobile || settings[0].news;
   const about_image = settings[0].about_mobile || settings[0].about;
   const landing_image = settings[0].landing_mobile || settings[0].landing;
+  const { link_font_size, cursor_font_size, mobile_link_font_size } =
+    settings[0];
 
   const [headerImage, setheaderImage] = useState();
 
@@ -52,11 +54,22 @@ const MobileHeader = () => {
     <>
       <section className={styles.section}>
         <div className={styles.links}>
-          <span className="h5">
+          <span
+            className="h5"
+            style={
+              mobile_link_font_size && {
+                fontSize: `${mobile_link_font_size}px`,
+              }
+            }
+          >
             <Links
               font_size={
                 router.locale == "en"
-                  ? { fontSize: "18px" }
+                  ? mobile_link_font_size
+                    ? { fontSize: `${mobile_link_font_size - 2}px` }
+                    : { fontSize: "18px" }
+                  : mobile_link_font_size
+                  ? { fontSize: `${mobile_link_font_size + 2}px` }
                   : { fontSize: "22px" }
               }
             />

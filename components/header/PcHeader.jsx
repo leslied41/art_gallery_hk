@@ -37,6 +37,8 @@ const PcHeader = () => {
   const news_image = settings[0].news;
   const about_image = settings[0].about;
   const landing_image = settings[0].landing;
+  const { link_font_size, cursor_font_size, mobile_link_font_size } =
+    settings[0];
 
   useEffect(() => {
     if (pathname.indexOf("/artists") == 0) {
@@ -148,7 +150,10 @@ const PcHeader = () => {
     <>
       <section className={styles.section} ref={sectionEl}>
         <div className={styles.icon}>
-          <div className="h2">
+          <div
+            className="h2"
+            style={cursor_font_size && { fontSize: `${cursor_font_size}px` }}
+          >
             <span className={styles.exhIcon} ref={exhibitionCursor}>
               Exhibitions
             </span>
@@ -171,11 +176,18 @@ const PcHeader = () => {
           </div>
         </div>
         <div className={styles.links} ref={linksEl}>
-          <span className="h2">
+          <span
+            className="h2"
+            style={link_font_size && { fontSize: `${link_font_size}px` }}
+          >
             <Links
               font_size={
                 router.locale == "en"
-                  ? { fontSize: "32px" }
+                  ? link_font_size
+                    ? { fontSize: `${link_font_size - 3.5}px` }
+                    : { fontSize: "32px" }
+                  : link_font_size
+                  ? { fontSize: `${link_font_size + 3.5}px` }
                   : { fontSize: "39px" }
               }
             />

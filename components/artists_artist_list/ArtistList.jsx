@@ -54,13 +54,15 @@ const ArtistList = ({ artistsData }) => {
   }, []);
 
   useEffect(() => {
-    if (atbottom) {
-      image_ref.current.style.bottom = `0px`;
-      image_ref.current.style.top = null;
-    }
-    if (!atbottom) {
-      image_ref.current.style.top = `${toTop - stoTop}px`;
-      image_ref.current.style.bottom = null;
+    if (!mobile) {
+      if (atbottom) {
+        image_ref.current.style.bottom = `0px`;
+        image_ref.current.style.top = null;
+      }
+      if (!atbottom) {
+        image_ref.current.style.top = `${toTop - stoTop}px`;
+        image_ref.current.style.bottom = null;
+      }
     }
   }, [toTop, stoTop, atbottom]);
 

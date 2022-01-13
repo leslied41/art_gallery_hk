@@ -19,6 +19,7 @@ export const getStaticProps = async ({ locale }) => {
     phone,
     social[]->,
     email,
+    font_size
     },terminologySection,missionStatementSection,seo}`
   );
   const settings_data = await sanityClient.fetch(
@@ -64,6 +65,7 @@ export default function About({ data, settings_data }) {
     missionStatementSection,
     seo,
   } = data[0];
+  //console.log(connectSection);
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? "About" : "關於我們"} />

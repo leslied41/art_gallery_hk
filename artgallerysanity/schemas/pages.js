@@ -103,6 +103,12 @@ export default {
           type: "string",
         },
         {
+          name: "font_size",
+          title: "Font Size",
+          type: "number",
+          description: "to determine the font size of this section's titlte",
+        },
+        {
           name: "description",
           title: "Description",
           type: "blockContent",
@@ -233,6 +239,12 @@ export default {
           name: "name",
           title: "Name",
           type: "string",
+        },
+        {
+          name: "font_size",
+          title: "Font Size",
+          type: "number",
+          description: "to determine the font size of this section's titlte",
         },
         {
           name: "description",

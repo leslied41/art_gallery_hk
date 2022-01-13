@@ -115,5 +115,24 @@ export default {
       type: "image",
       fieldset: "headerImage",
     },
+    {
+      name: "link_font_size",
+      title: "Links Font Size for Descktop",
+      type: "number",
+      description: "to determine the font size of the links in header",
+    },
+    {
+      name: "mobile_link_font_size",
+      title: "Links Font Size for Mobile",
+      type: "number",
+      description: "to determine the font size of the links in header",
+    },
+    {
+      name: "cursor_font_size",
+      title: "Curosr Font Size for Desktop",
+      type: "number",
+      description:
+        "to determine the font size of the text besides curosr in header",
+    },
   ],
 };

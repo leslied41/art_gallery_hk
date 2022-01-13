@@ -7,8 +7,17 @@ import AppointmentForm from "../appointment_form/AppointmentForm";
 const StaticCard = ({ data, form, fowardref }) => {
   const router = useRouter();
 
-  const { name, name_cn, description, description_cn, phone, social, email } =
-    data || {};
+  const {
+    name,
+    name_cn,
+    description,
+    description_cn,
+    phone,
+    social,
+    email,
+    font_size,
+  } = data || {};
+  //console.log(font_size);
 
   return (
     <>
@@ -17,7 +26,10 @@ const StaticCard = ({ data, form, fowardref }) => {
         <div className="col">
           {/* display name */}
           <div className={styles.title}>
-            <span className="h1">
+            <span
+              className="h1"
+              style={font_size && { fontSize: `${font_size}px` }}
+            >
               {router.locale === "en" ? name : name_cn}
             </span>
           </div>

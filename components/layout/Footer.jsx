@@ -5,9 +5,9 @@ import BlockContent from "@sanity/block-content-to-react";
 import Links from "../links/Links";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import logo from "../../public/images/Frame.svg";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
+import logo from "../../public/images/Favicon01.svg";
 
 export default function Footer() {
   const router = useRouter();
@@ -45,7 +45,12 @@ export default function Footer() {
     phone,
     email,
     social,
+    link_font_size,
+    cursor_font_size,
+    mobile_link_font_size,
+    mobile_cursor_font_size,
   } = settings[0];
+  console.log(link_font_size);
   return (
     <>
       <div className={styles.footer} ref={footer_ref}>
@@ -55,8 +60,13 @@ export default function Footer() {
               <ul>
                 <li>
                   <div className={styles.logo_container}>
-                    <Image src={logo} alt="logo" />
-                    <span className="h2">
+                    <Image src={logo} alt="logo" height="75px" width="75px" />
+                    <span
+                      className="h2"
+                      style={
+                        router.locale == "tc" ? { paddingTop: "25px" } : {}
+                      }
+                    >
                       <BlockContent
                         blocks={
                           router.locale === "en"
@@ -117,15 +127,32 @@ export default function Footer() {
               </div>
               <div>
                 <div className={styles.links}>
-                  <span className="h4">
+                  <span
+                    className="h4"
+                    style={
+                      isMobile
+                        ? mobile_link_font_size && {
+                            fontSize: `${mobile_link_font_size}px`,
+                          }
+                        : link_font_size && { fontSize: `${link_font_size}px` }
+                    }
+                  >
                     <Links
                       font_size={
                         router.locale == "en"
                           ? isMobile
-                            ? { fontSize: "13px" }
+                            ? mobile_link_font_size
+                              ? { fontSize: `${mobile_link_font_size - 2}px` }
+                              : { fontSize: "13px" }
+                            : link_font_size
+                            ? { fontSize: `${link_font_size - 2}px` }
                             : { fontSize: "16px" }
                           : isMobile
-                          ? { fontSize: "17px" }
+                          ? mobile_link_font_size
+                            ? { fontSize: `${mobile_link_font_size + 2}px` }
+                            : { fontSize: "17px" }
+                          : link_font_size
+                          ? { fontSize: `${link_font_size + 2}px` }
                           : { fontSize: "20px" }
                       }
                     />
