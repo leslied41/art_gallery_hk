@@ -1,10 +1,12 @@
 import styles from "./S_mobile_header.module.css";
 import Link from "next/link";
+import ControlBtn from "../popup_control/ControlBtn";
 
 const S_mobile_header = () => {
   return (
     <>
       <section>
+        <ControlBtn />
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
