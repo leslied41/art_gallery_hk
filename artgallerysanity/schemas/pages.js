@@ -444,6 +444,14 @@ export default {
         },
       ],
     },
+    //artists page reorder the artists list option
+    {
+      name: "artists_list_reorder",
+      title: "Order by Alphabetic",
+      description: "reorder the artist list by alphabetic.",
+      hidden: ({ parent }) => parent?.name != "Artists",
+      type: "boolean",
+    },
     //artist dropdown section, bio, works, exhibtions, interviews
     {
       name: "artist_dropdown",

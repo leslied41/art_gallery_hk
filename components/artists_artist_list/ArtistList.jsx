@@ -12,59 +12,67 @@ function urlFor(source) {
   return builder.image(source);
 }
 
-const ArtistList = ({ artistsData }) => {
+const ArtistList = ({ artistsData, artists_list_reorder }) => {
   const router = useRouter();
   const [showImage, setShowImage] = useState(false);
   const [targetImage, setTargetImage] = useState(null);
   const [mobile, setmobile] = useState();
   const [toTop, settoTop] = useState(0);
-  const [stoTop, setstoTop] = useState();
-  const [atbottom, setatbottom] = useState(false);
+  // const [stoTop, setstoTop] = useState();
   const s_ref = useRef();
   const image_ref = useRef();
+  const original_order_artistData = artistsData.slice();
+
+  original_order_artistData.sort(function (a, b) {
+    let dateA = new Date(a._updatedAt).getTime();
+    let dateB = new Date(b._updatedAt).getTime();
+    return dateA > dateB ? 1 : -1;
+  });
+  artistsData.sort(function (a, b) {
+    let nameA = a.name.toUpperCase(); // ignore upper and lowercase
+    let nameB = b.name.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+
+    // names must be equal
+    return 0;
+  });
 
   //console.log(footerHeight);
 
   useEffect(() => {
-    setstoTop(
-      s_ref.current.getBoundingClientRect().top + window.scrollY ||
-        window.pageYOffset
-    );
     if (window.innerWidth > 768) {
       setmobile(false);
     }
     if (window.innerWidth <= 768) {
       setmobile(true);
     }
-    window.addEventListener("resize", () => {
-      {
-        !mobile &&
-          setstoTop(
-            s_ref.current.getBoundingClientRect().top + window.scrollY ||
-              window.pageYOffset
-          );
+    console.log(s_ref.current.scrollHeight);
+    //console.log(s_ref.current.clientHeight);
+    window.addEventListener("scroll", () => {
+      console.log(s_ref.current.getBoundingClientRect().top);
+      if (s_ref.current.getBoundingClientRect().top < 0) {
+        settoTop(
+          s_ref.current.getBoundingClientRect().top - window.innerHeight / 3
+        );
       }
-      if (window.innerWidth > 768) {
-        setmobile(false);
-      }
-      if (window.innerWidth <= 768) {
-        setmobile(true);
+      if (s_ref.current.getBoundingClientRect().top >= 0) {
+        settoTop(0);
       }
     });
   }, []);
 
   useEffect(() => {
+    console.log(image_ref.current.clientHeight);
     if (!mobile) {
-      if (atbottom) {
-        image_ref.current.style.bottom = `0px`;
-        image_ref.current.style.top = null;
-      }
-      if (!atbottom) {
-        image_ref.current.style.top = `${toTop - stoTop}px`;
-        image_ref.current.style.bottom = null;
-      }
+      image_ref.current.style.top = `${0 - toTop}px`;
+      //image_ref.current.style.top = `0px`;
     }
-  }, [toTop, stoTop, atbottom]);
+  }, [toTop]);
 
   const overArtist = (slug) => {
     let targetArtist = artistsData.filter(
@@ -84,7 +92,13 @@ const ArtistList = ({ artistsData }) => {
           <div
             className={styles.container}
             ref={image_ref}
-            style={showImage ? { display: "block" } : { display: "none" }}
+            style={
+              showImage
+                ? {
+                    display: "block",
+                  }
+                : { display: "none" }
+            }
           >
             {targetImage && (
               <Image
@@ -101,68 +115,62 @@ const ArtistList = ({ artistsData }) => {
       </div>
       <div className="col h2">
         <ul>
-          {artistsData.map((artist, index) => {
-            const { name, name_cn, slug, _id, masterpiece } = artist;
-            const length = artistsData.length;
-            return (
-              <div key={_id} className={styles.gap}>
-                <Link href={"/artists/" + slug.current}>
-                  <li
-                    key={index}
-                    onMouseLeave={() => {
-                      leaverArtist();
-                    }}
-                    onMouseOver={(e) => {
-                      console.log(length);
+          {(artists_list_reorder ? artistsData : original_order_artistData).map(
+            (artist, index) => {
+              const { name, name_cn, slug, _id, masterpiece } = artist;
+              const length = artistsData.length;
+              return (
+                <div key={_id} className={styles.gap}>
+                  <Link href={"/artists/" + slug.current}>
+                    <li
+                      key={index}
+                      onMouseLeave={() => {
+                        leaverArtist();
+                      }}
+                      onMouseOver={(e) => {
+                        console.log(length);
 
-                      if (
-                        [
-                          length - 1,
-                          length - 2,
-                          length - 3,
-                          length - 4,
-                        ].includes(index)
-                      ) {
-                        setatbottom(true);
-                      } else {
-                        setatbottom(false);
-                      }
-                      overArtist(slug);
+                        overArtist(slug);
 
-                      settoTop(
-                        e.target.getBoundingClientRect().top + window.scrollY ||
-                          window.pageYOffset
-                      );
-                    }}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <div>
-                      {router.locale == "en" ? name : name_cn ? name_cn : name}
-                    </div>
-                    {mobile && (
-                      <div style={{ marginTop: "18px" }}>
-                        {masterpiece && (
-                          <Image
-                            src={urlFor(masterpiece.asset)
-                              .width(624)
-                              .height(468)
-                              .url()}
-                            alt="works"
-                            objectFit="cover"
-                            layout="intrinsic"
-                            width="624"
-                            height="468"
-                          />
-                        )}
+                        // settoTop(
+                        //   e.target.getBoundingClientRect().top + window.scrollY ||
+                        //     window.pageYOffset
+                        // );
+                      }}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <div>
+                        {router.locale == "en"
+                          ? name
+                          : name_cn
+                          ? name_cn
+                          : name}
                       </div>
-                    )}
-                  </li>
-                </Link>
+                      {mobile && (
+                        <div style={{ marginTop: "18px" }}>
+                          {masterpiece && (
+                            <Image
+                              src={urlFor(masterpiece.asset)
+                                .width(624)
+                                .height(468)
+                                .url()}
+                              alt="works"
+                              objectFit="cover"
+                              layout="intrinsic"
+                              width="624"
+                              height="468"
+                            />
+                          )}
+                        </div>
+                      )}
+                    </li>
+                  </Link>
 
-                <hr className="hr-top" />
-              </div>
-            );
-          })}
+                  <hr className="hr-top" />
+                </div>
+              );
+            }
+          )}
         </ul>
       </div>
     </div>

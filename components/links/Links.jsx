@@ -11,7 +11,7 @@ const Links = ({ font_size }) => {
         <ul className={styles.links}>
           <li>
             <Link href="/artists" exact>
-              <span>{router.locale == "en" ? "Artist" : "藝術家"}</span>
+              <span>{router.locale == "en" ? "Artists" : "藝術家"}</span>
             </Link>
           </li>
           <li>

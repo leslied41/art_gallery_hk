@@ -7,13 +7,12 @@ import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import { useGlobalSettings } from "../components/context/GlobalSettings";
 
-export default function Artists({ data, artistsData, worksImages }) {
-  const { briefSection, seo } = data[0];
+export default function Artists({ data, artistsData }) {
+  const { briefSection, seo, artists_list_reorder } = data[0];
   const scrollTo = useRef();
   const router = useRouter();
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
-
   useEffect(() => {
     scrollTo.current.scrollIntoView();
   }, []);
@@ -34,7 +33,10 @@ export default function Artists({ data, artistsData, worksImages }) {
         </div>
         <div className="section ">
           <div className={styles.gap}>
-            <ArtistList artistsData={artistsData} />
+            <ArtistList
+              artistsData={artistsData}
+              artists_list_reorder={artists_list_reorder}
+            />
           </div>
         </div>
       </main>
@@ -43,7 +45,7 @@ export default function Artists({ data, artistsData, worksImages }) {
 }
 export async function getStaticProps({ locale }) {
   const data = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='Artists']{briefSection,seo}`
+    `*[_type=='pages'&&name=='Artists']{briefSection,seo,artists_list_reorder}`
   );
   // const worksImages = await sanityClient.fetch(
   //   `*[_type=='work']{image,author[]->{name,slug}}`

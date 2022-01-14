@@ -163,7 +163,7 @@ const PcHeader = () => {
             </span>
 
             <span className={styles.pubIcon} ref={artistsCursor}>
-              Artist
+              Artists
             </span>
 
             <span className={styles.artIcon} ref={studyCursor}>
