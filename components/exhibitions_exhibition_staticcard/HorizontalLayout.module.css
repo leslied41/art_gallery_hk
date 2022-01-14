@@ -1,6 +1,9 @@
 .imgcontainer {
   width: 100%;
 }
+.video_container {
+  aspect-ratio: 16/9;
+}
 .img {
   width: auto;
   width: 100%;

@@ -4,6 +4,8 @@ import VerticalLayout from "../exhibitions_exhibition_staticcard/VerticalLayout"
 import HorizontalLayout from "../exhibitions_exhibition_staticcard/HorizontalLayout";
 import Collapsible from "../collapsible/Collapsible";
 import BlockContent from "@sanity/block-content-to-react";
+import ReactPlayer from "react-player";
+
 import {
   useContext,
   useCallback,
@@ -399,10 +401,14 @@ const ExListWorks = ({ data }) => {
               image_parameter,
               introduction,
               introduction_cn,
+              video_url,
+              video_parameter,
+              video_introduction,
+              video_introduction_cn,
             } = work;
             //console.log(aspectRatio, width);
             return (
-              <div key={index} data-src={urlFor(image.asset).url()}>
+              <div key={index}>
                 {width > 750 && aspectRatio > 1 ? (
                   <div key={index} className="mt-145">
                     <VerticalLayout
@@ -410,6 +416,10 @@ const ExListWorks = ({ data }) => {
                       name_cn={name_cn}
                       image={image}
                       image_parameter={image_parameter}
+                      video={video_url}
+                      video_parameter={video_parameter}
+                      video_introduction={video_introduction}
+                      video_introduction_cn={video_introduction_cn}
                       introduction={introduction}
                       introduction_cn={introduction_cn}
                       width={width}
@@ -425,6 +435,10 @@ const ExListWorks = ({ data }) => {
                       name_cn={name_cn}
                       image={image}
                       image_parameter={image_parameter}
+                      video={video_url}
+                      video_parameter={video_parameter}
+                      video_introduction={video_introduction}
+                      video_introduction_cn={video_introduction_cn}
                       introduction={introduction}
                       introduction_cn={introduction_cn}
                       width={width}
