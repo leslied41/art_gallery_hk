@@ -70,7 +70,7 @@ const NewsList = ({ newsData }) => {
                 rel="noreferrer"
               >
                 <p className="h2">{router.locale == "en" ? title : title_cn}</p>
-                <div className="h3">
+                <div className="h3 mt-30">
                   <BlockContent
                     blocks={router.locale == "en" ? news_brief : news_brief_cn}
                     projectId="z3dq9mvc"
