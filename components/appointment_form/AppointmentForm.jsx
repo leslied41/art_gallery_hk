@@ -13,8 +13,6 @@ const AppointmentForm = ({ formdata }) => {
     full_name_cn,
     date,
     date_cn,
-    event,
-    event_cn,
     head_count,
     head_count_cn,
     remarks,
@@ -118,7 +116,7 @@ const AppointmentForm = ({ formdata }) => {
           </p>
         </div>
 
-        <div>
+        {/* <div>
           <input
             name="event"
             type="text"
@@ -134,9 +132,9 @@ const AppointmentForm = ({ formdata }) => {
             {...register("event", { required: false })}
           />
           <p className="red-text h4">
-            {/* {errors.event?.type === "required" && "Event is required"} */}
+            {errors.event?.type === "required" && "Event is required"}
           </p>
-        </div>
+        </div> */}
         <div>
           <input
             name="remarks"
