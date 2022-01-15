@@ -155,7 +155,7 @@ const PcHeader = () => {
             style={cursor_font_size && { fontSize: `${cursor_font_size}px` }}
           >
             <span className={styles.exhIcon} ref={exhibitionCursor}>
-              Exhibitions
+              Exhibition
             </span>
 
             <span className={styles.aboutIcon} ref={aboutCursor}>
