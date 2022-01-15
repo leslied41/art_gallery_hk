@@ -19,7 +19,8 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
   const [mobile, setmobile] = useState();
   const [toTop, settoTop] = useState(0);
   const [stoTop, setstoTop] = useState();
-  const [atbottom, setatbottom] = useState(false);
+  const [list_height, setlist_height] = useState();
+  const [image_height, setimage_height] = useState();
   const s_ref = useRef();
   const image_ref = useRef();
   const original_order_artistData = artistsData.slice();
@@ -43,30 +44,9 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
     return 0;
   });
 
-  //console.log(footerHeight);
-
-  // useEffect(() => {
-  //   if (window.innerWidth > 768) {
-  //     setmobile(false);
-  //   }
-  //   if (window.innerWidth <= 768) {
-  //     setmobile(true);
-  //   }
-  //   console.log(s_ref.current.scrollHeight);
-  //   //console.log(s_ref.current.clientHeight);
-  //   window.addEventListener("scroll", () => {
-  //     console.log(s_ref.current.getBoundingClientRect().top);
-  //     if (s_ref.current.getBoundingClientRect().top < 0) {
-  //       settoTop(
-  //         s_ref.current.getBoundingClientRect().top - window.innerHeight / 3
-  //       );
-  //     }
-  //     if (s_ref.current.getBoundingClientRect().top >= 0) {
-  //       settoTop(0);
-  //     }
-  //   });
-  // }, []);
   useEffect(() => {
+    setlist_height(s_ref.current.scrollHeight);
+
     setstoTop(
       s_ref.current.getBoundingClientRect().top + window.scrollY ||
         window.pageYOffset
@@ -96,16 +76,17 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
 
   useEffect(() => {
     if (!mobile) {
-      if (atbottom) {
+      if (toTop - stoTop + image_height >= list_height) {
+        console.log(toTop - stoTop + image_height);
+        console.log(list_height);
         image_ref.current.style.bottom = `0px`;
         image_ref.current.style.top = null;
-      }
-      if (!atbottom) {
+      } else {
         image_ref.current.style.top = `${toTop - stoTop}px`;
         image_ref.current.style.bottom = null;
       }
     }
-  }, [toTop, stoTop, atbottom]);
+  }, [toTop, stoTop, image_height]);
 
   const overArtist = (slug) => {
     let targetArtist = artistsData.filter(
@@ -165,23 +146,12 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
                         leaverArtist();
                       }}
                       onMouseOver={(e) => {
-                        console.log(length);
-
-                        if (
-                          [
-                            length - 1,
-                            length - 2,
-                            length - 3,
-                            length - 4,
-                            length - 5,
-                            length - 6,
-                          ].includes(index)
-                        ) {
-                          setatbottom(true);
-                        } else {
-                          setatbottom(false);
-                        }
                         overArtist(slug);
+
+                        !mobile &&
+                          setTimeout(() => {
+                            setimage_height(image_ref.current.clientHeight);
+                          }, 50);
 
                         settoTop(
                           e.target.getBoundingClientRect().top +
