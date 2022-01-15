@@ -93,3 +93,12 @@
   height: auto;
   width: 100%;
 }
+.video_container {
+  aspect-ratio: 16/9;
+}
+
+@media screen and (max-width: 768px) {
+  .video_container {
+    aspect-ratio: 4/3;
+  }
+}

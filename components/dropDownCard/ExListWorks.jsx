@@ -5,7 +5,6 @@ import HorizontalLayout from "../exhibitions_exhibition_staticcard/HorizontalLay
 import Collapsible from "../collapsible/Collapsible";
 import BlockContent from "@sanity/block-content-to-react";
 import ReactPlayer from "react-player";
-
 import {
   useContext,
   useCallback,
@@ -324,10 +323,7 @@ const ExListWorks = ({ data }) => {
                       ) : (
                         <div
                           ref={elRefs[index]}
-                          style={{
-                            aspectRatio: "4/3",
-                            width: "100%",
-                          }}
+                          className={styles.video_container}
                         >
                           <ReactPlayer
                             url={video_url}
