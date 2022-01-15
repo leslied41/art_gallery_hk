@@ -19,6 +19,14 @@ export default {
         collapsed: false, // Defines if the fieldset should be collapsed by default or not
       },
     },
+    {
+      name: "cv_section",
+      title: "CV Section",
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: false, // Defines if the fieldset should be collapsed by default or not
+      },
+    },
   ],
   fields: [
     {
@@ -56,6 +64,7 @@ export default {
       name: "profile",
       title: "Profile",
       type: "image",
+      description: "display in the bio section",
     },
     {
       name: "masterpiece",
@@ -80,7 +89,29 @@ export default {
       type: "blockContent",
       fieldset: "translation",
     },
+    {
+      name: "cv",
+      title: "Title",
+      type: "string",
+      fieldset: "cv_section",
+    },
+    {
+      name: "cv_link",
+      title: "CV Link ",
+      type: "url",
+      fieldset: "cv_section",
+    },
+    {
+      name: "cv_create_date",
+      title: "Create Date",
+      type: "date",
+      fieldset: "cv_section",
+    },
   ],
+  initialValue: () => ({
+    cv_create_date: new Date().toISOString(),
+  }),
+
   preview: {
     select: {
       title: "name",

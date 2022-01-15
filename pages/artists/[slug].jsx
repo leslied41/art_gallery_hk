@@ -13,7 +13,6 @@ import { useGlobalSettings } from "../../components/context/GlobalSettings.jsx";
 export default function Artist({
   artistData,
   workImages,
-  exposData,
   interviewsData,
   artistPageData,
 }) {
@@ -22,19 +21,19 @@ export default function Artist({
       return item;
     }
   });
-  const newArray = exposData.map((item) => {
-    return item.exhibition;
-  });
-  const filteredArray = newArray.filter((item) => item.length !== 0);
-  const flatArray = [].concat.apply([], filteredArray);
-  const arrayObject = flatArray.map((item) => JSON.stringify(item));
-  const mergedArray_json = [];
-  arrayObject.forEach((item) => {
-    if (!mergedArray_json.includes(item)) {
-      mergedArray_json.push(item);
-    }
-  });
-  const mergedArray = mergedArray_json.map((item) => [JSON.parse(item)]);
+  // const newArray = exposData.map((item) => {
+  //   return item.exhibition;
+  // });
+  // const filteredArray = newArray.filter((item) => item.length !== 0);
+  // const flatArray = [].concat.apply([], filteredArray);
+  // const arrayObject = flatArray.map((item) => JSON.stringify(item));
+  // const mergedArray_json = [];
+  // arrayObject.forEach((item) => {
+  //   if (!mergedArray_json.includes(item)) {
+  //     mergedArray_json.push(item);
+  //   }
+  // });
+  // const mergedArray = mergedArray_json.map((item) => [JSON.parse(item)]);
   const [showCard, setshowCard] = useState(false);
   const handleClick = () => {
     setshowCard(!showCard);
@@ -93,7 +92,7 @@ export default function Artist({
                 : artist_dropdown?.third_name_cn
             }
           >
-            <ExpoList data={mergedArray} />
+            <ExpoList data={artistData[0]} />
           </DropDownCard>
         </div>
 
@@ -123,9 +122,9 @@ export async function getStaticProps({ locale, params }) {
     `*[_type=='work'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]{image,image_parameter,'metadata':image.asset->{metadata}}`
   );
   // this is to fetch all the expos that one certain artis has ever participated.
-  const exposData = await sanityClient.fetch(
-    `*[_type=='work'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]{_id,'exhibition':*[_type=='exhibition'&&references(^._id)]{name_exo,name_exo_cn,date,date_cn,slug}}`
-  );
+  // const exposData = await sanityClient.fetch(
+  //   `*[_type=='work'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]{_id,'exhibition':*[_type=='exhibition'&&references(^._id)]{name_exo,name_exo_cn,date,date_cn,slug}}`
+  // );
   const interviewsData = await sanityClient.fetch(
     `*[_type=='interviews'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]`
   );
@@ -134,7 +133,6 @@ export async function getStaticProps({ locale, params }) {
     props: {
       workImages,
       artistData,
-      exposData,
       interviewsData,
       artistPageData,
     },

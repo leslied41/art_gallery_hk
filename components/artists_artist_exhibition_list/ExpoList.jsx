@@ -6,7 +6,8 @@ import { dropDownContext } from "../dropDownCard/DropDownCard";
 
 const ExpoList = ({ data }) => {
   const { showCard } = useContext(dropDownContext);
-
+  //console.log(data);
+  const { cv, cv_link, cv_create_date } = data;
   return (
     <>
       <div className={styles.grid}>
@@ -15,17 +16,16 @@ const ExpoList = ({ data }) => {
           <Collapsible showCard={showCard}>
             <div>
               <ul>
-                {data.map((item, index) => {
-                  const { name_exo, date, slug } = item[0];
-                  return (
-                    <Link key={index} href={"/exhibitions/" + slug.current}>
-                      <li className="mt-30" style={{ cursor: "pointer" }}>
-                        <p className="h6">{name_exo}</p>
-                        <p className="h3">{date}</p>
-                      </li>
-                    </Link>
-                  );
-                })}
+                <li className="mt-30" style={{ cursor: "pointer" }}>
+                  <a
+                    href={cv_link ? cv_link : null}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <p className="h6">{cv}</p>
+                    <p className="h3">{cv_create_date}</p>
+                  </a>
+                </li>
               </ul>
             </div>
           </Collapsible>
