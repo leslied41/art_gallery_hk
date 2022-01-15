@@ -303,11 +303,13 @@ const ExStaticCard = ({ data, fowardref }) => {
                     alignItems: "center",
                   }}
                 >
-                  <BlockContent
-                    blocks={image_parameter}
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
+                  {image_parameter && (
+                    <BlockContent
+                      blocks={image_parameter}
+                      projectId="z3dq9mvc"
+                      dataset="production"
+                    />
+                  )}
                 </div>
               )}
             </div>

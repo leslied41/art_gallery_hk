@@ -159,7 +159,8 @@ const ExListWorks = ({ data }) => {
           >
             {works &&
               works.map((item, index) => {
-                const { image, image_parameter } = item;
+                const { image, image_parameter, video_url, video_parameter } =
+                  item;
                 return (
                   <div
                     key={index}
@@ -194,131 +195,147 @@ const ExListWorks = ({ data }) => {
                           : { display: "none" }
                       }
                     >
-                      <img
-                        key={index}
-                        src={urlFor(image.asset).url()}
-                        alt="works"
-                        style={
-                          index == targetIndex
-                            ? {
-                                display: "block",
-                                height: "100%",
-                                cursor: "zoom-in",
+                      {image ? (
+                        <img
+                          key={index}
+                          src={urlFor(image.asset).url()}
+                          alt="works"
+                          style={
+                            index == targetIndex
+                              ? {
+                                  display: "block",
+                                  height: "100%",
+                                  cursor: "zoom-in",
+                                }
+                              : { display: "none" }
+                          }
+                          ref={elRefs[index]}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            if (new Date() - clickTime < 150) {
+                              if (!iszoomed) {
+                                zoomin(e);
+                                setiszoomed(true);
                               }
-                            : { display: "none" }
-                        }
-                        ref={elRefs[index]}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (new Date() - clickTime < 150) {
-                            if (!iszoomed) {
-                              zoomin(e);
-                              setiszoomed(true);
-                            }
-                            if (iszoomed) {
-                              zoomout(e);
-                              setiszoomed(false);
-                              setmoveDis({ x: 0, y: 0 });
-                            }
-                          }
-                        }}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          mouseDown(e);
-                          e.target.style.cursor = "grab";
-                        }}
-                        onTouchStart={(e) => {
-                          e.cancelable && e.preventDefault();
-                          setstartingPoint({
-                            x: e.changedTouches[0].clientX - moveDis.x,
-                            y: e.changedTouches[0].clientY - moveDis.y,
-                          });
-                          setmoving(true);
-                          setimageSize({
-                            x: e.target.getBoundingClientRect().width,
-                            y: e.target.getBoundingClientRect().height,
-                          });
-                          setswipeInitial({
-                            x: e.touches[0].clientX,
-                            y: e.touches[0].clientY,
-                          });
-                        }}
-                        onMouseUp={(e) => {
-                          setmoving(false);
-                          e.target.style.cursor = "zoom-in";
-                        }}
-                        onTouchEnd={() => {
-                          setmoving(false);
-                        }}
-                        onMouseMove={(e) => {
-                          e.preventDefault();
-                          if (!moving) {
-                            return;
-                          }
-                          setmoveDis({
-                            x: e.clientX - startingPoint.x,
-                            y: e.clientY - startingPoint.y,
-                          });
-                          move(e);
-                        }}
-                        onTouchMove={(e) => {
-                          e.cancelable && e.preventDefault();
-
-                          setmoveDis({
-                            x: e.changedTouches[0].clientX - startingPoint.x,
-                            y: e.changedTouches[0].clientY - startingPoint.y,
-                          });
-                          if (swipeInitial.x == null) {
-                            return;
-                          }
-                          if (swipeInitial.y == null) {
-                            return;
-                          }
-                          let diffX = swipeInitial.x - e.touches[0].clientX;
-                          let diffY = swipeInitial.y - e.touches[0].clientY;
-                          if (!iszoomed) {
-                            if (Math.abs(diffX) > Math.abs(diffY)) {
-                              // sliding horizontally
-                              if (diffX > 0) {
-                                // swiped left
-                                if (targetIndex == 0) {
-                                  setTargetIndex(works.length - 1);
-                                }
-                                if (targetIndex != 0) {
-                                  setTargetIndex(targetIndex - 1);
-                                }
-                                console.log("swiped left");
-                              } else {
-                                // swiped right
-                                if (targetIndex == works.length - 1) {
-                                  setTargetIndex(0);
-                                }
-                                if (targetIndex != works.length - 1)
-                                  setTargetIndex(targetIndex + 1);
-                                console.log("swiped right");
-                              }
-                            } else {
-                              // sliding vertically
-                              if (diffY > 0) {
-                                // swiped up
-                                setmodel(false);
+                              if (iszoomed) {
+                                zoomout(e);
                                 setiszoomed(false);
-                                console.log("swiped up");
-                              } else {
-                                // swiped down
-                                setmodel(false);
-                                setiszoomed(false);
-                                console.log("swiped down");
+                                setmoveDis({ x: 0, y: 0 });
                               }
                             }
-                            setswipeInitial({ x: null, y: null });
-                          }
-
-                          if (moving) {
+                          }}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            mouseDown(e);
+                            e.target.style.cursor = "grab";
+                          }}
+                          onTouchStart={(e) => {
+                            e.cancelable && e.preventDefault();
+                            setstartingPoint({
+                              x: e.changedTouches[0].clientX - moveDis.x,
+                              y: e.changedTouches[0].clientY - moveDis.y,
+                            });
+                            setmoving(true);
+                            setimageSize({
+                              x: e.target.getBoundingClientRect().width,
+                              y: e.target.getBoundingClientRect().height,
+                            });
+                            setswipeInitial({
+                              x: e.touches[0].clientX,
+                              y: e.touches[0].clientY,
+                            });
+                          }}
+                          onMouseUp={(e) => {
+                            setmoving(false);
+                            e.target.style.cursor = "zoom-in";
+                          }}
+                          onTouchEnd={() => {
+                            setmoving(false);
+                          }}
+                          onMouseMove={(e) => {
+                            e.preventDefault();
+                            if (!moving) {
+                              return;
+                            }
+                            setmoveDis({
+                              x: e.clientX - startingPoint.x,
+                              y: e.clientY - startingPoint.y,
+                            });
                             move(e);
-                          }
-                        }}
-                      />
+                          }}
+                          onTouchMove={(e) => {
+                            e.cancelable && e.preventDefault();
+
+                            setmoveDis({
+                              x: e.changedTouches[0].clientX - startingPoint.x,
+                              y: e.changedTouches[0].clientY - startingPoint.y,
+                            });
+                            if (swipeInitial.x == null) {
+                              return;
+                            }
+                            if (swipeInitial.y == null) {
+                              return;
+                            }
+                            let diffX = swipeInitial.x - e.touches[0].clientX;
+                            let diffY = swipeInitial.y - e.touches[0].clientY;
+                            if (!iszoomed) {
+                              if (Math.abs(diffX) > Math.abs(diffY)) {
+                                // sliding horizontally
+                                if (diffX > 0) {
+                                  // swiped left
+                                  if (targetIndex == 0) {
+                                    setTargetIndex(works.length - 1);
+                                  }
+                                  if (targetIndex != 0) {
+                                    setTargetIndex(targetIndex - 1);
+                                  }
+                                  console.log("swiped left");
+                                } else {
+                                  // swiped right
+                                  if (targetIndex == works.length - 1) {
+                                    setTargetIndex(0);
+                                  }
+                                  if (targetIndex != works.length - 1)
+                                    setTargetIndex(targetIndex + 1);
+                                  console.log("swiped right");
+                                }
+                              } else {
+                                // sliding vertically
+                                if (diffY > 0) {
+                                  // swiped up
+                                  setmodel(false);
+                                  setiszoomed(false);
+                                  console.log("swiped up");
+                                } else {
+                                  // swiped down
+                                  setmodel(false);
+                                  setiszoomed(false);
+                                  console.log("swiped down");
+                                }
+                              }
+                              setswipeInitial({ x: null, y: null });
+                            }
+
+                            if (moving) {
+                              move(e);
+                            }
+                          }}
+                        />
+                      ) : (
+                        <div
+                          ref={elRefs[index]}
+                          style={{
+                            aspectRatio: "16/9",
+                            width: "100%",
+                          }}
+                        >
+                          <ReactPlayer
+                            url={video_url}
+                            width="100%"
+                            height="100%"
+                          />
+                        </div>
+                      )}
                     </div>
                     {!iszoomed && (
                       <div
@@ -334,7 +351,7 @@ const ExListWorks = ({ data }) => {
                         }
                       >
                         <BlockContent
-                          blocks={image_parameter}
+                          blocks={image ? image_parameter : video_parameter}
                           projectId="z3dq9mvc"
                           dataset="production"
                         />
@@ -344,56 +361,55 @@ const ExListWorks = ({ data }) => {
                 );
               })}
           </div>
-          {!isMobile && (
-            <div className="h3">
-              <div
-                className={styles.closeIcon}
-                onClick={() => {
-                  setiszoomed(false);
-                  setmodel(false);
-                }}
-              >
-                Close
-              </div>
-              <div
-                className={styles.next}
-                onClick={() => {
-                  setiszoomed(false);
-                  if (targetIndex == works.length - 1) {
-                    setTargetIndex(0);
-                  }
-                  if (targetIndex != works.length - 1)
-                    setTargetIndex(targetIndex + 1);
-                }}
-              >
-                Next
-              </div>
-              <div
-                className={styles.prev}
-                ref={prevRef}
-                onClick={() => {
-                  setiszoomed(false);
-                  if (targetIndex == 0) {
-                    setTargetIndex(works.length - 1);
-                  }
-                  if (targetIndex != 0) {
-                    setTargetIndex(targetIndex - 1);
-                  }
-                }}
-              >
-                Prev
-              </div>
+
+          <div className="h3">
+            <div
+              className={styles.closeIcon}
+              onClick={() => {
+                setiszoomed(false);
+                setmodel(false);
+              }}
+            >
+              Close
             </div>
-          )}
+            <div
+              className={styles.next}
+              onClick={() => {
+                setiszoomed(false);
+                if (targetIndex == works.length - 1) {
+                  setTargetIndex(0);
+                }
+                if (targetIndex != works.length - 1)
+                  setTargetIndex(targetIndex + 1);
+              }}
+            >
+              Next
+            </div>
+            <div
+              className={styles.prev}
+              ref={prevRef}
+              onClick={() => {
+                setiszoomed(false);
+                if (targetIndex == 0) {
+                  setTargetIndex(works.length - 1);
+                }
+                if (targetIndex != 0) {
+                  setTargetIndex(targetIndex - 1);
+                }
+              }}
+            >
+              Prev
+            </div>
+          </div>
         </div>
       </div>
       <Collapsible showCard={showCard}>
         {works &&
           works.map((work, index) => {
-            const width = work.metadata.metadata.dimensions.width;
-            const height = work.metadata.metadata.dimensions.height;
+            const width = work.metadata?.metadata.dimensions.width;
+            const height = work.metadata?.metadata.dimensions.height;
 
-            const aspectRatio = work.metadata.metadata.dimensions.aspectRatio;
+            const aspectRatio = work.metadata?.metadata.dimensions.aspectRatio;
             const {
               name,
               name_cn,

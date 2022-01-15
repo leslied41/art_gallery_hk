@@ -53,13 +53,15 @@ const VerticalLayout = ({
           <div className="mt-30">
             <div className={styles.grid}>
               <div className="col">
-                <span className="h4">
-                  <BlockContent
-                    blocks={image_parameter}
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
-                </span>
+                {image_parameter && (
+                  <span className="h4">
+                    <BlockContent
+                      blocks={image_parameter}
+                      projectId="z3dq9mvc"
+                      dataset="production"
+                    />
+                  </span>
+                )}
               </div>
               <div className="col">
                 {(name || name_cn) && (
@@ -72,13 +74,15 @@ const VerticalLayout = ({
                 )}
 
                 <div className="h3">
-                  <BlockContent
-                    blocks={
-                      router.locale == "en" ? introduction : introduction_cn
-                    }
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
+                  {(introduction || introduction_cn) && (
+                    <BlockContent
+                      blocks={
+                        router.locale == "en" ? introduction : introduction_cn
+                      }
+                      projectId="z3dq9mvc"
+                      dataset="production"
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -90,19 +94,26 @@ const VerticalLayout = ({
         <div className="mt-145">
           <div className="oneColumn">
             <div className={styles.video_container}>
-              <ReactPlayer url={video} width="100%" height="100%" />
+              <ReactPlayer
+                url={video}
+                width="100%"
+                height="100%"
+                controls={true}
+              />
             </div>
           </div>
           <div className="mt-30">
             <div className={styles.grid}>
               <div className="col">
-                <span className="h4">
-                  <BlockContent
-                    blocks={video_parameter}
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
-                </span>
+                {video_parameter && (
+                  <span className="h4">
+                    <BlockContent
+                      blocks={video_parameter}
+                      projectId="z3dq9mvc"
+                      dataset="production"
+                    />
+                  </span>
+                )}
               </div>
               <div className="col">
                 {(name || name_cn) && (
@@ -114,15 +125,17 @@ const VerticalLayout = ({
                   </>
                 )}
                 <div className="h3">
-                  <BlockContent
-                    blocks={
-                      router.locale == "en"
-                        ? video_introduction
-                        : video_introduction_cn
-                    }
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
+                  {(video_introduction || video_introduction_cn) && (
+                    <BlockContent
+                      blocks={
+                        router.locale == "en"
+                          ? video_introduction
+                          : video_introduction_cn
+                      }
+                      projectId="z3dq9mvc"
+                      dataset="production"
+                    />
+                  )}
                 </div>
               </div>
             </div>
