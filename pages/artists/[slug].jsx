@@ -17,7 +17,11 @@ export default function Artist({
   interviewsData,
   artistPageData,
 }) {
-  //console.log(interviewsData);
+  const filtered_workImages = workImages.filter((item) => {
+    if (item.image) {
+      return item;
+    }
+  });
   const newArray = exposData.map((item) => {
     return item.exhibition;
   });
@@ -77,7 +81,7 @@ export default function Artist({
                 : artist_dropdown?.second_name_cn
             }
           >
-            <ArtistWorksImageList data={workImages} />
+            <ArtistWorksImageList data={filtered_workImages} />
           </DropDownCard>
         </div>
 
