@@ -49,14 +49,14 @@ const ArtistBio = ({ data }) => {
       <Collapsible showCard={showCard}>
         <div className={styles.grid}>
           <div className={styles.col}>
-            <div className="mt-30">
+            <div className="mt-30" style={{ display: "block", width: "100%" }}>
               {profile && (
                 <Image
                   src={urlFor(profile.asset).width(654).height(437).url()}
                   alt={"profile"}
                   width={654}
                   height={437}
-                  layout="intrinsic"
+                  layout="responsive"
                   className={styles.profileImg}
                 />
               )}

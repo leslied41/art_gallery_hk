@@ -120,7 +120,11 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
 
   return (
     <div className={styles.grid}>
-      <div className="col" style={{ position: "relative" }} ref={s_ref}>
+      <div
+        className="col"
+        style={{ position: "relative", width: "100%" }}
+        ref={s_ref}
+      >
         {!mobile && (
           <div
             className={styles.container}
@@ -138,7 +142,7 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
                 src={urlFor(targetImage.asset).width(647).height(431).url()}
                 alt="works"
                 objectFit="cover"
-                layout="intrinsic"
+                layout="responsive"
                 width="647"
                 height="431"
               />
@@ -169,6 +173,8 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
                             length - 2,
                             length - 3,
                             length - 4,
+                            length - 5,
+                            length - 6,
                           ].includes(index)
                         ) {
                           setatbottom(true);
