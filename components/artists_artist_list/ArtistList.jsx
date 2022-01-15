@@ -18,7 +18,8 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
   const [targetImage, setTargetImage] = useState(null);
   const [mobile, setmobile] = useState();
   const [toTop, settoTop] = useState(0);
-  // const [stoTop, setstoTop] = useState();
+  const [stoTop, setstoTop] = useState();
+  const [atbottom, setatbottom] = useState(false);
   const s_ref = useRef();
   const image_ref = useRef();
   const original_order_artistData = artistsData.slice();
@@ -44,35 +45,67 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
 
   //console.log(footerHeight);
 
+  // useEffect(() => {
+  //   if (window.innerWidth > 768) {
+  //     setmobile(false);
+  //   }
+  //   if (window.innerWidth <= 768) {
+  //     setmobile(true);
+  //   }
+  //   console.log(s_ref.current.scrollHeight);
+  //   //console.log(s_ref.current.clientHeight);
+  //   window.addEventListener("scroll", () => {
+  //     console.log(s_ref.current.getBoundingClientRect().top);
+  //     if (s_ref.current.getBoundingClientRect().top < 0) {
+  //       settoTop(
+  //         s_ref.current.getBoundingClientRect().top - window.innerHeight / 3
+  //       );
+  //     }
+  //     if (s_ref.current.getBoundingClientRect().top >= 0) {
+  //       settoTop(0);
+  //     }
+  //   });
+  // }, []);
   useEffect(() => {
+    setstoTop(
+      s_ref.current.getBoundingClientRect().top + window.scrollY ||
+        window.pageYOffset
+    );
     if (window.innerWidth > 768) {
       setmobile(false);
     }
     if (window.innerWidth <= 768) {
       setmobile(true);
     }
-    console.log(s_ref.current.scrollHeight);
-    //console.log(s_ref.current.clientHeight);
-    window.addEventListener("scroll", () => {
-      console.log(s_ref.current.getBoundingClientRect().top);
-      if (s_ref.current.getBoundingClientRect().top < 0) {
-        settoTop(
-          s_ref.current.getBoundingClientRect().top - window.innerHeight / 3
-        );
+    window.addEventListener("resize", () => {
+      {
+        !mobile &&
+          setstoTop(
+            s_ref.current.getBoundingClientRect().top + window.scrollY ||
+              window.pageYOffset
+          );
       }
-      if (s_ref.current.getBoundingClientRect().top >= 0) {
-        settoTop(0);
+      if (window.innerWidth > 768) {
+        setmobile(false);
+      }
+      if (window.innerWidth <= 768) {
+        setmobile(true);
       }
     });
   }, []);
 
   useEffect(() => {
-    console.log(image_ref.current.clientHeight);
     if (!mobile) {
-      image_ref.current.style.top = `${0 - toTop}px`;
-      //image_ref.current.style.top = `0px`;
+      if (atbottom) {
+        image_ref.current.style.bottom = `0px`;
+        image_ref.current.style.top = null;
+      }
+      if (!atbottom) {
+        image_ref.current.style.top = `${toTop - stoTop}px`;
+        image_ref.current.style.bottom = null;
+      }
     }
-  }, [toTop]);
+  }, [toTop, stoTop, atbottom]);
 
   const overArtist = (slug) => {
     let targetArtist = artistsData.filter(
@@ -130,12 +163,24 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
                       onMouseOver={(e) => {
                         console.log(length);
 
+                        if (
+                          [
+                            length - 1,
+                            length - 2,
+                            length - 3,
+                            length - 4,
+                          ].includes(index)
+                        ) {
+                          setatbottom(true);
+                        } else {
+                          setatbottom(false);
+                        }
                         overArtist(slug);
 
-                        // settoTop(
-                        //   e.target.getBoundingClientRect().top + window.scrollY ||
-                        //     window.pageYOffset
-                        // );
+                        settoTop(
+                          e.target.getBoundingClientRect().top +
+                            window.scrollY || window.pageYOffset
+                        );
                       }}
                       style={{ cursor: "pointer" }}
                     >
