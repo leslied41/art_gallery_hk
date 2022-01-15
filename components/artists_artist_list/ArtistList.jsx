@@ -30,8 +30,8 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
     return dateA > dateB ? 1 : -1;
   });
   artistsData.sort(function (a, b) {
-    let nameA = a.name.toUpperCase(); // ignore upper and lowercase
-    let nameB = b.name.toUpperCase(); // ignore upper and lowercase
+    let nameA = a.name.split(" ")[1].toUpperCase(); // ignore upper and lowercase
+    let nameB = b.name.split(" ")[1].toUpperCase(); // ignore upper and lowercase
     if (nameA < nameB) {
       return -1;
     }
