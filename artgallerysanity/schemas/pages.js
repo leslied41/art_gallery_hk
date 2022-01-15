@@ -150,18 +150,18 @@ export default {
           type: "string",
           fieldset: "form",
         },
-        {
-          name: "event",
-          title: "Event",
-          type: "string",
-          fieldset: "form",
-        },
-        {
-          name: "event_cn",
-          title: "Event Chinese",
-          type: "string",
-          fieldset: "form",
-        },
+        // {
+        //   name: "event",
+        //   title: "Event",
+        //   type: "string",
+        //   fieldset: "form",
+        // },
+        // {
+        //   name: "event_cn",
+        //   title: "Event Chinese",
+        //   type: "string",
+        //   fieldset: "form",
+        // },
         {
           name: "remarks",
           title: "Remarks",

@@ -111,10 +111,10 @@ const AppointmentForm = ({ formdata }) => {
                 ? head_count_cn
                 : "人數"
             }
-            {...register("headCount", { required: true, maxLength: 20 })}
+            {...register("headCount", { required: false, maxLength: 20 })}
           />
           <p className="red-text h4">
-            {errors.headCount?.type === "required" && "Head Count is required"}
+            {/* {errors.headCount?.type === "required" && "Head Count is required"} */}
           </p>
         </div>
 
@@ -131,10 +131,10 @@ const AppointmentForm = ({ formdata }) => {
                 ? event_cn
                 : "您想參加那項活動？"
             }
-            {...register("event", { required: true })}
+            {...register("event", { required: false })}
           />
           <p className="red-text h4">
-            {errors.event?.type === "required" && "Event is required"}
+            {/* {errors.event?.type === "required" && "Event is required"} */}
           </p>
         </div>
         <div>
@@ -150,10 +150,10 @@ const AppointmentForm = ({ formdata }) => {
                 ? remarks_cn
                 : "評論"
             }
-            {...register("remarks", { required: true })}
+            {...register("remarks", { required: false })}
           />
           <p className="red-text h4">
-            {errors.remarks?.type === "required" && "Remarks is required"}
+            {/* {errors.remarks?.type === "required" && "Remarks is required"} */}
           </p>
         </div>
         <div className="mb-19">
