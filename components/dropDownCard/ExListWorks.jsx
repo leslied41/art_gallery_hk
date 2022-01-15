@@ -325,7 +325,7 @@ const ExListWorks = ({ data }) => {
                         <div
                           ref={elRefs[index]}
                           style={{
-                            aspectRatio: "16/9",
+                            aspectRatio: "4/3",
                             width: "100%",
                           }}
                         >
@@ -333,6 +333,14 @@ const ExListWorks = ({ data }) => {
                             url={video_url}
                             width="100%"
                             height="100%"
+                            controls={true}
+                            config={{
+                              youtube: {
+                                playerVars: {
+                                  origin: "https://www.youtube.com",
+                                },
+                              },
+                            }}
                           />
                         </div>
                       )}

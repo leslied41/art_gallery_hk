@@ -99,6 +99,11 @@ const VerticalLayout = ({
                 width="100%"
                 height="100%"
                 controls={true}
+                config={{
+                  youtube: {
+                    playerVars: { origin: "https://www.youtube.com" },
+                  },
+                }}
               />
             </div>
           </div>
