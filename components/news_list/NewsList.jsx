@@ -18,15 +18,15 @@ const NewsList = ({ newsData }) => {
   const router = useRouter();
   //console.log(router.locale);
   useEffect(() => {
-    if (newsData.length < 2) {
+    if (newsData.length < 11) {
       setloaded(false);
-    } else if (newsData.length >= 2) {
+    } else if (newsData.length >= 11) {
       setloaded(true);
     }
   }, [newsData.length]);
 
   useEffect(() => {
-    const initialNewsData = newsData.slice(0, 1);
+    const initialNewsData = newsData.slice(0, 10);
     setslicedNewsData(initialNewsData);
   }, []);
 
