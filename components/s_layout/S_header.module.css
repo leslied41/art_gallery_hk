@@ -1,1 +1,10 @@
-
+.svg {
+  width: auto;
+  height: 160%;
+}
+@media (min-aspect-ratio: 4368/2169) {
+  .svg {
+    width: 160%;
+    height: auto;
+  }
+}

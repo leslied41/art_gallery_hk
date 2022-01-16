@@ -166,6 +166,7 @@ const S_header = () => {
             Shop
           </span>
           <svg
+            className={styles.svg}
             ref={svg}
             width="4368"
             height="2169"
@@ -173,8 +174,8 @@ const S_header = () => {
             fill="none"
             preserveAspectRatio="none"
             style={{
-              height: "160%",
-              width: "160%",
+              minWidth: "1200px",
+              minHeight: "600px",
               position: "fixed",
               top: "0",
               left: "0",
