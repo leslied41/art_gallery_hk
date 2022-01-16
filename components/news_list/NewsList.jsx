@@ -52,16 +52,22 @@ const NewsList = ({ newsData }) => {
         return (
           <div className={styles.grid} key={_id}>
             <div className="col mb-42">
-              <div>
-                <Image
-                  src={urlFor(image.asset).width(654).height(437).url()}
-                  alt="works"
-                  objectFit="cover"
-                  layout="responsive"
-                  width="654"
-                  height="437"
-                />
-              </div>
+              <a
+                href={news_link ? news_link : null}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div>
+                  <Image
+                    src={urlFor(image.asset).width(654).height(437).url()}
+                    alt="works"
+                    objectFit="cover"
+                    layout="responsive"
+                    width="654"
+                    height="437"
+                  />
+                </div>
+              </a>
             </div>
             <div className="col mb-42">
               <a
