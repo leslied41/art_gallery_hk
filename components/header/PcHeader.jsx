@@ -249,8 +249,8 @@ const PcHeader = () => {
           <Link
             href={
               hero_exhibition_link
-                ? `exhibitions/${hero_exhibition_link}`
-                : "exhibitions/"
+                ? `/exhibitions/${hero_exhibition_link}`
+                : "/exhibitions/"
             }
             exact
           >
