@@ -59,7 +59,7 @@ const NewsList = ({ newsData }) => {
               >
                 <div>
                   <Image
-                    src={urlFor(image.asset).width(654).height(437).url()}
+                    src={urlFor(image.asset).url()}
                     alt="works"
                     objectFit="cover"
                     layout="responsive"

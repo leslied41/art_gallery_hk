@@ -60,10 +60,7 @@ const ExpoImageList = ({ data }) => {
                       {image && (
                         <div style={{ height: "100%" }}>
                           <img
-                            src={urlFor(image.asset)
-                              .width(624)
-                              .height(437)
-                              .url()}
+                            src={urlFor(image.asset).url()}
                             alt={name_exo}
                             style={{ width: "100%", cursor: "pointer" }}
                           />
