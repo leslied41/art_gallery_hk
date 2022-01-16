@@ -33,7 +33,7 @@ ul {
 /* font size */
 .h1 {
   font-size: var(--font-lg);
-  line-height: var(--lineheight-lg);
+  line-height: 1;
 }
 .h2 {
   font-size: var(--font-m);
@@ -152,7 +152,7 @@ hr {
   /* font size */
   .h1 {
     font-size: 40px;
-    line-height: var(--lineheight-lg);
+    line-height: 1;
   }
   .h2 {
     font-size: 30px;
