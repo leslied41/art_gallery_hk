@@ -116,6 +116,13 @@ export default {
       fieldset: "headerImage",
     },
     {
+      name: "hero_exhibition_link",
+      title: "Exhibition Tab Link",
+      description:
+        "Exhibition Tab in the hero links to one certain exhibition page. Expected value is one certain exhibition's slug.",
+      type: "string",
+    },
+    {
       name: "link_font_size",
       title: "Links Font Size for Descktop",
       type: "number",

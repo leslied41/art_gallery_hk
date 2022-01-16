@@ -37,8 +37,12 @@ const PcHeader = () => {
   const news_image = settings[0].news;
   const about_image = settings[0].about;
   const landing_image = settings[0].landing;
-  const { link_font_size, cursor_font_size, mobile_link_font_size } =
-    settings[0];
+  const {
+    link_font_size,
+    cursor_font_size,
+    mobile_link_font_size,
+    hero_exhibition_link,
+  } = settings[0];
 
   useEffect(() => {
     if (pathname.indexOf("/artists") == 0) {
@@ -242,7 +246,14 @@ const PcHeader = () => {
               className={styles.about}
             ></path>
           </Link>
-          <Link href="/exhibitions" exact>
+          <Link
+            href={
+              hero_exhibition_link
+                ? `exhibitions/${hero_exhibition_link}`
+                : "exhibitions/"
+            }
+            exact
+          >
             <path
               fill={
                 pathname == "/" || pathname.indexOf("/exhibitions") == 0
