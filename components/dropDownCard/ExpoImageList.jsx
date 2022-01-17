@@ -74,7 +74,7 @@ const ExpoImageList = ({ data }) => {
                         <p className="h2">
                           {router.locale === "en" ? name_exo : name_exo_cn}
                         </p>
-                        <p className="h3">
+                        <p className="h3 mt-5">
                           {router.locale === "en" ? date : date_cn}
                         </p>
                       </div>

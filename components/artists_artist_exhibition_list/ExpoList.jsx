@@ -23,7 +23,7 @@ const ExpoList = ({ data }) => {
                     rel="noreferrer"
                   >
                     <p className="h6">{cv}</p>
-                    <p className="h3">{cv_create_date}</p>
+                    <p className="h3 mt-5">{cv_create_date}</p>
                   </a>
                 </li>
               </ul>

@@ -36,7 +36,7 @@ const InterviewsList = ({ data }) => {
                       <div className="h6">
                         {router.locale == "en" ? title : title_cn}
                       </div>
-                      <div className="h3">
+                      <div className="h3 mt-5">
                         <BlockContent
                           blocks={
                             router.locale === "en"
