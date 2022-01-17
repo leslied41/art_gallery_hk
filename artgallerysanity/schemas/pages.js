@@ -578,21 +578,9 @@ export default {
       },
       fields: [
         {
-          name: "title",
-          title: "Site Title",
-          type: "string",
-        },
-        {
           name: "url",
           title: "Site Url",
           type: "url",
-        },
-
-        {
-          name: "title_cn",
-          title: "Site Title Chinese",
-          type: "string",
-          fieldset: "translation",
         },
         {
           name: "description",

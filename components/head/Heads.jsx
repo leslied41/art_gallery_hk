@@ -2,13 +2,16 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
+import { useGlobalSettings } from "../context/GlobalSettings";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
 const Heads = ({ seo, name }) => {
-  console.log(seo);
+  //console.log(seo);
+  const { settings, popup } = useGlobalSettings();
+  const { site_name, site_name_cn } = settings[0];
   const keywords = seo?.keywords?.map((item) => item.value).join();
   const router = useRouter();
   console.log(router.asPath);
@@ -17,8 +20,8 @@ const Heads = ({ seo, name }) => {
       <Head>
         <title>
           {router.locale == "en"
-            ? `${seo?.title}${name ? "-" + name : ""}`
-            : `${seo?.title_cn ? seo?.title_cn : seo?.title}${
+            ? `${site_name}${name ? "-" + name : ""}`
+            : `${site_name_cn ? site_name_cn : site_name}${
                 name ? "-" + name : ""
               }`}
         </title>
@@ -31,13 +34,13 @@ const Heads = ({ seo, name }) => {
           key="og:title"
           content={
             router.locale == "en"
-              ? `${seo?.title}${name ? "-" + name : ""}`
-              : `${seo?.title_cn ? seo?.title_cn : seo?.title}${
+              ? `${site_name}${name ? "-" + name : ""}`
+              : `${site_name_cn ? site_name_cn : site_name}${
                   name ? "-" + name : ""
                 }`
           }
         />
-        <meta property="og:site_name" key="og:site_name" content={seo?.title} />
+        <meta property="og:site_name" key="og:site_name" content={site_name} />
         <meta
           property="og:url"
           key="og:url"
@@ -68,8 +71,10 @@ const Heads = ({ seo, name }) => {
           key="twitter:title"
           content={
             router.locale == "en"
-              ? `${seo?.title}${name ? "-" + "" + name : ""}`
-              : `${seo?.title_cn}${name ? "-" + "" + name : ""}`
+              ? `${site_name}${name ? "-" + "" + name : ""}`
+              : `${site_name_cn ? site_name_cn : site_name}${
+                  name ? "-" + "" + name : ""
+                }`
           }
         />
         <meta

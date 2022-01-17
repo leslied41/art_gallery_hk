@@ -33,6 +33,17 @@ export default {
       fieldset: "translation",
     },
     {
+      name: "site_name",
+      title: "Website Name",
+      type: "string",
+    },
+    {
+      name: "site_name_cn",
+      title: "Website Name Chinese",
+      type: "string",
+      fieldset: "translation",
+    },
+    {
       name: "abbreviation",
       title: "Abbreviation",
       type: "string",
@@ -119,7 +130,7 @@ export default {
       name: "hero_exhibition_link",
       title: "Exhibition Tab Link",
       description:
-        "Exhibition Tab in the hero links to one certain exhibition page. Expected value is one certain exhibition's slug.",
+        "Exhibition Tab in the hero links to one certain exhibition page. Expected value is the target exhibition's slug.",
       type: "string",
     },
     {
