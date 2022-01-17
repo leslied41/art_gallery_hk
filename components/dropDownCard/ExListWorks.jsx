@@ -2,6 +2,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import VerticalLayout from "../exhibitions_exhibition_staticcard/VerticalLayout";
 import HorizontalLayout from "../exhibitions_exhibition_staticcard/HorizontalLayout";
+import VideoLayout from "../exhibitions_exhibition_staticcard/VideoLayout.jsx";
 import Collapsible from "../collapsible/Collapsible";
 import BlockContent from "@sanity/block-content-to-react";
 import ReactPlayer from "react-player";
@@ -22,9 +23,9 @@ function urlFor(source) {
   return builder.image(source);
 }
 const ExListWorks = ({ data }) => {
-  //console.log(data);
-  const { showCard } = useContext(dropDownContext);
-  const { works } = data;
+  //const { showCard } = useContext(dropDownContext);
+  const { works, exhibition_works } = data;
+  //console.log(exhibition_works);
 
   const [model, setmodel] = useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
@@ -74,14 +75,14 @@ const ExListWorks = ({ data }) => {
   useEffect(() => {
     // add or remove refs
     {
-      works &&
+      exhibition_works &&
         setElRefs((elRefs) =>
-          Array(works.length)
+          Array(exhibition_works.length)
             .fill()
             .map((_, index) => elRefs[index] || createRef())
         );
     }
-  }, [works ? works.length : null]);
+  }, [exhibition_works ? exhibition_works.length : null]);
 
   useEffect(() => {
     if (model) {
@@ -156,10 +157,9 @@ const ExListWorks = ({ data }) => {
               height: "100vh",
             }}
           >
-            {works &&
-              works.map((item, index) => {
-                const { image, image_parameter, video_url, video_parameter } =
-                  item;
+            {exhibition_works &&
+              exhibition_works.map((item, index) => {
+                const { work_image, work_parameter, video_url } = item;
                 return (
                   <div
                     key={index}
@@ -194,10 +194,10 @@ const ExListWorks = ({ data }) => {
                           : { display: "none" }
                       }
                     >
-                      {image ? (
+                      {work_image ? (
                         <img
                           key={index}
-                          src={urlFor(image.asset).url()}
+                          src={urlFor(work_image.asset).url()}
                           alt="works"
                           style={
                             index == targetIndex
@@ -283,7 +283,7 @@ const ExListWorks = ({ data }) => {
                                 if (diffX > 0) {
                                   // swiped left
                                   if (targetIndex == 0) {
-                                    setTargetIndex(works.length - 1);
+                                    setTargetIndex(exhibition_works.length - 1);
                                   }
                                   if (targetIndex != 0) {
                                     setTargetIndex(targetIndex - 1);
@@ -291,10 +291,16 @@ const ExListWorks = ({ data }) => {
                                   console.log("swiped left");
                                 } else {
                                   // swiped right
-                                  if (targetIndex == works.length - 1) {
+                                  if (
+                                    targetIndex ==
+                                    exhibition_works.length - 1
+                                  ) {
                                     setTargetIndex(0);
                                   }
-                                  if (targetIndex != works.length - 1)
+                                  if (
+                                    targetIndex !=
+                                    exhibition_works.length - 1
+                                  )
                                     setTargetIndex(targetIndex + 1);
                                   console.log("swiped right");
                                 }
@@ -355,7 +361,7 @@ const ExListWorks = ({ data }) => {
                         }
                       >
                         <BlockContent
-                          blocks={image ? image_parameter : video_parameter}
+                          blocks={work_parameter}
                           projectId="z3dq9mvc"
                           dataset="production"
                         />
@@ -380,10 +386,10 @@ const ExListWorks = ({ data }) => {
               className={styles.next}
               onClick={() => {
                 setiszoomed(false);
-                if (targetIndex == works.length - 1) {
+                if (targetIndex == exhibition_works.length - 1) {
                   setTargetIndex(0);
                 }
-                if (targetIndex != works.length - 1)
+                if (targetIndex != exhibition_works.length - 1)
                   setTargetIndex(targetIndex + 1);
               }}
             >
@@ -395,7 +401,7 @@ const ExListWorks = ({ data }) => {
               onClick={() => {
                 setiszoomed(false);
                 if (targetIndex == 0) {
-                  setTargetIndex(works.length - 1);
+                  setTargetIndex(exhibition_works.length - 1);
                 }
                 if (targetIndex != 0) {
                   setTargetIndex(targetIndex - 1);
@@ -407,71 +413,74 @@ const ExListWorks = ({ data }) => {
           </div>
         </div>
       </div>
-      <Collapsible showCard={showCard}>
-        {works &&
-          works.map((work, index) => {
-            const width = work.metadata?.metadata.dimensions.width;
-            const height = work.metadata?.metadata.dimensions.height;
+      {/* <Collapsible showCard={showCard}> */}
+      {exhibition_works &&
+        exhibition_works.map((work, index) => {
+          //const width = work.metadata?.metadata.dimensions.width;
+          //const height = work.metadata?.metadata.dimensions.height;
 
-            const aspectRatio = work.metadata?.metadata.dimensions.aspectRatio;
-            const {
-              name,
-              name_cn,
-              image,
-              image_parameter,
-              introduction,
-              introduction_cn,
-              video_url,
-              video_parameter,
-              video_introduction,
-              video_introduction_cn,
-            } = work;
-            //console.log(aspectRatio, width);
-            return (
-              <div key={index}>
-                {width > 750 && aspectRatio > 1 ? (
-                  <div key={index} className="mt-145">
-                    <VerticalLayout
-                      name={name}
-                      name_cn={name_cn}
-                      image={image}
-                      image_parameter={image_parameter}
-                      video={video_url}
-                      video_parameter={video_parameter}
-                      video_introduction={video_introduction}
-                      video_introduction_cn={video_introduction_cn}
-                      introduction={introduction}
-                      introduction_cn={introduction_cn}
-                      width={width}
-                      height={height}
-                      index={index}
-                      getIndex={getIndex}
-                    />
-                  </div>
-                ) : (
-                  <div key={index} className="mt-145">
-                    <HorizontalLayout
-                      name={name}
-                      name_cn={name_cn}
-                      image={image}
-                      image_parameter={image_parameter}
-                      video={video_url}
-                      video_parameter={video_parameter}
-                      video_introduction={video_introduction}
-                      video_introduction_cn={video_introduction_cn}
-                      introduction={introduction}
-                      introduction_cn={introduction_cn}
-                      width={width}
-                      height={height}
-                      index={index}
-                      getIndex={getIndex}
-                    />
-                  </div>
-                )}
-              </div>
-            );
-          })}
-      </Collapsible>
+          //const aspectRatio = work.metadata?.metadata.dimensions.aspectRatio;
+          const {
+            name,
+            name_cn,
+            work_image,
+            work_parameter,
+            introduction,
+            introduction_cn,
+            video_url,
+            layout,
+          } = work;
+
+          //console.log(aspectRatio, width);
+          return (
+            <div key={index}>
+              {video_url ? (
+                <div key={index} className="mt-145">
+                  <VideoLayout
+                    name={name}
+                    name_cn={name_cn}
+                    image={work_image}
+                    work_parameter={work_parameter}
+                    video={video_url}
+                    introduction={introduction}
+                    introduction_cn={introduction_cn}
+                    index={index}
+                    getIndex={getIndex}
+                  />
+                </div>
+              ) : layout == "Vertical" ? (
+                <div key={index} className="mt-145">
+                  <VerticalLayout
+                    name={name}
+                    name_cn={name_cn}
+                    image={work_image}
+                    work_parameter={work_parameter}
+                    video={video_url}
+                    introduction={introduction}
+                    introduction_cn={introduction_cn}
+                    index={index}
+                    getIndex={getIndex}
+                  />
+                </div>
+              ) : (
+                <div key={index} className="mt-145">
+                  <HorizontalLayout
+                    name={name}
+                    name_cn={name_cn}
+                    image={work_image}
+                    work_parameter={work_parameter}
+                    video={video_url}
+                    introduction={introduction}
+                    introduction_cn={introduction_cn}
+                    index={index}
+                    getIndex={getIndex}
+                  />
+                </div>
+              )}
+            </div>
+          );
+        })}
+      {/* </Collapsible> */}
     </>
   );
 };

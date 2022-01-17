@@ -62,17 +62,21 @@ export default {
       type: "image",
     },
     {
+      name: "layout",
+      title: "Image Layout",
+      type: "string",
+      options: {
+        list: [
+          { title: "Vertical", value: "vertical" },
+          { title: "Horizontal", value: "horizontal" },
+        ],
+      },
+    },
+    {
       name: "image_parameter",
       title: "Image Parameter",
       type: "blockContent",
     },
-    {
-      name: "works",
-      title: "Works",
-      type: "array",
-      of: [{ type: "reference", to: { type: "work" } }],
-    },
-
     {
       name: "date_cn",
       title: "Date Chinese",
@@ -85,6 +89,62 @@ export default {
       title: "Introduction Chinese",
       type: "blockContent",
       fieldset: "translation",
+    },
+    {
+      name: "exhibition_works",
+      title: "Exhibition Works",
+      type: "array",
+      of: [
+        {
+          name: "exhibition_work",
+          title: "Work",
+          type: "object",
+          fields: [
+            { name: "work_image", title: "Image", type: "image" },
+            {
+              name: "video_url",
+              title: "video",
+              type: "url",
+            },
+            {
+              name: "layout",
+              title: "Layout",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Vertical", value: "vertical" },
+                  { title: "Horizontal", value: "horizontal" },
+                ],
+              },
+            },
+            {
+              name: "name",
+              title: "Work Name",
+              type: "string",
+            },
+            {
+              name: "name_cn",
+              title: "Work Name Chinese",
+              type: "string",
+            },
+            {
+              name: "introduction",
+              title: "Introduction ",
+              type: "blockContent",
+            },
+            {
+              name: "introduction_cn",
+              title: "Introduction Chinese ",
+              type: "blockContent",
+            },
+            {
+              name: "work_parameter",
+              title: "Work parameter ",
+              type: "blockContent",
+            },
+          ],
+        },
+      ],
     },
   ],
   preview: {

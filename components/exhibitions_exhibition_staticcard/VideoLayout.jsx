@@ -1,6 +1,6 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
-import styles from "./VerticalLayout.module.css";
+import styles from "./VideoLayout.module.css";
 import BlockContent from "@sanity/block-content-to-react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -13,12 +13,13 @@ function urlFor(source) {
 const VideoLayout = ({
   name,
   name_cn,
+  image,
+  work_parameter,
+  video,
+
   introduction,
   introduction_cn,
-  video_url,
-  video_parameter,
-  width,
-  height,
+
   index,
   getIndex,
 }) => {
@@ -29,20 +30,32 @@ const VideoLayout = ({
     <>
       <div>
         <div className="oneColumn">
-          <div className={styles.topcontainer}>
-            <ReactPlayer url={video_url} />
+          <div className={styles.video_container}>
+            <ReactPlayer
+              url={video}
+              width="100%"
+              height="100%"
+              controls={true}
+              config={{
+                youtube: {
+                  playerVars: { origin: "https://www.youtube.com" },
+                },
+              }}
+            />
           </div>
         </div>
         <div className="mt-30">
           <div className={styles.grid}>
             <div className="col">
-              <span className="h4">
-                <BlockContent
-                  blocks={video_parameter}
-                  projectId="z3dq9mvc"
-                  dataset="production"
-                />
-              </span>
+              {work_parameter && (
+                <span className="h4">
+                  <BlockContent
+                    blocks={work_parameter}
+                    projectId="z3dq9mvc"
+                    dataset="production"
+                  />
+                </span>
+              )}
             </div>
             <div className="col">
               {(name || name_cn) && (
@@ -51,15 +64,16 @@ const VideoLayout = ({
                   <div className="mt-30"></div>
                 </>
               )}
-
               <div className="h3">
-                <BlockContent
-                  blocks={
-                    router.locale == "en" ? introduction : introduction_cn
-                  }
-                  projectId="z3dq9mvc"
-                  dataset="production"
-                />
+                {(introduction || introduction_cn) && (
+                  <BlockContent
+                    blocks={
+                      router.locale == "en" ? introduction : introduction_cn
+                    }
+                    projectId="z3dq9mvc"
+                    dataset="production"
+                  />
+                )}
               </div>
             </div>
           </div>

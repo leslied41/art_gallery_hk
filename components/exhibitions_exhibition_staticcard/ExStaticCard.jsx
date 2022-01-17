@@ -23,18 +23,19 @@ const ExStaticCard = ({ data, fowardref }) => {
     date,
     date_cn,
     image,
+    layout,
     image_parameter,
     introduction,
     introduction_cn,
     metadata,
   } = data;
   // console.log("exstaticcard");
-  // console.log(data);
-  const height = metadata ? metadata.metadata.dimensions.height : null;
-  const width = metadata ? metadata.metadata.dimensions.width : null;
-  const aspectRatio = metadata
-    ? metadata.metadata.dimensions.aspectRatio
-    : null;
+  console.log(image_parameter);
+  // const height = metadata ? metadata.metadata.dimensions.height : null;
+  // const width = metadata ? metadata.metadata.dimensions.width : null;
+  // const aspectRatio = metadata
+  //   ? metadata.metadata.dimensions.aspectRatio
+  //   : null;
   const [model, setmodel] = useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
   const [iszoomed, setiszoomed] = useState(false);
@@ -341,24 +342,20 @@ const ExStaticCard = ({ data, fowardref }) => {
       </div>
 
       <div className="mt-89">
-        {width > 750 && aspectRatio > 1 ? (
-          <VerticalLayout
+        {layout == "Horizontal" ? (
+          <HorizontalLayout
             image={image}
-            image_parameter={image_parameter}
+            work_parameter={image_parameter}
             introduction={introduction}
             introduction_cn={introduction_cn}
-            width={width}
-            height={height}
             getIndex={getIndex}
           />
         ) : (
-          <HorizontalLayout
+          <VerticalLayout
             image={image}
-            image_parameter={image_parameter}
+            work_parameter={image_parameter}
             introduction={introduction}
             introduction_cn={introduction_cn}
-            width={width}
-            height={height}
             getIndex={getIndex}
           />
         )}
