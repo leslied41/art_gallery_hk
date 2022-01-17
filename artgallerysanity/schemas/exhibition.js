@@ -146,6 +146,40 @@ export default {
         },
       ],
     },
+    {
+      name: "press_en",
+      title: "Press Releases English",
+      type: "array",
+      of: [
+        {
+          name: "release_en",
+          title: "Release English",
+          type: "object",
+          fields: [
+            { name: "release_name", title: "Title", type: "string" },
+            { name: "release_lead", title: "Lead", type: "text" },
+            { name: "release_link", title: "Link", type: "url" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "press_cn",
+      title: "Press Releases Chinese",
+      type: "array",
+      of: [
+        {
+          name: "release_cn",
+          title: "Release Chinese",
+          type: "object",
+          fields: [
+            { name: "release_name", title: "Title", type: "string" },
+            { name: "release_lead", title: "Lead", type: "text" },
+            { name: "release_link", title: "Link", type: "url" },
+          ],
+        },
+      ],
+    },
   ],
   preview: {
     select: {

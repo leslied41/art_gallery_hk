@@ -37,11 +37,17 @@ export default {
       title: "Website Name",
       type: "string",
     },
+
     {
       name: "site_name_cn",
       title: "Website Name Chinese",
       type: "string",
       fieldset: "translation",
+    },
+    {
+      name: "logo",
+      title: "Logo",
+      type: "image",
     },
     {
       name: "abbreviation",

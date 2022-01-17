@@ -7,7 +7,14 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import logo from "../../public/images/Favicon01.svg";
+import Logo from "../../public/images/Favicon01.svg";
+import imageUrlBuilder from "@sanity/image-url";
+import sanityClient from "../../client.js";
+
+const builder = imageUrlBuilder(sanityClient);
+function urlFor(source) {
+  return builder.image(source);
+}
 
 export default function Footer() {
   const router = useRouter();
@@ -42,6 +49,7 @@ export default function Footer() {
     businessHours,
     orgnizationName,
     orgnizationName_cn,
+    logo,
     phone,
     email,
     social,
@@ -51,35 +59,36 @@ export default function Footer() {
     mobile_cursor_font_size,
   } = settings[0];
   //console.log(link_font_size);
+  console.log(logo);
   return (
     <>
       <div className={styles.footer} ref={footer_ref}>
         <div className={styles.container}>
           <div className={styles.grid}>
             <div className={styles.col1}>
-              <ul>
-                <li>
-                  <div className={styles.logo_container}>
-                    <Image src={logo} alt="logo" height="75px" width="75px" />
-                    <span
-                      className="h2"
-                      style={
-                        router.locale == "tc" ? { paddingTop: "25px" } : {}
-                      }
-                    >
-                      <BlockContent
-                        blocks={
-                          router.locale === "en"
-                            ? orgnizationName
-                            : orgnizationName_cn
-                        }
-                        projectId="z3dq9mvc"
-                        dataset="production"
-                      />
-                    </span>
-                  </div>
-                </li>
-              </ul>
+              <div className={styles.logo_container}>
+                <Image
+                  src={logo ? urlFor(logo.asset).url() : Logo}
+                  alt="logo"
+                  layout="responsive"
+                  width="100%"
+                  height="100%"
+                />
+                {/* <span
+                  className="h2"
+                  style={router.locale == "tc" ? { paddingTop: "25px" } : {}}
+                >
+                  <BlockContent
+                    blocks={
+                      router.locale === "en"
+                        ? orgnizationName
+                        : orgnizationName_cn
+                    }
+                    projectId="z3dq9mvc"
+                    dataset="production"
+                  />
+                </span> */}
+              </div>
             </div>
             <div className={styles.col2}>
               <div>
