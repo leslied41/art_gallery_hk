@@ -10,7 +10,7 @@ const AuthorCard = () => {
         <div className="col">
           <div>
             <span className="h1">
-              {router.locale === "en" ? "SITE CREDITS" : "設計師及開發者"}
+              {router.locale === "en" ? "Site Credits" : "設計師及開發者"}
             </span>
           </div>
           <div>

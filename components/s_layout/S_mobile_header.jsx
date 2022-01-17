@@ -16,7 +16,7 @@ const S_mobile_header = () => {
             fill="none"
             viewBox="0 0 763 2660"
             preserveAspectRatio="none"
-            style={{ width: "100%" }}
+            style={{ width: "100%", height: "auto" }}
           >
             <g clipPath="url(#a)">
               <path fill="url(#b)" d="M0 0h746.061v2646.56H0z" />
