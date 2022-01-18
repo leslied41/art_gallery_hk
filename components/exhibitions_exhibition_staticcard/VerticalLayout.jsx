@@ -31,19 +31,21 @@ const VerticalLayout = ({
       <div>
         <div className="oneColumn">
           <div className={styles.topcontainer}>
-            <img
-              key={index}
-              src={urlFor(image.asset).url()}
-              alt={image.asset._ref}
-              className={styles.img}
-              onClick={() => {
-                getIndex(index);
-              }}
+            {image && (
+              <img
+                key={index}
+                src={urlFor(image.asset).url()}
+                alt={image.asset._ref}
+                className={styles.img}
+                onClick={() => {
+                  getIndex(index);
+                }}
 
-              // layout="fill"
-              // objectPosition="60% 40%"
-              //when using layout fill, its parent element must be position relative and its parent must have a height.
-            />
+                // layout="fill"
+                // objectPosition="60% 40%"
+                //when using layout fill, its parent element must be position relative and its parent must have a height.
+              />
+            )}
           </div>
         </div>
         <div className="mt-30">
