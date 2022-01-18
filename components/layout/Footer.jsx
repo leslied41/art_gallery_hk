@@ -67,12 +67,10 @@ export default function Footer() {
           <div className={styles.grid}>
             <div className={styles.col1}>
               <div className={styles.logo_container}>
-                <Image
+                <img
                   src={logo ? urlFor(logo.asset).url() : Logo}
                   alt="logo"
-                  layout="responsive"
-                  width="100%"
-                  height="100%"
+                  style={{ height: "100%" }}
                 />
                 {/* <span
                   className="h2"

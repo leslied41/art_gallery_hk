@@ -32,6 +32,7 @@
   list-style: none;
 }
 .logo_container {
+  height: 70px;
 }
 .links {
   cursor: pointer;
@@ -54,5 +55,8 @@
   }
   .col2 {
     column-gap: 13px;
+  }
+  .logo_container {
+    height: 58px;
   }
 }
