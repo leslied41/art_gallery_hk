@@ -57,7 +57,7 @@ export default function Artist({
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? name : name_cn} />
-      <main>
+      <main className="mb-145">
         <div className="section mt-145">
           <StaticCard data={artistData[0]} fowardref={scrollTo} />
         </div>
@@ -72,41 +72,47 @@ export default function Artist({
             <ArtistBio data={artistData[0]} />
           </DropDownCard>
         </div>
-        <div className="section mt-30">
-          <DropDownCard
-            title={
-              router.locale == "en"
-                ? artist_dropdown?.second_name
-                : artist_dropdown?.second_name_cn
-            }
-          >
-            <ArtistWorksImageList data={filtered_workImages} />
-          </DropDownCard>
-        </div>
+        {filtered_workImages && filtered_workImages.length != 0 && (
+          <div className="section mt-30">
+            <DropDownCard
+              title={
+                router.locale == "en"
+                  ? artist_dropdown?.second_name
+                  : artist_dropdown?.second_name_cn
+              }
+            >
+              <ArtistWorksImageList data={filtered_workImages} />
+            </DropDownCard>
+          </div>
+        )}
 
-        <div className="section mt-30">
-          <DropDownCard
-            title={
-              router.locale == "en"
-                ? artist_dropdown?.third_name
-                : artist_dropdown?.third_name_cn
-            }
-          >
-            <ExpoList data={artistData[0]} />
-          </DropDownCard>
-        </div>
+        {artistData[0].cv && (
+          <div className="section mt-30">
+            <DropDownCard
+              title={
+                router.locale == "en"
+                  ? artist_dropdown?.third_name
+                  : artist_dropdown?.third_name_cn
+              }
+            >
+              <ExpoList data={artistData[0]} />
+            </DropDownCard>
+          </div>
+        )}
 
-        <div className="section mt-30 mb-145">
-          <DropDownCard
-            title={
-              router.locale == "en"
-                ? artist_dropdown?.fourth_name
-                : artist_dropdown?.fourth_name_cn
-            }
-          >
-            <InterviewsList data={interviewsData} />
-          </DropDownCard>
-        </div>
+        {interviewsData && interviewsData.length != 0 && (
+          <div className="section mt-30 ">
+            <DropDownCard
+              title={
+                router.locale == "en"
+                  ? artist_dropdown?.fourth_name
+                  : artist_dropdown?.fourth_name_cn
+              }
+            >
+              <InterviewsList data={interviewsData} />
+            </DropDownCard>
+          </div>
+        )}
       </main>
     </>
   );

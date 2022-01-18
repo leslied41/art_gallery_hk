@@ -147,30 +147,13 @@ export default {
       ],
     },
     {
-      name: "press_en",
-      title: "Press Releases English",
+      name: "press",
+      title: "Press Releases",
       type: "array",
       of: [
         {
-          name: "release_en",
-          title: "Release English",
-          type: "object",
-          fields: [
-            { name: "release_name", title: "Title", type: "string" },
-            { name: "release_lead", title: "Lead", type: "text" },
-            { name: "release_link", title: "Link", type: "url" },
-          ],
-        },
-      ],
-    },
-    {
-      name: "press_cn",
-      title: "Press Releases Chinese",
-      type: "array",
-      of: [
-        {
-          name: "release_cn",
-          title: "Release Chinese",
+          name: "release",
+          title: "Release",
           type: "object",
           fields: [
             { name: "release_name", title: "Title", type: "string" },

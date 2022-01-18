@@ -32,7 +32,8 @@
   list-style: none;
 }
 .logo_container {
-  height: 70px;
+  height: auto;
+  max-width: 400px;
 }
 .links {
   cursor: pointer;
@@ -57,6 +58,7 @@
     column-gap: 13px;
   }
   .logo_container {
-    height: 58px;
+    height: auto;
+    max-width: 270px;
   }
 }

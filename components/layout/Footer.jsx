@@ -70,7 +70,7 @@ export default function Footer() {
                 <img
                   src={logo ? urlFor(logo.asset).url() : Logo}
                   alt="logo"
-                  style={{ height: "100%" }}
+                  style={{ height: "auto", width: "100%" }}
                 />
                 {/* <span
                   className="h2"

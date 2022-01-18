@@ -554,18 +554,6 @@ export default {
           type: "string",
           fieldset: "translation",
         },
-        {
-          name: "second_name",
-          title: "Second Name",
-          type: "string",
-        },
-
-        {
-          name: "second_name_cn",
-          title: "Second Name Chinese",
-          type: "string",
-          fieldset: "translation",
-        },
       ],
     },
     //seo and social medial sharing
