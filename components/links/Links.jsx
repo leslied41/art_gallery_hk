@@ -16,7 +16,7 @@ const Links = ({ font_size }) => {
           </li>
           <li>
             <Link href="/exhibitions" exact>
-              <span>{router.locale == "en" ? "Exhibitions" : "展出"}</span>
+              <span>{router.locale == "en" ? "Exhibitions" : "展覽"}</span>
             </Link>
           </li>
           <li>
