@@ -3,9 +3,6 @@ import { AiOutlineClose } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
 import { useGlobalSettings } from "../context/GlobalSettings";
 import { useRouter } from "next/router";
-import Close from "../../public/images/close_icon.svg";
-import Left from "../../public/images/left_arrow.svg";
-import Image from "next/image";
 
 const ControlBtn = () => {
   const { settings, popup } = useGlobalSettings();
