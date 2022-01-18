@@ -6,6 +6,44 @@
   margin: 0;
   scroll-behavior: smooth;
 }
+/* custom svg icon font */
+@font-face {
+  font-family: "icomoon";
+  src: url("../../public/fonts/fonts/icomoon.eot?8z3g8k");
+  src: url("../../public/fonts/fonts/icomoon.eot?8z3g8k#iefix")
+      format("embedded-opentype"),
+    url("../../public/fonts/fonts/icomoon.ttf?8z3g8k") format("truetype"),
+    url("../../public/fonts/fonts/icomoon.woff?8z3g8k") format("woff"),
+    url("../../public/fonts/fonts/icomoon.svg?8z3g8k#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Web-Sign_1_AW001-01:before {
+  content: "\e900";
+}
+.icon-Web-Sign_1_AW001-02:before {
+  content: "\e901";
+}
+
+/* end */
 @font-face {
   font-family: "Zichtbaar";
   src: url("../../public/fonts/Web/Zichtbaar-Regular.woff");

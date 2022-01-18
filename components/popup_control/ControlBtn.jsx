@@ -27,7 +27,8 @@ const ControlBtn = () => {
           router.push(popup_path || "/");
         }}
       >
-        <AiOutlineClose />
+        <span className="icon-Web-Sign_1_AW001-02"></span>
+        {/* <AiOutlineClose /> */}
       </div>
 
       <div
@@ -46,7 +47,8 @@ const ControlBtn = () => {
           router.back();
         }}
       >
-        <BiArrowBack />
+        <span className="icon-Web-Sign_1_AW001-01"></span>
+        {/* <BiArrowBack /> */}
       </div>
     </>
   );
