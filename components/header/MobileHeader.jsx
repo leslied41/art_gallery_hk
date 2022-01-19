@@ -32,26 +32,20 @@ const MobileHeader = () => {
   const [headerImage, setheaderImage] = useState();
 
   useEffect(() => {
-    if (
-      pathname.indexOf("/artists") == 0 ||
-      pathname.indexOf("tc/artists") == 0
-    ) {
+    if (pathname.indexOf("/artists") == 0) {
       setheaderImage(artists_image);
     }
-    if (
-      pathname.indexOf("/exhibitions") == 0 ||
-      pathname.indexOf("tc/exhibitions")
-    ) {
+    if (pathname.indexOf("/exhibitions") == 0) {
       setheaderImage(exhibition_image);
     }
-    if (pathname == "/" || pathname == "/tc") {
+    if (pathname == "/") {
       setheaderImage(landing_image);
     }
-    if (pathname == "/about" || pathname == "/tc/about") {
+    if (pathname == "/about") {
       setheaderImage(about_image);
       //console.log(headerImage);
     }
-    if (pathname == "/news" || pathname == "/news") {
+    if (pathname == "/news") {
       setheaderImage(news_image);
     }
   }, [pathname, query]);
