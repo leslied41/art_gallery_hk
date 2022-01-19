@@ -15,7 +15,7 @@ const handler = async (req, res) => {
   try {
     const message = await transporter.sendMail({
       from: email,
-      to: "info@phdgroup.art",
+      to: "leslied41@hotmail.com",
       subject: `appointment from ${fullName}`,
       html: `<p>You have a new appointment</p>
       <p>Name:${fullName}<p/>
