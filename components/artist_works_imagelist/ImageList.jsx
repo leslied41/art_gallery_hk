@@ -272,6 +272,14 @@ const ImageList = ({
                             if (Math.abs(diffX) > Math.abs(diffY)) {
                               // sliding horizontally
                               if (diffX > 0) {
+                                // swiped right
+                                if (targetIndex == workImages.length - 1) {
+                                  setTargetIndex(0);
+                                }
+                                if (targetIndex != workImages.length - 1)
+                                  setTargetIndex(targetIndex + 1);
+                                console.log("swiped right");
+                              } else {
                                 // swiped left
                                 if (targetIndex == 0) {
                                   setTargetIndex(workImages.length - 1);
@@ -280,14 +288,6 @@ const ImageList = ({
                                   setTargetIndex(targetIndex - 1);
                                 }
                                 console.log("swiped left");
-                              } else {
-                                // swiped right
-                                if (targetIndex == workImages.length - 1) {
-                                  setTargetIndex(0);
-                                }
-                                if (targetIndex != workImages.length - 1)
-                                  setTargetIndex(targetIndex + 1);
-                                console.log("swiped right");
                               }
                             } else {
                               // sliding vertically
