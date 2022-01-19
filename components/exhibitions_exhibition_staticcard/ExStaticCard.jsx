@@ -182,7 +182,8 @@ const ExStaticCard = ({ data, fowardref }) => {
                   ref={image_ref}
                   style={{
                     display: "block",
-                    height: "100%",
+                    maxWidth: "100%",
+                    objectFit: "contain",
                     cursor: "zoom-in",
                   }}
                   onClick={(e) => {

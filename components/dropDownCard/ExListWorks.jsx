@@ -203,7 +203,8 @@ const ExListWorks = ({ data }) => {
                             index == targetIndex
                               ? {
                                   display: "block",
-                                  height: "100%",
+                                  maxWidth: "100%",
+                                  objectFit: "contain",
                                   cursor: "zoom-in",
                                 }
                               : { display: "none" }
