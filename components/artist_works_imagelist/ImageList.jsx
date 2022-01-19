@@ -388,7 +388,7 @@ const ImageList = ({
               <div
                 className={styles.pics}
                 style={{ marginBottom: "18px" }}
-                key={item.image.asset._ref}
+                key={index}
               >
                 {item.image.asset && (
                   <Image
