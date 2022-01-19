@@ -72,10 +72,18 @@ const ExpoImageList = ({ data }) => {
                     <Link href={"/exhibitions/" + slug.current}>
                       <div style={{ cursor: "pointer" }}>
                         <p className="h2">
-                          {router.locale === "en" ? name_exo : name_exo_cn}
+                          {router.locale === "en"
+                            ? name_exo
+                            : name_exo_cn
+                            ? name_exo_cn
+                            : name_exo}
                         </p>
                         <p className="h3 mt-5">
-                          {router.locale === "en" ? date : date_cn}
+                          {router.locale === "en"
+                            ? date
+                            : date_cn
+                            ? date_cn
+                            : date}
                         </p>
                       </div>
                     </Link>
