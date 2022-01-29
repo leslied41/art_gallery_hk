@@ -1,5 +1,4 @@
 import sanityClient from "../client.js";
-import LightGallery from "lightgallery/react";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
