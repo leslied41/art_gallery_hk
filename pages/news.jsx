@@ -49,5 +49,5 @@ export async function getStaticProps({ locale }) {
     },
     revalidate: 10,
   };
-  console.log(newsData);
+  //console.log(newsData);
 }

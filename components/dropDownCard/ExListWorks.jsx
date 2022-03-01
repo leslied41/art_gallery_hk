@@ -361,11 +361,13 @@ const ExListWorks = ({ data }) => {
                             : { display: "none" }
                         }
                       >
-                        <BlockContent
-                          blocks={work_parameter}
-                          projectId="z3dq9mvc"
-                          dataset="production"
-                        />
+                        {work_parameter && (
+                          <BlockContent
+                            blocks={work_parameter}
+                            projectId="z3dq9mvc"
+                            dataset="production"
+                          />
+                        )}
                       </div>
                     )}
                   </div>

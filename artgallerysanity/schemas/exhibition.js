@@ -159,6 +159,11 @@ export default {
             { name: "release_name", title: "Title", type: "string" },
             { name: "release_lead", title: "Lead", type: "text" },
             { name: "release_link", title: "Link", type: "url" },
+            {
+              name: "release_pdf",
+              title: "Press PDF",
+              type: "file",
+            },
           ],
         },
       ],

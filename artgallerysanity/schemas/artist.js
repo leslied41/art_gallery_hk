@@ -102,6 +102,12 @@ export default {
       fieldset: "cv_section",
     },
     {
+      name: "cv_pdf",
+      title: "CV PDF",
+      type: "file",
+      fieldset: "cv_section",
+    },
+    {
       name: "cv_create_date",
       title: "Create Date",
       type: "date",

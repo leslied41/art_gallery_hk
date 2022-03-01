@@ -7,6 +7,7 @@ import { dropDownContext } from "./DropDownCard";
 
 const PressList = ({ data }) => {
   const { showCard } = useContext(dropDownContext);
+  //console.log(data);
 
   const router = useRouter();
 
@@ -18,11 +19,20 @@ const PressList = ({ data }) => {
           <Collapsible showCard={showCard}>
             <div className="mt-30">
               {data.map((release, index) => {
-                const { release_name, release_lead, release_link } = release;
+                const { release_name, release_lead, release_link, PDF } =
+                  release;
                 return (
                   <div key={index} className="mt-30">
                     <a
-                      href={release_link ? release_link : null}
+                      href={
+                        PDF
+                          ? PDF
+                            ? PDF
+                            : null
+                          : release_link
+                          ? release_link
+                          : null
+                      }
                       target="_blank"
                       rel="noreferrer"
                     >

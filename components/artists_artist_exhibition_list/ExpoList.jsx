@@ -7,7 +7,8 @@ import { dropDownContext } from "../dropDownCard/DropDownCard";
 const ExpoList = ({ data }) => {
   const { showCard } = useContext(dropDownContext);
   //console.log(data);
-  const { cv, cv_link, cv_create_date } = data;
+  const { cv, cv_link, cv_create_date, PDF } = data;
+  console.log(PDF);
   return (
     <>
       <div className={styles.grid}>
@@ -18,7 +19,7 @@ const ExpoList = ({ data }) => {
               <ul>
                 <li className="mt-30" style={{ cursor: "pointer" }}>
                   <a
-                    href={cv_link ? cv_link : null}
+                    href={PDF ? (PDF ? PDF : null) : cv_link ? cv_link : null}
                     target="_blank"
                     rel="noreferrer"
                   >

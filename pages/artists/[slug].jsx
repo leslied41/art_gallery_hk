@@ -122,7 +122,10 @@ export async function getStaticProps({ locale, params }) {
     `*[_type=='pages'&&name=='Artist'][0]{artist_dropdown,seo}`
   );
   const artistData = await sanityClient.fetch(
-    `*[slug.current=='${params.slug}']`
+    `*[slug.current=='${params.slug}']{
+  ...,
+  "PDF": cv_pdf.asset->url
+}`
   );
   const workImages = await sanityClient.fetch(
     `*[_type=='work'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]{image,image_parameter,'metadata':image.asset->{metadata}}`
