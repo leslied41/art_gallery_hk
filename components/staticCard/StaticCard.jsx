@@ -1,11 +1,14 @@
 import styles from "./StaticCard.module.css";
 import BlockContent from "@sanity/block-content-to-react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import AppointmentForm from "../appointment_form/AppointmentForm";
+import { useGlobalSettings } from "../../components/context/GlobalSettings";
 
 const StaticCard = ({ data, form, fowardref }) => {
   const router = useRouter();
+  const { showimg, setshowimg } = useGlobalSettings();
+  //console.log(showimg_context);
 
   const {
     name,

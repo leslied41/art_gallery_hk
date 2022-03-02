@@ -4,7 +4,7 @@ import ArtistList from "../components/artists_artist_list/ArtistList";
 import styles from "../styles/artists.module.css";
 import Heads from "../components/head/Heads.jsx";
 import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, createContext, useState } from "react";
 import { useGlobalSettings } from "../components/context/GlobalSettings";
 
 export default function Artists({ data, artistsData }) {
@@ -13,6 +13,7 @@ export default function Artists({ data, artistsData }) {
   const router = useRouter();
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
+
   useEffect(() => {
     scrollTo.current.scrollIntoView();
   }, []);
@@ -20,7 +21,7 @@ export default function Artists({ data, artistsData }) {
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);
-  console.log(popup_path);
+  //console.log(popup_path);
   //console.log(artistsData);
   return (
     <>

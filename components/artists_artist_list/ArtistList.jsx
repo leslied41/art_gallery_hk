@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ArtistList.module.css";
@@ -21,9 +21,15 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
   const [stoTop, setstoTop] = useState();
   const [list_height, setlist_height] = useState();
   const [image_height, setimage_height] = useState();
+  const [imgIsInViewport, setImgIsInViewport] = useState(null);
   const s_ref = useRef();
   const image_ref = useRef();
+  const grid_ref = useRef();
   const original_order_artistData = artistsData.slice();
+
+  const { showimg, over_footer } = useGlobalSettings();
+
+  //console.log(showimg_context);
 
   original_order_artistData.sort(function (a, b) {
     let dateA = new Date(a._updatedAt).getTime();
@@ -45,26 +51,27 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
   });
 
   useEffect(() => {
-    setlist_height(s_ref.current.scrollHeight);
+    // setlist_height(s_ref.current.scrollHeight);
 
-    setstoTop(
-      s_ref.current.getBoundingClientRect().top + window.scrollY ||
-        window.pageYOffset
-    );
+    // setstoTop(
+    //   s_ref.current.getBoundingClientRect().top + window.scrollY ||
+    //     window.pageYOffset
+    // );
     if (window.innerWidth > 768) {
       setmobile(false);
     }
     if (window.innerWidth <= 768) {
       setmobile(true);
     }
+
     window.addEventListener("resize", () => {
-      {
-        !mobile &&
-          setstoTop(
-            s_ref.current.getBoundingClientRect().top + window.scrollY ||
-              window.pageYOffset
-          );
-      }
+      // {
+      //   !mobile &&
+      //     setstoTop(
+      //       s_ref.current.getBoundingClientRect().top + window.scrollY ||
+      //         window.pageYOffset
+      //     );
+      // }
       if (window.innerWidth > 768) {
         setmobile(false);
       }
@@ -73,20 +80,34 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
       }
     });
   }, []);
+  //check it element is in viewport
+  // useEffect(() => {
+  //   if (window.innerHeight > image_ref.current.getBoundingClientRect().bottom) {
+  //     setImgIsInViewport(true);
+  //     console.log("123");
+  //   } else {
+  //     setImgIsInViewport(false);
+  //     console.log("321");
+  //   }
+  // }, [toTop]);
 
-  useEffect(() => {
-    if (!mobile) {
-      if (toTop - stoTop + image_height >= list_height) {
-        console.log(toTop - stoTop + image_height);
-        console.log(list_height);
-        image_ref.current.style.bottom = `0px`;
-        image_ref.current.style.top = null;
-      } else {
-        image_ref.current.style.top = `${toTop - stoTop}px`;
-        image_ref.current.style.bottom = null;
-      }
-    }
-  }, [toTop, stoTop, image_height]);
+  // useEffect(() => {
+  //   if (!mobile) {
+  //     if (toTop - stoTop + image_height >= list_height) {
+  //       // console.log(toTop - stoTop + image_height);
+  //       // console.log(list_height);
+  //       image_ref.current.style.bottom = `0px`;
+  //       image_ref.current.style.top = null;
+  //     } else {
+  //       image_ref.current.style.top = `${toTop - stoTop}px`;
+  //       // image_ref.current.style.top = `${
+  //       //   window.innerHeight / 2 + window.scrollY || window.pageYOffset -  s_ref.current.getBoundingClientRect().top
+  //       // }px`;
+
+  //       image_ref.current.style.bottom = null;
+  //     }
+  //   }
+  // }, [toTop, stoTop, image_height]);
 
   const overArtist = (slug) => {
     let targetArtist = artistsData.filter(
@@ -111,16 +132,29 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
             className={styles.container}
             ref={image_ref}
             style={
-              showImage
+              over_footer
+                ? showImage && showimg
+                  ? {
+                      position: "absolute",
+                      bottom: "0px",
+                      width: "88%",
+                      display: "block",
+                    }
+                  : { display: "none" }
+                : showImage && showimg
                 ? {
                     display: "block",
+                    position: "fixed",
+                    top: "50%",
+                    width: "40%",
+                    transform: "translateY(-50%)",
                   }
                 : { display: "none" }
             }
           >
             {targetImage && (
               <Image
-                src={urlFor(targetImage.asset).width(647).height(431).url()}
+                src={urlFor(targetImage.asset).url()}
                 alt="works"
                 objectFit="cover"
                 layout="responsive"
@@ -131,7 +165,7 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
           </div>
         )}
       </div>
-      <div className="col h2">
+      <div className="col h2" ref={grid_ref}>
         <ul>
           {(artists_list_reorder ? artistsData : original_order_artistData).map(
             (artist, index) => {

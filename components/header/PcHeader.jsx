@@ -15,7 +15,7 @@ function urlFor(source) {
 const PcHeader = () => {
   const router = useRouter();
   const { pathname, asPath, query } = router;
-  const { settings } = useGlobalSettings();
+  const { settings, showimg, setshowimg } = useGlobalSettings();
   const linksEl = useRef();
   const titleEl = useRef();
   const exhibitionCursor = useRef(null);
@@ -87,6 +87,24 @@ const PcHeader = () => {
       //console.log(y - scrollTop);
       setToTop(y - scrollTop);
       setToLeft(x);
+    });
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (!sectionEl.current) {
+        return;
+      }
+      if (
+        (window.scrollY || window.pageYOffset) >
+        sectionEl.current.offsetTop + sectionEl.current.offsetHeight
+      ) {
+        setshowimg(true);
+        //console.log("over me ");
+      } else {
+        setshowimg(false);
+        //console.log("leave  me ");
+      }
     });
   }, []);
 

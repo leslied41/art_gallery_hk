@@ -18,7 +18,7 @@ function urlFor(source) {
 
 export default function Footer() {
   const router = useRouter();
-  const { settings, popup } = useGlobalSettings();
+  const { settings, popup, setover_footer } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
   const [isMobile, setisMobile] = useState();
   const footer_ref = useRef();
@@ -42,6 +42,25 @@ export default function Footer() {
     setpopup_path(router.asPath);
   }, [router.asPath]);
   //console.log(popup_path);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (!footer_ref.current) {
+        return;
+      }
+
+      if (
+        (document.documentElement.clientHeight || window.innerHeight) >
+        footer_ref.current.getBoundingClientRect().top
+      ) {
+        setover_footer(true);
+        //console.log("over me foot");
+      } else {
+        setover_footer(false);
+        //console.log("leave me foot");
+      }
+    });
+  }, []);
 
   const {
     abbreviation,
