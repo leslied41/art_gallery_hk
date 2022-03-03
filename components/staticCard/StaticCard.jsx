@@ -10,7 +10,7 @@ const serializers = {
   marks: {
     link: ({ children, mark }) =>
       mark.blank ? (
-        <a href={mark.href} target="_blank" rel="noopener noreferer">
+        <a href={mark.href} target="_blank" rel="noopener noreferrer">
           {children}
         </a>
       ) : (
