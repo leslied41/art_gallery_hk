@@ -4,7 +4,6 @@ import { useState, useContext, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import AppointmentForm from "../appointment_form/AppointmentForm";
 import { useGlobalSettings } from "../../components/context/GlobalSettings";
-import { Children } from "react";
 //this is to open new tab for the hyperlink in blockcontent
 const serializers = {
   marks: {
