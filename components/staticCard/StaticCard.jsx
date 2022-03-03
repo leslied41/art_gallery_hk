@@ -4,6 +4,20 @@ import { useState, useContext, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import AppointmentForm from "../appointment_form/AppointmentForm";
 import { useGlobalSettings } from "../../components/context/GlobalSettings";
+import { Children } from "react";
+//this is to open new tab for the hyperlink in blockcontent
+const serializers = {
+  marks: {
+    link: ({ children, mark }) =>
+      mark.blank ? (
+        <a href={mark.href} target="_blank" rel="noopener noreferer">
+          {children}
+        </a>
+      ) : (
+        <a href={mark.href}>{children}</a>
+      ),
+  },
+};
 
 const StaticCard = ({ data, form, fowardref }) => {
   const router = useRouter();
@@ -45,6 +59,7 @@ const StaticCard = ({ data, form, fowardref }) => {
                     blocks={
                       router.locale === "en" ? description : description_cn
                     }
+                    serializers={serializers}
                     projectId="z3dq9mvc"
                     dataset="production"
                   />

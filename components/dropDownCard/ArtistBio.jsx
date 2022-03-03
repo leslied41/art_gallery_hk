@@ -13,9 +13,24 @@ const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
+
+const serializers = {
+  marks: {
+    link: ({ children, mark }) =>
+      mark.blank ? (
+        <a href={mark.href} target="_blank" rel="noopener noreferer">
+          {children}
+        </a>
+      ) : (
+        <a href={mark.href}>{children}</a>
+      ),
+  },
+};
+
 const ArtistBio = ({ data }) => {
   const { showCard, setshowCard } = useContext(dropDownContext);
   const { bio, bio_cn, profile, bio_collapsed } = data;
+  console.log(profile);
   const router = useRouter();
   //console.log(bio_collapsed);
   const [mobile, setmobile] = useState();
@@ -52,7 +67,7 @@ const ArtistBio = ({ data }) => {
             <div className="mt-30" style={{ display: "block", width: "100%" }}>
               {profile && (
                 <Image
-                  src={urlFor(profile.asset).width(654).height(437).url()}
+                  src={urlFor(profile.asset).url()}
                   alt={"profile"}
                   width={654}
                   height={437}
@@ -66,6 +81,7 @@ const ArtistBio = ({ data }) => {
             <div className="mt-28 h3">
               <BlockContent
                 blocks={router.locale == "en" ? bio : bio_cn}
+                serializers={serializers}
                 projectId="z3dq9mvc"
                 dataset="production"
               />

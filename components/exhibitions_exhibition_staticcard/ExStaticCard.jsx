@@ -12,6 +12,19 @@ import {
   useLayoutEffect,
 } from "react";
 
+const serializers = {
+  marks: {
+    link: ({ children, mark }) =>
+      mark.blank ? (
+        <a href={mark.href} target="_blank" rel="noopener noreferer">
+          {children}
+        </a>
+      ) : (
+        <a href={mark.href}>{children}</a>
+      ),
+  },
+};
+
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
@@ -308,6 +321,7 @@ const ExStaticCard = ({ data, fowardref }) => {
                   {image_parameter && (
                     <BlockContent
                       blocks={image_parameter}
+                      serializers={serializers}
                       projectId="z3dq9mvc"
                       dataset="production"
                     />
