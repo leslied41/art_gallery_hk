@@ -2,6 +2,8 @@ import styles from "./AppointmentForm.module.css";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import sanityClient from "../../client.js";
+import imageUrlBuilder from "@sanity/image-url";
 import { usePortableText } from "../usehooks/usePortableText";
 
 const AppointmentForm = ({ formdata }) => {
@@ -24,6 +26,9 @@ const AppointmentForm = ({ formdata }) => {
   const [showRes, setShowRes] = useState(false);
   const [sending, setSending] = useState(false);
   //console.log(FormResponse);
+  const portableText = usePortableText(
+    router.locale == "en" ? response : response_cn
+  );
   const {
     register,
     handleSubmit,
@@ -169,8 +174,7 @@ const AppointmentForm = ({ formdata }) => {
       </form>
       <div>
         {/* {sending && <div>Sending...</div>} */}
-        {showRes &&
-          usePortableText(router.locale == "en" ? response : response_cn)}
+        {showRes && portableText}
       </div>
     </div>
   );

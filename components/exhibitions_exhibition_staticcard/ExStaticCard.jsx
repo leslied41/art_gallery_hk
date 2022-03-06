@@ -24,7 +24,7 @@ const ExStaticCard = ({ data, fowardref }) => {
     metadata,
   } = data;
   // console.log("exstaticcard");
-  console.log(image_parameter);
+  //console.log(image_parameter);
   // const height = metadata ? metadata.metadata.dimensions.height : null;
   // const width = metadata ? metadata.metadata.dimensions.width : null;
   // const aspectRatio = metadata
@@ -44,6 +44,7 @@ const ExStaticCard = ({ data, fowardref }) => {
   const [windowWidth, setwindowWidth] = useState();
   const [swipeInitial, setswipeInitial] = useState({ x: null, y: null });
   const image_ref = useRef();
+  const parameter_portableText = usePortableText(image_parameter);
   const getIndex = (index) => {
     setmodel(true);
   };
@@ -299,7 +300,7 @@ const ExStaticCard = ({ data, fowardref }) => {
                     alignItems: "center",
                   }}
                 >
-                  {image_parameter && usePortableText(image_parameter)}
+                  {image_parameter && parameter_portableText}
                 </div>
               )}
             </div>

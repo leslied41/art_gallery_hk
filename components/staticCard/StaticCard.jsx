@@ -1,5 +1,5 @@
 import styles from "./StaticCard.module.css";
-import { useState, useContext, useEffect, useRef } from "react";
+import { getImageDimensions } from "@sanity/asset-utils";
 import { useRouter } from "next/router";
 import AppointmentForm from "../appointment_form/AppointmentForm";
 import { useGlobalSettings } from "../../components/context/GlobalSettings";
@@ -22,9 +22,9 @@ const StaticCard = ({ data, form, fowardref }) => {
     font_size,
   } = data || {};
   //console.log(font_size);
-  // const portableText = usePortableText(
-  //   router.locale === "en" ? description : description_cn
-  // );
+  const portableText = usePortableText(
+    router.locale === "en" ? description : description_cn
+  );
 
   return (
     <>
@@ -44,11 +44,7 @@ const StaticCard = ({ data, form, fowardref }) => {
           {description && (
             <div className="words mt-145">
               <div className={styles.gap}>
-                <span className="h3">
-                  {usePortableText(
-                    router.locale === "en" ? description : description_cn
-                  )}
-                </span>
+                <span className="h3">{portableText}</span>
               </div>
             </div>
           )}
@@ -74,11 +70,7 @@ const StaticCard = ({ data, form, fowardref }) => {
               {social.map((item, index) => {
                 return (
                   <div key={index}>
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href={item.url}>
                       <span className="h3">{item.platform}</span>
                     </a>
                   </div>

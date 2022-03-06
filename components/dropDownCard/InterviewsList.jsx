@@ -1,14 +1,12 @@
 import styles from "./InterviewsList.module.css";
-import { useRouter } from "next/router";
 import Collapsible from "../collapsible/Collapsible";
 import { useContext } from "react";
 import { dropDownContext } from "./DropDownCard";
-import { usePortableText } from "../usehooks/usePortableText";
+import { SingleInterview } from "./SingleInterview";
 
 const InterviewsList = ({ data }) => {
   const { showCard } = useContext(dropDownContext);
-  console.log(data);
-  const router = useRouter();
+  //console.log(data);
 
   return (
     <>
@@ -18,35 +16,7 @@ const InterviewsList = ({ data }) => {
           <Collapsible showCard={showCard}>
             <div className="mt-30">
               {data.map((interview) => {
-                const {
-                  _id,
-                  title,
-                  title_cn,
-                  interview_brief,
-                  interview_brief_cn,
-                  interview_link,
-                } = interview;
-                return (
-                  <div key={_id} className="mt-30">
-                    <a
-                      href={interview_link ? interview_link : null}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <div className="h6">
-                        {router.locale == "en" ? title : title_cn}
-                      </div>
-
-                      <div className="h3 mt-5">
-                        {usePortableText(
-                          router.locale === "en"
-                            ? interview_brief
-                            : interview_brief_cn
-                        )}
-                      </div>
-                    </a>
-                  </div>
-                );
+                return <SingleInterview interview={interview} />;
               })}
             </div>
           </Collapsible>

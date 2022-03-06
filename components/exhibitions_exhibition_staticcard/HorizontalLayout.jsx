@@ -19,6 +19,10 @@ const HorizontalLayout = ({
   getIndex,
 }) => {
   const router = useRouter();
+  const intro_portableText = usePortableText(
+    router.locale == "en" ? introduction : introduction_cn
+  );
+  const parameter_portableText = usePortableText(work_parameter);
   return (
     <>
       <div>
@@ -39,7 +43,7 @@ const HorizontalLayout = ({
             </div>
             <div className="mt-30">
               <span className="h4">
-                {work_parameter && usePortableText(work_parameter)}
+                {work_parameter && parameter_portableText}
               </span>
             </div>
           </div>
@@ -52,10 +56,7 @@ const HorizontalLayout = ({
                 </>
               )}
               <div className="h3">
-                {(introduction || introduction_cn) &&
-                  usePortableText(
-                    router.locale == "en" ? introduction : introduction_cn
-                  )}
+                {(introduction || introduction_cn) && intro_portableText}
               </div>
             </div>
           </div>

@@ -15,6 +15,10 @@ const VideoLayout = ({
   getIndex,
 }) => {
   const router = useRouter();
+  const intro_portableText = usePortableText(
+    router.locale == "en" ? introduction : introduction_cn
+  );
+  const parameter_portableText = usePortableText(work_parameter);
   //console.log(12345);
   //console.log(width, height);
   return (
@@ -39,7 +43,7 @@ const VideoLayout = ({
           <div className={styles.grid}>
             <div className="col">
               {work_parameter && (
-                <span className="h4">{usePortableText(work_parameter)}</span>
+                <span className="h4">{parameter_portableText}</span>
               )}
             </div>
             <div className="col">
@@ -50,10 +54,7 @@ const VideoLayout = ({
                 </>
               )}
               <div className="h3">
-                {(introduction || introduction_cn) &&
-                  usePortableText(
-                    router.locale == "en" ? introduction : introduction_cn
-                  )}
+                {(introduction || introduction_cn) && intro_portableText}
               </div>
             </div>
           </div>
