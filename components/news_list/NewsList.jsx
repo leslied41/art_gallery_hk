@@ -29,8 +29,12 @@ const NewsList = ({ newsData }) => {
 
   return (
     <>
-      {slicedNewsData.map((news) => {
-        return <SingleNews news={news} />;
+      {slicedNewsData.map((news, index) => {
+        return (
+          <div key={index}>
+            <SingleNews news={news} />
+          </div>
+        );
       })}
       <div className={styles.grid}>
         <div className="col mb-42">

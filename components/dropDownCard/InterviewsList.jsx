@@ -15,8 +15,12 @@ const InterviewsList = ({ data }) => {
         <div className="col">
           <Collapsible showCard={showCard}>
             <div className="mt-30">
-              {data.map((interview) => {
-                return <SingleInterview interview={interview} />;
+              {data.map((interview, index) => {
+                return (
+                  <div key={index}>
+                    <SingleInterview interview={interview} />
+                  </div>
+                );
               })}
             </div>
           </Collapsible>
