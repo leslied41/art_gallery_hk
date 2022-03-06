@@ -1,10 +1,8 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./VerticalLayout.module.css";
-import BlockContent from "@sanity/block-content-to-react";
-import Image from "next/image";
 import { useRouter } from "next/router";
-import ReactPlayer from "react-player";
+import { usePortableText } from "../usehooks/usePortableText.js";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -52,13 +50,7 @@ const VerticalLayout = ({
           <div className={styles.grid}>
             <div className="col">
               {work_parameter && (
-                <span className="h4">
-                  <BlockContent
-                    blocks={work_parameter}
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
-                </span>
+                <span className="h4">{usePortableText(work_parameter)}</span>
               )}
             </div>
             <div className="col">
@@ -70,15 +62,10 @@ const VerticalLayout = ({
               )}
 
               <div className="h3">
-                {(introduction || introduction_cn) && (
-                  <BlockContent
-                    blocks={
-                      router.locale == "en" ? introduction : introduction_cn
-                    }
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
-                )}
+                {(introduction || introduction_cn) &&
+                  usePortableText(
+                    router.locale == "en" ? introduction : introduction_cn
+                  )}
               </div>
             </div>
           </div>

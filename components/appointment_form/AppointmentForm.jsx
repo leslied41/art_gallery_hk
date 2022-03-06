@@ -1,8 +1,8 @@
 import styles from "./AppointmentForm.module.css";
 import { useForm } from "react-hook-form";
-import BlockContent from "@sanity/block-content-to-react";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { usePortableText } from "../usehooks/usePortableText";
 
 const AppointmentForm = ({ formdata }) => {
   //console.log(formdata);
@@ -116,25 +116,6 @@ const AppointmentForm = ({ formdata }) => {
           </p>
         </div>
 
-        {/* <div>
-          <input
-            name="event"
-            type="text"
-            placeholder={
-              router.locale == "en"
-                ? event
-                  ? event
-                  : "Which event are you planning to go ?"
-                : event_cn
-                ? event_cn
-                : "您想參加那項活動？"
-            }
-            {...register("event", { required: false })}
-          />
-          <p className="red-text h4">
-            {errors.event?.type === "required" && "Event is required"}
-          </p>
-        </div> */}
         <div>
           <input
             name="remarks"
@@ -188,13 +169,8 @@ const AppointmentForm = ({ formdata }) => {
       </form>
       <div>
         {/* {sending && <div>Sending...</div>} */}
-        {showRes && (
-          <BlockContent
-            blocks={router.locale == "en" ? response : response_cn}
-            projectId="z3dq9mvc"
-            dataset="production"
-          />
-        )}
+        {showRes &&
+          usePortableText(router.locale == "en" ? response : response_cn)}
       </div>
     </div>
   );

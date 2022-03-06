@@ -1,10 +1,8 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./HorizontalLayout.module.css";
-import BlockContent from "@sanity/block-content-to-react";
-import Image from "next/image";
 import { useRouter } from "next/router";
-import ReactPlayer from "react-player";
+import { usePortableText } from "../usehooks/usePortableText.js";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -41,13 +39,7 @@ const HorizontalLayout = ({
             </div>
             <div className="mt-30">
               <span className="h4">
-                {work_parameter && (
-                  <BlockContent
-                    blocks={work_parameter}
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
-                )}
+                {work_parameter && usePortableText(work_parameter)}
               </span>
             </div>
           </div>
@@ -60,15 +52,10 @@ const HorizontalLayout = ({
                 </>
               )}
               <div className="h3">
-                {(introduction || introduction_cn) && (
-                  <BlockContent
-                    blocks={
-                      router.locale == "en" ? introduction : introduction_cn
-                    }
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
-                )}
+                {(introduction || introduction_cn) &&
+                  usePortableText(
+                    router.locale == "en" ? introduction : introduction_cn
+                  )}
               </div>
             </div>
           </div>

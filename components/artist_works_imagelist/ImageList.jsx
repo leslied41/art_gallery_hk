@@ -1,16 +1,10 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ImageList.module.css";
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  createRef,
-  useCallback,
-} from "react";
+import React, { useEffect, useState, useRef, createRef } from "react";
 import Image from "next/image";
-import BlockContent from "@sanity/block-content-to-react";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard.jsx";
+import { usePortableText } from "../usehooks/usePortableText.js";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -326,11 +320,7 @@ const ImageList = ({
                           : { display: "none" }
                       }
                     >
-                      <BlockContent
-                        blocks={item.image_parameter}
-                        projectId="z3dq9mvc"
-                        dataset="production"
-                      />
+                      {usePortableText(item.image_parameter)}
                     </div>
                   )}
                 </div>

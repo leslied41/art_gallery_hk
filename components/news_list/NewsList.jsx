@@ -3,14 +3,15 @@ import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import BlockContent from "@sanity/block-content-to-react";
 import { useRouter } from "next/router";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard";
+import { usePortableText } from "../usehooks/usePortableText";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
+
 const NewsList = ({ newsData }) => {
   //console.log(newsData);
   const [loaded, setloaded] = useState(true);
@@ -77,11 +78,9 @@ const NewsList = ({ newsData }) => {
               >
                 <p className="h2">{router.locale == "en" ? title : title_cn}</p>
                 <div className="h3 mt-30">
-                  <BlockContent
-                    blocks={router.locale == "en" ? news_brief : news_brief_cn}
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
+                  {usePortableText(
+                    router.locale == "en" ? news_brief : news_brief_cn
+                  )}
                 </div>
               </a>
             </div>

@@ -1,11 +1,8 @@
 import styles from "./Footer.module.css";
 import Link from "next/link";
 import { useGlobalSettings } from "../context/GlobalSettings";
-import BlockContent from "@sanity/block-content-to-react";
 import Links from "../links/Links";
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import Logo from "../../public/images/Favicon01.svg";
 import imageUrlBuilder from "@sanity/image-url";
@@ -144,7 +141,13 @@ export default function Footer() {
                     {social.map((item, index) => {
                       return (
                         <li key={index}>
-                          <a href={item.url}>{item.platform}</a>
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {item.platform}
+                          </a>
                         </li>
                       );
                     })}

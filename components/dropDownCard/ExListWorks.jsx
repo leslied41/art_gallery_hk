@@ -3,20 +3,10 @@ import sanityClient from "../../client.js";
 import VerticalLayout from "../exhibitions_exhibition_staticcard/VerticalLayout";
 import HorizontalLayout from "../exhibitions_exhibition_staticcard/HorizontalLayout";
 import VideoLayout from "../exhibitions_exhibition_staticcard/VideoLayout.jsx";
-import Collapsible from "../collapsible/Collapsible";
-import BlockContent from "@sanity/block-content-to-react";
 import ReactPlayer from "react-player";
-import {
-  useContext,
-  useCallback,
-  useRef,
-  useState,
-  useEffect,
-  useLayoutEffect,
-  createRef,
-} from "react";
-import { dropDownContext } from "./DropDownCard";
+import { useRef, useState, useEffect, useLayoutEffect, createRef } from "react";
 import styles from "./ExListWorks.module.css";
+import { usePortableText } from "../usehooks/usePortableText.js";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -361,13 +351,7 @@ const ExListWorks = ({ data }) => {
                             : { display: "none" }
                         }
                       >
-                        {work_parameter && (
-                          <BlockContent
-                            blocks={work_parameter}
-                            projectId="z3dq9mvc"
-                            dataset="production"
-                          />
-                        )}
+                        {work_parameter && usePortableText(work_parameter)}
                       </div>
                     )}
                   </div>

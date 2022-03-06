@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from "react";
 import styles from "./ExpoList.module.css";
-import Link from "next/link";
 import Collapsible from "../collapsible/Collapsible";
 import { dropDownContext } from "../dropDownCard/DropDownCard";
 

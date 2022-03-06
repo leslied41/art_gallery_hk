@@ -1,26 +1,14 @@
 import styles from "./StaticCard.module.css";
-import BlockContent from "@sanity/block-content-to-react";
 import { useState, useContext, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import AppointmentForm from "../appointment_form/AppointmentForm";
 import { useGlobalSettings } from "../../components/context/GlobalSettings";
-//this is to open new tab for the hyperlink in blockcontent
-const serializers = {
-  marks: {
-    link: ({ children, mark }) =>
-      mark.blank ? (
-        <a href={mark.href} target="_blank" rel="noopener noreferrer">
-          {children}
-        </a>
-      ) : (
-        <a href={mark.href}>{children}</a>
-      ),
-  },
-};
+import { usePortableText } from "../usehooks/usePortableText";
 
 const StaticCard = ({ data, form, fowardref }) => {
   const router = useRouter();
   const { showimg, setshowimg } = useGlobalSettings();
+
   //console.log(showimg_context);
 
   const {
@@ -34,6 +22,9 @@ const StaticCard = ({ data, form, fowardref }) => {
     font_size,
   } = data || {};
   //console.log(font_size);
+  // const portableText = usePortableText(
+  //   router.locale === "en" ? description : description_cn
+  // );
 
   return (
     <>
@@ -54,14 +45,9 @@ const StaticCard = ({ data, form, fowardref }) => {
             <div className="words mt-145">
               <div className={styles.gap}>
                 <span className="h3">
-                  <BlockContent
-                    blocks={
-                      router.locale === "en" ? description : description_cn
-                    }
-                    serializers={serializers}
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
+                  {usePortableText(
+                    router.locale === "en" ? description : description_cn
+                  )}
                 </span>
               </div>
             </div>
@@ -88,7 +74,11 @@ const StaticCard = ({ data, form, fowardref }) => {
               {social.map((item, index) => {
                 return (
                   <div key={index}>
-                    <a href={item.url}>
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <span className="h3">{item.platform}</span>
                     </a>
                   </div>

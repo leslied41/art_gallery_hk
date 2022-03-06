@@ -1,29 +1,10 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ExStaticCard.module.css";
-import BlockContent from "@sanity/block-content-to-react";
 import VerticalLayout from "./VerticalLayout.jsx";
 import HorizontalLayout from "./HorizontalLayout.jsx";
-import {
-  useRef,
-  useCallback,
-  useState,
-  useEffect,
-  useLayoutEffect,
-} from "react";
-
-const serializers = {
-  marks: {
-    link: ({ children, mark }) =>
-      mark.blank ? (
-        <a href={mark.href} target="_blank" rel="noopener noreferrer">
-          {children}
-        </a>
-      ) : (
-        <a href={mark.href}>{children}</a>
-      ),
-  },
-};
+import { usePortableText } from "../usehooks/usePortableText.js";
+import { useRef, useState, useEffect, useLayoutEffect } from "react";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -318,14 +299,7 @@ const ExStaticCard = ({ data, fowardref }) => {
                     alignItems: "center",
                   }}
                 >
-                  {image_parameter && (
-                    <BlockContent
-                      blocks={image_parameter}
-                      serializers={serializers}
-                      projectId="z3dq9mvc"
-                      dataset="production"
-                    />
-                  )}
+                  {image_parameter && usePortableText(image_parameter)}
                 </div>
               )}
             </div>

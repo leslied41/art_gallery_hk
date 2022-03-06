@@ -1,31 +1,19 @@
 import { useRouter } from "next/router";
 import styles from "./ArtistBio.module.css";
-import BlockContent from "@sanity/block-content-to-react";
-import imageUrlBuilder from "@sanity/image-url";
-import sanityClient from "../../client.js";
 import Image from "next/image";
 import Collapsible from "../collapsible/Collapsible";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { dropDownContext } from "./DropDownCard";
+import sanityClient from "../../client.js";
+import imageUrlBuilder from "@sanity/image-url";
+import { usePortableText } from "../usehooks/usePortableText";
+
 const builder = imageUrlBuilder(sanityClient);
 
 function urlFor(source) {
   return builder.image(source);
 }
-
-const serializers = {
-  marks: {
-    link: ({ children, mark }) =>
-      mark.blank ? (
-        <a href={mark.href} target="_blank" rel="noopener noreferrer">
-          {children}
-        </a>
-      ) : (
-        <a href={mark.href}>{children}</a>
-      ),
-  },
-};
 
 const ArtistBio = ({ data }) => {
   const { showCard, setshowCard } = useContext(dropDownContext);
@@ -79,12 +67,7 @@ const ArtistBio = ({ data }) => {
           </div>
           <div className={styles.col}>
             <div className="mt-28 h3">
-              <BlockContent
-                blocks={router.locale == "en" ? bio : bio_cn}
-                serializers={serializers}
-                projectId="z3dq9mvc"
-                dataset="production"
-              />
+              {usePortableText(router.locale == "en" ? bio : bio_cn)}
             </div>
           </div>
         </div>

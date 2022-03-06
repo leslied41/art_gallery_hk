@@ -1,22 +1,9 @@
 import styles from "./PureWords.module.css";
-import BlockContent from "@sanity/block-content-to-react";
 import { useRouter } from "next/router";
 import Collapsible from "../collapsible/Collapsible";
 import { useContext } from "react";
 import { dropDownContext } from "./DropDownCard";
-
-const serializers = {
-  marks: {
-    link: ({ children, mark }) =>
-      mark.blank ? (
-        <a href={mark.href} target="_blank" rel="noopener noreferrer">
-          {children}
-        </a>
-      ) : (
-        <a href={mark.href}>{children}</a>
-      ),
-  },
-};
+import { usePortableText } from "../usehooks/usePortableText";
 
 const PureWords = ({ data, handleClick }) => {
   const router = useRouter();
@@ -31,12 +18,7 @@ const PureWords = ({ data, handleClick }) => {
           <Collapsible showCard={showCard}>
             <div className="mt-28">
               <span className="h3">
-                <BlockContent
-                  blocks={router.locale === "en" ? content : content_cn}
-                  serializers={serializers}
-                  projectId="z3dq9mvc"
-                  dataset="production"
-                />
+                {usePortableText(router.locale === "en" ? content : content_cn)}
               </span>
             </div>
           </Collapsible>
