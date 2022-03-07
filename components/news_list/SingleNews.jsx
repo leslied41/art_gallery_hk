@@ -4,7 +4,6 @@ import sanityClient from "../../client.js";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { usePortableText } from "../usehooks/usePortableText";
-
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
@@ -51,12 +50,12 @@ export const SingleNews = ({ news }) => {
             rel="noreferrer"
           >
             <p className="h2">{router.locale == "en" ? title : title_cn}</p>
-            <div className="h3 mt-30">
-              {usePortableText(
-                router.locale == "en" ? news_brief : news_brief_cn
-              )}
-            </div>
           </a>
+          <div className="h3 mt-30">
+            {usePortableText(
+              router.locale == "en" ? news_brief : news_brief_cn
+            )}
+          </div>
         </div>
       </div>
     </>

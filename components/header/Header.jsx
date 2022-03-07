@@ -12,7 +12,7 @@ function Header() {
   // const titleEl = useRef();
 
   const [isMobile, setisMobile] = useState();
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (window.innerWidth < 768) {
       setisMobile(true);
     } else if (window.innerWidth >= 768) {

@@ -444,6 +444,16 @@ export default {
         },
       ],
     },
+    //news page reorder news list
+    {
+      name: "news_list_reorder",
+      title: "Chronologically/Reverse Chronologically",
+      description:
+        "reorder the news list chronologically or reverse chronologically.",
+
+      type: "boolean",
+      hidden: ({ parent }) => parent?.name != "News",
+    },
     //artists page reorder the artists list option
     {
       name: "artists_list_reorder",

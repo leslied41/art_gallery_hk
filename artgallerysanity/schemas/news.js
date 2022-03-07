@@ -19,6 +19,11 @@ export default {
       type: "string",
     },
     {
+      name: "publication_time",
+      title: "Publication Time",
+      type: "datetime",
+    },
+    {
       name: "title_cn",
       title: "Title Chinses",
       type: "string",
