@@ -1,6 +1,7 @@
 import { PortableText } from "@portabletext/react";
 import sanityClient from "../../client.js";
 import imageUrlBuilder from "@sanity/image-url";
+import { getImageDimensions } from "@sanity/asset-utils";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
