@@ -7,7 +7,7 @@ const ExpoList = ({ data }) => {
   const { showCard } = useContext(dropDownContext);
   //console.log(data);
   const { cv, cv_link, cv_create_date, PDF } = data;
-  console.log(PDF);
+  //console.log(PDF);
   return (
     <>
       <div className={styles.grid}>

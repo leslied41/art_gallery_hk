@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { dropDownContext } from "./DropDownCard";
 
 const ArtistWorksImageList = ({ data }) => {
-  console.log(data);
+  //console.log(data);
   const { showCard } = useContext(dropDownContext);
   const [loaded, setloaded] = useState(true);
   const [slicedWorkImages, setslicedWorkImages] = useState(data);
@@ -27,12 +27,12 @@ const ArtistWorksImageList = ({ data }) => {
 
     if (!showCard) {
       setslicedWorkImages(initialWorkImages);
-      setloaded(true);
+      //setloaded(true);
     }
   }, [showCard]);
   const loadMore = () => {
     setslicedWorkImages(data);
-    setloaded(!loaded);
+    setloaded(false);
   };
   return (
     <>

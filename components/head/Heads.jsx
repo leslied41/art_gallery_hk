@@ -14,7 +14,7 @@ const Heads = ({ seo, name }) => {
   const { site_name, site_name_cn } = settings[0];
   const keywords = seo?.keywords?.map((item) => item.value).join();
   const router = useRouter();
-  console.log(router.asPath);
+  //console.log(router.asPath);
   return (
     <>
       <Head>

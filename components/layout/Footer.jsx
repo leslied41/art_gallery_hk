@@ -75,7 +75,7 @@ export default function Footer() {
     mobile_cursor_font_size,
   } = settings[0];
   //console.log(link_font_size);
-  console.log(logo);
+  //console.log(logo);
   return (
     <>
       <div className={styles.footer} ref={footer_ref}>

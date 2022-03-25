@@ -18,7 +18,7 @@ function urlFor(source) {
 const ArtistBio = ({ data }) => {
   const { showCard, setshowCard } = useContext(dropDownContext);
   const { bio, bio_cn, profile, bio_collapsed } = data;
-  console.log(profile);
+  //console.log(profile);
   const router = useRouter();
   //console.log(bio_collapsed);
   const [mobile, setmobile] = useState();
@@ -37,7 +37,7 @@ const ArtistBio = ({ data }) => {
       setmobile(true);
     }
     window.addEventListener("resize", () => {
-      console.log(window.innerWidth);
+      //console.log(window.innerWidth);
       if (window.innerWidth > 760) {
         setmobile(false);
       }

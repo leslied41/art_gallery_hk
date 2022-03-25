@@ -3,6 +3,7 @@ import loadmore from "../../public/images/loadmore.png";
 import Image from "next/image";
 
 const LoadMoreCard = ({ loaded, loadMore }) => {
+  console.log(loaded);
   return (
     <div>
       {loaded && (

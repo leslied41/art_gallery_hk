@@ -49,7 +49,7 @@ const AppointmentForm = ({ formdata }) => {
         }
       );
       if (response.status == 200) {
-        console.log("success");
+        //console.log("success");
         reset({});
         setSending(false);
         setShowRes(true);

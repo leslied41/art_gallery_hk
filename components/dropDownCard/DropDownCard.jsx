@@ -1,5 +1,4 @@
 import styles from "./DropDownCard.module.css";
-import BlockContent from "@sanity/block-content-to-react";
 import { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import React from "react";

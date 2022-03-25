@@ -322,7 +322,7 @@ const ExListWorks = ({ data }) => {
                                   if (targetIndex != 0) {
                                     setTargetIndex(targetIndex - 1);
                                   }
-                                  console.log("swiped left");
+                                  //console.log("swiped left");
                                 } else {
                                   // swiped right
                                   if (
@@ -336,7 +336,7 @@ const ExListWorks = ({ data }) => {
                                     exhibition_works.length - 1
                                   )
                                     setTargetIndex(targetIndex + 1);
-                                  console.log("swiped right");
+                                  //console.log("swiped right");
                                 }
                               } else {
                                 // sliding vertically
@@ -344,12 +344,12 @@ const ExListWorks = ({ data }) => {
                                   // swiped up
                                   setmodel(false);
                                   setiszoomed(false);
-                                  console.log("swiped up");
+                                  //console.log("swiped up");
                                 } else {
                                   // swiped down
                                   setmodel(false);
                                   setiszoomed(false);
-                                  console.log("swiped down");
+                                  //console.log("swiped down");
                                 }
                               }
                               setswipeInitial({ x: null, y: null });

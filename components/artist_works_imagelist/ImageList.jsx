@@ -315,7 +315,7 @@ const ImageList = ({
                                 }
                                 if (targetIndex != workImages.length - 1)
                                   setTargetIndex(targetIndex + 1);
-                                console.log("swiped right");
+                                //console.log("swiped right");
                               } else {
                                 // swiped left
                                 if (targetIndex == 0) {
@@ -324,7 +324,7 @@ const ImageList = ({
                                 if (targetIndex != 0) {
                                   setTargetIndex(targetIndex - 1);
                                 }
-                                console.log("swiped left");
+                                //console.log("swiped left");
                               }
                             } else {
                               // sliding vertically
@@ -332,12 +332,12 @@ const ImageList = ({
                                 // swiped up
                                 setmodel(false);
                                 setiszoomed(false);
-                                console.log("swiped up");
+                                //console.log("swiped up");
                               } else {
                                 // swiped down
                                 setmodel(false);
                                 setiszoomed(false);
-                                console.log("swiped down");
+                                //console.log("swiped down");
                               }
                             }
                             setswipeInitial({ x: null, y: null });
