@@ -20,12 +20,11 @@ const MobileHeader = () => {
   const { pathname, asPath, query } = router;
   const { settings } = useGlobalSettings();
 
-  const artists_image = settings[0].artists_mobile || settings[0].artists;
-  const exhibition_image =
-    settings[0].exhibitions_mobile || settings[0].exhibitions;
-  const news_image = settings[0].news_mobile || settings[0].news;
-  const about_image = settings[0].about_mobile || settings[0].about;
-  const landing_image = settings[0].landing_mobile || settings[0].landing;
+  const artists_image_mobile = settings[0].artists_mobile;
+  const exhibition_image_mobile = settings[0].exhibitions_mobile;
+  const news_image_mobile = settings[0].news_mobile;
+  const about_image_mobile = settings[0].about_mobile;
+  const landing_image_mobile = settings[0].landing_mobile;
   const { link_font_size, cursor_font_size, mobile_link_font_size } =
     settings[0];
 
@@ -33,20 +32,20 @@ const MobileHeader = () => {
 
   useEffect(() => {
     if (pathname.indexOf("/artists") == 0) {
-      setheaderImage(artists_image);
+      setheaderImage(artists_image_mobile);
     }
     if (pathname.indexOf("/exhibitions") == 0) {
-      setheaderImage(exhibition_image);
+      setheaderImage(exhibition_image_mobile);
     }
     if (pathname == "/") {
-      setheaderImage(landing_image);
+      setheaderImage(landing_image_mobile);
     }
     if (pathname == "/about") {
-      setheaderImage(about_image);
+      setheaderImage(about_image_mobile);
       //console.log(headerImage);
     }
     if (pathname == "/news") {
-      setheaderImage(news_image);
+      setheaderImage(news_image_mobile);
     }
   }, [pathname, query]);
 

@@ -49,7 +49,7 @@ const PcHeader = () => {
       setuseXlink("#image4");
     }
     if (pathname.indexOf("/exhibitions") == 0) {
-      setuseXlink("#image1");
+      setuseXlink("#image5");
     }
     if (pathname == "/") {
       setuseXlink("#image0");
@@ -346,7 +346,7 @@ const PcHeader = () => {
             ></image>
 
             <image
-              id="image1"
+              id="image5"
               width="1"
               height="1"
               preserveAspectRatio="xMidYMid slice"
