@@ -18,8 +18,6 @@ const Heads = ({ seo, name }) => {
   return (
     <>
       <Head>
-        <link rel="shortcut icon" href="/images/Favicon_1_AW001-01.svg" />
-
         <title>
           {router.locale == "en"
             ? `${site_name}${name ? "-" + name : ""}`
