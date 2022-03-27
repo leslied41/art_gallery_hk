@@ -5,7 +5,7 @@ import { AppProvider } from "../components/context/GlobalSettings";
 import { appWithTranslation } from "next-i18next";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import App from "next/app";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps, settings_data }) {
   const router = useRouter();
@@ -31,6 +31,14 @@ function MyApp({ Component, pageProps, settings_data }) {
           `}
         </style>
       )}
+      <Head>
+        <link rel="shortcut icon" href="/images/Favicon_1_AW001-01.svg" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/images/Favicon_1_AW001-01.svg"
+        />
+      </Head>
       {getLayout(<Component {...pageProps} />)}
     </AppProvider>
   );
