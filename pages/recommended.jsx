@@ -41,11 +41,13 @@ export default function Press({ newsPageData }) {
       <Heads seo={seo} name={router.locale == "en" ? "Recommended" : "推薦"} />
       <ControlBtn />
       <main className="mb-145 layout ">
-        <div className="section mt-145">
-          <StaticCard data={briefSection} />
-        </div>
-        <div className="section mt-145">
-          <NewsList newsData={recommend_list} />
+        <div className={router.locale}>
+          <div className="section mt-145">
+            <StaticCard data={briefSection} />
+          </div>
+          <div className="section mt-145">
+            <NewsList newsData={recommend_list} />
+          </div>
         </div>
       </main>
     </>
@@ -66,11 +68,5 @@ export async function getStaticProps({ locale }) {
 }
 
 Press.getLayout = function getLayout(page) {
-  const router = useRouter();
-
-  return (
-    <>
-      <div className={router.locale}>{page}</div>
-    </>
-  );
+  return <>{page}</>;
 };

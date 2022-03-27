@@ -15,13 +15,15 @@ export default function Recommended({ pageData }) {
       <Heads seo={seo} name={router.locale == "en" ? "Press" : "新聞"} />
       <ControlBtn />
       <main className="mb-145 layout ">
-        <div className="section mt-145">
-          <StaticCard data={briefSection} />
-        </div>
-        <div className="section mt-145">
-          <DropDownCard title={router.locale == "en" ? "Press" : "新聞"}>
-            <InterviewsList data={press_list} />
-          </DropDownCard>
+        <div className={router.locale}>
+          <div className="section mt-145">
+            <StaticCard data={briefSection} />
+          </div>
+          <div className="section mt-145">
+            <DropDownCard title={router.locale == "en" ? "Press" : "新聞"}>
+              <InterviewsList data={press_list} />
+            </DropDownCard>
+          </div>
         </div>
       </main>
     </>
@@ -44,11 +46,5 @@ export async function getStaticProps({ locale }) {
 }
 
 Recommended.getLayout = function getLayout(page) {
-  const router = useRouter();
-
-  return (
-    <>
-      <div className={router.locale}>{page}</div>
-    </>
-  );
+  return <>{page}</>;
 };
