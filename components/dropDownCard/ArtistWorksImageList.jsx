@@ -17,22 +17,15 @@ const ArtistWorksImageList = ({ data }) => {
     } else if (data.length >= 4) {
       setloaded(true);
     }
-  }, [data]);
+  }, [data.length]);
   useEffect(() => {
     const initialWorkImages = data.slice(0, 4);
     setslicedWorkImages(initialWorkImages);
   }, []);
-  useEffect(() => {
-    const initialWorkImages = data.slice(0, 4);
 
-    if (!showCard) {
-      setslicedWorkImages(initialWorkImages);
-      //setloaded(true);
-    }
-  }, [showCard]);
   const loadMore = () => {
     setslicedWorkImages(data);
-    setloaded(false);
+    setloaded(!loaded);
   };
   return (
     <>
