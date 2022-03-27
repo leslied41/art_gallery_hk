@@ -19,7 +19,7 @@ export default function DropDownCard({ children, title }) {
           <div className="col">
             <div
               className="title"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", textTransform: "uppercase" }}
               onClick={handleClick}
             >
               <span className="h2">

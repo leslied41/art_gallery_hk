@@ -781,7 +781,80 @@ export default {
         },
       ],
     },
+    //only appearing in study press page
+    {
+      name: "press_list",
+      title: "Press List",
+      hidden: ({ parent }) => parent?.name != "Gallery Press",
+      type: "array",
+      of: [{ type: "reference", to: { type: "interviews" } }],
+    },
+    //only appearing in study recommended page
+    {
+      name: "recommend_list_reorder",
+      title: "Chronologically/Reverse Chronologically",
+      description:
+        "reorder the recommendation list chronologically or reverse chronologically.",
+
+      type: "boolean",
+      hidden: ({ parent }) => parent?.name != "Recommended",
+    },
+    {
+      name: "recommend_list",
+      title: "Recommend List",
+      hidden: ({ parent }) => parent?.name != "Recommended",
+      type: "array",
+      of: [
+        {
+          name: "Recommened",
+          title: "recommended_item",
+          type: "object",
+          fieldsets: [
+            {
+              name: "translation",
+              title: "Translation",
+              options: {
+                collapsible: true, // Makes the whole fieldset collapsible
+                collapsed: true, // Defines if the fieldset should be collapsed by default or not
+              },
+            },
+          ],
+          fields: [
+            {
+              name: "title",
+              title: "Title",
+              type: "string",
+            },
+            {
+              name: "publication_time",
+              title: "Publication Time",
+              type: "datetime",
+            },
+            {
+              name: "title_cn",
+              title: "Title Chinses",
+              type: "string",
+              fieldset: "translation",
+            },
+            { name: "news_link", title: "Item Link", type: "url" },
+            { name: "news_brief", title: "Item Brief", type: "blockContent" },
+            {
+              name: "news_brief_cn",
+              title: "Item Brief Chinese",
+              type: "blockContent",
+              fieldset: "translation",
+            },
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+            },
+          ],
+        },
+      ],
+    },
   ],
+
   preview: {
     select: {
       title: "name",

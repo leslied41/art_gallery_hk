@@ -34,55 +34,59 @@ export default function Study_About({ data }) {
       <ControlBtn />
       <Heads seo={seo} name={router.locale == "en" ? "About" : "关于"} />
       <main className="mb-145 layout ">
-        <div className={router.locale}>
-          <div className="section mt-145">
-            <StaticCard data={briefSection} />
-          </div>
-          {/* dropDownCard */}
-          {!collapsable_first.hidden && (
-            <div className="section mt-145">
-              <DropDownCard
-                title={
-                  router.locale == "en"
-                    ? collapsable_first.name
-                    : collapsable_first.name_cn
-                }
-              >
-                <PureWords data={collapsable_first} />
-              </DropDownCard>
-            </div>
-          )}
-          {!collapsable_second.hidden && (
-            <div className="section mt-30">
-              <DropDownCard
-                title={
-                  router.locale == "en"
-                    ? collapsable_second.name
-                    : collapsable_second.name_cn
-                }
-              >
-                <PureWords data={collapsable_second} />
-              </DropDownCard>
-            </div>
-          )}
-          {!collapsable_third.hidden && (
-            <div className="section mt-30 ">
-              <DropDownCard
-                title={
-                  router.locale == "en"
-                    ? collapsable_third.name
-                    : collapsable_third.name_cn
-                }
-              >
-                <PureWords data={collapsable_third} />
-              </DropDownCard>
-            </div>
-          )}
+        <div className="section mt-145">
+          <StaticCard data={briefSection} />
         </div>
+        {/* dropDownCard */}
+        {!collapsable_first.hidden && (
+          <div className="section mt-145">
+            <DropDownCard
+              title={
+                router.locale == "en"
+                  ? collapsable_first.name
+                  : collapsable_first.name_cn
+              }
+            >
+              <PureWords data={collapsable_first} />
+            </DropDownCard>
+          </div>
+        )}
+        {!collapsable_second.hidden && (
+          <div className="section mt-30">
+            <DropDownCard
+              title={
+                router.locale == "en"
+                  ? collapsable_second.name
+                  : collapsable_second.name_cn
+              }
+            >
+              <PureWords data={collapsable_second} />
+            </DropDownCard>
+          </div>
+        )}
+        {!collapsable_third.hidden && (
+          <div className="section mt-30 ">
+            <DropDownCard
+              title={
+                router.locale == "en"
+                  ? collapsable_third.name
+                  : collapsable_third.name_cn
+              }
+            >
+              <PureWords data={collapsable_third} />
+            </DropDownCard>
+          </div>
+        )}
       </main>
     </>
   );
 }
 Study_About.getLayout = function getLayout(page) {
-  return <>{page}</>;
+  const router = useRouter();
+
+  return (
+    <>
+      <div className={router.locale}>{page}</div>
+    </>
+  );
 };

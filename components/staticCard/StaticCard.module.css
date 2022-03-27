@@ -6,6 +6,9 @@
 .gap {
   margin-top: 145px;
 }
+.title {
+  text-transform: uppercase;
+}
 
 @media screen and (max-width: 768px) {
   .grid {

@@ -9,7 +9,7 @@ const AuthorCard = () => {
         <div className="col"></div>
         <div className="col">
           <div>
-            <span className="h1">
+            <span className="h1" style={{ textTransform: "uppercase" }}>
               {router.locale === "en" ? "Site Credits" : "設計師及開發者"}
             </span>
           </div>

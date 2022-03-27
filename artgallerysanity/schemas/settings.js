@@ -158,5 +158,17 @@ export default {
       description:
         "to determine the font size of the text besides curosr in header",
     },
+    {
+      name: "vimeo_link",
+      title: "Vimeo Link",
+      description: "this is the link of Vimeo in Study Page",
+      type: "url",
+    },
+    {
+      name: "shop_link",
+      title: "Shop Link",
+      description: "this is the link of Shop in Study Page",
+      type: "url",
+    },
   ],
 };

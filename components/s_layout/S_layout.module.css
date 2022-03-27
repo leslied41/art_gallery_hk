@@ -1,1 +1,16 @@
-
+.mobile {
+  display: none;
+}
+.pc {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .mobile {
+    display: block;
+  }
+}
+@media screen and (min-width: 768px) {
+  .pc {
+    display: block;
+  }
+}
