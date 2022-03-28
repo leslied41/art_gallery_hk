@@ -16,21 +16,14 @@ const SampleImageComponent = ({ value }) => {
       src={urlFor().image(value).fit("max").auto("format").url()}
       alt={value.alt || " "}
       loading="lazy"
-      style={
-        width / height >= 1
-          ? {
-              // Avoid jumping around with aspect-ratio CSS property
-              //aspectRatio: width / height,
-              objectFit: "contain",
-              // width: "100%",
-              width: "100%",
-              //width: "auto",
-            }
-          : {
-              objectFit: "contain",
-              height: "100%",
-            }
-      }
+      style={{
+        // Avoid jumping around with aspect-ratio CSS property
+        //aspectRatio: width / height,
+        objectFit: "contain",
+        // width: "100%",
+        width: "100%",
+        height: "auto",
+      }}
     />
   );
 };

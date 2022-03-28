@@ -10,6 +10,9 @@ const PureWords = ({ data, handleClick }) => {
 
   const { content, content_cn } = data;
   const { showCard } = useContext(dropDownContext);
+  const portableText = usePortableText(
+    router.locale === "en" ? content : content_cn
+  );
   return (
     <>
       <div className={styles.grid}>
@@ -17,9 +20,7 @@ const PureWords = ({ data, handleClick }) => {
         <div className="col">
           <Collapsible showCard={showCard}>
             <div className="mt-28">
-              <span className="h3">
-                {usePortableText(router.locale === "en" ? content : content_cn)}
-              </span>
+              <span className="h3">{portableText}</span>
             </div>
           </Collapsible>
         </div>
