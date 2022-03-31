@@ -56,12 +56,17 @@ const AppointmentForm = ({ formdata }) => {
           },
         }
       );
-      if (response.status == 200) {
-        //console.log("success");
+      setTimeout(() => {
         reset({});
         setSending(false);
         setShowRes(true);
-      }
+      }, 500);
+      // if (response.status == 200) {
+      //   //console.log("success");
+      //   reset({});
+      //   setSending(false);
+      //   setShowRes(true);
+      // }
     } catch (err) {
       console.error(err);
     }
