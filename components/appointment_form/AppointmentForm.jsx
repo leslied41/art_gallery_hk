@@ -61,6 +61,9 @@ const AppointmentForm = ({ formdata }) => {
         setSending(false);
         setShowRes(true);
       }, 500);
+      setTimeout(() => {
+        setShowRes(false);
+      }, 3500);
       // if (response.status == 200) {
       //   //console.log("success");
       //   reset({});
