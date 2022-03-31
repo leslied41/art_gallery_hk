@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import { node } from "prop-types";
 const handler = async (req, res) => {
-  const { fullName, dateTime, headCount, remarks, email } = req.body;
+  const { fullName, CustomDatePicker, headCount, remarks, email } = req.body;
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -20,7 +20,7 @@ const handler = async (req, res) => {
       html: `<p>You have a new appointment</p>
       <p>Name:${fullName}<p/>
       <p>Email:${email}<p/>
-      <p>date&time:${dateTime}<p/>
+      <p>date&time:${CustomDatePicker}<p/>
       <p>head cound:${headCount}<p/>
       <p>remarks:${remarks}<p/>`,
     });

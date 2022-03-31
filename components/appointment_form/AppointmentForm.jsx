@@ -1,10 +1,11 @@
 import styles from "./AppointmentForm.module.css";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { useState, forwardRef } from "react";
 import { useRouter } from "next/router";
 import sanityClient from "../../client.js";
 import imageUrlBuilder from "@sanity/image-url";
 import { usePortableText } from "../usehooks/usePortableText";
+import CustomDatePicker from "./CustomDatePicker";
 
 const AppointmentForm = ({ formdata }) => {
   //console.log(formdata);
@@ -34,15 +35,22 @@ const AppointmentForm = ({ formdata }) => {
     handleSubmit,
     formState: { errors },
     reset,
+    control,
   } = useForm();
   const onSubmitForm = async (values) => {
     setSending(true);
+    const { CustomDatePicker } = values;
+    const date_time = CustomDatePicker.toLocaleString();
+    const values_coverted = {
+      ...values,
+      CustomDatePicker: date_time,
+    };
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/contact`,
         {
           method: "POST",
-          body: JSON.stringify(values),
+          body: JSON.stringify(values_coverted),
           headers: {
             "Content-Type": "application/json",
           },
@@ -58,6 +66,7 @@ const AppointmentForm = ({ formdata }) => {
       console.error(err);
     }
   };
+
   return (
     <div className="formContainer h3">
       <form className={styles.form} onSubmit={handleSubmit(onSubmitForm)}>
@@ -80,7 +89,14 @@ const AppointmentForm = ({ formdata }) => {
         </p>
 
         <div>
-          <input
+          {/* <Controller
+            control={control}
+            name="CustomDatePicker"
+            render={({ field: { onChange, onBlur, value, ref } }) => (
+              <CustomDatePicker onChange={onChange} selected={value} />
+            )}
+          /> */}
+          {/* <input
             name="dateTime"
             onFocus={(e) => {
               e.target.type = "datetime-local";
@@ -99,7 +115,29 @@ const AppointmentForm = ({ formdata }) => {
           />
           <p className="red-text h4">
             {errors.dateTime?.type === "required" && "Date & Time is required"}
+          </p> */}
+        </div>
+        <div>
+          <Controller
+            control={control}
+            name="CustomDatePicker"
+            render={({ field: { onChange, onBlur, value, ref } }) => (
+              <CustomDatePicker
+                onChange={onChange}
+                onBlur={onBlur}
+                selected={value}
+                date={date}
+                date_cn={date_cn}
+              />
+            )}
+            rules={{ required: true }}
+          />
+          <p className="red-text h4">
+            {errors.CustomDatePicker?.type === "required" &&
+              "Date & Time is required"}
           </p>
+
+          {/* <CustomDatePicker date={date} date_cn={date_cn} /> */}
         </div>
         <div>
           <input
@@ -172,6 +210,7 @@ const AppointmentForm = ({ formdata }) => {
           />
         )}
       </form>
+
       <div>
         {/* {sending && <div>Sending...</div>} */}
         {showRes && portableText}

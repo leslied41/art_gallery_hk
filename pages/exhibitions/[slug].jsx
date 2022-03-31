@@ -24,6 +24,7 @@ export default function Expo({ expoData, exhiPageData }) {
   //console.log(popup_path);
   const { exhi_dropdown, seo } = exhiPageData || {};
   const { name_exo, name_exo_cn, press } = expoData[0] || {};
+  //console.log(press);
 
   return (
     <>
