@@ -28,7 +28,7 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
           ? date_cn
           : "日期 & 時間"
       }
-      style={{ width: "100%", borderBottom: "1px solid #000" }}
+      style={{ width: "100%", borderBottom: "1px solid #000", color: "#000" }}
     />
   ));
 
