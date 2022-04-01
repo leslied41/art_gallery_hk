@@ -142,6 +142,7 @@ export default function Footer() {
                       return (
                         <li key={index}>
                           <a
+                            className="h4"
                             href={item.url}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -172,17 +173,17 @@ export default function Footer() {
                           ? isMobile
                             ? mobile_link_font_size
                               ? { fontSize: `${mobile_link_font_size - 2}px` }
-                              : { fontSize: "13px" }
+                              : { fontSize: "18px" }
                             : link_font_size
                             ? { fontSize: `${link_font_size - 2}px` }
-                            : { fontSize: "16px" }
+                            : { fontSize: "23px" }
                           : isMobile
                           ? mobile_link_font_size
                             ? { fontSize: `${mobile_link_font_size + 2}px` }
-                            : { fontSize: "17px" }
+                            : { fontSize: "22px" }
                           : link_font_size
                           ? { fontSize: `${link_font_size + 2}px` }
-                          : { fontSize: "20px" }
+                          : { fontSize: "27px" }
                       }
                     />
                   </span>

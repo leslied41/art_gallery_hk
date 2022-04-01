@@ -209,7 +209,7 @@ hr {
     line-height: 25.5px;
   }
   .h4 {
-    font-size: 15px;
-    line-height: var(--lineheight-xs);
+    font-size: 20px;
+    line-height: 25.5px;
   }
 }
