@@ -8,7 +8,6 @@ const S_mobile_header = ({ vimeo_link, shop_link }) => {
     <>
       <section>
         <ControlBtn />
-        <ControlInfo />
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
