@@ -16,6 +16,11 @@ export default function Artist({
   interviewsData,
   artistPageData,
 }) {
+  interviewsData.sort(function (a, b) {
+    let dateA = new Date(a._createdAt).getTime();
+    let dateB = new Date(b._createdAt).getTime();
+    return dateB - dateA;
+  });
   const filtered_workImages = workImages.filter((item) => {
     if (item.image) {
       return item;
