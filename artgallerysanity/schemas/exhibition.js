@@ -142,32 +142,57 @@ export default {
               title: "Work parameter ",
               type: "blockContent",
             },
-          ],
-        },
-      ],
-    },
-    {
-      name: "press",
-      title: "Press Releases",
-      type: "array",
-      of: [
-        {
-          name: "release",
-          title: "Release",
-          type: "object",
-          fields: [
-            { name: "release_name", title: "Title", type: "string" },
-            { name: "release_lead", title: "Lead", type: "text" },
-            { name: "release_link", title: "Link", type: "url" },
             {
-              name: "release_pdf",
-              title: "Press PDF",
-              type: "file",
+              name: "buttons",
+              title: "Button Group ",
+              type: "array",
+              of: [
+                {
+                  name: "custom_button",
+                  title: "Button",
+                  type: "object",
+                  fields: [
+                    {
+                      name: "button_name",
+                      title: "Button Title",
+                      type: "string",
+                    },
+                    { name: "button_link", title: "Link To", type: "url" },
+                    {
+                      name: "button_pdf",
+                      title: "PDF",
+                      type: "file",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
       ],
     },
+    // {
+    //   name: "press",
+    //   title: "Press Releases",
+    //   type: "array",
+    //   of: [
+    //     {
+    //       name: "release",
+    //       title: "Release",
+    //       type: "object",
+    //       fields: [
+    //         { name: "release_name", title: "Title", type: "string" },
+    //         { name: "release_lead", title: "Lead", type: "text" },
+    //         { name: "release_link", title: "Link", type: "url" },
+    //         {
+    //           name: "release_pdf",
+    //           title: "Press PDF",
+    //           type: "file",
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
   ],
   preview: {
     select: {

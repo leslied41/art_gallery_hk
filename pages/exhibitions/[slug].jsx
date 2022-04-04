@@ -23,7 +23,7 @@ export default function Expo({ expoData, exhiPageData }) {
   }, [router.asPath]);
   //console.log(popup_path);
   const { exhi_dropdown, seo } = exhiPageData || {};
-  const { name_exo, name_exo_cn, press } = expoData[0] || {};
+  const { name_exo, name_exo_cn } = expoData[0] || {};
   //console.log(press);
 
   return (
@@ -32,7 +32,7 @@ export default function Expo({ expoData, exhiPageData }) {
       <div className="section mt-145">
         <ExStaticCard data={expoData[0]} fowardref={scrollTo} />
       </div>
-      {press && press.length != 0 && (
+      {/* {press && press.length != 0 && (
         <div className="section mt-145">
           <DropDownCard
             title={
@@ -44,7 +44,7 @@ export default function Expo({ expoData, exhiPageData }) {
             <PressList data={press} />
           </DropDownCard>
         </div>
-      )}
+      )} */}
 
       <div className="section mt-145 mb-145">
         <ExListWorks data={expoData[0]} />
@@ -55,7 +55,8 @@ export default function Expo({ expoData, exhiPageData }) {
 
 export async function getStaticProps({ locale, params }) {
   const expoData = await sanityClient.fetch(
-    `*[slug.current=='${params.slug}']{name_exo,name_exo_cn,date,date_cn,image,layout,press[]{...,"PDF":release_pdf.asset->url},'metadata':image.asset->{metadata},image_parameter,introduction,introduction_cn,exhibition_works}`
+    `*[slug.current=='${params.slug}']{name_exo,name_exo_cn,date,date_cn,image,layout,'metadata':image.asset->{metadata},image_parameter,introduction,introduction_cn,exhibition_works[]{...,buttons[]{...,"PDF":button_pdf.asset->url}}}`
+    //`*[slug.current=='${params.slug}']{name_exo,name_exo_cn,date,date_cn,image,layout,press[]{...,"PDF":release_pdf.asset->url},'metadata':image.asset->{metadata},image_parameter,introduction,introduction_cn,exhibition_works}`
     // `*[slug.current=='${params.slug}']{name_exo,name_exo_cn,date,date_cn,image,layout,press[]{...,"PDF":release_pdf.asset->url},'metadata':image.asset->{metadata},image_parameter,introduction,introduction_cn,exhibition_works,works[]->{name,name_cn,image,'metadata':image.asset->{metadata},image_parameter,introduction,introduction_cn,slug,video_url,video_parameter,video_introduction,video_introduction_cn}}`
   );
   const exhiPageData = await sanityClient.fetch(

@@ -17,6 +17,7 @@ const HorizontalLayout = ({
   introduction_cn,
   index,
   getIndex,
+  buttons,
 }) => {
   const router = useRouter();
   const intro_portableText = usePortableText(
@@ -57,6 +58,32 @@ const HorizontalLayout = ({
               )}
               <div className="h3">
                 {(introduction || introduction_cn) && intro_portableText}
+              </div>
+              <div className="btns">
+                {buttons &&
+                  buttons.map((btn, index) => {
+                    const { button_link, PDF, button_name } = btn;
+                    return (
+                      <a
+                        key={index}
+                        href={
+                          PDF
+                            ? PDF
+                              ? PDF
+                              : null
+                            : button_link
+                            ? button_link
+                            : null
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <button className="exhibition_btn">
+                          {button_name}
+                        </button>
+                      </a>
+                    );
+                  })}
               </div>
             </div>
           </div>

@@ -14,7 +14,6 @@ const VerticalLayout = ({
   image,
   work_parameter,
   video,
-
   introduction,
   introduction_cn,
 

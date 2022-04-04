@@ -59,27 +59,27 @@ export default {
       title: "Image parameter ",
       type: "blockContent",
     },
-    {
-      name: "video_url",
-      title: "video",
-      type: "url",
-    },
-    {
-      name: "video_parameter",
-      title: "Video parameter ",
-      type: "blockContent",
-    },
-    {
-      name: "video_introduction",
-      title: "Video Introduction ",
-      type: "blockContent",
-    },
-    {
-      name: "video_introduction_cn",
-      title: "Video Introduction Chinese ",
-      type: "blockContent",
-      fieldset: "translation",
-    },
+    // {
+    //   name: "video_url",
+    //   title: "video",
+    //   type: "url",
+    // },
+    // {
+    //   name: "video_parameter",
+    //   title: "Video parameter ",
+    //   type: "blockContent",
+    // },
+    // {
+    //   name: "video_introduction",
+    //   title: "Video Introduction ",
+    //   type: "blockContent",
+    // },
+    // {
+    //   name: "video_introduction_cn",
+    //   title: "Video Introduction Chinese ",
+    //   type: "blockContent",
+    //   fieldset: "translation",
+    // },
   ],
   preview: {
     select: {

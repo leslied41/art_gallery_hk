@@ -58,7 +58,8 @@ const serializers = {
 };
 const ExListWorks = ({ data }) => {
   //const { showCard } = useContext(dropDownContext);
-  const { works, exhibition_works } = data;
+  const { exhibition_works } = data;
+
   //console.log(exhibition_works);
 
   const [model, setmodel] = useState(false);
@@ -467,6 +468,7 @@ const ExListWorks = ({ data }) => {
             introduction_cn,
             video_url,
             layout,
+            buttons,
           } = work;
 
           //console.log(aspectRatio, width);
@@ -483,6 +485,7 @@ const ExListWorks = ({ data }) => {
                     introduction={introduction}
                     introduction_cn={introduction_cn}
                     index={index}
+                    buttons={buttons}
                     getIndex={getIndex}
                   />
                 </div>
@@ -498,6 +501,7 @@ const ExListWorks = ({ data }) => {
                     introduction_cn={introduction_cn}
                     index={index}
                     getIndex={getIndex}
+                    buttons={buttons}
                   />
                 </div>
               ) : (
@@ -512,6 +516,7 @@ const ExListWorks = ({ data }) => {
                     introduction_cn={introduction_cn}
                     index={index}
                     getIndex={getIndex}
+                    buttons={buttons}
                   />
                 </div>
               )}
