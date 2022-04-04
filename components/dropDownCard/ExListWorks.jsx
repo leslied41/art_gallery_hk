@@ -8,6 +8,8 @@ import { useRef, useState, useEffect, useLayoutEffect, createRef } from "react";
 import styles from "./ExListWorks.module.css";
 import { PortableText } from "@portabletext/react";
 import { getImageDimensions } from "@sanity/asset-utils";
+import WordsLayout from "../exhibitions_exhibition_staticcard/WordsLayout.jsx";
+import { useRouter } from "next/router";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -59,8 +61,7 @@ const serializers = {
 const ExListWorks = ({ data }) => {
   //const { showCard } = useContext(dropDownContext);
   const { exhibition_works } = data;
-
-  //console.log(exhibition_works);
+  const router = useRouter();
 
   const [model, setmodel] = useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
@@ -194,7 +195,13 @@ const ExListWorks = ({ data }) => {
           >
             {exhibition_works &&
               exhibition_works.map((item, index) => {
-                const { work_image, work_parameter, video_url } = item;
+                const {
+                  work_image,
+                  work_parameter,
+                  video_url,
+                  introduction,
+                  introduction_cn,
+                } = item;
                 return (
                   <div
                     key={index}
@@ -362,7 +369,7 @@ const ExListWorks = ({ data }) => {
                             }
                           }}
                         />
-                      ) : (
+                      ) : video_url ? (
                         <div
                           ref={elRefs[index]}
                           className={styles.video_container}
@@ -379,6 +386,22 @@ const ExListWorks = ({ data }) => {
                                 },
                               },
                             }}
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          ref={elRefs[index]}
+                          className={styles.text_container}
+                        >
+                          <PortableText
+                            value={
+                              router.locale == "en"
+                                ? introduction
+                                : introduction_cn
+                            }
+                            components={serializers}
+                            projectId="z3dq9mvc"
+                            dataset="production"
                           />
                         </div>
                       )}
@@ -471,7 +494,6 @@ const ExListWorks = ({ data }) => {
             buttons,
           } = work;
 
-          //console.log(aspectRatio, width);
           return (
             <div key={index}>
               {video_url ? (
@@ -489,7 +511,7 @@ const ExListWorks = ({ data }) => {
                     getIndex={getIndex}
                   />
                 </div>
-              ) : layout == "Vertical" ? (
+              ) : work_image && layout == "vertical" ? (
                 <div key={index} className="mt-145">
                   <VerticalLayout
                     name={name}
@@ -504,7 +526,7 @@ const ExListWorks = ({ data }) => {
                     buttons={buttons}
                   />
                 </div>
-              ) : (
+              ) : work_image && layout == "horizontal" ? (
                 <div key={index} className="mt-145">
                   <HorizontalLayout
                     name={name}
@@ -517,6 +539,19 @@ const ExListWorks = ({ data }) => {
                     index={index}
                     getIndex={getIndex}
                     buttons={buttons}
+                  />
+                </div>
+              ) : (
+                <div key={index} className="mt-145">
+                  <WordsLayout
+                    name={name}
+                    name_cn={name_cn}
+                    introduction={introduction}
+                    introduction_cn={introduction_cn}
+                    index={index}
+                    getIndex={getIndex}
+                    buttons={buttons}
+                    work_parameter={work_parameter}
                   />
                 </div>
               )}

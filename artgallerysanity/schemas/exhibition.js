@@ -110,6 +110,7 @@ export default {
               name: "layout",
               title: "Layout",
               type: "string",
+              initialValue: "vertical",
               options: {
                 list: [
                   { title: "Vertical", value: "vertical" },
