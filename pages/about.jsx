@@ -19,8 +19,9 @@ export const getStaticProps = async ({ locale }) => {
     phone,
     social[]->,
     email,
-    font_size
-    },terminologySection,missionStatementSection,seo}`
+    font_size,
+    hidden
+    },terminologySection,missionStatementSection,seo,authorCard}`
   );
   const settings_data = await sanityClient.fetch(
     `*[_type=='settings']{orgnizationName,orgnizationName_cn,address,phone,email,social[]->,businessHours,abbreviation,exhibitions,news,about,artists,landing}`
@@ -50,8 +51,6 @@ export default function About({ data, settings_data }) {
     scrollTo.current.scrollIntoView();
   }, []);
 
-  //console.log(scrollTo.current);
-
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);
@@ -64,14 +63,15 @@ export default function About({ data, settings_data }) {
     terminologySection,
     missionStatementSection,
     seo,
+    authorCard,
   } = data[0];
-  //console.log(connectSection);
+  console.log(connectSection);
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? "About" : "關於我們"} />
-      <main>
+      <main className="mt-145 mb-145">
         {/* first part */}
-        <div className="section mt-145">
+        <div className="section ">
           <StaticCard data={briefSection} fowardref={scrollTo} />
         </div>
         {/* dropDownCard */}
@@ -103,17 +103,23 @@ export default function About({ data, settings_data }) {
         )}
 
         {/* third part */}
-        <div className="section mt-145" id="visitUsLocation">
-          {<StaticCard data={visitUsSection} form={true} />}
-        </div>
+        {!visitUsSection.hidden && (
+          <div className="section mt-145" id="visitUsLocation">
+            {<StaticCard data={visitUsSection} form={true} />}
+          </div>
+        )}
         {/* fourth part */}
-        <div className="section mt-145">
-          {<StaticCard data={connectSection} />}
-        </div>
+        {!connectSection.hidden && (
+          <div className="section mt-145">
+            {<StaticCard data={connectSection} />}
+          </div>
+        )}
         {/* fifth part */}
-        <div className="section mt-145 mb-145">
-          <AuthorCard />
-        </div>
+        {!authorCard?.hidden && (
+          <div className="section mt-145">
+            <AuthorCard />
+          </div>
+        )}
       </main>
     </>
   );

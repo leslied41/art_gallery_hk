@@ -67,8 +67,8 @@ export default {
       type: "string",
       options: {
         list: [
-          { title: "Vertical", value: "vertical" },
-          { title: "Horizontal", value: "horizontal" },
+          { title: "Full Width", value: "vertical" },
+          { title: "Half Width", value: "horizontal" },
         ],
       },
     },
@@ -113,8 +113,8 @@ export default {
               initialValue: "vertical",
               options: {
                 list: [
-                  { title: "Vertical", value: "vertical" },
-                  { title: "Horizontal", value: "horizontal" },
+                  { title: "Full Width", value: "vertical" },
+                  { title: "Half Width", value: "horizontal" },
                 ],
               },
             },

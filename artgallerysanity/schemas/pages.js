@@ -98,6 +98,11 @@ export default {
       ],
       fields: [
         {
+          name: "hidden",
+          title: "Hidden ",
+          type: "boolean",
+        },
+        {
           name: "name",
           title: "Name",
           type: "string",
@@ -235,6 +240,11 @@ export default {
       ],
 
       fields: [
+        {
+          name: "hidden",
+          title: "Hidden ",
+          type: "boolean",
+        },
         {
           name: "name",
           title: "Name",
@@ -383,6 +393,24 @@ export default {
           title: "Content Chinese",
           type: "blockContent",
           fieldset: "translation",
+        },
+      ],
+    },
+    {
+      name: "authorCard",
+      title: "Author Card",
+      type: "object",
+      hidden: ({ parent }) => parent?.name != "About",
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: true, // Defines if the fieldset should be collapsed by default or not
+      },
+
+      fields: [
+        {
+          name: "hidden",
+          title: "Hidden ",
+          type: "boolean",
         },
       ],
     },
