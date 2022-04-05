@@ -42,7 +42,7 @@ export default function Press({ newsPageData }) {
       <ControlBtn />
       <main className="mb-145 layout ">
         <div className={router.locale}>
-          <div className="section mt-145">
+          <div className="section study-mt-145">
             <StaticCard data={briefSection} />
           </div>
           <div className="section mt-145">
