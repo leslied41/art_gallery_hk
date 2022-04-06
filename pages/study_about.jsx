@@ -28,7 +28,6 @@ export default function Study_About({ data }) {
     collapsable_third,
     seo,
   } = data;
-  console.log(briefSection);
   return (
     <>
       <ControlBtn />

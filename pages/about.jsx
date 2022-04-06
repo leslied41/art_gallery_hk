@@ -65,7 +65,6 @@ export default function About({ data, settings_data }) {
     seo,
     authorCard,
   } = data[0];
-  console.log(connectSection);
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? "About" : "關於我們"} />

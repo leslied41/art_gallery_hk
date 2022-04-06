@@ -694,6 +694,7 @@ export default {
           title: "Content",
           type: "blockContent",
         },
+        { name: "image", title: "Image", type: "image" },
         {
           name: "name_cn",
           title: "Name Chinese",
@@ -744,6 +745,8 @@ export default {
           title: "Content",
           type: "blockContent",
         },
+        { name: "image", title: "Image", type: "image" },
+
         {
           name: "name_cn",
           title: "Name Chinese",
@@ -794,6 +797,8 @@ export default {
           title: "Content",
           type: "blockContent",
         },
+        { name: "image", title: "Image", type: "image" },
+
         {
           name: "name_cn",
           title: "Name Chinese",
