@@ -9,6 +9,7 @@ import styles from "./ExListWorks.module.css";
 import { PortableText } from "@portabletext/react";
 import { getImageDimensions } from "@sanity/asset-utils";
 import WordsLayout from "../exhibitions_exhibition_staticcard/WordsLayout.jsx";
+import HalfWordsLayout from "../exhibitions_exhibition_staticcard/HalfWordsLayout.jsx";
 import { useRouter } from "next/router";
 
 const builder = imageUrlBuilder(sanityClient);
@@ -495,6 +496,7 @@ const ExListWorks = ({ data }) => {
           } = work;
 
           return (
+            // below it is to display different layouts conditionally
             <div key={index}>
               {video_url ? (
                 <div key={index} className="mt-145">
@@ -541,9 +543,22 @@ const ExListWorks = ({ data }) => {
                     buttons={buttons}
                   />
                 </div>
-              ) : (
+              ) : !work_image && layout == "vertical" ? (
                 <div key={index} className="mt-145">
                   <WordsLayout
+                    name={name}
+                    name_cn={name_cn}
+                    introduction={introduction}
+                    introduction_cn={introduction_cn}
+                    index={index}
+                    getIndex={getIndex}
+                    buttons={buttons}
+                    work_parameter={work_parameter}
+                  />
+                </div>
+              ) : (
+                <div key={index} className="mt-145">
+                  <HalfWordsLayout
                     name={name}
                     name_cn={name_cn}
                     introduction={introduction}
