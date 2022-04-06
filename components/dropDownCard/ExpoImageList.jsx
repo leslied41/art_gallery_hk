@@ -8,6 +8,8 @@ import Image from "next/image";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard.jsx";
 import Collapsible from "../collapsible/Collapsible.jsx";
 import { dropDownContext } from "./DropDownCard";
+import { getImageDimensions } from "@sanity/asset-utils";
+
 const builder = imageUrlBuilder(sanityClient);
 
 function urlFor(source) {
@@ -52,17 +54,21 @@ const ExpoImageList = ({ data }) => {
             slicedExhibition.map((item, index) => {
               const { name_exo, name_exo_cn, date, date_cn, image, slug, _id } =
                 item;
-
+              const { width, height } = getImageDimensions(image);
               return (
                 <div className={styles.grid} key={index}>
                   <Link href={"/exhibitions/" + slug.current}>
                     <div className="col mt-30">
                       {image && (
-                        <div style={{ height: "100%" }}>
-                          <img
+                        <div style={{ width: "100%", display: "block" }}>
+                          <Image
+                            layout="responsive"
+                            width={width}
+                            height={height}
                             src={urlFor(image.asset).url()}
                             alt={name_exo}
-                            style={{ width: "100%", cursor: "pointer" }}
+                            priority={true}
+                            className={styles.image}
                           />
                         </div>
                       )}

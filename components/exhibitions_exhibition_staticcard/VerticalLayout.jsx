@@ -16,7 +16,6 @@ const VerticalLayout = ({
   video,
   introduction,
   introduction_cn,
-
   index,
   getIndex,
 }) => {

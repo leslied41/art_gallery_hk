@@ -6,6 +6,9 @@
 .content {
   margin-top: var(--spacing-m);
 }
+.image {
+  cursor: pointer;
+}
 .darkSquare {
   background-color: var(--black);
   width: 100%;
