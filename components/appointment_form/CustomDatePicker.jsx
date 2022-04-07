@@ -50,7 +50,8 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
       showTimeSelect
       filterDate={filterDay}
       minTime={setHours(setMinutes(new Date(), 0), 13)}
-      maxTime={setHours(setMinutes(new Date(), 30), 17)}
+      maxTime={setHours(setMinutes(new Date(), 0), 18)}
+      timeIntervals={60}
       customInput={<CustomInput />}
       dateFormat="MMMM d, yyyy h:mm aa"
     />
