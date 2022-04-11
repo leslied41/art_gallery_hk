@@ -59,6 +59,12 @@ const serializers = {
   types: {
     image: SampleImageComponent,
   },
+  block: {
+    // Ex. 2: rendering custom styles
+    Text_block_large: ({ children }) => <p className="h2">{children}</p>,
+    Text_block_small: ({ children }) => <p className="h3">{children}</p>,
+    Text_block_reference: ({ children }) => <p className="h7">{children}</p>,
+  },
 };
 const ExListWorks = ({ data }) => {
   //const { showCard } = useContext(dropDownContext);
