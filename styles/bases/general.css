@@ -98,6 +98,10 @@ ul {
   font-size: 35px;
   line-height: 32px;
 }
+.h7 {
+  font-size: 18px;
+  line-height: 18.5px;
+}
 /* font color */
 .red-text {
   color: red;

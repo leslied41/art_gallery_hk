@@ -9,7 +9,7 @@ const WordsLayout = ({
   work_parameter,
   buttons,
   name,
-  name_cn
+  name_cn,
 }) => {
   const router = useRouter();
   const intro_portableText = usePortableText(
@@ -20,15 +20,13 @@ const WordsLayout = ({
       <div className={styles.grid}>
         <div className="col"></div>
         <div className="col">
-          {(name || name_cn) && (
+          {/* {(name || name_cn) && (
             <>
               <p className="h2">{router.locale == "en" ? name : name_cn}</p>
               <div className="mt-30"></div>
             </>
-          )}
-          <div className="h3">
-            {(introduction || introduction_cn) && intro_portableText}
-          </div>
+          )} */}
+          <div>{(introduction || introduction_cn) && intro_portableText}</div>
           <div className="btns">
             {buttons &&
               buttons.map((btn, index) => {

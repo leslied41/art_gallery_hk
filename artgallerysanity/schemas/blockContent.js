@@ -8,6 +8,22 @@
  *    type: 'blockContent'
  *  }
  */
+import React from "react";
+
+const largeStyle = (props) => (
+  <span style={{ fontSize: "55px", lineHeight: "36.5px" }}>
+    {props.children}
+  </span>
+);
+
+const smallStyle = (props) => (
+  <span style={{ fontSize: "25px", lineHeight: "32px" }}>{props.children}</span>
+);
+const xsmallStyle = (props) => (
+  <span style={{ fontSize: "18px", lineHeight: "18.5px" }}>
+    {props.children}
+  </span>
+);
 export default {
   title: "Block Content",
   name: "blockContent",
@@ -27,6 +43,27 @@ export default {
         { title: "H3", value: "h3" },
         { title: "H4", value: "h4" },
         { title: "Quote", value: "blockquote" },
+        {
+          title: "Text block large",
+          value: "Text_block_large",
+          blockEditor: {
+            render: largeStyle,
+          },
+        },
+        {
+          title: "Text block small",
+          value: "Text_block_small",
+          blockEditor: {
+            render: smallStyle,
+          },
+        },
+        {
+          title: "Text block reference",
+          value: "Text_block_reference",
+          blockEditor: {
+            render: xsmallStyle,
+          },
+        },
       ],
       lists: [{ title: "Bullet", value: "bullet" }],
       // Marks let you mark up inline text in the block editor.
