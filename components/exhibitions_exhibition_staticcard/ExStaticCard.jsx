@@ -35,7 +35,6 @@ const ExStaticCard = ({ data, fowardref }) => {
   const [iszoomed, setiszoomed] = useState(false);
   const [clickTime, setclickTime] = useState(0);
   const prevRef = useRef();
-  const [isMobile, setisMobile] = useState(null);
   const [moveDis, setmoveDis] = useState({ x: 0, y: 0 });
   const [startingPoint, setstartingPoint] = useState({ x: 0, y: 0 });
   const [moving, setmoving] = useState(false);
@@ -51,26 +50,6 @@ const ExStaticCard = ({ data, fowardref }) => {
   useEffect(() => {
     setwindowHeight(window.innerHeight);
     setwindowWidth(window.innerWidth);
-  }, []);
-
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setisMobile(true);
-    } else if (window.innerWidth >= 768) {
-      setisMobile(false);
-    }
-  }, []);
-
-  useLayoutEffect(() => {
-    window.addEventListener("resize", () => {
-      if (window.innerWidth < 768) {
-        setisMobile(true);
-        //console.log(isMobile);
-      } else if (window.innerWidth >= 768) {
-        setisMobile(false);
-        //console.log(isMobile);
-      }
-    });
   }, []);
 
   useEffect(() => {
@@ -305,18 +284,17 @@ const ExStaticCard = ({ data, fowardref }) => {
               )}
             </div>
           </div>
-          {!isMobile && (
-            <div className="h3">
-              <div
-                className={styles.closeIcon}
-                onClick={() => {
-                  setmodel(false);
-                }}
-              >
-                Close
-              </div>
+
+          <div className="h3">
+            <div
+              className={styles.closeIcon}
+              onClick={() => {
+                setmodel(false);
+              }}
+            >
+              Close
             </div>
-          )}
+          </div>
         </div>
       </div>
       <div className={styles.grid}>

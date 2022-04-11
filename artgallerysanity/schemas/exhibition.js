@@ -114,7 +114,11 @@ export default {
               options: {
                 list: [
                   { title: "Full Width", value: "vertical" },
-                  { title: "Half Width", value: "horizontal" },
+                  { title: "Image Left Half Width", value: "horizontal" },
+                  {
+                    title: "Image Right Half Width",
+                    value: "right_horizontal",
+                  },
                 ],
               },
             },

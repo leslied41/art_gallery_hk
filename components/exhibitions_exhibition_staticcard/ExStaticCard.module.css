@@ -76,6 +76,11 @@
   z-index: 999;
   cursor: pointer;
 }
+@media screen and (max-width: 768px) {
+  .closeIcon {
+    display: none;
+  }
+}
 .next {
   position: fixed;
   top: 50%;

@@ -2,6 +2,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import VerticalLayout from "../exhibitions_exhibition_staticcard/VerticalLayout";
 import HorizontalLayout from "../exhibitions_exhibition_staticcard/HorizontalLayout";
+import RightHorizontalLayout from "../exhibitions_exhibition_staticcard/RightHorizontalLayout";
 import VideoLayout from "../exhibitions_exhibition_staticcard/VideoLayout.jsx";
 import ReactPlayer from "react-player";
 import { useRef, useState, useEffect, useLayoutEffect, createRef } from "react";
@@ -69,7 +70,6 @@ const ExListWorks = ({ data }) => {
   const [iszoomed, setiszoomed] = useState(false);
   const [clickTime, setclickTime] = useState(0);
   const prevRef = useRef();
-  const [isMobile, setisMobile] = useState(null);
   const [moveDis, setmoveDis] = useState({ x: 0, y: 0 });
   const [startingPoint, setstartingPoint] = useState({ x: 0, y: 0 });
   const [moving, setmoving] = useState(false);
@@ -87,26 +87,6 @@ const ExListWorks = ({ data }) => {
   useEffect(() => {
     setwindowHeight(window.innerHeight);
     setwindowWidth(window.innerWidth);
-  }, []);
-
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setisMobile(true);
-    } else if (window.innerWidth >= 768) {
-      setisMobile(false);
-    }
-  }, []);
-
-  useLayoutEffect(() => {
-    window.addEventListener("resize", () => {
-      if (window.innerWidth < 768) {
-        setisMobile(true);
-        //console.log(isMobile);
-      } else if (window.innerWidth >= 768) {
-        setisMobile(false);
-        //console.log(isMobile);
-      }
-    });
   }, []);
 
   useEffect(() => {
@@ -531,6 +511,21 @@ const ExListWorks = ({ data }) => {
               ) : work_image && layout == "horizontal" ? (
                 <div key={index} className="mt-145">
                   <HorizontalLayout
+                    name={name}
+                    name_cn={name_cn}
+                    image={work_image}
+                    work_parameter={work_parameter}
+                    video={video_url}
+                    introduction={introduction}
+                    introduction_cn={introduction_cn}
+                    index={index}
+                    getIndex={getIndex}
+                    buttons={buttons}
+                  />
+                </div>
+              ) : work_image && layout == "right_horizontal" ? (
+                <div key={index} className="mt-145">
+                  <RightHorizontalLayout
                     name={name}
                     name_cn={name_cn}
                     image={work_image}
