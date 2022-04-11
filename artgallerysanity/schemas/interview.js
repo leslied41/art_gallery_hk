@@ -26,6 +26,11 @@ export default {
     },
     { name: "interview_link", title: "Interview Link", type: "url" },
     {
+      name: "publication_time",
+      title: "Publication Time",
+      type: "datetime",
+    },
+    {
       title: "Interviewee",
       name: "interviewee",
       type: "reference",

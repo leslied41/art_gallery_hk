@@ -16,11 +16,41 @@ export default function Artist({
   interviewsData,
   artistPageData,
 }) {
+  const { artist_dropdown, seo, press_list_reorder } = artistPageData || {};
+  const [showCard, setshowCard] = useState(false);
+  const handleClick = () => {
+    setshowCard(!showCard);
+  };
+  const router = useRouter();
+  //console.log(router.asPath);
+  const { name, name_cn } = artistData[0] || {};
+  const { settings, popup } = useGlobalSettings();
+  const [popup_path, setpopup_path] = popup;
+  const scrollTo = useRef();
+
   interviewsData.sort(function (a, b) {
     let dateA = new Date(a._createdAt).getTime();
     let dateB = new Date(b._createdAt).getTime();
     return dateB - dateA;
   });
+  if (typeof press_list_reorder === "boolean") {
+    if (press_list_reorder == true) {
+      interviewsData.sort(function (a, b) {
+        let dateA = new Date(a.publication_time).getTime();
+        let dateB = new Date(b.publication_time).getTime();
+        //console.log(dateA);
+        return dateB - dateA;
+      });
+    }
+    if (press_list_reorder == false) {
+      interviewsData.sort(function (a, b) {
+        let dateA = new Date(a.publication_time).getTime();
+        let dateB = new Date(b.publication_time).getTime();
+        //console.log(dateA);
+        return dateA - dateB;
+      });
+    }
+  }
   const filtered_workImages = workImages.filter((item) => {
     if (item.image) {
       return item;
@@ -39,17 +69,6 @@ export default function Artist({
   //   }
   // });
   // const mergedArray = mergedArray_json.map((item) => [JSON.parse(item)]);
-  const [showCard, setshowCard] = useState(false);
-  const handleClick = () => {
-    setshowCard(!showCard);
-  };
-  const router = useRouter();
-  //console.log(router.asPath);
-  const { artist_dropdown, seo } = artistPageData || {};
-  const { name, name_cn } = artistData[0] || {};
-  const { settings, popup } = useGlobalSettings();
-  const [popup_path, setpopup_path] = popup;
-  const scrollTo = useRef();
 
   useEffect(() => {
     scrollTo.current.scrollIntoView();
@@ -124,7 +143,7 @@ export default function Artist({
 }
 export async function getStaticProps({ locale, params }) {
   const artistPageData = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='Artist'][0]{artist_dropdown,seo}`
+    `*[_type=='pages'&&name=='Artist'][0]{artist_dropdown,seo,press_list_reorder}`
   );
   const artistData = await sanityClient.fetch(
     `*[slug.current=='${params.slug}']{

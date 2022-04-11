@@ -489,6 +489,14 @@ export default {
       description: "reorder the artist list by alphabetic.",
       hidden: ({ parent }) => parent?.name != "Artists",
       type: "boolean",
+    }, //artist page press list reorder
+    {
+      name: "press_list_reorder",
+      title: "Chronologically/Reverse Chronologically",
+      description:
+        "reorder the artist interview list chronologically or reverse chronologically.",
+      hidden: ({ parent }) => parent?.name != "Artist",
+      type: "boolean",
     },
     //artist dropdown section, bio, works, exhibtions, interviews
     {
