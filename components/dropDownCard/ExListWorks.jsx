@@ -112,6 +112,18 @@ const ExListWorks = ({ data }) => {
       elRefs[targetIndex].current.style.transform = "scale(1)";
     }
   }, [targetIndex]);
+
+  const throttle = (fn, delay) => {
+    let run = false;
+    return function (...args) {
+      if (!run) {
+        fn(...args);
+        run = true;
+        setTimeout(() => (run = false), delay);
+      }
+    };
+  };
+
   const mouseDown = (e) => {
     setclickTime(new Date());
     setstartingPoint({
@@ -168,6 +180,76 @@ const ExListWorks = ({ data }) => {
 
       e.target.style.transform =
         "translate(" + moveDis.x + "px, " + moveDis.y + "px) scale(2) ";
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    e.preventDefault();
+    if (!moving) {
+      return;
+    }
+    setmoveDis({
+      x: e.clientX - startingPoint.x,
+      y: e.clientY - startingPoint.y,
+    });
+    move(e);
+  };
+
+  const handleTouchMove = (e) => {
+    e.cancelable && e.preventDefault();
+
+    setmoveDis({
+      x: e.changedTouches[0].clientX - startingPoint.x,
+      y: e.changedTouches[0].clientY - startingPoint.y,
+    });
+    if (swipeInitial.x == null) {
+      return;
+    }
+    if (swipeInitial.y == null) {
+      return;
+    }
+    let diffX = swipeInitial.x - e.touches[0].clientX;
+    let diffY = swipeInitial.y - e.touches[0].clientY;
+    if (!iszoomed) {
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        // sliding horizontally
+        if (diffX > 0) {
+          // swiped left
+          if (targetIndex == 0) {
+            setTargetIndex(exhibition_works.length - 1);
+          }
+          if (targetIndex != 0) {
+            setTargetIndex(targetIndex - 1);
+          }
+          //console.log("swiped left");
+        } else {
+          // swiped right
+          if (targetIndex == exhibition_works.length - 1) {
+            setTargetIndex(0);
+          }
+          if (targetIndex != exhibition_works.length - 1)
+            setTargetIndex(targetIndex + 1);
+          //console.log("swiped right");
+        }
+      } else {
+        // sliding vertically
+        if (diffY > 0) {
+          // swiped up
+          setmodel(false);
+          setiszoomed(false);
+          //console.log("swiped up");
+        } else {
+          // swiped down
+          setmodel(false);
+          setiszoomed(false);
+          //console.log("swiped down");
+        }
+      }
+      setswipeInitial({ x: null, y: null });
+    }
+
+    if (moving) {
+      move(e);
     }
   };
 
@@ -281,80 +363,82 @@ const ExListWorks = ({ data }) => {
                           onTouchEnd={() => {
                             setmoving(false);
                           }}
-                          onMouseMove={(e) => {
-                            e.preventDefault();
-                            if (!moving) {
-                              return;
-                            }
-                            setmoveDis({
-                              x: e.clientX - startingPoint.x,
-                              y: e.clientY - startingPoint.y,
-                            });
-                            move(e);
-                          }}
-                          onTouchMove={(e) => {
-                            e.cancelable && e.preventDefault();
+                          // onMouseMove={(e) => {
+                          //   e.preventDefault();
+                          //   if (!moving) {
+                          //     return;
+                          //   }
+                          //   setmoveDis({
+                          //     x: e.clientX - startingPoint.x,
+                          //     y: e.clientY - startingPoint.y,
+                          //   });
+                          //   move(e);
+                          // }}
+                          onMouseMove={throttle(handleMouseMove, 100)}
+                          onTouchMove={throttle(handleTouchMove, 100)}
+                          // onTouchMove={(e) => {
+                          //   e.cancelable && e.preventDefault();
 
-                            setmoveDis({
-                              x: e.changedTouches[0].clientX - startingPoint.x,
-                              y: e.changedTouches[0].clientY - startingPoint.y,
-                            });
-                            if (swipeInitial.x == null) {
-                              return;
-                            }
-                            if (swipeInitial.y == null) {
-                              return;
-                            }
-                            let diffX = swipeInitial.x - e.touches[0].clientX;
-                            let diffY = swipeInitial.y - e.touches[0].clientY;
-                            if (!iszoomed) {
-                              if (Math.abs(diffX) > Math.abs(diffY)) {
-                                // sliding horizontally
-                                if (diffX > 0) {
-                                  // swiped left
-                                  if (targetIndex == 0) {
-                                    setTargetIndex(exhibition_works.length - 1);
-                                  }
-                                  if (targetIndex != 0) {
-                                    setTargetIndex(targetIndex - 1);
-                                  }
-                                  //console.log("swiped left");
-                                } else {
-                                  // swiped right
-                                  if (
-                                    targetIndex ==
-                                    exhibition_works.length - 1
-                                  ) {
-                                    setTargetIndex(0);
-                                  }
-                                  if (
-                                    targetIndex !=
-                                    exhibition_works.length - 1
-                                  )
-                                    setTargetIndex(targetIndex + 1);
-                                  //console.log("swiped right");
-                                }
-                              } else {
-                                // sliding vertically
-                                if (diffY > 0) {
-                                  // swiped up
-                                  setmodel(false);
-                                  setiszoomed(false);
-                                  //console.log("swiped up");
-                                } else {
-                                  // swiped down
-                                  setmodel(false);
-                                  setiszoomed(false);
-                                  //console.log("swiped down");
-                                }
-                              }
-                              setswipeInitial({ x: null, y: null });
-                            }
+                          //   setmoveDis({
+                          //     x: e.changedTouches[0].clientX - startingPoint.x,
+                          //     y: e.changedTouches[0].clientY - startingPoint.y,
+                          //   });
+                          //   if (swipeInitial.x == null) {
+                          //     return;
+                          //   }
+                          //   if (swipeInitial.y == null) {
+                          //     return;
+                          //   }
+                          //   let diffX = swipeInitial.x - e.touches[0].clientX;
+                          //   let diffY = swipeInitial.y - e.touches[0].clientY;
+                          //   if (!iszoomed) {
+                          //     if (Math.abs(diffX) > Math.abs(diffY)) {
+                          //       // sliding horizontally
+                          //       if (diffX > 0) {
+                          //         // swiped left
+                          //         if (targetIndex == 0) {
+                          //           setTargetIndex(exhibition_works.length - 1);
+                          //         }
+                          //         if (targetIndex != 0) {
+                          //           setTargetIndex(targetIndex - 1);
+                          //         }
+                          //         //console.log("swiped left");
+                          //       } else {
+                          //         // swiped right
+                          //         if (
+                          //           targetIndex ==
+                          //           exhibition_works.length - 1
+                          //         ) {
+                          //           setTargetIndex(0);
+                          //         }
+                          //         if (
+                          //           targetIndex !=
+                          //           exhibition_works.length - 1
+                          //         )
+                          //           setTargetIndex(targetIndex + 1);
+                          //         //console.log("swiped right");
+                          //       }
+                          //     } else {
+                          //       // sliding vertically
+                          //       if (diffY > 0) {
+                          //         // swiped up
+                          //         setmodel(false);
+                          //         setiszoomed(false);
+                          //         //console.log("swiped up");
+                          //       } else {
+                          //         // swiped down
+                          //         setmodel(false);
+                          //         setiszoomed(false);
+                          //         //console.log("swiped down");
+                          //       }
+                          //     }
+                          //     setswipeInitial({ x: null, y: null });
+                          //   }
 
-                            if (moving) {
-                              move(e);
-                            }
-                          }}
+                          //   if (moving) {
+                          //     move(e);
+                          //   }
+                          // }}
                         />
                       ) : video_url ? (
                         <div

@@ -29,6 +29,18 @@ const S_header = ({ vimeo_link, shop_link }) => {
   const [windowWidth, setwindowWidth] = useState();
   const [svg_height, setsvg_height] = useState();
   const [svg_width, setsvg_width] = useState();
+
+  const throttle = (fn, delay) => {
+    let run = false;
+    return function (...args) {
+      if (!run) {
+        fn(...args);
+        run = true;
+        setTimeout(() => (run = false), delay);
+      }
+    };
+  };
+
   useEffect(() => {
     setwindowHeight(window.innerHeight);
     setwindowWidth(window.innerWidth);
@@ -58,6 +70,29 @@ const S_header = ({ vimeo_link, shop_link }) => {
     }
     svg.current.style.transform =
       "translate(" + moveDis.x + "px, " + moveDis.y + "px) ";
+  };
+
+  const handleMouseMove = (e) => {
+    e.preventDefault();
+    if (!moving) {
+      return;
+    }
+    setmoveDis({
+      x: e.clientX - startingPoint.x,
+      y: e.clientY - startingPoint.y,
+    });
+    move();
+  };
+  const handleTouchMove = (e) => {
+    e.cancelable && e.preventDefault();
+    if (!moving) {
+      return;
+    }
+    setmoveDis({
+      x: e.changedTouches[0].clientX - startingPoint.x,
+      y: e.changedTouches[0].clientY - startingPoint.y,
+    });
+    move();
   };
 
   useEffect(() => {
@@ -205,28 +240,8 @@ const S_header = ({ vimeo_link, shop_link }) => {
             onTouchEnd={() => {
               setmoving(false);
             }}
-            onMouseMove={(e) => {
-              e.preventDefault();
-              if (!moving) {
-                return;
-              }
-              setmoveDis({
-                x: e.clientX - startingPoint.x,
-                y: e.clientY - startingPoint.y,
-              });
-              move();
-            }}
-            onTouchMove={(e) => {
-              e.cancelable && e.preventDefault();
-              if (!moving) {
-                return;
-              }
-              setmoveDis({
-                x: e.changedTouches[0].clientX - startingPoint.x,
-                y: e.changedTouches[0].clientY - startingPoint.y,
-              });
-              move();
-            }}
+            onMouseMove={throttle(handleMouseMove, 100)}
+            onTouchMove={throttle(handleTouchMove, 100)}
           >
             <path d="M1 0H4368V2169H1V0Z" fill="url(#pattern0)" />
             <Link href="/press" exact>
