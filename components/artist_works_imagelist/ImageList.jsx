@@ -96,10 +96,8 @@ const ImageList = ({
     window.addEventListener("resize", () => {
       if (window.innerWidth < 768) {
         setisMobile(true);
-        //console.log(isMobile);
       } else if (window.innerWidth >= 768) {
         setisMobile(false);
-        //console.log(isMobile);
       }
     });
   }, []);
@@ -381,111 +379,78 @@ const ImageList = ({
               );
             })}
           </div>
-          {!isMobile && (
-            <div className="h3">
-              <div
-                className={styles.closeIcon}
-                onClick={() => {
-                  setmodel(false);
-                  setiszoomed(false);
-                }}
-              >
-                Close
-              </div>
-              <div
-                className={styles.next}
-                onClick={() => {
-                  setiszoomed(false);
-                  if (targetIndex == workImages.length - 1) {
-                    setTargetIndex(0);
-                  }
-                  if (targetIndex != workImages.length - 1)
-                    setTargetIndex(targetIndex + 1);
-                }}
-              >
-                Next
-              </div>
-              <div
-                className={styles.prev}
-                ref={prevRef}
-                onClick={() => {
-                  setiszoomed(false);
-                  if (targetIndex == 0) {
-                    setTargetIndex(workImages.length - 1);
-                  }
-                  if (targetIndex != 0) {
-                    setTargetIndex(targetIndex - 1);
-                  }
-                }}
-              >
-                Prev
-              </div>
+
+          <div className="h3">
+            <div
+              className={styles.closeIcon}
+              onClick={() => {
+                setmodel(false);
+                setiszoomed(false);
+              }}
+            >
+              Close
             </div>
-          )}
+            <div
+              className={styles.next}
+              onClick={() => {
+                setiszoomed(false);
+                if (targetIndex == workImages.length - 1) {
+                  setTargetIndex(0);
+                }
+                if (targetIndex != workImages.length - 1)
+                  setTargetIndex(targetIndex + 1);
+              }}
+            >
+              Next
+            </div>
+            <div
+              className={styles.prev}
+              ref={prevRef}
+              onClick={() => {
+                setiszoomed(false);
+                if (targetIndex == 0) {
+                  setTargetIndex(workImages.length - 1);
+                }
+                if (targetIndex != 0) {
+                  setTargetIndex(targetIndex - 1);
+                }
+              }}
+            >
+              Prev
+            </div>
+          </div>
         </div>
       </div>
       {/* image gallery */}
       <div className={styles.gallery}>
-        {isMobile &&
-          slicedWorkImages.map((item, index) => {
-            return (
-              <div
-                className={styles.pics}
-                style={{ marginBottom: "18px" }}
-                key={index}
-              >
-                {item.image.asset && (
-                  <Image
-                    src={urlFor(item.image.asset).url()}
-                    alt={index}
-                    className={styles.thumbnail}
-                    //style={{ height: "auto", width: "100%" }}
-                    layout="intrinsic"
-                    height={item.metadata.metadata.dimensions.height}
-                    width={item.metadata.metadata.dimensions.width}
-                    onClick={() => {
-                      //getImage(item.image);
-                      getIndex(index);
-                    }}
-                  />
-                )}
-              </div>
-            );
-          })}
-        {!isMobile &&
-          workImages.map((item, index) => {
-            return (
-              <div
-                className={styles.pics}
-                style={{ marginBottom: "30px" }}
-                key={index}
-              >
-                {item.image.asset && (
-                  <Image
-                    src={urlFor(item.image.asset).url()}
-                    alt={index}
-                    className={styles.thumbnail}
-                    //style={{ height: "auto", width: "100%" }}
-                    layout="intrinsic"
-                    height={
-                      item.metadata
-                        ? item.metadata.metadata.dimensions.height
-                        : null
-                    }
-                    width={
-                      item.metadata
-                        ? item.metadata.metadata.dimensions.width
-                        : null
-                    }
-                    onClick={() => {
-                      //getImage(item.image);
-                      getIndex(index);
-                    }}
-                  />
-                )}
-              </div>
-            );
-          })}
+        {(isMobile ? slicedWorkImages : workImages).map((item, index) => {
+          return (
+            <div
+              className={styles.pics}
+              style={
+                isMobile ? { marginBottom: "18px" } : { marginBottom: "30px" }
+              }
+              key={index}
+            >
+              {item.image.asset && (
+                <Image
+                  src={urlFor(item.image.asset).url()}
+                  alt={index}
+                  className={styles.thumbnail}
+                  //style={{ height: "auto", width: "100%" }}
+                  layout="intrinsic"
+                  height={item.metadata.metadata.dimensions.height}
+                  width={item.metadata.metadata.dimensions.width}
+                  onClick={() => {
+                    //getImage(item.image);
+                    getIndex(index);
+                  }}
+                />
+              )}
+            </div>
+          );
+        })}
+
         {isMobile && (
           <div>
             <LoadMoreCard loaded={loaded} loadMore={loadMore} />

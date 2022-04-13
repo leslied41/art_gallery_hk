@@ -35,9 +35,11 @@ export default function Study_About({ data }) {
       <Heads seo={seo} name={router.locale == "en" ? "About" : "关于"} />
       <main className="mb-145 layout ">
         <div className={router.locale}>
-          <div className="section study-mt-145">
-            <StaticCard data={briefSection} />
-          </div>
+          {briefSection && (
+            <div className="section study-mt-145">
+              <StaticCard data={briefSection} />
+            </div>
+          )}
           {/* dropDownCard */}
           {!collapsable_first.hidden && (
             <div className="section study-mt-145">

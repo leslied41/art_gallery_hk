@@ -58,7 +58,7 @@ const HorizontalLayout = ({
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <button className="exhibition_btn">
+                        <button className="exhibition_btn h3">
                           {button_name}
                         </button>
                       </a>

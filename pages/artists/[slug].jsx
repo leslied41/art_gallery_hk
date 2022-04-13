@@ -2,7 +2,7 @@ import sanityClient from "../../client.js";
 import StaticCard from "../../components/staticCard/StaticCard";
 import DropDownCard from "../../components/dropDownCard/DropDownCard.jsx";
 import { useRouter } from "next/router";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import ArtistBio from "../../components/dropDownCard/ArtistBio.jsx";
 import ArtistWorksImageList from "../../components/dropDownCard/ArtistWorksImageList.jsx";
 import ExpoList from "../../components/artists_artist_exhibition_list/ExpoList.jsx";

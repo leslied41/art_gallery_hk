@@ -142,7 +142,7 @@ export default function Footer() {
                       return (
                         <li key={index}>
                           <a
-                            className="h4"
+                            className="h4 no-underline"
                             href={item.url}
                             target="_blank"
                             rel="noopener noreferrer"

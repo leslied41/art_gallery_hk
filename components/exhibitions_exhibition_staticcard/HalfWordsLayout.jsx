@@ -46,7 +46,7 @@ const WordsLayout = ({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <button className="exhibition_btn">{button_name}</button>
+                    <button className="exhibition_btn h3">{button_name}</button>
                   </a>
                 );
               })}
