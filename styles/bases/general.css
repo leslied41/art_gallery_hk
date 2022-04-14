@@ -242,3 +242,7 @@ hr {
 .exhibition_btn:focus {
   background-color: #9a9a9a;
 }
+/* image enlarge */
+.enlarge {
+  transform: scale(2);
+}

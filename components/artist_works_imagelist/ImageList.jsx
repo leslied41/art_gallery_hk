@@ -323,6 +323,7 @@ const ImageList = ({
                         key={index}
                         src={urlFor(item.image.asset).url()}
                         alt="works"
+                        className={styles.images}
                         style={
                           index == targetIndex
                             ? {

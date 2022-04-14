@@ -30,6 +30,9 @@
     column-width: 100%;
     gap: 18px;
   }
+  .images {
+    transition: transform 0.3s ease-in-out;
+  }
 }
 /* .gallery {
   display: grid;
