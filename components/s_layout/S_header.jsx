@@ -4,7 +4,8 @@ import Link from "next/link";
 import ControlBtn from "../popup_control/ControlBtn";
 import ControlInfo from "../popup_control/ControlInfo";
 import styles from "./S_header.module.css";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, memo } from "react";
+import { useThrottle } from "../usehooks/useThrottle";
 
 const S_header = ({ vimeo_link, shop_link }) => {
   const svg = useRef(null);
@@ -22,24 +23,13 @@ const S_header = ({ vimeo_link, shop_link }) => {
 
   const [toLeft, setToLeft] = useState(0);
   const [toTop, setToTop] = useState(0);
-  const [moveDis, setmoveDis] = useState({ x: 0, y: 0 });
   const [startingPoint, setstartingPoint] = useState({ x: 0, y: 0 });
   const [moving, setmoving] = useState(false);
   const [windowHeight, setwindowHeight] = useState();
   const [windowWidth, setwindowWidth] = useState();
   const [svg_height, setsvg_height] = useState();
   const [svg_width, setsvg_width] = useState();
-
-  const throttle = (fn, delay) => {
-    let run = false;
-    return function (...args) {
-      if (!run) {
-        fn(...args);
-        run = true;
-        setTimeout(() => (run = false), delay);
-      }
-    };
-  };
+  const moveDis = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     setwindowHeight(window.innerHeight);
@@ -53,48 +43,6 @@ const S_header = ({ vimeo_link, shop_link }) => {
       setsvg_width(svg.current.clientWidth);
     });
   }, []);
-
-  const move = () => {
-    if (moveDis.x > 0) {
-      moveDis.x = 0;
-    }
-    if (moveDis.x < windowWidth - svg_width) {
-      moveDis.x = windowWidth - svg_width;
-    }
-
-    if (moveDis.y > 0) {
-      moveDis.y = 0;
-    }
-    if (moveDis.y < windowHeight - svg_height) {
-      moveDis.y = windowHeight - svg_height;
-    }
-    svg.current.style.transform =
-      "translate(" + moveDis.x + "px, " + moveDis.y + "px) ";
-  };
-
-  const handleMouseMove = (e) => {
-    e.preventDefault();
-    if (!moving) {
-      return;
-    }
-    setmoveDis({
-      x: e.clientX - startingPoint.x,
-      y: e.clientY - startingPoint.y,
-    });
-    move();
-  };
-  const handleTouchMove = (e) => {
-    e.cancelable && e.preventDefault();
-    if (!moving) {
-      return;
-    }
-    setmoveDis({
-      x: e.changedTouches[0].clientX - startingPoint.x,
-      y: e.changedTouches[0].clientY - startingPoint.y,
-    });
-    move();
-  };
-
   useEffect(() => {
     videoCursor.current.style.top = `${toTop + 15}px`;
     videoCursor.current.style.left = `${toLeft + 15}px`;
@@ -107,12 +55,60 @@ const S_header = ({ vimeo_link, shop_link }) => {
     studyCursor.current.style.top = `${toTop + 15}px`;
     studyCursor.current.style.left = `${toLeft + 15}px`;
   }, [toLeft, toTop]);
+
+  const move = () => {
+    if (moveDis.current.x > 0) {
+      moveDis.current.x = 0;
+    }
+    if (moveDis.current.x < windowWidth - svg_width) {
+      moveDis.current.x = windowWidth - svg_width;
+    }
+
+    if (moveDis.current.y > 0) {
+      moveDis.current.y = 0;
+    }
+    if (moveDis.current.y < windowHeight - svg_height) {
+      moveDis.current.y = windowHeight - svg_height;
+    }
+    svg.current.style.transform =
+      "translate(" + moveDis.current.x + "px, " + moveDis.current.y + "px) ";
+  };
+
+  const handleMouseMove = (e) => {
+    e.preventDefault();
+    if (!moving) {
+      return;
+    }
+
+    moveDis.current = {
+      x: e.clientX - startingPoint.x,
+      y: e.clientY - startingPoint.y,
+    };
+    move();
+  };
+  const handleTouchMove = (e) => {
+    e.cancelable && e.preventDefault();
+    if (!moving) {
+      return;
+    }
+
+    moveDis.current = {
+      x: e.changedTouches[0].clientX - startingPoint.x,
+      y: e.changedTouches[0].clientY - startingPoint.y,
+    };
+    move();
+  };
+
+  const throttleTouchHandler = useThrottle(handleTouchMove, 100);
+
+  const throttleMouseHandler = useThrottle(handleMouseMove, 100);
+
   const touchStart = (e) => {
     console.log(e.touches);
     e.cancelable && e.preventDefault();
     setstartingPoint({
-      x: e.changedTouches[0].clientX - moveDis.x,
-      y: e.changedTouches[0].clientY - moveDis.y,
+      x: e.changedTouches[0].clientX - moveDis.current.x,
+      y: e.changedTouches[0].clientY - moveDis.current.y,
     });
     setmoving(true);
   };
@@ -224,8 +220,8 @@ const S_header = ({ vimeo_link, shop_link }) => {
             onMouseDown={(e) => {
               e.preventDefault();
               setstartingPoint({
-                x: e.clientX - moveDis.x,
-                y: e.clientY - moveDis.y,
+                x: e.clientX - moveDis.current.x,
+                y: e.clientY - moveDis.current.y,
               });
               setmoving(true);
             }}
@@ -240,8 +236,8 @@ const S_header = ({ vimeo_link, shop_link }) => {
             onTouchEnd={() => {
               setmoving(false);
             }}
-            onMouseMove={throttle(handleMouseMove, 100)}
-            onTouchMove={throttle(handleTouchMove, 100)}
+            onMouseMove={throttleMouseHandler}
+            onTouchMove={throttleTouchHandler}
           >
             <path d="M1 0H4368V2169H1V0Z" fill="url(#pattern0)" />
             <Link href="/press" exact>
@@ -352,4 +348,4 @@ const S_header = ({ vimeo_link, shop_link }) => {
     </>
   );
 };
-export default S_header;
+export default memo(S_header);

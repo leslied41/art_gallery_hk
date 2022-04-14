@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useGlobalSettings } from "../context/GlobalSettings";
 import Links from "../links/Links";
 import { useRouter } from "next/router";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, memo } from "react";
 import Logo from "../../public/images/Favicon01.svg";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
@@ -13,7 +13,7 @@ function urlFor(source) {
   return builder.image(source);
 }
 
-export default function Footer() {
+const Footer = () => {
   const router = useRouter();
   const { settings, popup, setover_footer } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
@@ -195,4 +195,5 @@ export default function Footer() {
       </div>
     </>
   );
-}
+};
+export default memo(Footer);

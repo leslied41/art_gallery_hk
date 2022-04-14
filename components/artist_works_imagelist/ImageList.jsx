@@ -1,10 +1,18 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ImageList.module.css";
-import React, { useEffect, useState, useRef, createRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  createRef,
+  useCallback,
+  memo,
+} from "react";
 import Image from "next/image";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard.jsx";
 import { PortableText } from "@portabletext/react";
+import { useThrottle } from "../usehooks/useThrottle.js";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -73,7 +81,6 @@ const ImageList = ({
   const [clickTime, setclickTime] = useState(0);
   const prevRef = useRef();
   const [isMobile, setisMobile] = useState(null);
-  const [moveDis, setmoveDis] = useState({ x: 0, y: 0 });
   const [startingPoint, setstartingPoint] = useState({ x: 0, y: 0 });
   const [moving, setmoving] = useState(false);
   const [imageSize, setimageSize] = useState({ x: 0, y: 0 });
@@ -81,6 +88,7 @@ const ImageList = ({
   const [windowWidth, setwindowWidth] = useState();
   const [elRefs, setElRefs] = useState([]);
   const [swipeInitial, setswipeInitial] = useState({ x: null, y: null });
+  const moveDis = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     setwindowHeight(window.innerHeight);
@@ -124,10 +132,11 @@ const ImageList = ({
   };
 
   const mouseDown = (e) => {
+    //console.log(moveDis.current);
     setclickTime(new Date());
     setstartingPoint({
-      x: e.clientX - moveDis.x,
-      y: e.clientY - moveDis.y,
+      x: e.clientX - moveDis.current.x,
+      y: e.clientY - moveDis.current.y,
     });
     setmoving(true);
     setimageSize({
@@ -143,44 +152,128 @@ const ImageList = ({
     e.target.style.transform = "scale(1)";
   };
   const move = (e) => {
+    //console.log(moveDis.current);
+    console.log("move");
     if (iszoomed) {
       if (
         windowWidth - imageSize.x < 0 &&
-        moveDis.x < (windowWidth - imageSize.x) / 2
+        moveDis.current.x < (windowWidth - imageSize.x) / 2
       ) {
-        moveDis.x = (windowWidth - imageSize.x) / 2;
+        moveDis.current.x = (windowWidth - imageSize.x) / 2;
       }
 
       if (
         windowWidth - imageSize.x < 0 &&
-        moveDis.x > (imageSize.x - windowWidth) / 2
+        moveDis.current.x > (imageSize.x - windowWidth) / 2
       ) {
-        moveDis.x = (imageSize.x - windowWidth) / 2;
+        moveDis.current.x = (imageSize.x - windowWidth) / 2;
       }
       if (windowWidth - imageSize.x > 0) {
-        moveDis.x = 0;
+        moveDis.current.x = 0;
       }
 
       if (
-        moveDis.y >
+        moveDis.current.y >
         (imageSize.y - !iszoomed ? windowHeight * 0.8 : windowHeight) / 2
       ) {
-        moveDis.y =
+        moveDis.current.y =
           (imageSize.y - !iszoomed ? windowHeight * 0.8 : windowHeight) / 2 +
           50;
       }
       if (
-        moveDis.y <
+        moveDis.current.y <
         (!iszoomed ? windowHeight * 0.8 : windowHeight - imageSize.y) / 2
       ) {
-        moveDis.y =
+        moveDis.current.y =
           (!iszoomed ? windowHeight * 0.8 : windowHeight - imageSize.y) / 2;
       }
 
       e.target.style.transform =
-        "translate(" + moveDis.x + "px, " + moveDis.y + "px) scale(2) ";
+        "translate(" +
+        moveDis.current.x +
+        "px, " +
+        moveDis.current.y +
+        "px) scale(2) ";
     }
   };
+  const handleMouseMove = (e) => {
+    e.preventDefault();
+    if (!moving) {
+      return;
+    }
+    // setmoveDis({
+    //   x: e.clientX - startingPoint.x,
+    //   y: e.clientY - startingPoint.y,
+    // });
+    moveDis.current.x = e.clientX - startingPoint.x;
+    moveDis.current.y = e.clientY - startingPoint.y;
+    move(e);
+  };
+  const handleTouchMove = (e) => {
+    e.cancelable && e.preventDefault();
+
+    // setmoveDis({
+    //   x: e.changedTouches[0].clientX - startingPoint.x,
+    //   y: e.changedTouches[0].clientY - startingPoint.y,
+    // });
+
+    moveDis.current.x = e.changedTouches[0].clientX - startingPoint.x;
+    moveDis.current.y = e.changedTouches[0].clientY - startingPoint.y;
+    if (swipeInitial.x == null) {
+      return;
+    }
+    if (swipeInitial.y == null) {
+      return;
+    }
+    let diffX = swipeInitial.x - e.touches[0].clientX;
+    let diffY = swipeInitial.y - e.touches[0].clientY;
+    if (!iszoomed) {
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        // sliding horizontally
+        if (diffX > 0) {
+          // swiped right
+          if (targetIndex == workImages.length - 1) {
+            setTargetIndex(0);
+          }
+          if (targetIndex != workImages.length - 1)
+            setTargetIndex(targetIndex + 1);
+          //console.log("swiped right");
+        } else {
+          // swiped left
+          if (targetIndex == 0) {
+            setTargetIndex(workImages.length - 1);
+          }
+          if (targetIndex != 0) {
+            setTargetIndex(targetIndex - 1);
+          }
+          //console.log("swiped left");
+        }
+      } else {
+        // sliding vertically
+        if (diffY > 0) {
+          // swiped up
+          setmodel(false);
+          setiszoomed(false);
+          //console.log("swiped up");
+        } else {
+          // swiped down
+          setmodel(false);
+          setiszoomed(false);
+          //console.log("swiped down");
+        }
+      }
+      setswipeInitial({ x: null, y: null });
+    }
+
+    if (moving) {
+      move(e);
+    }
+  };
+
+  const throttleTouchHandler = useThrottle(handleTouchMove, 100);
+
+  const throttleMouseHandler = useThrottle(handleMouseMove, 100);
+
   return (
     <>
       <div className={model ? styles.open : styles.close}>
@@ -251,7 +344,10 @@ const ImageList = ({
                             if (iszoomed) {
                               zoomout(e);
                               setiszoomed(false);
-                              setmoveDis({ x: 0, y: 0 });
+                              //setmoveDis({ x: 0, y: 0 });
+
+                              moveDis.current.x = 0;
+                              moveDis.current.y = 0;
                             }
                           }
                         }}
@@ -263,8 +359,8 @@ const ImageList = ({
                         onTouchStart={(e) => {
                           e.cancelable && e.preventDefault();
                           setstartingPoint({
-                            x: e.changedTouches[0].clientX - moveDis.x,
-                            y: e.changedTouches[0].clientY - moveDis.y,
+                            x: e.changedTouches[0].clientX - moveDis.current.x,
+                            y: e.changedTouches[0].clientY - moveDis.current.y,
                           });
                           setmoving(true);
                           setimageSize({
@@ -278,79 +374,14 @@ const ImageList = ({
                         }}
                         onMouseUp={(e) => {
                           setmoving(false);
+
                           e.target.style.cursor = "zoom-in";
                         }}
                         onTouchEnd={() => {
                           setmoving(false);
                         }}
-                        onMouseMove={(e) => {
-                          e.preventDefault();
-                          if (!moving) {
-                            return;
-                          }
-                          setmoveDis({
-                            x: e.clientX - startingPoint.x,
-                            y: e.clientY - startingPoint.y,
-                          });
-                          move(e);
-                        }}
-                        onTouchMove={(e) => {
-                          e.cancelable && e.preventDefault();
-
-                          setmoveDis({
-                            x: e.changedTouches[0].clientX - startingPoint.x,
-                            y: e.changedTouches[0].clientY - startingPoint.y,
-                          });
-                          if (swipeInitial.x == null) {
-                            return;
-                          }
-                          if (swipeInitial.y == null) {
-                            return;
-                          }
-                          let diffX = swipeInitial.x - e.touches[0].clientX;
-                          let diffY = swipeInitial.y - e.touches[0].clientY;
-                          if (!iszoomed) {
-                            if (Math.abs(diffX) > Math.abs(diffY)) {
-                              // sliding horizontally
-                              if (diffX > 0) {
-                                // swiped right
-                                if (targetIndex == workImages.length - 1) {
-                                  setTargetIndex(0);
-                                }
-                                if (targetIndex != workImages.length - 1)
-                                  setTargetIndex(targetIndex + 1);
-                                //console.log("swiped right");
-                              } else {
-                                // swiped left
-                                if (targetIndex == 0) {
-                                  setTargetIndex(workImages.length - 1);
-                                }
-                                if (targetIndex != 0) {
-                                  setTargetIndex(targetIndex - 1);
-                                }
-                                //console.log("swiped left");
-                              }
-                            } else {
-                              // sliding vertically
-                              if (diffY > 0) {
-                                // swiped up
-                                setmodel(false);
-                                setiszoomed(false);
-                                //console.log("swiped up");
-                              } else {
-                                // swiped down
-                                setmodel(false);
-                                setiszoomed(false);
-                                //console.log("swiped down");
-                              }
-                            }
-                            setswipeInitial({ x: null, y: null });
-                          }
-
-                          if (moving) {
-                            move(e);
-                          }
-                        }}
+                        onMouseMove={throttleMouseHandler}
+                        onTouchMove={throttleTouchHandler}
                       />
                     )}
                   </div>
@@ -460,4 +491,4 @@ const ImageList = ({
     </>
   );
 };
-export default ImageList;
+export default memo(ImageList);

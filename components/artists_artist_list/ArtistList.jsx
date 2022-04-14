@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef, useContext, memo } from "react";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ArtistList.module.css";
@@ -231,4 +231,4 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
     </div>
   );
 };
-export default ArtistList;
+export default memo(ArtistList);

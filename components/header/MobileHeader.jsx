@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, memo } from "react";
 import styles from "./MobileHeader.module.css";
 import { useRouter } from "next/router";
 import Links from "../links/Links";
@@ -121,4 +121,4 @@ const MobileHeader = () => {
     </>
   );
 };
-export default MobileHeader;
+export default memo(MobileHeader);

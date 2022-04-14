@@ -2,6 +2,7 @@ import styles from "./S_mobile_header.module.css";
 import Link from "next/link";
 import ControlBtn from "../popup_control/ControlBtn";
 import ControlInfo from "../popup_control/ControlInfo";
+import { memo } from "react";
 
 const S_mobile_header = ({ vimeo_link, shop_link }) => {
   return (
@@ -117,4 +118,4 @@ const S_mobile_header = ({ vimeo_link, shop_link }) => {
     </>
   );
 };
-export default S_mobile_header;
+export default memo(S_mobile_header);
