@@ -153,7 +153,6 @@ const ImageList = ({
   };
   const move = (e) => {
     //console.log(moveDis.current);
-    console.log("move");
     if (iszoomed) {
       if (
         windowWidth - imageSize.x < 0 &&
@@ -270,7 +269,7 @@ const ImageList = ({
     }
   };
 
-  const throttleTouchHandler = useThrottle(handleTouchMove, 100);
+  const throttleTouchHandler = useThrottle(handleTouchMove, 50);
 
   const throttleMouseHandler = useThrottle(handleMouseMove, 100);
 
