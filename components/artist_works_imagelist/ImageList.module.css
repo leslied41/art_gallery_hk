@@ -31,7 +31,7 @@
     gap: 18px;
   }
   .images {
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.1s ease-in-out;
   }
 }
 /* .gallery {
