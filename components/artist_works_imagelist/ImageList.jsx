@@ -269,7 +269,7 @@ const ImageList = ({
     }
   };
 
-  const throttleTouchHandler = useThrottle(handleTouchMove, 300);
+  const throttleTouchHandler = useThrottle(handleTouchMove, 100);
 
   const throttleMouseHandler = useThrottle(handleMouseMove, 100);
 
