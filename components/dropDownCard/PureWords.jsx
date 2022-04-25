@@ -25,15 +25,17 @@ const PureWords = ({ data, handleClick }) => {
       <Collapsible showCard={showCard}>
         <div className={styles.grid}>
           <div className="col">
-            {image && (
-              <div>
-                <img
-                  src={urlFor(image.asset).url()}
-                  alt={image.asset._ref}
-                  style={{ width: "100%", cursor: "pointer" }}
-                />
-              </div>
-            )}
+            <div className="mt-28">
+              {image && (
+                <div>
+                  <img
+                    src={urlFor(image.asset).url()}
+                    alt={image.asset._ref}
+                    style={{ width: "100%", cursor: "pointer" }}
+                  />
+                </div>
+              )}
+            </div>
           </div>
           <div className="col">
             <div className="mt-28">

@@ -21,7 +21,6 @@ const StaticCard = ({ data, form, fowardref }) => {
     email,
     font_size,
   } = data || {};
-  //console.log(font_size);
   const portableText = usePortableText(
     router.locale === "en" ? description : description_cn
   );
