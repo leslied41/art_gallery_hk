@@ -81,12 +81,18 @@ const MobileHeader = () => {
             </span>
           </Link>
         </div>
-        <svg
+        {headerImage && (
+          <img
+            src={urlFor(headerImage.asset).url()}
+            alt="cover"
+          /> )
+        }
+        {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
           style={{ width: "100vw" }}
           fill="none"
-          viewBox="0 0 414 896"
+          viewBox="0 0 414 735.7"
         >
           <g clipPath="url(#clip0_37:502)">
             <path fill="#fff" d="M0 0H414V896H0z"></path>
@@ -109,14 +115,15 @@ const MobileHeader = () => {
               {headerImage && (
                 <image
                   id="image1"
-                  width="1.2"
-                  height="1"
+                  // width="1.176"
+                  width="1.176"
+                  height="0.9"
                   xlinkHref={urlFor(headerImage.asset).url()}
                 ></image>
               )}
             </pattern>
           </defs>
-        </svg>
+        </svg> */}
       </section>
     </>
   );

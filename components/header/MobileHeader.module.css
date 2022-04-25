@@ -16,3 +16,8 @@
   z-index: 99;
   mix-blend-mode: exclusion;
 }
+
+
+.section img {
+  width: 100%;
+}
