@@ -16,7 +16,7 @@ const WordsLayout = ({
   return (
     <>
       <div className={styles.grid}>
-        <div style={{ textAlign: "center" }}>
+        <div>
           {(introduction || introduction_cn) && intro_portableText}
         </div>
         <div className="btns">
