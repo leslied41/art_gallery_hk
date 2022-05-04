@@ -5,21 +5,28 @@ import { useState, useEffect, useRef } from "react";
 import { useContext } from "react";
 import { dropDownContext } from "./DropDownCard";
 
-const ArtistWorksImageList = ({ data }) => {
-  //console.log(data);
-  const { showCard } = useContext(dropDownContext);
+const ArtistWorksImageList = ({ data,works_collapsed }) => {
+  //console.log(works_collapsed);
+  const { showCard,setshowCard } = useContext(dropDownContext);
   const [loaded, setloaded] = useState(true);
   const [slicedWorkImages, setslicedWorkImages] = useState(data);
   const ref = useRef();
   useEffect(() => {
-    if (data.length < 4) {
+    if (data.length < 5) {
       setloaded(false);
-    } else if (data.length >= 4) {
+    } else if (data.length >= 5) {
       setloaded(true);
     }
   }, [data.length]);
   useEffect(() => {
-    const initialWorkImages = data.slice(0, 4);
+
+    if (!works_collapsed) {
+      setshowCard(false);
+    }
+    if (works_collapsed) {
+      setshowCard(true);
+    }
+    const initialWorkImages = data.slice(0, 5);
     setslicedWorkImages(initialWorkImages);
   }, []);
 

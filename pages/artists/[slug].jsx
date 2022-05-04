@@ -22,8 +22,7 @@ export default function Artist({
     setshowCard(!showCard);
   };
   const router = useRouter();
-  //console.log(router.asPath);
-  const { name, name_cn } = artistData[0] || {};
+  const { name, name_cn,works_collapsed } = artistData[0] || {};
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();
@@ -105,7 +104,7 @@ export default function Artist({
                   : artist_dropdown?.second_name_cn
               }
             >
-              <ArtistWorksImageList data={filtered_workImages} />
+              <ArtistWorksImageList data={filtered_workImages} works_collapsed={works_collapsed} />
             </DropDownCard>
           </div>
         )}

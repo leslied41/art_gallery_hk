@@ -20,6 +20,14 @@ export default {
       },
     },
     {
+      name: "works_section",
+      title: "Works Section",
+      options: {
+        collapsible: true, // Makes the whole fieldset collapsible
+        collapsed: false, // Defines if the fieldset should be collapsed by default or not
+      },
+    },
+    {
       name: "cv_section",
       title: "CV Section",
       options: {
@@ -82,6 +90,12 @@ export default {
       title: "Open ",
       type: "boolean",
       fieldset: "bio_section",
+    },
+    {
+      name: "works_collapsed",
+      title: "Open ",
+      type: "boolean",
+      fieldset: "works_section",
     },
     {
       name: "bio_cn",

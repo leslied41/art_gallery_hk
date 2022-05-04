@@ -24,6 +24,14 @@ export const AppProvider = ({ children, data }) => {
   );
 };
 
+//below is to use another function to provide this AppProvider.
+// export const GetAppProvider=({children, data})=>{
+//   return (<AppProvider data={data}>
+//     {children}
+//   </AppProvider>)
+
+// }
+
 export const useGlobalSettings = () => {
   return useContext(settingsContext);
 };
