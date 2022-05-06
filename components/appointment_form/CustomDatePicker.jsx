@@ -53,7 +53,8 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
       maxTime={setHours(setMinutes(new Date(), 0), 18)}
       timeIntervals={60}
       customInput={<CustomInput />}
-      dateFormat="MMMM d, yyyy h:mm aa"
+      //dateFormat="MMMM d, yyyy h:mm aa"
+      dateFormat="dd/MM/yyyy h:mm aa"
     />
   );
 };
