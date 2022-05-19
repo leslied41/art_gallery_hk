@@ -57,7 +57,7 @@ const AppointmentForm = ({ formdata }) => {
         }
       );
       if (response.status === 200) {
-        const data = response.json();
+        const data = await response.json();
         console.log(data);
       }
       reset({});
