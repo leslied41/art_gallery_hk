@@ -56,10 +56,7 @@ const AppointmentForm = ({ formdata }) => {
           },
         }
       );
-      const data = await response.json();
-      if (response.status === 200) {
-        console.log(data);
-      }
+
       reset({});
       setSending(false);
       setShowRes(true);
