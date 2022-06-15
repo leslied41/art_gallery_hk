@@ -66,6 +66,7 @@ const AppointmentForm = ({ formdata }) => {
       //   setSending(false);
       //   setShowRes(true);
       // }
+      //
     } catch (err) {
       console.error(err);
     }
