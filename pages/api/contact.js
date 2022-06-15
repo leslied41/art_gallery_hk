@@ -38,24 +38,38 @@ const { google } = require("googleapis");
 
 const handler = async (req, res) => {
   const { fullName, CustomDatePicker, headCount, remarks, email } = req.body;
-  const oAuth2client = new google.auth.OAuth2(
-    process.env.CLIENT_ID,
-    process.env.CLIENT_SECRET,
-    process.env.REDIRET_URI
-  );
-  oAuth2client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
+  // const oAuth2client = new google.auth.OAuth2(
+  //   process.env.CLIENT_ID,
+  //   process.env.CLIENT_SECRET,
+  //   process.env.REDIRET_URI
+  // );
+  // oAuth2client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
-  const accessToken = await oAuth2client.getAccessToken();
+  // const accessToken = await oAuth2client.getAccessToken();
 
-  const transport = nodemailer.createTransport({
-    service: "gmail",
+  // const transport = nodemailer.createTransport({
+  //   service: "gmail",
+  //   auth: {
+  //     type: "OAuth2",
+  //     user: process.env.user,
+  //     clientId: process.env.CLIENT_ID,
+  //     clientSecret: process.env.CLIENT_SECRET,
+  //     refreshToken: process.env.REFRESH_TOKEN,
+  //     accessToken: accessToken,
+  //   },
+  // });
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
       type: "OAuth2",
       user: process.env.user,
       clientId: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
       refreshToken: process.env.REFRESH_TOKEN,
-      accessToken: accessToken,
+      accessToken: process.env.ACCESS_TOKEN,
+      expires: 3600,
     },
   });
 
@@ -71,7 +85,7 @@ const handler = async (req, res) => {
       <p>remarks:${remarks}<p/>`,
   };
   try {
-    const result = await transport.sendMail(mailOptions);
+    const result = await transporter.sendMail(mailOptions);
     console.log("Email sent", result.messageId);
   } catch (error) {
     console.log(error);

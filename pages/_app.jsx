@@ -1,7 +1,10 @@
 import "../styles/globals.css";
 import sanityClient from "../client.js";
 import Layout from "../components/layout/Layout.jsx";
-import { AppProvider,GetAppProvider } from "../components/context/GlobalSettings";
+import {
+  AppProvider,
+  GetAppProvider,
+} from "../components/context/GlobalSettings";
 import { appWithTranslation } from "next-i18next";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -11,10 +14,9 @@ function MyApp({ Component, pageProps, settings_data }) {
   const router = useRouter();
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
 
-  //console.log(data);
   return (
     // <GetAppProvider data={settings_data}>
-    <AppProvider data={settings_data}> 
+    <AppProvider data={settings_data}>
       {router.asPath == "/" ? (
         <style jsx global>
           {`
@@ -56,7 +58,7 @@ function MyApp({ Component, pageProps, settings_data }) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       {getLayout(<Component {...pageProps} />)}
-     </AppProvider> 
+    </AppProvider>
     //</GetAppProvider>
   );
 }
