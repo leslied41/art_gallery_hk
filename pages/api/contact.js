@@ -34,7 +34,7 @@
 // export default handler;
 
 const nodemailer = require("nodemailer");
-const { google } = require("googleapis");
+//const { google } = require("googleapis");
 
 const handler = async (req, res) => {
   const { fullName, CustomDatePicker, headCount, remarks, email } = req.body;
