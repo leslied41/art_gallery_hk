@@ -7,7 +7,7 @@ export const AppProvider = ({ children, data }) => {
   const [popup_path, setpopup_path] = useState("");
   const [showimg, setshowimg] = useState(false);
   const [over_footer, setover_footer] = useState(false);
-
+  console.log(data);
   return (
     <settingsContext.Provider
       value={{

@@ -73,7 +73,7 @@ const Footer = () => {
     cursor_font_size,
     mobile_link_font_size,
     mobile_cursor_font_size,
-  } = settings[0];
+  } = settings[0] ?? {};
   //console.log(link_font_size);
   //console.log(logo);
   return (
@@ -138,7 +138,7 @@ const Footer = () => {
                 </div>
                 <div className={styles.row}>
                   <ul className={styles.socialmedia}>
-                    {social.map((item, index) => {
+                    {social?.map((item, index) => {
                       return (
                         <li key={index}>
                           <a

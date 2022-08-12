@@ -3,12 +3,12 @@ import { useState, useEffect, useRef } from "react";
 import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
-import AppointmentForm from "../components/appointment_form/AppointmentForm";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import PureWords from "../components/dropDownCard/PureWords";
 import Heads from "../components/head/Heads.jsx";
 import { useGlobalSettings } from "../components/context/GlobalSettings";
 import AuthorCard from "../components/designer_card/AuthorCard";
+import Layout from "../components/layout/Layout";
 
 export const getStaticProps = async ({ locale }) => {
   const data = await sanityClient.fetch(
@@ -23,9 +23,6 @@ export const getStaticProps = async ({ locale }) => {
     hidden
     },terminologySection,missionStatementSection,seo,authorCard}`
   );
-  const settings_data = await sanityClient.fetch(
-    `*[_type=='settings']{orgnizationName,orgnizationName_cn,address,phone,email,social[]->,businessHours,abbreviation,exhibitions,news,about,artists,landing}`
-  );
 
   if (!data || !data.length) {
     return {
@@ -35,13 +32,13 @@ export const getStaticProps = async ({ locale }) => {
     };
   } else {
     return {
-      props: { data, settings_data },
+      props: { data },
       revalidate: 10,
     };
   }
 };
 
-export default function About({ data, settings_data }) {
+export default function About({ data }) {
   const router = useRouter();
   const { settings, popup } = useGlobalSettings();
   const [popup_path, setpopup_path] = popup;

@@ -20,13 +20,13 @@ const MobileHeader = () => {
   const { pathname, asPath, query } = router;
   const { settings } = useGlobalSettings();
 
-  const artists_image_mobile = settings[0].artists_mobile;
-  const exhibition_image_mobile = settings[0].exhibitions_mobile;
-  const news_image_mobile = settings[0].news_mobile;
-  const about_image_mobile = settings[0].about_mobile;
-  const landing_image_mobile = settings[0].landing_mobile;
+  const artists_image_mobile = settings[0]?.artists_mobile;
+  const exhibition_image_mobile = settings[0]?.exhibitions_mobile;
+  const news_image_mobile = settings[0]?.news_mobile;
+  const about_image_mobile = settings[0]?.about_mobile;
+  const landing_image_mobile = settings[0]?.landing_mobile;
   const { link_font_size, cursor_font_size, mobile_link_font_size } =
-    settings[0];
+    settings[0] ?? {};
 
   const [headerImage, setheaderImage] = useState();
 
@@ -82,48 +82,8 @@ const MobileHeader = () => {
           </Link>
         </div>
         {headerImage && (
-          <img
-            src={urlFor(headerImage.asset).url()}
-            alt="cover"
-          /> )
-        }
-        {/* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-          style={{ width: "100vw" }}
-          fill="none"
-          viewBox="0 0 414 735.7"
-        >
-          <g clipPath="url(#clip0_37:502)">
-            <path fill="#fff" d="M0 0H414V896H0z"></path>
-            <path
-              fill="url(#pattern1)"
-              stroke="#000"
-              d="M-254.5 -22.5H514.5V1003.5H-254.5z"
-            ></path>
-          </g>
-          <defs>
-            <clipPath id="clip0_37:502">
-              <path fill="#fff" d="M0 0H414V896H0z"></path>
-            </clipPath>
-            <pattern
-              id="pattern1"
-              width="1"
-              height="1"
-              patternContentUnits="objectBoundingBox"
-            >
-              {headerImage && (
-                <image
-                  id="image1"
-                  // width="1.176"
-                  width="1.176"
-                  height="0.9"
-                  xlinkHref={urlFor(headerImage.asset).url()}
-                ></image>
-              )}
-            </pattern>
-          </defs>
-        </svg> */}
+          <img src={urlFor(headerImage.asset).url()} alt="cover" />
+        )}
       </section>
     </>
   );

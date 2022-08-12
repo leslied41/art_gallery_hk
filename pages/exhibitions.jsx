@@ -70,14 +70,6 @@ export default function Exhibition({
             <ExpoImageList data={pastExpoData} />
           </DropDownCard>
         </div>
-        {/* <div className="section">
-          <div>
-            <ReactPlayer
-              controls={true}
-              url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-            />
-          </div>
-        </div> */}
       </main>
     </>
   );
@@ -96,14 +88,7 @@ export const getStaticProps = async ({ locale }) => {
   const pastExpoData = await sanityClient.fetch(
     `*[_type=='exhibition'&& exhibition_status=='Past']`
   );
-  // if (!currentExpoData || !currentExpoData.length) {
-  //   return {
-  //     props: {
-  //       data: [],
-  //       ...(await serverSideTranslations(locale, ["common"])),
-  //     },
-  //   };
-  // } else {
+
   return {
     props: {
       exPageData,

@@ -16,6 +16,7 @@ const PcHeader = () => {
   const router = useRouter();
   const { pathname, asPath, query } = router;
   const { settings, showimg, setshowimg } = useGlobalSettings();
+
   const linksEl = useRef();
   const titleEl = useRef();
   const exhibitionCursor = useRef(null);
@@ -32,18 +33,17 @@ const PcHeader = () => {
   const [toLeft, setToLeft] = useState(0);
   const [toTop, setToTop] = useState(0);
   const [useXlink, setuseXlink] = useState();
-  const artists_image = settings[0].artists;
-  const exhibition_image = settings[0].exhibitions;
-  const news_image = settings[0].news;
-  const about_image = settings[0].about;
-  const landing_image = settings[0].landing;
+  const artists_image = settings[0]?.artists;
+  const exhibition_image = settings[0]?.exhibitions;
+  const news_image = settings[0]?.news;
+  const about_image = settings[0]?.about;
+  const landing_image = settings[0]?.landing;
   const {
     link_font_size,
     cursor_font_size,
     mobile_link_font_size,
     hero_exhibition_link,
-  } = settings[0];
-
+  } = settings[0] ?? {};
   useEffect(() => {
     if (pathname.indexOf("/artists") == 0) {
       setuseXlink("#image4");

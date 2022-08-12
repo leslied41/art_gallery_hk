@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { useEffect, useRef, createContext, useState } from "react";
 import { useGlobalSettings } from "../components/context/GlobalSettings";
 
-export default function Artists({ data, artistsData }) {
+export default function Artists({ data, artistsData, settings_data }) {
   const { briefSection, seo, artists_list_reorder } = data[0];
   const scrollTo = useRef();
   const router = useRouter();
@@ -52,6 +52,7 @@ export async function getStaticProps({ locale }) {
   //   `*[_type=='work']{image,author[]->{name,slug}}`
   // );
   const artistsData = await sanityClient.fetch(`*[_type=='artist']`);
+
   return {
     props: {
       data,

@@ -1,8 +1,7 @@
 import sanityClient from "../client.js";
 import imageUrlBuilder from "@sanity/image-url";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Head from "next/head";
+import Layout from "../components/layout/Layout";
 import Heads from "../components/head/Heads.jsx";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -33,6 +32,7 @@ export async function getStaticProps({ locale }) {
   const pageData = await sanityClient.fetch(
     `*[_type=='pages'&&name=='Landing'][0]`
   );
+
   return {
     props: {
       pageData,
