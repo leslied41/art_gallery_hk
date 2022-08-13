@@ -16,19 +16,8 @@ function urlFor(source) {
 
 const Footer = () => {
   const router = useRouter();
-  const [settings, setSettings] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const settings_data = await sanityClient.fetch(
-        `*[_type=='settings']{orgnizationName,orgnizationName_cn,logo,phone,email,social[]->,abbreviation,exhibitions,news,about,artists,landing,exhibitions_mobile,news_mobile,about_mobile,artists_mobile,landing_mobile,cursor_font_size,link_font_size,mobile_link_font_size,hero_exhibition_link,site_name,site_name_cn,vimeo_link,shop_link}`
-      );
-      setSettings(settings_data);
-    };
-    fetchData();
-  }, []);
-  const { setover_footer } = useGlobalSettings();
+  const { setover_footer, settings } = useGlobalSettings();
   const { popup } = usePathHistory();
-
   const [popup_path, setpopup_path] = popup;
   const [isMobile, setisMobile] = useState();
   const footer_ref = useRef();
@@ -87,10 +76,6 @@ const Footer = () => {
     mobile_link_font_size,
     mobile_cursor_font_size,
   } = settings[0] ?? {};
-  //console.log(link_font_size);
-  //console.log(logo);
-  console.log(logo);
-  console.log(social);
 
   return (
     <>
