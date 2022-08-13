@@ -23,6 +23,9 @@ export const AppProvider = ({ children, data }) => {
   );
 };
 
+export const useGlobalSettings = () => {
+  return useContext(settingsContext);
+};
 //below is to use another function to provide this AppProvider.
 // export const GetAppProvider=({children, data})=>{
 //   return (<AppProvider data={data}>
@@ -30,7 +33,3 @@ export const AppProvider = ({ children, data }) => {
 //   </AppProvider>)
 
 // }
-
-export const useGlobalSettings = () => {
-  return useContext(settingsContext);
-};
