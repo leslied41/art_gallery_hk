@@ -79,6 +79,7 @@ const Footer = () => {
   } = settings[0] ?? {};
   //console.log(link_font_size);
   //console.log(logo);
+  console.log(logo, social);
   return (
     <>
       <div className={styles.footer} ref={footer_ref}>
