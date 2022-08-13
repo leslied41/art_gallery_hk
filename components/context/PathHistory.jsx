@@ -22,6 +22,6 @@ export const PathHistoryProvider = ({ children }) => {
   );
 };
 
-export const usepathHistory = () => {
+export const usePathHistory = () => {
   return useContext(pathHistoryContext);
 };

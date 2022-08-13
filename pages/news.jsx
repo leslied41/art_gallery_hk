@@ -4,14 +4,14 @@ import StaticCard from "../components/staticCard/StaticCard.jsx";
 import { useRouter } from "next/router";
 import Heads from "../components/head/Heads.jsx";
 import { useEffect, useRef } from "react";
-import { usepathHistory } from "../components/context/PathHistory.jsx";
+import { usePathHistory } from "../components/context/PathHistory.jsx";
 
 export default function News({ newsPageData, newsData }) {
   //console.log(newsData);
   const { briefSection, seo, news_list_reorder } = newsPageData;
   //console.log(news_list_reorder);
   const router = useRouter();
-  const { popup } = usepathHistory();
+  const { popup } = usePathHistory();
 
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();

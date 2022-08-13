@@ -5,11 +5,11 @@ import ExListWorks from "../../components/dropDownCard/ExListWorks.jsx";
 import ExStaticCard from "../../components/exhibitions_exhibition_staticcard/ExStaticCard.jsx";
 import Heads from "../../components/head/Heads.jsx";
 import { useEffect, useRef } from "react";
-import { usepathHistory } from "../../components/context/PathHistory.jsx";
+import { usePathHistory } from "../../components/context/PathHistory.jsx";
 
 export default function Expo({ expoData, exhiPageData }) {
   const router = useRouter();
-  const { popup } = usepathHistory();
+  const { popup } = usePathHistory();
 
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();

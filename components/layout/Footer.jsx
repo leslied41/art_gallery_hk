@@ -1,7 +1,7 @@
 import styles from "./Footer.module.css";
 import Link from "next/link";
 import { useGlobalSettings } from "../context/GlobalSettings";
-import { usepathHistory } from "../context/PathHistory";
+import { usePathHistory } from "../context/PathHistory";
 import Links from "../links/Links";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef, memo } from "react";
@@ -17,7 +17,7 @@ function urlFor(source) {
 const Footer = () => {
   const router = useRouter();
   const { settings, setover_footer } = useGlobalSettings();
-  const { popup } = usepathHistory();
+  const { popup } = usePathHistory();
 
   const [popup_path, setpopup_path] = popup;
   const [isMobile, setisMobile] = useState();

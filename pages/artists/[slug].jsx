@@ -8,7 +8,7 @@ import ArtistWorksImageList from "../../components/dropDownCard/ArtistWorksImage
 import ExpoList from "../../components/artists_artist_exhibition_list/ExpoList.jsx";
 import InterviewsList from "../../components/dropDownCard/InterviewsList";
 import Heads from "../../components/head/Heads.jsx";
-import { usepathHistory } from "../../components/context/PathHistory.jsx";
+import { usePathHistory } from "../../components/context/PathHistory.jsx";
 
 export default function Artist({
   artistData,
@@ -23,7 +23,7 @@ export default function Artist({
   };
   const router = useRouter();
   const { name, name_cn, works_collapsed } = artistData[0] || {};
-  const { popup } = usepathHistory();
+  const { popup } = usePathHistory();
 
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();

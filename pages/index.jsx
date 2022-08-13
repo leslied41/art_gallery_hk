@@ -5,14 +5,14 @@ import Layout from "../components/layout/Layout";
 import Heads from "../components/head/Heads.jsx";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { usepathHistory } from "../components/context/PathHistory.jsx";
+import { usePathHistory } from "../components/context/PathHistory.jsx";
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
 export default function Landing({ pageData }) {
   const router = useRouter();
-  const { popup } = usepathHistory();
+  const { popup } = usePathHistory();
 
   const [popup_path, setpopup_path] = popup;
   useEffect(() => {

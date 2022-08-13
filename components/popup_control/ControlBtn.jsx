@@ -1,9 +1,9 @@
 import styles from "./ControlBtn.module.css";
-import { usepathHistory } from "../context/PathHistory";
+import { usePathHistory } from "../context/PathHistory";
 import { useRouter } from "next/router";
 
 const ControlBtn = () => {
-  const { popup } = usepathHistory();
+  const { popup } = usePathHistory();
   const [popup_path, setpopup_path] = popup;
   const router = useRouter();
 
