@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Heads from "../components/head/Heads.jsx";
 import ControlBtn from "../components/popup_control/ControlBtn.jsx";
 
-export default function Press({ newsPageData }) {
+export default function Press({ newsPageData, settings_data }) {
   const { briefSection, seo, recommend_list, recommend_list_reorder } =
     newsPageData;
   const router = useRouter();
@@ -38,7 +38,11 @@ export default function Press({ newsPageData }) {
   }
   return (
     <>
-      <Heads seo={seo} name={router.locale == "en" ? "Recommended" : "推薦"} />
+      <Heads
+        seo={seo}
+        name={router.locale == "en" ? "Recommended" : "推薦"}
+        settings_data={settings_data}
+      />
       <ControlBtn />
       <main className="mb-145 layout ">
         <div className={router.locale}>
@@ -59,9 +63,13 @@ export async function getStaticProps({ locale }) {
   const newsPageData = await sanityClient.fetch(
     `*[_type=='pages'&&name=='Recommended']{briefSection,seo,recommend_list,recommend_list_reorder}[0]`
   );
+  const settings_data = await sanityClient.fetch(
+    `*[_type=='settings']{orgnizationName,orgnizationName_cn,logo,phone,email,social[]->,abbreviation,exhibitions,news,about,artists,landing,exhibitions_mobile,news_mobile,about_mobile,artists_mobile,landing_mobile,cursor_font_size,link_font_size,mobile_link_font_size,hero_exhibition_link,site_name,site_name_cn,vimeo_link,shop_link}`
+  );
   return {
     props: {
       newsPageData,
+      settings_data,
 
       // Will be passed to the page component as props
     },

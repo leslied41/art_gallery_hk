@@ -8,9 +8,9 @@ const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
-const Heads = ({ seo, name }) => {
+const Heads = ({ seo, name, settings_data }) => {
   //console.log(seo);
-  const { settings } = useGlobalSettings();
+  const settings = useGlobalSettings().settings ?? settings_data;
   const { site_name, site_name_cn } = settings[0] ?? {};
   const keywords = seo?.keywords?.map((item) => item.value).join();
   const router = useRouter();
