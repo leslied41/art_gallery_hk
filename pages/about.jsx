@@ -6,7 +6,7 @@ import StaticCard from "../components/staticCard/StaticCard";
 import { useRouter } from "next/router";
 import PureWords from "../components/dropDownCard/PureWords";
 import Heads from "../components/head/Heads.jsx";
-import { useGlobalSettings } from "../components/context/GlobalSettings";
+import { usepathHistory } from "../components/context/PathHistory";
 import AuthorCard from "../components/designer_card/AuthorCard";
 import Layout from "../components/layout/Layout";
 
@@ -40,7 +40,8 @@ export const getStaticProps = async ({ locale }) => {
 
 export default function About({ data }) {
   const router = useRouter();
-  const { settings, popup } = useGlobalSettings();
+  const { popup } = usepathHistory();
+
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();
 

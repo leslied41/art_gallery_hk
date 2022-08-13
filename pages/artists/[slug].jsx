@@ -8,7 +8,7 @@ import ArtistWorksImageList from "../../components/dropDownCard/ArtistWorksImage
 import ExpoList from "../../components/artists_artist_exhibition_list/ExpoList.jsx";
 import InterviewsList from "../../components/dropDownCard/InterviewsList";
 import Heads from "../../components/head/Heads.jsx";
-import { useGlobalSettings } from "../../components/context/GlobalSettings.jsx";
+import { usepathHistory } from "../../components/context/PathHistory.jsx";
 
 export default function Artist({
   artistData,
@@ -22,8 +22,9 @@ export default function Artist({
     setshowCard(!showCard);
   };
   const router = useRouter();
-  const { name, name_cn,works_collapsed } = artistData[0] || {};
-  const { settings, popup } = useGlobalSettings();
+  const { name, name_cn, works_collapsed } = artistData[0] || {};
+  const { popup } = usepathHistory();
+
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();
 
@@ -104,7 +105,10 @@ export default function Artist({
                   : artist_dropdown?.second_name_cn
               }
             >
-              <ArtistWorksImageList data={filtered_workImages} works_collapsed={works_collapsed} />
+              <ArtistWorksImageList
+                data={filtered_workImages}
+                works_collapsed={works_collapsed}
+              />
             </DropDownCard>
           </div>
         )}

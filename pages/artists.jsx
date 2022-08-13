@@ -5,13 +5,14 @@ import styles from "../styles/artists.module.css";
 import Heads from "../components/head/Heads.jsx";
 import { useRouter } from "next/router";
 import { useEffect, useRef, createContext, useState } from "react";
-import { useGlobalSettings } from "../components/context/GlobalSettings";
+import { usepathHistory } from "../components/context/PathHistory";
 
 export default function Artists({ data, artistsData, settings_data }) {
   const { briefSection, seo, artists_list_reorder } = data[0];
   const scrollTo = useRef();
   const router = useRouter();
-  const { settings, popup } = useGlobalSettings();
+  const { popup } = usepathHistory();
+
   const [popup_path, setpopup_path] = popup;
 
   useEffect(() => {

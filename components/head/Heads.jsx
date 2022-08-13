@@ -10,7 +10,7 @@ function urlFor(source) {
 }
 const Heads = ({ seo, name }) => {
   //console.log(seo);
-  const { settings, popup } = useGlobalSettings();
+  const { settings } = useGlobalSettings();
   const { site_name, site_name_cn } = settings[0] ?? {};
   const keywords = seo?.keywords?.map((item) => item.value).join();
   const router = useRouter();

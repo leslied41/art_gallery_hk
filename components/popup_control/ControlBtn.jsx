@@ -1,11 +1,9 @@
 import styles from "./ControlBtn.module.css";
-import { AiOutlineClose } from "react-icons/ai";
-import { BiArrowBack } from "react-icons/bi";
-import { useGlobalSettings } from "../context/GlobalSettings";
+import { usepathHistory } from "../context/PathHistory";
 import { useRouter } from "next/router";
 
 const ControlBtn = () => {
-  const { settings, popup } = useGlobalSettings();
+  const { popup } = usepathHistory();
   const [popup_path, setpopup_path] = popup;
   const router = useRouter();
 

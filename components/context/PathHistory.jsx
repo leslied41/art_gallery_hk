@@ -1,16 +1,15 @@
 import React from "react";
 import { useContext, useState } from "react";
 
-export const settingsContext = React.createContext({});
+export const pathHistoryContext = React.createContext({});
 
-export const AppProvider = ({ children, data }) => {
+export const PathHistoryProvider = ({ children }) => {
   const [popup_path, setpopup_path] = useState("");
   const [showimg, setshowimg] = useState(false);
   const [over_footer, setover_footer] = useState(false);
   return (
-    <settingsContext.Provider
+    <pathHistoryContext.Provider
       value={{
-        settings: data,
         popup: [popup_path, setpopup_path],
         showimg: showimg,
         setshowimg: setshowimg,
@@ -19,18 +18,10 @@ export const AppProvider = ({ children, data }) => {
       }}
     >
       {children}
-    </settingsContext.Provider>
+    </pathHistoryContext.Provider>
   );
 };
 
-//below is to use another function to provide this AppProvider.
-// export const GetAppProvider=({children, data})=>{
-//   return (<AppProvider data={data}>
-//     {children}
-//   </AppProvider>)
-
-// }
-
-export const useGlobalSettings = () => {
-  return useContext(settingsContext);
+export const usepathHistory = () => {
+  return useContext(pathHistoryContext);
 };

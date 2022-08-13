@@ -51,12 +51,6 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
   });
 
   useEffect(() => {
-    // setlist_height(s_ref.current.scrollHeight);
-
-    // setstoTop(
-    //   s_ref.current.getBoundingClientRect().top + window.scrollY ||
-    //     window.pageYOffset
-    // );
     if (window.innerWidth > 768) {
       setmobile(false);
     }
@@ -65,13 +59,6 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
     }
 
     window.addEventListener("resize", () => {
-      // {
-      //   !mobile &&
-      //     setstoTop(
-      //       s_ref.current.getBoundingClientRect().top + window.scrollY ||
-      //         window.pageYOffset
-      //     );
-      // }
       if (window.innerWidth > 768) {
         setmobile(false);
       }

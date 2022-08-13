@@ -5,15 +5,15 @@ import Layout from "../components/layout/Layout";
 import Heads from "../components/head/Heads.jsx";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useGlobalSettings } from "../components/context/GlobalSettings.jsx";
-
+import { usepathHistory } from "../components/context/PathHistory.jsx";
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
 export default function Landing({ pageData }) {
   const router = useRouter();
-  const { settings, popup } = useGlobalSettings();
+  const { popup } = usepathHistory();
+
   const [popup_path, setpopup_path] = popup;
   useEffect(() => {
     setpopup_path(router.asPath);

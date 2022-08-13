@@ -2,12 +2,10 @@ import styles from "./StaticCard.module.css";
 import { getImageDimensions } from "@sanity/asset-utils";
 import { useRouter } from "next/router";
 import AppointmentForm from "../appointment_form/AppointmentForm";
-import { useGlobalSettings } from "../../components/context/GlobalSettings";
 import { usePortableText } from "../usehooks/usePortableText";
 
 const StaticCard = ({ data, form, fowardref }) => {
   const router = useRouter();
-  const { showimg, setshowimg } = useGlobalSettings();
 
   //console.log(showimg_context);
 
