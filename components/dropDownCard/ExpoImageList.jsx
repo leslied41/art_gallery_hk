@@ -54,7 +54,8 @@ const ExpoImageList = ({ data }) => {
             slicedExhibition.map((item, index) => {
               const { name_exo, name_exo_cn, date, date_cn, image, slug, _id } =
                 item;
-              const { width, height } = getImageDimensions(image);
+
+              const { width, height } = image ? getImageDimensions(image) : {};
               return (
                 <div className={styles.grid} key={index}>
                   <Link href={"/exhibitions/" + slug.current}>
