@@ -5,7 +5,6 @@ import LoadMoreCard from "../loadMoreCard/LoadMoreCard";
 import { SingleNews } from "./SingleNews";
 
 const NewsList = ({ newsData }) => {
-  //console.log(newsData);
   const [loaded, setloaded] = useState(true);
   const [slicedNewsData, setslicedNewsData] = useState(newsData);
   const router = useRouter();

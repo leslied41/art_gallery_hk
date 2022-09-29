@@ -8,6 +8,7 @@ const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
+
 const HorizontalLayout = ({
   name,
   name_cn,
@@ -24,6 +25,7 @@ const HorizontalLayout = ({
     router.locale == "en" ? introduction : introduction_cn
   );
   const parameter_portableText = usePortableText(work_parameter);
+
   return (
     <>
       <div>

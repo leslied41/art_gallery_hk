@@ -3,8 +3,6 @@ import styles from "./MobileHeader.module.css";
 import { useRouter } from "next/router";
 import Links from "../links/Links";
 import Link from "next/link";
-// import image0 from "../../public/images/image0.png";
-// import image_artist from "../../public/images/artist.png";
 import { useGlobalSettings } from "../context/GlobalSettings";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";

@@ -1,54 +1,30 @@
+import { useEffect, useRef, useMemo } from "react";
+import { useRouter } from "next/router";
 import sanityClient from "../client.js";
 import NewsList from "../components/news_list/NewsList.jsx";
 import StaticCard from "../components/staticCard/StaticCard.jsx";
-import { useRouter } from "next/router";
 import Heads from "../components/head/Heads.jsx";
-import { useEffect, useRef } from "react";
 import { usePathHistory } from "../components/context/PathHistory.jsx";
+import useSort from "../components/usehooks/useSort.js";
+import { news_page_data, news_data } from "../groq";
 
 export default function News({ newsPageData, newsData }) {
-  //console.log(newsData);
   const { briefSection, seo, news_list_reorder } = newsPageData;
-  //console.log(news_list_reorder);
   const router = useRouter();
-  const { popup } = usePathHistory();
-
-  const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();
-  newsData.sort(function (a, b) {
-    let dateA = new Date(a._createdAt).getTime();
-    //console.log(dateA);
-    let dateB = new Date(b._createdAt).getTime();
-    return dateA - dateB;
-  });
+  const { popup } = usePathHistory();
+  const [popup_path, setpopup_path] = popup;
 
-  //console.log(news_list_reorder);
-  if (typeof news_list_reorder === "boolean") {
-    if (news_list_reorder == true) {
-      newsData.sort(function (a, b) {
-        let dateA = new Date(a.publication_time).getTime();
-        let dateB = new Date(b.publication_time).getTime();
-        //console.log(dateA);
-        return dateB - dateA;
-      });
-    }
-    if (news_list_reorder == false) {
-      newsData.sort(function (a, b) {
-        let dateA = new Date(a.publication_time).getTime();
-        let dateB = new Date(b.publication_time).getTime();
-        //console.log(dateA);
-        return dateA - dateB;
-      });
-    }
-  }
-  //console.log(newsData);
+  const sorted_newsData = useSort(newsData, news_list_reorder);
+
   useEffect(() => {
     scrollTo.current.scrollIntoView();
   }, []);
+
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);
-  //console.log(popup_path);
+
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? "News" : "新聞"} />
@@ -57,17 +33,15 @@ export default function News({ newsPageData, newsData }) {
           <StaticCard data={briefSection} fowardref={scrollTo} />
         </div>
         <div className="section mt-145">
-          <NewsList newsData={newsData} />
+          <NewsList newsData={sorted_newsData} />
         </div>
       </main>
     </>
   );
 }
 export async function getStaticProps({ locale }) {
-  const newsPageData = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='News']{briefSection,seo,news_list_reorder}[0]`
-  );
-  const newsData = await sanityClient.fetch(`*[_type=='news']`);
+  const newsPageData = await sanityClient.fetch(news_page_data);
+  const newsData = await sanityClient.fetch(news_data);
   return {
     props: {
       newsPageData,
@@ -77,5 +51,4 @@ export async function getStaticProps({ locale }) {
     },
     revalidate: 10,
   };
-  //console.log(newsData);
 }

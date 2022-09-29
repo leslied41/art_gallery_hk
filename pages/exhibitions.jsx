@@ -1,13 +1,17 @@
-import ReactPlayer from "react-player";
-import styles from "../styles/exhibitions.module.css";
+import { useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
-import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/router";
 import ExpoImageList from "../components/dropDownCard/ExpoImageList";
 import Heads from "../components/head/Heads.jsx";
 import { usePathHistory } from "../components/context/PathHistory";
+import {
+  exhibitions_page_data,
+  current_exhibitions_data,
+  future_exhibitions_data,
+  past_exhibitions_data,
+} from "../groq";
 
 export default function Exhibition({
   exPageData,
@@ -17,9 +21,9 @@ export default function Exhibition({
 }) {
   const router = useRouter();
   const { popup } = usePathHistory();
-
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();
+  const { briefSection, exhis_dropdown, seo } = exPageData[0];
 
   useEffect(() => {
     scrollTo.current.scrollIntoView();
@@ -28,8 +32,6 @@ export default function Exhibition({
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);
-  //console.log(popup_path);
-  const { briefSection, exhis_dropdown, seo } = exPageData[0];
 
   return (
     <>
@@ -77,19 +79,10 @@ export default function Exhibition({
 }
 
 export const getStaticProps = async ({ locale }) => {
-  const exPageData = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='Exhibitions']{briefSection,exhis_dropdown,seo}`
-  );
-  const currentExpoData = await sanityClient.fetch(
-    `*[_type=='exhibition'&& exhibition_status=='Current']`
-  );
-  const futureExpoData = await sanityClient.fetch(
-    `*[_type=='exhibition'&& exhibition_status=='Future']`
-  );
-  const pastExpoData = await sanityClient.fetch(
-    `*[_type=='exhibition'&& exhibition_status=='Past']`
-  );
-
+  const exPageData = await sanityClient.fetch(exhibitions_page_data);
+  const currentExpoData = await sanityClient.fetch(current_exhibitions_data);
+  const futureExpoData = await sanityClient.fetch(future_exhibitions_data);
+  const pastExpoData = await sanityClient.fetch(past_exhibitions_data);
   return {
     props: {
       exPageData,
@@ -99,5 +92,4 @@ export const getStaticProps = async ({ locale }) => {
     },
     revalidate: 10,
   };
-  //}
 };

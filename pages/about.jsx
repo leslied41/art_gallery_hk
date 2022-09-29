@@ -1,28 +1,16 @@
-import styles from "../styles/about.module.css";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
-import { useRouter } from "next/router";
 import PureWords from "../components/dropDownCard/PureWords";
 import Heads from "../components/head/Heads.jsx";
 import { usePathHistory } from "../components/context/PathHistory";
 import AuthorCard from "../components/designer_card/AuthorCard";
-import Layout from "../components/layout/Layout";
+import { about_page_data } from "../groq";
 
 export const getStaticProps = async ({ locale }) => {
-  const data = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='About']{briefSection,visitUsSection,connectSection{name,
-    name_cn,
-    description,
-    description_cn,
-    phone,
-    social[]->,
-    email,
-    font_size,
-    hidden
-    },terminologySection,missionStatementSection,seo,authorCard}`
-  );
+  const data = await sanityClient.fetch(about_page_data);
 
   if (!data || !data.length) {
     return {
@@ -41,19 +29,8 @@ export const getStaticProps = async ({ locale }) => {
 export default function About({ data }) {
   const router = useRouter();
   const { popup } = usePathHistory();
-
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();
-
-  useEffect(() => {
-    scrollTo.current.scrollIntoView();
-  }, []);
-
-  useEffect(() => {
-    setpopup_path(router.asPath);
-  }, [router.asPath]);
-  //console.log(popup_path);
-  //console.log(router.asPath);
   const {
     briefSection,
     visitUsSection,
@@ -63,6 +40,15 @@ export default function About({ data }) {
     seo,
     authorCard,
   } = data[0];
+
+  useEffect(() => {
+    scrollTo.current.scrollIntoView();
+  }, []);
+
+  useEffect(() => {
+    setpopup_path(router.asPath);
+  }, [router.asPath]);
+
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? "About" : "關於我們"} />

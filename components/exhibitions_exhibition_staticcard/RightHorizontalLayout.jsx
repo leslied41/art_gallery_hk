@@ -24,6 +24,7 @@ const HorizontalLayout = ({
     router.locale == "en" ? introduction : introduction_cn
   );
   const parameter_portableText = usePortableText(work_parameter);
+
   return (
     <>
       <div>

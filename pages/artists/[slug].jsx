@@ -1,14 +1,21 @@
+import { useState, useEffect, useRef, useMemo } from "react";
+import { useRouter } from "next/router";
 import sanityClient from "../../client.js";
 import StaticCard from "../../components/staticCard/StaticCard";
 import DropDownCard from "../../components/dropDownCard/DropDownCard.jsx";
-import { useRouter } from "next/router";
-import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import ArtistBio from "../../components/dropDownCard/ArtistBio.jsx";
 import ArtistWorksImageList from "../../components/dropDownCard/ArtistWorksImageList.jsx";
 import ExpoList from "../../components/artists_artist_exhibition_list/ExpoList.jsx";
 import InterviewsList from "../../components/dropDownCard/InterviewsList";
 import Heads from "../../components/head/Heads.jsx";
 import { usePathHistory } from "../../components/context/PathHistory.jsx";
+import useSort from "../../components/usehooks/useSort.js";
+import {
+  artist_page_data,
+  artist_data,
+  work_images_data,
+  interviews_data,
+} from "../../groq";
 
 export default function Artist({
   artistData,
@@ -16,59 +23,24 @@ export default function Artist({
   interviewsData,
   artistPageData,
 }) {
-  const { artist_dropdown, seo, press_list_reorder } = artistPageData || {};
   const [showCard, setshowCard] = useState(false);
+  const router = useRouter();
+  const { popup } = usePathHistory();
+  const [popup_path, setpopup_path] = popup;
+  const scrollTo = useRef();
+  const { artist_dropdown, seo, press_list_reorder } = artistPageData || {};
+  const { name, name_cn, works_collapsed } = artistData[0] || {};
   const handleClick = () => {
     setshowCard(!showCard);
   };
-  const router = useRouter();
-  const { name, name_cn, works_collapsed } = artistData[0] || {};
-  const { popup } = usePathHistory();
 
-  const [popup_path, setpopup_path] = popup;
-  const scrollTo = useRef();
+  const sorted_interviewsData = useSort(interviewsData, press_list_reorder);
 
-  interviewsData.sort(function (a, b) {
-    let dateA = new Date(a._createdAt).getTime();
-    let dateB = new Date(b._createdAt).getTime();
-    return dateB - dateA;
-  });
-  if (typeof press_list_reorder === "boolean") {
-    if (press_list_reorder == true) {
-      interviewsData.sort(function (a, b) {
-        let dateA = new Date(a.publication_time).getTime();
-        let dateB = new Date(b.publication_time).getTime();
-        //console.log(dateA);
-        return dateB - dateA;
-      });
-    }
-    if (press_list_reorder == false) {
-      interviewsData.sort(function (a, b) {
-        let dateA = new Date(a.publication_time).getTime();
-        let dateB = new Date(b.publication_time).getTime();
-        //console.log(dateA);
-        return dateA - dateB;
-      });
-    }
-  }
   const filtered_workImages = workImages.filter((item) => {
     if (item.image) {
       return item;
     }
   });
-  // const newArray = exposData.map((item) => {
-  //   return item.exhibition;
-  // });
-  // const filteredArray = newArray.filter((item) => item.length !== 0);
-  // const flatArray = [].concat.apply([], filteredArray);
-  // const arrayObject = flatArray.map((item) => JSON.stringify(item));
-  // const mergedArray_json = [];
-  // arrayObject.forEach((item) => {
-  //   if (!mergedArray_json.includes(item)) {
-  //     mergedArray_json.push(item);
-  //   }
-  // });
-  // const mergedArray = mergedArray_json.map((item) => [JSON.parse(item)]);
 
   useEffect(() => {
     scrollTo.current.scrollIntoView();
@@ -77,7 +49,7 @@ export default function Artist({
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);
-  //console.log(popup_path);
+
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? name : name_cn} />
@@ -127,7 +99,7 @@ export default function Artist({
           </div>
         )}
 
-        {interviewsData && interviewsData.length != 0 && (
+        {sorted_interviewsData && sorted_interviewsData.length != 0 && (
           <div className="section mt-30 ">
             <DropDownCard
               title={
@@ -136,7 +108,7 @@ export default function Artist({
                   : artist_dropdown?.fourth_name_cn
               }
             >
-              <InterviewsList data={interviewsData} />
+              <InterviewsList data={sorted_interviewsData} />
             </DropDownCard>
           </div>
         )}
@@ -144,27 +116,12 @@ export default function Artist({
     </>
   );
 }
+
 export async function getStaticProps({ locale, params }) {
-  const artistPageData = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='Artist'][0]{artist_dropdown,seo,press_list_reorder}`
-  );
-  const artistData = await sanityClient.fetch(
-    `*[slug.current=='${params.slug}']{
-  ...,
-  "PDF": cv_pdf.asset->url
-}`
-  );
-  const workImages = await sanityClient.fetch(
-    `*[_type=='work'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]{image,image_parameter,'metadata':image.asset->{metadata}}`
-  );
-  // this is to fetch all the expos that one certain artis has ever participated.
-  // const exposData = await sanityClient.fetch(
-  //   `*[_type=='work'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]{_id,'exhibition':*[_type=='exhibition'&&references(^._id)]{name_exo,name_exo_cn,date,date_cn,slug}}`
-  // );
-  const interviewsData = await sanityClient.fetch(
-    `*[_type=='interviews'&& references(*[slug.current=='${params.slug}']{_id}[0]._id)]`
-  );
-  //console.log(exposData);
+  const artistPageData = await sanityClient.fetch(artist_page_data);
+  const artistData = await sanityClient.fetch(artist_data(params.slug));
+  const workImages = await sanityClient.fetch(work_images_data(params.slug));
+  const interviewsData = await sanityClient.fetch(interviews_data(params.slug));
   return {
     props: {
       workImages,

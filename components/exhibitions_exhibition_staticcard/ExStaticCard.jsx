@@ -23,13 +23,7 @@ const ExStaticCard = ({ data, fowardref }) => {
     introduction_cn,
     metadata,
   } = data;
-  // console.log("exstaticcard");
-  //console.log(image_parameter);
-  // const height = metadata ? metadata.metadata.dimensions.height : null;
-  // const width = metadata ? metadata.metadata.dimensions.width : null;
-  // const aspectRatio = metadata
-  //   ? metadata.metadata.dimensions.aspectRatio
-  //   : null;
+
   const [model, setmodel] = useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
   const [iszoomed, setiszoomed] = useState(false);
@@ -44,9 +38,11 @@ const ExStaticCard = ({ data, fowardref }) => {
   const [swipeInitial, setswipeInitial] = useState({ x: null, y: null });
   const image_ref = useRef();
   const parameter_portableText = usePortableText(image_parameter);
+
   const getIndex = (index) => {
     setmodel(true);
   };
+
   useEffect(() => {
     setwindowHeight(window.innerHeight);
     setwindowWidth(window.innerWidth);
@@ -57,6 +53,7 @@ const ExStaticCard = ({ data, fowardref }) => {
       image_ref.current.style.transform = "scale(1)";
     }
   }, []);
+
   const mouseDown = (e) => {
     setclickTime(new Date());
     setstartingPoint({
@@ -73,9 +70,11 @@ const ExStaticCard = ({ data, fowardref }) => {
   const zoomin = (e) => {
     e.target.style.transform = "scale(2)";
   };
+
   const zoomout = (e) => {
     e.target.style.transform = "scale(1)";
   };
+
   const move = (e) => {
     if (iszoomed) {
       if (
@@ -232,22 +231,7 @@ const ExStaticCard = ({ data, fowardref }) => {
                       if (Math.abs(diffX) > Math.abs(diffY)) {
                         // sliding horizontally
                         if (diffX > 0) {
-                          // // swiped left
-                          // if (targetIndex == 0) {
-                          //   //setTargetIndex(works.length - 1);
-                          // }
-                          // if (targetIndex != 0) {
-                          //   //setTargetIndex(targetIndex - 1);
-                          // }
-                          // console.log("swiped left");
                         } else {
-                          // swiped right
-                          // if (targetIndex == works.length - 1) {
-                          //   //setTargetIndex(0);
-                          // }
-                          // if (targetIndex != works.length - 1)
-                          //   //setTargetIndex(targetIndex + 1);
-                          //   console.log("swiped right");
                         }
                       } else {
                         // sliding vertically

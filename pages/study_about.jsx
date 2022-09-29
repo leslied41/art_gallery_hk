@@ -1,21 +1,15 @@
-import styles from "../styles/about.module.css";
-import { useState, useEffect } from "react";
 import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
-import AppointmentForm from "../components/appointment_form/AppointmentForm";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import PureWords from "../components/dropDownCard/PureWords";
 import Heads from "../components/head/Heads.jsx";
 import ControlBtn from "../components/popup_control/ControlBtn";
+import { study_about_page_data, study_about_settings_data } from "../groq";
 
 export const getStaticProps = async ({ locale }) => {
-  const data = await sanityClient.fetch(
-    `*[_type=='pages'&&name=='Study_About'][0]{briefSection, collapsable_first,collapsable_second,collapsable_third,seo}`
-  );
-  const settings_data = await sanityClient.fetch(
-    `*[_type=='settings']{orgnizationName,orgnizationName_cn,logo,phone,email,social[]->,abbreviation,exhibitions,news,about,artists,landing,exhibitions_mobile,news_mobile,about_mobile,artists_mobile,landing_mobile,cursor_font_size,link_font_size,mobile_link_font_size,hero_exhibition_link,site_name,site_name_cn,vimeo_link,shop_link}`
-  );
+  const data = await sanityClient.fetch(study_about_page_data);
+  const settings_data = await sanityClient.fetch(study_about_settings_data);
   return {
     props: { data, settings_data },
     revalidate: 10,

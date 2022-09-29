@@ -4,6 +4,7 @@ import Layout from "../components/layout/Layout.jsx";
 import { PathHistoryProvider } from "../components/context/PathHistory";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { global_settings_data } from "../groq";
 
 function MyApp({ Component, pageProps, settings_data }) {
   const router = useRouter();
@@ -59,9 +60,7 @@ function MyApp({ Component, pageProps, settings_data }) {
 }
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
-  const settings_data = await sanityClient.fetch(
-    `*[_type=='settings']{orgnizationName,orgnizationName_cn,logo,phone,email,social[]->,abbreviation,exhibitions,news,about,artists,landing,exhibitions_mobile,news_mobile,about_mobile,artists_mobile,landing_mobile,cursor_font_size,link_font_size,mobile_link_font_size,hero_exhibition_link,site_name,site_name_cn,vimeo_link,shop_link}`
-  );
+  const settings_data = await sanityClient.fetch(global_settings_data);
 
   return {
     settings_data,

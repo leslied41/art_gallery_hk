@@ -44,6 +44,7 @@ const PcHeader = () => {
     mobile_link_font_size,
     hero_exhibition_link,
   } = settings[0] ?? {};
+
   useEffect(() => {
     if (pathname.indexOf("/artists") == 0) {
       setuseXlink("#image4");
@@ -84,7 +85,6 @@ const PcHeader = () => {
       const y = e.pageY;
       const x = e.pageX;
       const scrollTop = window.pageYOffset;
-      //console.log(y - scrollTop);
       setToTop(y - scrollTop);
       setToLeft(x);
     });
@@ -100,10 +100,8 @@ const PcHeader = () => {
         sectionEl.current.offsetTop + sectionEl.current.offsetHeight
       ) {
         setshowimg(true);
-        //console.log("over me ");
       } else {
         setshowimg(false);
-        //console.log("leave  me ");
       }
     });
   }, []);
@@ -111,43 +109,33 @@ const PcHeader = () => {
   useEffect(() => {
     studyContainer.current.addEventListener("mouseover", () => {
       studyCursor.current.style.display = "block";
-      //studyCursor.current.style.color = "var(--white)";
-      //linksEl.current.style.color = "var(--white)";
     });
     studyContainer.current.addEventListener("mouseleave", () => {
       studyCursor.current.style.display = "none";
-      //linksEl.current.style.color = "var(--black)";
     });
     newsContainer.current.addEventListener("mouseover", () => {
       newsCursor.current.style.display = "block";
-      //newsCursor.current.style.color = "var(--white)";
     });
     newsContainer.current.addEventListener("mouseleave", () => {
       newsCursor.current.style.display = "none";
     });
     artistsContainer.current.addEventListener("mouseover", () => {
       artistsCursor.current.style.display = "block";
-      //artistsCursor.current.style.color = "var(--white)";
     });
     artistsContainer.current.addEventListener("mouseleave", () => {
       artistsCursor.current.style.display = "none";
     });
     aboutContainer.current.addEventListener("mouseover", () => {
       aboutCursor.current.style.display = "block";
-      //aboutCursor.current.style.color = "var(--white)";
     });
     aboutContainer.current.addEventListener("mouseleave", () => {
       aboutCursor.current.style.display = "none";
-      //setover_about(false);
     });
     exhibitionContainer.current.addEventListener("mouseover", () => {
       exhibitionCursor.current.style.display = "block";
-      //exhibitionCursor.current.style.color = "var(--white)";
-      //titleEl.current.style.color = "var(--white)";
     });
     exhibitionContainer.current.addEventListener("mouseleave", () => {
       exhibitionCursor.current.style.display = "none";
-      //titleEl.current.style.color = "var(--black)";
     });
   }, []);
   useEffect(() => {
