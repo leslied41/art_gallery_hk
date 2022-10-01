@@ -14,6 +14,7 @@ const LanguageSwitch = () => {
     <ul>
       <li>
         <span
+          role="button"
           onClick={changeLanTc}
           style={
             router.locale === "en" ? { display: "block" } : { display: "none" }
@@ -23,6 +24,7 @@ const LanguageSwitch = () => {
         </span>
 
         <span
+          role="button"
           onClick={changeLanEn}
           style={
             router.locale === "tc" ? { display: "block" } : { display: "none" }

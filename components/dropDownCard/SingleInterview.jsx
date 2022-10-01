@@ -23,8 +23,10 @@ export const SingleInterview = ({ interview }) => {
           target="_blank"
           rel="noreferrer"
         >
-          <div className="h6 text-underline">
-            {router.locale == "en" ? title : title_cn}
+          <div>
+            <h3 className="h6 text-underline">
+              {router.locale == "en" ? title : title_cn}
+            </h3>
           </div>
 
           <div className="h3 mt-5 ">{intro_portableText}</div>

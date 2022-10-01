@@ -27,7 +27,7 @@ export default function Expo({ expoData, exhiPageData }) {
     <>
       <Heads seo={seo} name={router.locale == "en" ? name_exo : name_exo_cn} />
       <div className="section mt-145">
-        <ExStaticCard data={expoData[0]} fowardref={scrollTo} />
+        <ExStaticCard data={expoData[0]} fowardref={scrollTo} Component="h1" />
       </div>
 
       <div className="section mt-145 mb-145">

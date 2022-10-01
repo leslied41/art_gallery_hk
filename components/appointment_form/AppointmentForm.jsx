@@ -60,13 +60,6 @@ const AppointmentForm = ({ formdata }) => {
       reset({});
       setSending(false);
       setShowRes(true);
-
-      // if (response.status == 200) {
-      //   reset({});
-      //   setSending(false);
-      //   setShowRes(true);
-      // }
-      //
     } catch (err) {
       console.error(err);
     }
@@ -76,6 +69,7 @@ const AppointmentForm = ({ formdata }) => {
     <div className="formContainer h3">
       <form className={styles.form} onSubmit={handleSubmit(onSubmitForm)}>
         <input
+          aria-label="full name"
           name="fullName"
           type="text"
           placeholder={
@@ -93,35 +87,6 @@ const AppointmentForm = ({ formdata }) => {
           {errors.fullName?.type === "required" && "Name is required"}
         </p>
 
-        <div>
-          {/* <Controller
-            control={control}
-            name="CustomDatePicker"
-            render={({ field: { onChange, onBlur, value, ref } }) => (
-              <CustomDatePicker onChange={onChange} selected={value} />
-            )}
-          /> */}
-          {/* <input
-            name="dateTime"
-            onFocus={(e) => {
-              e.target.type = "datetime-local";
-            }}
-            type="text"
-            placeholder={
-              router.locale == "en"
-                ? date
-                  ? date
-                  : "Date & Time"
-                : date_cn
-                ? date_cn
-                : "日期 & 時間"
-            }
-            {...register("dateTime", { required: true, maxLength: 20 })}
-          />
-          <p className="red-text h4">
-            {errors.dateTime?.type === "required" && "Date & Time is required"}
-          </p> */}
-        </div>
         <div>
           <Controller
             control={control}
@@ -141,11 +106,10 @@ const AppointmentForm = ({ formdata }) => {
             {errors.CustomDatePicker?.type === "required" &&
               "Date & Time is required"}
           </p>
-
-          {/* <CustomDatePicker date={date} date_cn={date_cn} /> */}
         </div>
         <div>
           <input
+            aria-label="head count"
             name="headCount"
             type="number"
             placeholder={
@@ -166,6 +130,7 @@ const AppointmentForm = ({ formdata }) => {
 
         <div>
           <input
+            aria-label="remarks"
             name="remarks"
             type="text"
             placeholder={
@@ -185,6 +150,7 @@ const AppointmentForm = ({ formdata }) => {
         </div>
         <div className="mb-19">
           <input
+            aria-label="email"
             name="email"
             type="email"
             placeholder={
@@ -209,6 +175,7 @@ const AppointmentForm = ({ formdata }) => {
           </div>
         ) : (
           <input
+            aria-label="submit"
             name="sent"
             type="submit"
             value={router.locale == "en" ? "Send" : "發送"}
@@ -216,10 +183,7 @@ const AppointmentForm = ({ formdata }) => {
         )}
       </form>
 
-      <div>
-        {/* {sending && <div>Sending...</div>} */}
-        {showRes && portableText}
-      </div>
+      <div>{showRes && portableText}</div>
     </div>
   );
 };

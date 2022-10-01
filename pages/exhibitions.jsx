@@ -36,12 +36,13 @@ export default function Exhibition({
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? "Exhibitions" : "展出"} />
-      <main>
+      <div>
         <div className="section mt-145">
-          <StaticCard data={briefSection} fowardref={scrollTo} />
+          <StaticCard data={briefSection} fowardref={scrollTo} Component="h1" />
         </div>
         <div className="section mt-145">
           <DropDownCard
+            Component="h2"
             title={
               router.locale == "en"
                 ? exhis_dropdown?.first_name
@@ -53,6 +54,7 @@ export default function Exhibition({
         </div>
         <div className="section mt-30">
           <DropDownCard
+            Component="h2"
             title={
               router.locale == "en"
                 ? exhis_dropdown?.second_name
@@ -64,6 +66,7 @@ export default function Exhibition({
         </div>
         <div className="section mt-30 mb-145">
           <DropDownCard
+            Component="h2"
             title={
               router.locale == "en"
                 ? exhis_dropdown?.third_name
@@ -73,7 +76,7 @@ export default function Exhibition({
             <ExpoImageList data={pastExpoData} />
           </DropDownCard>
         </div>
-      </main>
+      </div>
     </>
   );
 }

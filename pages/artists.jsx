@@ -25,10 +25,14 @@ export default function Artists({ data, artistsData }) {
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? "Artists" : "藝術家"} />
-      <main>
+      <div>
         <div className="section">
           <div className={styles.gap}>
-            <StaticCard data={briefSection} fowardref={scrollTo} />
+            <StaticCard
+              data={briefSection}
+              fowardref={scrollTo}
+              Component="h1"
+            />
           </div>
         </div>
         <div className="section ">
@@ -39,7 +43,7 @@ export default function Artists({ data, artistsData }) {
             />
           </div>
         </div>
-      </main>
+      </div>
     </>
   );
 }

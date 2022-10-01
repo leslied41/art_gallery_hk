@@ -69,6 +69,13 @@ a {
 a:hover {
   color: #9a9a9a;
 }
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: normal !important;
+}
 .text-underline {
   text-decoration-line: underline;
 }

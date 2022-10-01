@@ -32,17 +32,17 @@ const S_header = ({ vimeo_link, shop_link }) => {
   const moveDis = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    setwindowHeight(window.innerHeight);
-    setwindowWidth(window.innerWidth);
-    setsvg_height(svg.current.clientHeight);
-    setsvg_width(svg.current.clientWidth);
-    window.addEventListener("resize", () => {
+    const resetSize = () => {
       setwindowHeight(window.innerHeight);
       setwindowWidth(window.innerWidth);
       setsvg_height(svg.current.clientHeight);
       setsvg_width(svg.current.clientWidth);
-    });
+    };
+    resetSize();
+    window.addEventListener("resize", resetSize);
+    return () => window.removeEventListener("resize", resetSize);
   }, []);
+
   useEffect(() => {
     videoCursor.current.style.top = `${toTop + 15}px`;
     videoCursor.current.style.left = `${toLeft + 15}px`;
@@ -104,7 +104,6 @@ const S_header = ({ vimeo_link, shop_link }) => {
   const throttleMouseHandler = useThrottle(handleMouseMove, 100);
 
   const touchStart = (e) => {
-    console.log(e.touches);
     e.cancelable && e.preventDefault();
     setstartingPoint({
       x: e.changedTouches[0].clientX - moveDis.current.x,
@@ -120,7 +119,6 @@ const S_header = ({ vimeo_link, shop_link }) => {
 
         <div
           onMouseMove={(e) => {
-            //console.log(e.pageX);
             setToLeft(e.pageX);
             setToTop(e.pageY);
           }}

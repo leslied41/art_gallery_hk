@@ -23,41 +23,29 @@ export const SingleNews = ({ news }) => {
   const router = useRouter();
 
   return (
-    <>
-      <div className={styles.grid} key={_id}>
-        <div className="col mb-42">
-          <a
-            href={news_link ? news_link : null}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div>
-              <Image
-                src={urlFor(image.asset).url()}
-                alt="works"
-                objectFit="cover"
-                layout="responsive"
-                width="654"
-                height="437"
-              />
-            </div>
-          </a>
-        </div>
-        <div className="col mb-42">
-          <a
-            href={news_link ? news_link : null}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <p className="h2">{router.locale == "en" ? title : title_cn}</p>
-          </a>
-          <div className="h3 mt-30">
-            {usePortableText(
-              router.locale == "en" ? news_brief : news_brief_cn
-            )}
+    <article className={styles.grid} key={_id}>
+      <div className="col mb-42">
+        <a href={news_link ? news_link : null} target="_blank" rel="noreferrer">
+          <div>
+            <Image
+              src={urlFor(image.asset).url()}
+              alt="works"
+              objectFit="cover"
+              layout="responsive"
+              width="654"
+              height="437"
+            />
           </div>
+        </a>
+      </div>
+      <div className="col mb-42">
+        <a href={news_link ? news_link : null} target="_blank" rel="noreferrer">
+          <h2 className="h2">{router.locale == "en" ? title : title_cn}</h2>
+        </a>
+        <div className="h3 mt-30">
+          {usePortableText(router.locale == "en" ? news_brief : news_brief_cn)}
         </div>
       </div>
-    </>
+    </article>
   );
 };

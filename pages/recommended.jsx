@@ -21,18 +21,18 @@ export default function Press({ recommendedPageData, settings_data }) {
         settings_data={settings_data}
       />
       <ControlBtn />
-      <main className="mb-145 layout ">
+      <div className="mb-145 layout ">
         <div className={router.locale}>
           {briefSection && (
             <div className="section study-mt-145">
-              <StaticCard data={briefSection} />
+              <StaticCard data={briefSection} Component="h1" />
             </div>
           )}
           <div className="section mt-145">
             <NewsList newsData={sorted_recommend_list} />
           </div>
         </div>
-      </main>
+      </div>
     </>
   );
 }

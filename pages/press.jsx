@@ -19,20 +19,23 @@ export default function Recommended({ pageData, settings_data }) {
         settings_data={settings_data}
       />
       <ControlBtn />
-      <main className="mb-145 layout ">
+      <div className="mb-145 layout ">
         <div className={router.locale}>
           {briefSection && (
             <div className="section study-mt-145">
-              <StaticCard data={briefSection} />
+              <StaticCard data={briefSection} Component="h1" />
             </div>
           )}
           <div className="section mt-145">
-            <DropDownCard title={router.locale == "en" ? "Press" : "新聞"}>
+            <DropDownCard
+              title={router.locale == "en" ? "Press" : "新聞"}
+              Component="h2"
+            >
               <InterviewsList data={press_list} />
             </DropDownCard>
           </div>
         </div>
-      </main>
+      </div>
     </>
   );
 }

@@ -24,8 +24,6 @@ const VerticalLayout = ({
     router.locale == "en" ? introduction : introduction_cn
   );
   const parameter_portableText = usePortableText(work_parameter);
-  //console.log(12345);
-  //console.log(width, height);
   return (
     <>
       <div>
@@ -40,10 +38,6 @@ const VerticalLayout = ({
                 onClick={() => {
                   getIndex(index);
                 }}
-
-                // layout="fill"
-                // objectPosition="60% 40%"
-                //when using layout fill, its parent element must be position relative and its parent must have a height.
               />
             )}
           </div>

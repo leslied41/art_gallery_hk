@@ -49,9 +49,9 @@ const MobileHeader = () => {
 
   return (
     <>
-      <section className={styles.section}>
+      <section className={styles.section} aria-label="mobile header">
         <div className={styles.links}>
-          <span
+          <div
             className="h5"
             style={
               mobile_link_font_size && {
@@ -60,6 +60,7 @@ const MobileHeader = () => {
             }
           >
             <Links
+              ariaLabel="primary navigation"
               font_size={
                 router.locale == "en"
                   ? mobile_link_font_size
@@ -70,7 +71,7 @@ const MobileHeader = () => {
                   : { fontSize: "22px" }
               }
             />
-          </span>
+          </div>
         </div>
         <div className={styles.title}>
           <Link href="/" exact>

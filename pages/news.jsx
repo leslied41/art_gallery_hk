@@ -28,14 +28,14 @@ export default function News({ newsPageData, newsData }) {
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? "News" : "新聞"} />
-      <main>
+      <div>
         <div className="section mt-145">
-          <StaticCard data={briefSection} fowardref={scrollTo} />
+          <StaticCard data={briefSection} fowardref={scrollTo} Component="h1" />
         </div>
         <div className="section mt-145">
           <NewsList newsData={sorted_newsData} />
         </div>
-      </main>
+      </div>
     </>
   );
 }

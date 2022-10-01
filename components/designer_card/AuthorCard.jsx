@@ -1,7 +1,7 @@
 import styles from "./AuthorCard.module.css";
 import { useRouter } from "next/router";
 
-const AuthorCard = () => {
+const AuthorCard = ({ Component = "span" }) => {
   const router = useRouter();
   return (
     <>
@@ -9,9 +9,9 @@ const AuthorCard = () => {
         <div className="col"></div>
         <div className="col">
           <div>
-            <span className="h1" style={{ textTransform: "uppercase" }}>
+            <Component className="h1" style={{ textTransform: "uppercase" }}>
               {router.locale === "en" ? "Site Credits" : "設計師及開發者"}
-            </span>
+            </Component>
           </div>
           <div>
             <div className={styles.gap}>

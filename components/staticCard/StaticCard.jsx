@@ -4,11 +4,8 @@ import { useRouter } from "next/router";
 import AppointmentForm from "../appointment_form/AppointmentForm";
 import { usePortableText } from "../usehooks/usePortableText";
 
-const StaticCard = ({ data, form, fowardref }) => {
+const StaticCard = ({ data, form, fowardref, Component = "span" }) => {
   const router = useRouter();
-
-  //console.log(showimg_context);
-
   const {
     name,
     name_cn,
@@ -30,12 +27,12 @@ const StaticCard = ({ data, form, fowardref }) => {
         <div className="col">
           {/* display name */}
           <div className={styles.title}>
-            <span
+            <Component
               className="h1"
               style={font_size && { fontSize: `${font_size}px` }}
             >
               {router.locale === "en" ? name : name_cn}
-            </span>
+            </Component>
           </div>
           {/* display description */}
           {description && (

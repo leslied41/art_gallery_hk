@@ -1,13 +1,11 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 import styles from "./ExpoList.module.css";
 import Collapsible from "../collapsible/Collapsible";
 import { dropDownContext } from "../dropDownCard/DropDownCard";
 
 const ExpoList = ({ data }) => {
   const { showCard } = useContext(dropDownContext);
-  //console.log(data);
   const { cv, cv_link, cv_create_date, PDF } = data;
-  //console.log(PDF);
   return (
     <>
       <div className={styles.grid}>

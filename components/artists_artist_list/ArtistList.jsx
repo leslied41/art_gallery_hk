@@ -1,11 +1,12 @@
+import { useState, useEffect, useRef, memo, useMemo } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useState, useEffect, useRef, useContext, memo } from "react";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import styles from "./ArtistList.module.css";
 import Image from "next/image";
 import { useGlobalSettings } from "../context/GlobalSettings.jsx";
+import { useBreakPoints } from "../usehooks/useBreakPoints.js";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -16,7 +17,6 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
   const router = useRouter();
   const [showImage, setShowImage] = useState(false);
   const [targetImage, setTargetImage] = useState(null);
-  const [mobile, setmobile] = useState();
   const [toTop, settoTop] = useState(0);
   const [stoTop, setstoTop] = useState();
   const [list_height, setlist_height] = useState();
@@ -25,86 +25,43 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
   const s_ref = useRef();
   const image_ref = useRef();
   const grid_ref = useRef();
-  const original_order_artistData = artistsData.slice();
-
+  const { isMobile } = useBreakPoints();
   const { showimg, over_footer } = useGlobalSettings();
 
-  //console.log(showimg_context);
-
-  original_order_artistData.sort(function (a, b) {
-    let dateA = new Date(a._updatedAt).getTime();
-    let dateB = new Date(b._updatedAt).getTime();
-    return dateA > dateB ? 1 : -1;
-  });
-  artistsData.sort(function (a, b) {
-    let nameA = a.name.split(" ").pop().toUpperCase(); // ignore upper and lowercase
-    let nameB = b.name.split(" ").pop().toUpperCase(); // ignore upper and lowercase
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-
-    // names must be equal
-    return 0;
-  });
-
-  useEffect(() => {
-    if (window.innerWidth > 768) {
-      setmobile(false);
-    }
-    if (window.innerWidth <= 768) {
-      setmobile(true);
-    }
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 768) {
-        setmobile(false);
+  const alphabetic_sorted_artists_data = useMemo(() => {
+    const sorted = artistsData.slice().sort(function (a, b) {
+      let nameA = a.name.split(" ").pop().toUpperCase(); // ignore upper and lowercase
+      let nameB = b.name.split(" ").pop().toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
       }
-      if (window.innerWidth <= 768) {
-        setmobile(true);
+      if (nameA > nameB) {
+        return 1;
       }
+      return 0;
     });
-  }, []);
-  //check it element is in viewport
-  // useEffect(() => {
-  //   if (window.innerHeight > image_ref.current.getBoundingClientRect().bottom) {
-  //     setImgIsInViewport(true);
-  //     console.log("123");
-  //   } else {
-  //     setImgIsInViewport(false);
-  //     console.log("321");
-  //   }
-  // }, [toTop]);
+    return sorted;
+  }, [artistsData]);
 
-  // useEffect(() => {
-  //   if (!mobile) {
-  //     if (toTop - stoTop + image_height >= list_height) {
-  //       // console.log(toTop - stoTop + image_height);
-  //       // console.log(list_height);
-  //       image_ref.current.style.bottom = `0px`;
-  //       image_ref.current.style.top = null;
-  //     } else {
-  //       image_ref.current.style.top = `${toTop - stoTop}px`;
-  //       // image_ref.current.style.top = `${
-  //       //   window.innerHeight / 2 + window.scrollY || window.pageYOffset -  s_ref.current.getBoundingClientRect().top
-  //       // }px`;
-
-  //       image_ref.current.style.bottom = null;
-  //     }
-  //   }
-  // }, [toTop, stoTop, image_height]);
+  const latest_sorted_artists_data = useMemo(
+    () =>
+      artistsData.slice().sort(function (a, b) {
+        let dateA = new Date(a._updatedAt).getTime();
+        let dateB = new Date(b._updatedAt).getTime();
+        return dateA > dateB ? 1 : -1;
+      }),
+    [artistsData]
+  );
 
   const overArtist = (slug) => {
     let targetArtist = artistsData.filter(
       (artist) => artist.slug.current == slug.current
     );
-    //console.log(targetArtist);
     let targetImg = targetArtist[0].masterpiece;
     setTargetImage(targetImg);
     setShowImage(true);
   };
+
   const leaverArtist = () => [setShowImage(false)];
 
   return (
@@ -114,7 +71,7 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
         style={{ position: "relative", width: "100%" }}
         ref={s_ref}
       >
-        {!mobile && (
+        {!isMobile && (
           <div
             className={styles.container}
             ref={image_ref}
@@ -154,65 +111,62 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
       </div>
       <div className="col h2" ref={grid_ref}>
         <ul>
-          {(artists_list_reorder ? artistsData : original_order_artistData).map(
-            (artist, index) => {
-              const { name, name_cn, slug, _id, masterpiece } = artist;
-              const length = artistsData.length;
-              return (
-                <div key={_id} className={styles.gap}>
-                  <Link href={"/artists/" + slug.current}>
-                    <li
-                      key={index}
-                      onMouseLeave={() => {
-                        leaverArtist();
-                      }}
-                      onMouseOver={(e) => {
-                        overArtist(slug);
+          {(artists_list_reorder
+            ? alphabetic_sorted_artists_data
+            : latest_sorted_artists_data
+          ).map((artist, index) => {
+            const { name, name_cn, slug, _id, masterpiece } = artist;
+            const length = artistsData.length;
+            return (
+              <div key={_id} className={styles.gap}>
+                <Link href={"/artists/" + slug.current}>
+                  <li
+                    key={index}
+                    onMouseLeave={() => {
+                      leaverArtist();
+                    }}
+                    onMouseOver={(e) => {
+                      overArtist(slug);
 
-                        !mobile &&
-                          setTimeout(() => {
-                            setimage_height(image_ref.current.clientHeight);
-                          }, 50);
+                      !isMobile &&
+                        setTimeout(() => {
+                          setimage_height(image_ref.current.clientHeight);
+                        }, 50);
 
-                        settoTop(
-                          e.target.getBoundingClientRect().top +
-                            window.scrollY || window.pageYOffset
-                        );
-                      }}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <div>
-                        {router.locale == "en"
-                          ? name
-                          : name_cn
-                          ? name_cn
-                          : name}
+                      settoTop(
+                        e.target.getBoundingClientRect().top + window.scrollY ||
+                          window.pageYOffset
+                      );
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div>
+                      {router.locale == "en" ? name : name_cn ? name_cn : name}
+                    </div>
+                    {isMobile && (
+                      <div style={{ marginTop: "18px" }}>
+                        {masterpiece && (
+                          <Image
+                            src={urlFor(masterpiece.asset)
+                              .width(624)
+                              .height(468)
+                              .url()}
+                            alt="works"
+                            objectFit="cover"
+                            layout="intrinsic"
+                            width="624"
+                            height="468"
+                          />
+                        )}
                       </div>
-                      {mobile && (
-                        <div style={{ marginTop: "18px" }}>
-                          {masterpiece && (
-                            <Image
-                              src={urlFor(masterpiece.asset)
-                                .width(624)
-                                .height(468)
-                                .url()}
-                              alt="works"
-                              objectFit="cover"
-                              layout="intrinsic"
-                              width="624"
-                              height="468"
-                            />
-                          )}
-                        </div>
-                      )}
-                    </li>
-                  </Link>
+                    )}
+                  </li>
+                </Link>
 
-                  <hr className="hr-top" />
-                </div>
-              );
-            }
-          )}
+                <hr className="hr-top" />
+              </div>
+            );
+          })}
         </ul>
       </div>
     </div>

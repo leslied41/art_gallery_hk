@@ -1,10 +1,10 @@
 import styles from "./DropDownCard.module.css";
-import { useState, useContext, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import React from "react";
 
 export const dropDownContext = React.createContext();
-export default function DropDownCard({ children, title }) {
+export default function DropDownCard({ children, title, Component = "span" }) {
   const router = useRouter();
   const [showCard, setshowCard] = useState(false);
   const handleClick = () => {
@@ -21,10 +21,12 @@ export default function DropDownCard({ children, title }) {
               className="title"
               style={{ cursor: "pointer", textTransform: "uppercase" }}
               onClick={handleClick}
+              role="button"
+              aria-pressed="false"
             >
-              <span className="h2">
+              <Component className="h2">
                 {title} {showCard ? "-" : "+"}
-              </span>
+              </Component>
             </div>
           </div>
         </div>

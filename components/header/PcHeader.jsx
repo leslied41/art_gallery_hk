@@ -158,7 +158,11 @@ const PcHeader = () => {
 
   return (
     <>
-      <section className={styles.section} ref={sectionEl}>
+      <section
+        className={styles.section}
+        ref={sectionEl}
+        aria-label="desktop header"
+      >
         <div className={styles.icon}>
           <div
             className="h2"
@@ -186,11 +190,12 @@ const PcHeader = () => {
           </div>
         </div>
         <div className={styles.links} ref={linksEl}>
-          <span
+          <div
             className="h2"
             style={link_font_size && { fontSize: `${link_font_size}px` }}
           >
             <Links
+              ariaLabel="primary navigation"
               font_size={
                 router.locale == "en"
                   ? link_font_size
@@ -201,7 +206,7 @@ const PcHeader = () => {
                   : { fontSize: "39px" }
               }
             />
-          </span>
+          </div>
         </div>
         <div className={styles.title} ref={titleEl}>
           <Link href="/" exact>

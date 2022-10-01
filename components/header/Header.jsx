@@ -8,14 +8,14 @@ function Header() {
   const router = useRouter();
 
   return (
-    <>
+    <header>
       <div className={styles.mobile}>
         <MobileHeader />
       </div>
       <div className={styles.pc}>
         <PcHeader />
       </div>
-    </>
+    </header>
   );
 }
 

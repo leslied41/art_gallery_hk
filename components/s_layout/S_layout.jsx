@@ -19,7 +19,7 @@ const S_layout = ({ children }) => {
         <div className={styles.mobile}>
           <S_mobile_header vimeo_link={vimeo_link} shop_link={shop_link} />
         </div>
-        {children}
+        <main>{children}</main>
       </div>
     </>
   );

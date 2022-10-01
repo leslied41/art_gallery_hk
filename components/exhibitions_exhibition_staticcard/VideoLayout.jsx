@@ -19,8 +19,6 @@ const VideoLayout = ({
     router.locale == "en" ? introduction : introduction_cn
   );
   const parameter_portableText = usePortableText(work_parameter);
-  //console.log(12345);
-  //console.log(width, height);
   return (
     <>
       <div>

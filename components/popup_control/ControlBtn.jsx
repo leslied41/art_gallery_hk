@@ -1,4 +1,3 @@
-import styles from "./ControlBtn.module.css";
 import { usePathHistory } from "../context/PathHistory";
 import { useRouter } from "next/router";
 
@@ -10,6 +9,8 @@ const ControlBtn = () => {
   return (
     <>
       <div
+        role="button"
+        aria-label="close"
         style={{
           position: "fixed",
           right: "20px",
@@ -21,12 +22,10 @@ const ControlBtn = () => {
           mixBlendMode: "exclusion",
         }}
         onClick={() => {
-          //console.log("cliclded");
           router.push(popup_path || "/");
         }}
       >
         <span className="icon-Web-Sign_1_AW001-02"></span>
-        {/* <AiOutlineClose /> */}
       </div>
 
       <div
@@ -40,13 +39,13 @@ const ControlBtn = () => {
           color: "white",
           mixBlendMode: "exclusion",
         }}
+        role="button"
+        aria-label="back"
         onClick={() => {
-          //console.log("cliclded");
           router.back();
         }}
       >
         <span className="icon-Web-Sign_1_AW001-01"></span>
-        {/* <BiArrowBack /> */}
       </div>
     </>
   );

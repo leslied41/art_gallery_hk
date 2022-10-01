@@ -10,7 +10,7 @@ const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
-const ExStaticCard = ({ data, fowardref }) => {
+const ExStaticCard = ({ data, fowardref, Component = "span" }) => {
   const {
     name_exo,
     name_exo_cn,
@@ -285,7 +285,7 @@ const ExStaticCard = ({ data, fowardref }) => {
         <div className="col" ref={fowardref}></div>
         <div className="col">
           <div>
-            <span className="h1">{name_exo}</span>
+            <Component className="h1">{name_exo}</Component>
           </div>
           <div className="mt-22">
             <span className="h4">{date}</span>

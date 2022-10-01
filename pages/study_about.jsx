@@ -33,17 +33,18 @@ export default function Study_About({ data, settings_data }) {
         name={router.locale == "en" ? "About" : "关于"}
         settings_data={settings_data}
       />
-      <main className="mb-145 layout ">
+      <div className="mb-145 layout ">
         <div className={router.locale}>
           {briefSection && (
             <div className="section study-mt-145">
-              <StaticCard data={briefSection} />
+              <StaticCard data={briefSection} Component="h1" />
             </div>
           )}
           {/* dropDownCard */}
           {!collapsable_first.hidden && (
             <div className="section study-mt-145">
               <DropDownCard
+                Component="h2"
                 title={
                   router.locale == "en"
                     ? collapsable_first.name
@@ -57,6 +58,7 @@ export default function Study_About({ data, settings_data }) {
           {!collapsable_second.hidden && (
             <div className="section mt-30">
               <DropDownCard
+                Component="h2"
                 title={
                   router.locale == "en"
                     ? collapsable_second.name
@@ -70,6 +72,7 @@ export default function Study_About({ data, settings_data }) {
           {!collapsable_third.hidden && (
             <div className="section mt-30 ">
               <DropDownCard
+                Component="h2"
                 title={
                   router.locale == "en"
                     ? collapsable_third.name
@@ -81,7 +84,7 @@ export default function Study_About({ data, settings_data }) {
             </div>
           )}
         </div>
-      </main>
+      </div>
     </>
   );
 }

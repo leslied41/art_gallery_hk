@@ -1,5 +1,5 @@
 import styles from "./NewsList.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { useRouter } from "next/router";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard";
 import { SingleNews } from "./SingleNews";
@@ -27,12 +27,12 @@ const NewsList = ({ newsData }) => {
   };
 
   return (
-    <>
+    <section>
       {slicedNewsData.map((news, index) => {
         return (
-          <div key={index}>
+          <Fragment key={index}>
             <SingleNews news={news} />
-          </div>
+          </Fragment>
         );
       })}
       <div className={styles.grid}>
@@ -41,7 +41,7 @@ const NewsList = ({ newsData }) => {
         </div>
         <div className="col mb-42"></div>
       </div>
-    </>
+    </section>
   );
 };
 

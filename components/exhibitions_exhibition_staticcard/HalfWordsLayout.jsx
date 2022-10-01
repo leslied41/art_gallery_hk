@@ -1,6 +1,7 @@
 import styles from "./HalfWordsLayout.module.css";
 import { useRouter } from "next/router";
 import { usePortableText } from "../usehooks/usePortableText.js";
+
 const WordsLayout = ({
   introduction,
   introduction_cn,

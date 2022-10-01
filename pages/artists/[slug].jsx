@@ -53,12 +53,17 @@ export default function Artist({
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? name : name_cn} />
-      <main className="mb-145">
+      <div className="mb-145">
         <div className="section mt-145">
-          <StaticCard data={artistData[0]} fowardref={scrollTo} />
+          <StaticCard
+            data={artistData[0]}
+            fowardref={scrollTo}
+            Component="h1"
+          />
         </div>
         <div className="section mt-145">
           <DropDownCard
+            Component="h2"
             title={
               router.locale == "en"
                 ? artist_dropdown?.first_name
@@ -71,6 +76,7 @@ export default function Artist({
         {filtered_workImages && filtered_workImages.length != 0 && (
           <div className="section mt-30">
             <DropDownCard
+              Component="h2"
               title={
                 router.locale == "en"
                   ? artist_dropdown?.second_name
@@ -88,6 +94,7 @@ export default function Artist({
         {artistData[0].cv && (
           <div className="section mt-30">
             <DropDownCard
+              Component="h2"
               title={
                 router.locale == "en"
                   ? artist_dropdown?.third_name
@@ -102,6 +109,7 @@ export default function Artist({
         {sorted_interviewsData && sorted_interviewsData.length != 0 && (
           <div className="section mt-30 ">
             <DropDownCard
+              Component="h2"
               title={
                 router.locale == "en"
                   ? artist_dropdown?.fourth_name
@@ -112,7 +120,7 @@ export default function Artist({
             </DropDownCard>
           </div>
         )}
-      </main>
+      </div>
     </>
   );
 }

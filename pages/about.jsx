@@ -52,15 +52,16 @@ export default function About({ data }) {
   return (
     <>
       <Heads seo={seo} name={router.locale == "en" ? "About" : "關於我們"} />
-      <main className="mt-145 mb-145">
+      <div className="mt-145 mb-145">
         {/* first part */}
         <div className="section ">
-          <StaticCard data={briefSection} fowardref={scrollTo} />
+          <StaticCard data={briefSection} fowardref={scrollTo} Component="h1" />
         </div>
         {/* dropDownCard */}
         {!terminologySection.hidden && (
           <div className="section mt-145">
             <DropDownCard
+              Component="h2"
               title={
                 router.locale == "en"
                   ? terminologySection.name
@@ -74,6 +75,7 @@ export default function About({ data }) {
         {!missionStatementSection.hidden && (
           <div className="section mt-30">
             <DropDownCard
+              Component="h2"
               title={
                 router.locale == "en"
                   ? missionStatementSection.name
@@ -88,22 +90,22 @@ export default function About({ data }) {
         {/* third part */}
         {!visitUsSection.hidden && (
           <div className="section mt-145" id="visitUsLocation">
-            {<StaticCard data={visitUsSection} form={true} />}
+            {<StaticCard data={visitUsSection} form={true} Component="h2" />}
           </div>
         )}
         {/* fourth part */}
         {!connectSection.hidden && (
           <div className="section mt-145">
-            {<StaticCard data={connectSection} />}
+            {<StaticCard data={connectSection} Component="h2" />}
           </div>
         )}
         {/* fifth part */}
         {!authorCard?.hidden && (
           <div className="section mt-145">
-            <AuthorCard />
+            <AuthorCard Component="h2" />
           </div>
         )}
-      </main>
+      </div>
     </>
   );
 }

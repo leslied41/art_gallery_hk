@@ -1,10 +1,9 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState, forwardRef } from "react";
+import { forwardRef } from "react";
 import setMinutes from "date-fns/setMinutes";
 import setHours from "date-fns/setHours";
 import { useRouter } from "next/router";
-import styles from "./CustomDatePicker.module.css";
 
 const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
   const router = useRouter();
@@ -14,6 +13,7 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
   };
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
     <input
+      aria-label="date and time"
       name="dateTime"
       defaultValue={value}
       onClick={onClick}
@@ -34,10 +34,8 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
 
   return (
     <DatePicker
-      //selected={startDate}
       selected={selected}
       onChange={onChange}
-      //onChange={(date) => setStartDate(date)}
       placeholder={
         router.locale == "en"
           ? date
@@ -53,7 +51,6 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
       maxTime={setHours(setMinutes(new Date(), 0), 18)}
       timeIntervals={60}
       customInput={<CustomInput />}
-      //dateFormat="MMMM d, yyyy h:mm aa"
       dateFormat="dd/MM/yyyy h:mm aa"
     />
   );

@@ -13,6 +13,7 @@ import Image from "next/image";
 import LoadMoreCard from "../loadMoreCard/LoadMoreCard.jsx";
 import { PortableText } from "@portabletext/react";
 import { useThrottle } from "../usehooks/useThrottle.js";
+import { useBreakPoints } from "../usehooks/useBreakPoints.js";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -21,7 +22,6 @@ function urlFor(source) {
 
 const SampleImageComponent = ({ value }) => {
   const { width, height } = getImageDimensions(value);
-
   return (
     <img
       src={urlFor().image(value).fit("max").auto("format").url()}
@@ -33,9 +33,7 @@ const SampleImageComponent = ({ value }) => {
               // Avoid jumping around with aspect-ratio CSS property
               //aspectRatio: width / height,
               objectFit: "contain",
-              // width: "100%",
               width: "100%",
-              //width: "auto",
             }
           : {
               objectFit: "contain",
@@ -80,7 +78,6 @@ const ImageList = ({
   const [iszoomed, setiszoomed] = useState(false);
   const [clickTime, setclickTime] = useState(0);
   const prevRef = useRef();
-  const [isMobile, setisMobile] = useState(null);
   const [startingPoint, setstartingPoint] = useState({ x: 0, y: 0 });
   const [moving, setmoving] = useState(false);
   const [imageSize, setimageSize] = useState({ x: 0, y: 0 });
@@ -89,6 +86,7 @@ const ImageList = ({
   const [elRefs, setElRefs] = useState([]);
   const [swipeInitial, setswipeInitial] = useState({ x: null, y: null });
   const moveDis = useRef({ x: 0, y: 0 });
+  const { isMobile } = useBreakPoints();
 
   useEffect(() => {
     setwindowHeight(window.innerHeight);
@@ -96,23 +94,6 @@ const ImageList = ({
   }, []);
 
   useEffect(() => {
-    if (window.innerWidth < 768) {
-      setisMobile(true);
-    } else if (window.innerWidth >= 768) {
-      setisMobile(false);
-    }
-    window.addEventListener("resize", () => {
-      if (window.innerWidth < 768) {
-        setisMobile(true);
-      } else if (window.innerWidth >= 768) {
-        setisMobile(false);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    // add or remove refs
-
     setElRefs((elRefs) =>
       Array(workImages.length)
         .fill()
@@ -132,7 +113,6 @@ const ImageList = ({
   };
 
   const mouseDown = (e) => {
-    //console.log(moveDis.current);
     setclickTime(new Date());
     setstartingPoint({
       x: e.clientX - moveDis.current.x,
@@ -148,11 +128,12 @@ const ImageList = ({
   const zoomin = (e) => {
     e.target.style.transform = "scale(2)";
   };
+
   const zoomout = (e) => {
     e.target.style.transform = "scale(1)";
   };
+
   const move = (e) => {
-    //console.log(moveDis.current);
     if (iszoomed) {
       if (
         windowWidth - imageSize.x < 0 &&
@@ -195,27 +176,19 @@ const ImageList = ({
         "px) scale(2) ";
     }
   };
+
   const handleMouseMove = (e) => {
     e.preventDefault();
     if (!moving) {
       return;
     }
-    // setmoveDis({
-    //   x: e.clientX - startingPoint.x,
-    //   y: e.clientY - startingPoint.y,
-    // });
     moveDis.current.x = e.clientX - startingPoint.x;
     moveDis.current.y = e.clientY - startingPoint.y;
     move(e);
   };
+
   const handleTouchMove = (e) => {
     e.cancelable && e.preventDefault();
-
-    // setmoveDis({
-    //   x: e.changedTouches[0].clientX - startingPoint.x,
-    //   y: e.changedTouches[0].clientY - startingPoint.y,
-    // });
-
     moveDis.current.x = e.changedTouches[0].clientX - startingPoint.x;
     moveDis.current.y = e.changedTouches[0].clientY - startingPoint.y;
     if (swipeInitial.x == null) {
@@ -236,7 +209,6 @@ const ImageList = ({
           }
           if (targetIndex != workImages.length - 1)
             setTargetIndex(targetIndex + 1);
-          //console.log("swiped right");
         } else {
           // swiped left
           if (targetIndex == 0) {
@@ -245,7 +217,6 @@ const ImageList = ({
           if (targetIndex != 0) {
             setTargetIndex(targetIndex - 1);
           }
-          //console.log("swiped left");
         }
       } else {
         // sliding vertically
@@ -253,12 +224,10 @@ const ImageList = ({
           // swiped up
           setmodel(false);
           setiszoomed(false);
-          //console.log("swiped up");
         } else {
           // swiped down
           setmodel(false);
           setiszoomed(false);
-          //console.log("swiped down");
         }
       }
       setswipeInitial({ x: null, y: null });
@@ -270,7 +239,6 @@ const ImageList = ({
   };
 
   const throttleTouchHandler = useThrottle(handleTouchMove, 100);
-
   const throttleMouseHandler = useThrottle(handleMouseMove, 100);
 
   return (
@@ -344,8 +312,6 @@ const ImageList = ({
                             if (iszoomed) {
                               zoomout(e);
                               setiszoomed(false);
-                              //setmoveDis({ x: 0, y: 0 });
-
                               moveDis.current.x = 0;
                               moveDis.current.y = 0;
                             }
@@ -468,12 +434,10 @@ const ImageList = ({
                   src={urlFor(item.image.asset).url()}
                   alt={index}
                   className={styles.thumbnail}
-                  //style={{ height: "auto", width: "100%" }}
                   layout="intrinsic"
                   height={item.metadata.metadata.dimensions.height}
                   width={item.metadata.metadata.dimensions.width}
                   onClick={() => {
-                    //getImage(item.image);
                     getIndex(index);
                   }}
                 />

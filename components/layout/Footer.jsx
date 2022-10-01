@@ -1,13 +1,14 @@
-import styles from "./Footer.module.css";
+import { useEffect, useState, useRef, memo } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
+import imageUrlBuilder from "@sanity/image-url";
+import sanityClient from "../../client.js";
+import styles from "./Footer.module.css";
 import { useGlobalSettings } from "../context/GlobalSettings";
 import { usePathHistory } from "../context/PathHistory";
 import Links from "../links/Links";
-import { useRouter } from "next/router";
-import { useEffect, useState, useRef, memo } from "react";
+import { useBreakPoints } from "../usehooks/useBreakPoints.js";
 import Logo from "../../public/images/Favicon01.svg";
-import imageUrlBuilder from "@sanity/image-url";
-import sanityClient from "../../client.js";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -19,46 +20,29 @@ const Footer = () => {
   const { setover_footer, settings } = useGlobalSettings();
   const { popup } = usePathHistory();
   const [popup_path, setpopup_path] = popup;
-  const [isMobile, setisMobile] = useState();
   const footer_ref = useRef();
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setisMobile(true);
-    } else if (window.innerWidth >= 768) {
-      setisMobile(false);
-    }
-    window.addEventListener("resize", () => {
-      if (window.innerWidth < 768) {
-        setisMobile(true);
-        //console.log(isMobile);
-      } else if (window.innerWidth >= 768) {
-        setisMobile(false);
-        //console.log(isMobile);
-      }
-    });
-  }, []);
+  const { isMobile } = useBreakPoints();
+
   useEffect(() => {
     setpopup_path(router.asPath);
   }, [router.asPath]);
-  //console.log(popup_path);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    const fn = () => {
       if (!footer_ref.current) {
         return;
       }
-
       if (
         (document.documentElement.clientHeight || window.innerHeight) >
         footer_ref.current.getBoundingClientRect().top
       ) {
         setover_footer(true);
-        //console.log("over me foot");
       } else {
         setover_footer(false);
-        //console.log("leave me foot");
       }
-    });
+    };
+    window.addEventListener("scroll", fn);
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
   const {
@@ -79,7 +63,7 @@ const Footer = () => {
 
   return (
     <>
-      <div className={styles.footer} ref={footer_ref}>
+      <footer className={styles.footer} ref={footer_ref}>
         <div className={styles.container}>
           <div className={styles.grid}>
             <div className={styles.col1}>
@@ -89,21 +73,6 @@ const Footer = () => {
                   alt="logo"
                   style={{ height: "auto", width: "100%" }}
                 />
-
-                {/* <span
-                  className="h2"
-                  style={router.locale == "tc" ? { paddingTop: "25px" } : {}}
-                >
-                  <BlockContent
-                    blocks={
-                      router.locale === "en"
-                        ? orgnizationName
-                        : orgnizationName_cn
-                    }
-                    projectId="z3dq9mvc"
-                    dataset="production"
-                  />
-                </span> */}
               </div>
             </div>
             <div className={styles.col2}>
@@ -113,12 +82,7 @@ const Footer = () => {
                     <li>
                       <span className="h4">{abbreviation}</span>
                     </li>
-                    {/* <li>
-                    <span className="h4">{address}</span>
-                  </li>
-                  <li>
-                    <span className="h4">{businessHours}</span>
-                  </li> */}
+
                     <li>
                       <Link href="/about/#visitUsLocation">
                         <span className="h4" style={{ cursor: "pointer" }}>
@@ -130,9 +94,6 @@ const Footer = () => {
                 </div>
                 <div className={styles.row}>
                   <ul>
-                    {/* <li>
-                    <span className="h4">{phone}</span>
-                  </li> */}
                     <li>
                       <span className="h4">{email}</span>
                     </li>
@@ -159,7 +120,7 @@ const Footer = () => {
               </div>
               <div>
                 <div className={styles.links}>
-                  <span
+                  <div
                     className="h4"
                     style={
                       isMobile
@@ -170,6 +131,7 @@ const Footer = () => {
                     }
                   >
                     <Links
+                      ariaLabel="footer navigation"
                       font_size={
                         router.locale == "en"
                           ? isMobile
@@ -188,13 +150,13 @@ const Footer = () => {
                           : { fontSize: "27px" }
                       }
                     />
-                  </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </footer>
     </>
   );
 };
