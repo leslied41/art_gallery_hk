@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, Fragment } from "react";
 import { useRouter } from "next/router";
 import sanityClient from "../client.js";
 import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
@@ -50,7 +50,7 @@ export default function About({ data }) {
   }, [router.asPath]);
 
   return (
-    <>
+    <Fragment>
       <Heads seo={seo} name={router.locale == "en" ? "About" : "關於我們"} />
       <div className="mt-145 mb-145">
         {/* first part */}
@@ -106,6 +106,6 @@ export default function About({ data }) {
           </div>
         )}
       </div>
-    </>
+    </Fragment>
   );
 }
