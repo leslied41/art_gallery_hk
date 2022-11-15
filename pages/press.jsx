@@ -40,8 +40,14 @@ export default function Recommended({ pageData, settings_data }) {
   );
 }
 export async function getStaticProps({ locale }) {
-  const pageData = await sanityClient.fetch(press_page_data);
-  const settings_data = await sanityClient.fetch(press_settings_data);
+  const pageDataPromise = sanityClient.fetch(press_page_data);
+  const settings_dataPromise = sanityClient.fetch(press_settings_data);
+
+  const [pageData, settings_data] = await Promise.all([
+    pageDataPromise,
+    settings_dataPromise,
+  ]);
+
   return {
     props: {
       pageData,

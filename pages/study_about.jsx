@@ -8,8 +8,13 @@ import ControlBtn from "../components/popup_control/ControlBtn";
 import { study_about_page_data, study_about_settings_data } from "../groq";
 
 export const getStaticProps = async ({ locale }) => {
-  const data = await sanityClient.fetch(study_about_page_data);
-  const settings_data = await sanityClient.fetch(study_about_settings_data);
+  const dataPromise = sanityClient.fetch(study_about_page_data);
+  const settings_dataPromise = sanityClient.fetch(study_about_settings_data);
+
+  const [data, settings_data] = await Promise.all([
+    dataPromise,
+    settings_dataPromise,
+  ]);
   return {
     props: { data, settings_data },
     revalidate: 10,

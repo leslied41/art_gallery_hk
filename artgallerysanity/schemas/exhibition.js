@@ -57,6 +57,12 @@ export default {
       type: "string",
     },
     {
+      name: "time_for_reorder",
+      title: "Time for Reorder",
+      type: "datetime",
+      description: "the exhibition with latest time will be on the top",
+    },
+    {
       name: "image",
       title: "Image",
       type: "image",

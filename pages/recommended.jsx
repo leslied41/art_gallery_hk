@@ -37,8 +37,13 @@ export default function Press({ recommendedPageData, settings_data }) {
   );
 }
 export async function getStaticProps({ locale }) {
-  const recommendedPageData = await sanityClient.fetch(recommended_page_data);
-  const settings_data = await sanityClient.fetch(recommended_settings_data);
+  const recommendedPageDataPromise = sanityClient.fetch(recommended_page_data);
+  const settings_dataPromise = sanityClient.fetch(recommended_settings_data);
+
+  const [recommendedPageData, settings_data] = await Promise.all([
+    recommendedPageDataPromise,
+    settings_dataPromise,
+  ]);
   return {
     props: {
       recommendedPageData,

@@ -40,8 +40,14 @@ export default function News({ newsPageData, newsData }) {
   );
 }
 export async function getStaticProps({ locale }) {
-  const newsPageData = await sanityClient.fetch(news_page_data);
-  const newsData = await sanityClient.fetch(news_data);
+  const newsPageDataPromise = sanityClient.fetch(news_page_data);
+  const newsDataPromise = sanityClient.fetch(news_data);
+
+  const [newsPageData, newsData] = await Promise.all([
+    newsPageDataPromise,
+    newsDataPromise,
+  ]);
+
   return {
     props: {
       newsPageData,

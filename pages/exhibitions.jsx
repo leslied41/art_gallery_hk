@@ -82,10 +82,35 @@ export default function Exhibition({
 }
 
 export const getStaticProps = async ({ locale }) => {
-  const exPageData = await sanityClient.fetch(exhibitions_page_data);
-  const currentExpoData = await sanityClient.fetch(current_exhibitions_data);
-  const futureExpoData = await sanityClient.fetch(future_exhibitions_data);
-  const pastExpoData = await sanityClient.fetch(past_exhibitions_data);
+  const exPageDataPromise = sanityClient.fetch(exhibitions_page_data);
+  const currentExpoDataPromise = sanityClient.fetch(current_exhibitions_data);
+  const futureExpoDataPromise = sanityClient.fetch(future_exhibitions_data);
+  const pastExpoDataPromise = sanityClient.fetch(past_exhibitions_data);
+
+  const [exPageData, currentExpoData, futureExpoData, pastExpoData] =
+    await Promise.all([
+      exPageDataPromise,
+      currentExpoDataPromise,
+      futureExpoDataPromise,
+      pastExpoDataPromise,
+    ]);
+
+  currentExpoData.sort((a, b) => {
+    const timeA = new Date(a.time_for_reorder).getTime();
+    const timeB = new Date(b.time_for_reorder).getTime();
+    return timeB - timeA;
+  });
+  pastExpoData.sort((a, b) => {
+    const timeA = new Date(a.time_for_reorder).getTime();
+    const timeB = new Date(b.time_for_reorder).getTime();
+    return timeB - timeA;
+  });
+  futureExpoData.sort((a, b) => {
+    const timeA = new Date(a.time_for_reorder).getTime();
+    const timeB = new Date(b.time_for_reorder).getTime();
+    return timeB - timeA;
+  });
+
   return {
     props: {
       exPageData,

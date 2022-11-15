@@ -126,10 +126,21 @@ export default function Artist({
 }
 
 export async function getStaticProps({ locale, params }) {
-  const artistPageData = await sanityClient.fetch(artist_page_data);
-  const artistData = await sanityClient.fetch(artist_data(params.slug));
-  const workImages = await sanityClient.fetch(work_images_data(params.slug));
-  const interviewsData = await sanityClient.fetch(interviews_data(params.slug));
+  const artistPageDataPromise = sanityClient.fetch(artist_page_data);
+  const artistDataPromise = sanityClient.fetch(artist_data(params.slug));
+  const workImagesPromise = sanityClient.fetch(work_images_data(params.slug));
+  const interviewsDataPromise = sanityClient.fetch(
+    interviews_data(params.slug)
+  );
+
+  const [artistPageData, artistData, workImages, interviewsData] =
+    await Promise.all([
+      artistPageDataPromise,
+      artistDataPromise,
+      workImagesPromise,
+      interviewsDataPromise,
+    ]);
+
   return {
     props: {
       workImages,

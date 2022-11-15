@@ -48,8 +48,13 @@ export default function Artists({ data, artistsData }) {
   );
 }
 export async function getStaticProps({ locale }) {
-  const data = await sanityClient.fetch(artists_page_data);
-  const artistsData = await sanityClient.fetch(artists_data);
+  const dataPromise = sanityClient.fetch(artists_page_data);
+  const artistsDataPromise = sanityClient.fetch(artists_data);
+
+  const [data, artistsData] = await Promise.all([
+    dataPromise,
+    artistsDataPromise,
+  ]);
 
   return {
     props: {
