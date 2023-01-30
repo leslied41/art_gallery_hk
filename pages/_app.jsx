@@ -51,7 +51,6 @@ function MyApp({ Component, pageProps, settings_data }) {
           href="/images/apple-touch-icon.png"
         />
         <link rel="manifest" href="/images/site.webmanifest" />
-
         <meta name="theme-color" content="#ffffff" />
       </Head>
       {getLayout(<Component {...pageProps} />)}
