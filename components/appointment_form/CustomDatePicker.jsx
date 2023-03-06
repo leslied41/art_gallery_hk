@@ -18,8 +18,10 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
     const dateNum = date.getDate();
     const hour = date.getHours();
     console.log(hour)
-    if (month === 2 && dateNum >= 20 && dateNum <= 26) {
+    if (month === 2 && dateNum >= 21 && dateNum <= 26) {
       return true
+    } else if (month === 2 && dateNum === 20) {
+      return (hour >= 16 && hour <= 23)
     } else {
       return (hour >= 13 && hour <= 18)
     }
