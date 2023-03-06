@@ -8,9 +8,24 @@ import { useRouter } from "next/router";
 const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
   const router = useRouter();
   const filterDay = (date) => {
+    const month = date.getMonth();
+    const dateNum = date.getDate();
     const day = date.getDay();
-    return day !== 0 && day !== 1 && day !== 2;
+    return ((day !== 0 && day !== 1 && day !== 2) || (month === 2 && dateNum >= 20 && dateNum <= 26));
   };
+  const filterTime = (date) => {
+    const month = date.getMonth();
+    const dateNum = date.getDate();
+    const hour = date.getHours();
+    console.log(hour)
+    if (month === 2 && dateNum >= 20 && dateNum <= 26) {
+      return true
+    } else {
+      return (hour >= 13 && hour <= 18)
+    }
+  }
+      
+    
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
     <input
       aria-label="date and time"
@@ -47,8 +62,7 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
       }
       showTimeSelect
       filterDate={filterDay}
-      minTime={setHours(setMinutes(new Date(), 0), 13)}
-      maxTime={setHours(setMinutes(new Date(), 0), 18)}
+      filterTime={filterTime}
       timeIntervals={60}
       customInput={<CustomInput />}
       dateFormat="dd/MM/yyyy h:mm aa"
