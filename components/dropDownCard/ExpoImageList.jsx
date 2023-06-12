@@ -58,42 +58,47 @@ const ExpoImageList = ({ data }) => {
               const { width, height } = image ? getImageDimensions(image) : {};
               return (
                 <div className={styles.grid} key={index}>
-                  <Link href={"/exhibitions/" + slug.current}>
-                    <div className="col mt-30">
-                      {image && (
-                        <div style={{ width: "100%", display: "block" }}>
-                          <Image
-                            layout="responsive"
-                            width={width}
-                            height={height}
-                            src={urlFor(image.asset).url()}
-                            alt={name_exo}
-                            priority={true}
-                            className={styles.image}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </Link>
-                  <div className="col mt-30">
+                  { slug && (
                     <Link href={"/exhibitions/" + slug.current}>
-                      <div style={{ cursor: "pointer" }}>
-                        <p className="h2">
-                          {router.locale === "en"
-                            ? name_exo
-                            : name_exo_cn
-                            ? name_exo_cn
-                            : name_exo}
-                        </p>
-                        <p className="h3 mt-5">
-                          {router.locale === "en"
-                            ? date
-                            : date_cn
-                            ? date_cn
-                            : date}
-                        </p>
+                      <div className="col mt-30">
+                        {image && (
+                          <div style={{ width: "100%", display: "block" }}>
+                            <Image
+                              layout="responsive"
+                              width={width}
+                              height={height}
+                              src={urlFor(image.asset).url()}
+                              alt={name_exo}
+                              priority={true}
+                              className={styles.image}
+                            />
+                          </div>
+                        )}
                       </div>
                     </Link>
+                  )}
+                  
+                  <div className="col mt-30">
+                    { slug && (
+                      <Link href={"/exhibitions/" + slug.current}>
+                        <div style={{ cursor: "pointer" }}>
+                          <p className="h2">
+                            {router.locale === "en"
+                              ? name_exo
+                              : name_exo_cn
+                              ? name_exo_cn
+                              : name_exo}
+                          </p>
+                          <p className="h3 mt-5">
+                            {router.locale === "en"
+                              ? date
+                              : date_cn
+                              ? date_cn
+                              : date}
+                          </p>
+                        </div>
+                      </Link>
+                    )}
                   </div>
                 </div>
               );
