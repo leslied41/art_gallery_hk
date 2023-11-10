@@ -53,10 +53,10 @@ export async function getStaticProps({ locale, params }) {
 export async function getStaticPaths() {
   const allExpoData = await sanityClient.fetch(`*[_type=='exhibition']`);
   const path_en = allExpoData.map((expo) => {
-    return { params: { slug: expo.slug.current }, locale: "en" };
+    return { params: { slug: expo.slug?.current }, locale: "en" };
   });
   const path_tc = allExpoData.map((expo) => {
-    return { params: { slug: expo.slug.current }, locale: "tc" };
+    return { params: { slug: expo.slug?.current }, locale: "tc" };
   });
   const paths = path_en.concat(path_tc);
   //for the automatically created paths, different locales path were not created, it is essential to add
