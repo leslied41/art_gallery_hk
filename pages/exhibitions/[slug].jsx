@@ -47,7 +47,7 @@ export async function getStaticProps({ locale, params }) {
 
       // Will be passed to the page component as props
     },
-    revalidate: 10,
+    revalidate: 60,
   };
 }
 export async function getStaticPaths() {
@@ -64,6 +64,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
