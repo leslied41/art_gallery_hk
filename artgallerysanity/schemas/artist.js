@@ -69,6 +69,12 @@ export default {
       fieldset: "translation",
     },
     {
+      name: "time_for_reorder",
+      title: "Time for Reorder",
+      type: "datetime",
+      description: "the artist with latest time will be on the top",
+    },
+    {
       name: "profile",
       title: "Profile",
       type: "image",
