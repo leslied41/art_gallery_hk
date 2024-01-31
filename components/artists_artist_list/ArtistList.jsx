@@ -28,17 +28,26 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
   const { isMobile } = useBreakPoints();
   const { showimg, over_footer } = useGlobalSettings();
 
-  const alphabetic_sorted_artists_data = useMemo(() => {
-    const sorted = artistsData.slice().sort(function (a, b) {
-      let nameA = a.name.split(" ").pop().toUpperCase(); // ignore upper and lowercase
-      let nameB = b.name.split(" ").pop().toUpperCase(); // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
+  // const alphabetic_sorted_artists_data = useMemo(() => {
+  //   const sorted = artistsData.slice().sort(function (a, b) {
+  //     let nameA = a.name.split(" ").pop().toUpperCase(); // ignore upper and lowercase
+  //     let nameB = b.name.split(" ").pop().toUpperCase(); // ignore upper and lowercase
+  //     if (nameA < nameB) {
+  //       return -1;
+  //     }
+  //     if (nameA > nameB) {
+  //       return 1;
+  //     }
+  //     return 0;
+  //   });
+  //   return sorted;
+  // }, [artistsData]);
+
+  const time_sorted_artists_data = useMemo(() => {
+    const sorted = artistsData.slice().sort((a, b) => {
+      const timeA = new Date(a.time_for_reorder).getTime();
+      const timeB = new Date(b.time_for_reorder).getTime();
+      return timeB - timeA;
     });
     return sorted;
   }, [artistsData]);
@@ -112,7 +121,7 @@ const ArtistList = ({ artistsData, artists_list_reorder }) => {
       <div className="col h2" ref={grid_ref}>
         <ul>
           {(artists_list_reorder
-            ? alphabetic_sorted_artists_data
+            ? time_sorted_artists_data
             : latest_sorted_artists_data
           ).map((artist, index) => {
             const { name, name_cn, slug, _id, masterpiece } = artist;
