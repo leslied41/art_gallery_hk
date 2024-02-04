@@ -125,7 +125,7 @@ export default function Artist({
   );
 }
 
-export async function getStaticProps({ locale, params }) {
+export const getServerSideProps = async ({ locale, params }) => {
   const artistPageDataPromise = sanityClient.fetch(artist_page_data);
   const artistDataPromise = sanityClient.fetch(artist_data(params.slug));
   const workImagesPromise = sanityClient.fetch(work_images_data(params.slug));
@@ -148,23 +148,5 @@ export async function getStaticProps({ locale, params }) {
       interviewsData,
       artistPageData,
     },
-    revalidate: 10,
   };
-}
-export async function getStaticPaths() {
-  const artistsData = await sanityClient.fetch(`*[_type=='artist']`);
-  const path_en = artistsData.map((artist) => {
-    return { params: { slug: artist.slug.current }, locale: "en" };
-  });
-  const path_tc = artistsData.map((artist) => {
-    return { params: { slug: artist.slug.current }, locale: "tc" };
-  });
-  const paths = path_en.concat(path_tc);
-  //for the automatically created paths, different locales path were not created, it is essential to add
-  //different locale path. Otherwise, this localiztion will not work.
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
+};

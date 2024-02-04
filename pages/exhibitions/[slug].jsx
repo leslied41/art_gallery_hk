@@ -37,33 +37,13 @@ export default function Expo({ expoData, exhiPageData }) {
   );
 }
 
-export async function getStaticProps({ locale, params }) {
+export const getServerSideProps = async ({ locale, params }) => {
   const expoData = await sanityClient.fetch(exhibition_data(params.slug));
   const exhiPageData = await sanityClient.fetch(exhibition_page_data);
   return {
     props: {
       expoData,
       exhiPageData,
-
-      // Will be passed to the page component as props
     },
-    revalidate: 60,
-  };
-}
-export async function getStaticPaths() {
-  const allExpoData = await sanityClient.fetch(`*[_type=='exhibition']`);
-  const path_en = allExpoData.map((expo) => {
-    return { params: { slug: expo.slug?.current }, locale: "en" };
-  });
-  const path_tc = allExpoData.map((expo) => {
-    return { params: { slug: expo.slug?.current }, locale: "tc" };
-  });
-  const paths = path_en.concat(path_tc);
-  //for the automatically created paths, different locales path were not created, it is essential to add
-  //different locale path. Otherwise, this localiztion will not work.
-
-  return {
-    paths,
-    fallback: false,
   };
 }
