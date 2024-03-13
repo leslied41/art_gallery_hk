@@ -3,6 +3,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { forwardRef } from "react";
 import setMinutes from "date-fns/setMinutes";
 import setHours from "date-fns/setHours";
+import setMonth from "date-fns/setMonth";
+import setDate from "date-fns/setDate";
 import { useRouter } from "next/router";
 
 const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
@@ -11,17 +13,14 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
     const month = date.getMonth();
     const dateNum = date.getDate();
     const day = date.getDay();
-    return ((day !== 0 && day !== 1 && day !== 2) || (month === 2 && dateNum >= 20 && dateNum <= 26));
+    return ((day !== 0 && day !== 1 && day !== 2) || (month === 2 && dateNum >= 25 && dateNum <= 30));
   };
   const filterTime = (date) => {
     const month = date.getMonth();
     const dateNum = date.getDate();
     const hour = date.getHours();
-    console.log(hour)
-    if (month === 2 && dateNum >= 21 && dateNum <= 26) {
-      return true
-    } else if (month === 2 && dateNum === 20) {
-      return (hour >= 16 && hour <= 23)
+    if (month === 2 && dateNum >= 25 && dateNum <= 30) {
+      return (hour >= 11 && hour <= 22)
     } else {
       return (hour >= 13 && hour <= 18)
     }
@@ -48,6 +47,17 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
       style={{ width: "100%", borderBottom: "1px solid #000", color: "#000" }}
     />
   ));
+
+  let excluded = [
+    {
+      "time": "11:11",
+      "date": "Mar 25 2024"
+    },
+    {
+      "time": "11:11",
+      "date": "Mar 26 2024"
+    }
+  ]
 
   return (
     <DatePicker
