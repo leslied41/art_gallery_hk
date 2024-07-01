@@ -22,7 +22,7 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
     if (month === 2 && dateNum >= 25 && dateNum <= 30) {
       return (hour >= 11 && hour <= 22)
     } else {
-      return (hour >= 13 && hour <= 18)
+      return (hour >= 16 && hour <= 21)
     }
   }
       
