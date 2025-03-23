@@ -13,13 +13,13 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
     const month = date.getMonth();
     const dateNum = date.getDate();
     const day = date.getDay();
-    return ((day !== 0 && day !== 1 && day !== 2) || (month === 2 && dateNum >= 24 && dateNum <= 30));
+    return ((day !== 0 && day !== 1 && day !== 2) || (month === 2 && dateNum >= 24 && dateNum <= 29));
   };
   const filterTime = (date) => {
     const month = date.getMonth();
     const dateNum = date.getDate();
     const hour = date.getHours();
-    if (month === 2 && dateNum >= 24 && dateNum <= 30) {
+    if (month === 2 && dateNum >= 24 && dateNum <= 29) {
       return (hour >= 12 && hour <= 23)
     } else if (month === 6 || month === 7) {
       return (hour >= 16 && hour <= 21)
