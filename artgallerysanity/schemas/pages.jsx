@@ -646,14 +646,20 @@ export default {
         {
           name: "keywords",
           title: "Keywords",
-          type: "tags",
+          type: 'array',
+          of: [{type: 'string'}],
+          options: { layout: 'tags' },
+          validation: (Rule) => Rule.unique(),  // ensure no duplicates
           description:
             "Add keywords that describe your website to seach engine",
         },
         {
           name: "keywords_cn",
           title: "Keywords Chinese",
-          type: "tags",
+          type: 'array',
+          of: [{type: 'string'}],
+          options: { layout: 'tags' },
+          validation: (Rule) => Rule.unique(),  // ensure no duplicates
           description:
             "Add keywords that describe your website to seach engine",
           fieldset: "translation",

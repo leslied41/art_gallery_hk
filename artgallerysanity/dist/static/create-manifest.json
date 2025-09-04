@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "createdAt": "2025-09-04T01:36:25.188Z",
+  "workspaces": [
+    {
+      "name": "art_gallery_sanity",
+      "title": "Art Gallery Studio",
+      "basePath": "/",
+      "projectId": "z3dq9mvc",
+      "dataset": "production",
+      "icon": "<style data-styled=\"true\" data-styled-version=\"6.1.19\">.pFsrG{font-family:Inter,-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",\"Liberation Sans\",Helvetica,Arial,system-ui,sans-serif;font-weight:500;font-size:13px;transform:translateY(1px);}/*!sc*/\ndata-styled.g394[id=\"sc-fwDEoq\"]{content:\"pFsrG,\"}/*!sc*/\n</style><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><rect width=\"32\" height=\"32\" rx=\"2\" fill=\"#0ff0a1\"></rect><text x=\"50%\" y=\"50%\" text-anchor=\"middle\" alignment-baseline=\"middle\" fill=\"hsla(159, 88%, 10%, 1)\" class=\"sc-fwDEoq pFsrG\">AG</text></svg>",
+      "mediaLibrary": {
+        "enabled": false
+      },
+      "schema": "ab6a926e.create-schema.json",
+      "tools": "56d5dc66.create-tools.json"
+    }
+  ]
+}
