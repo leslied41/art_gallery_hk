@@ -49,6 +49,7 @@ const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
       style={{ width: "100%", borderBottom: "1px solid #000", color: "#000" }}
     />
   ));
+  CustomInput.displayName = 'CustomInput';
 
   let excluded = [
     {
