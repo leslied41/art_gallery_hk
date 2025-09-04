@@ -1,0 +1,25 @@
+.imgcontainer {
+  width: 100%;
+}
+.video_container {
+  aspect-ratio: 16/9;
+}
+.img {
+  width: auto;
+  width: 100%;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 50px;
+}
+@media screen and (max-width: 768px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .video_container {
+    aspect-ratio: 4/3;
+  }
+}

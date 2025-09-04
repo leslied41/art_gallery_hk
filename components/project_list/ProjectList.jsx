@@ -33,7 +33,7 @@ const ProjectList = ({ projectsData }) => {
   };
 
   return (
-    <section>
+    <section className={styles.grid}>
       {slicedProjectData.map((project, index) => {
         return (
           <Fragment key={index}>

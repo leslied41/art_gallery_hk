@@ -37,6 +37,12 @@ export const SingleProject = ({ project }) => {
       <div className="col mb-42">
       { slug && (
         <Link href={"/projects/" + slug.current}>
+          <h2 className="h2">{router.locale == "en" ? name_project : name_project_cn}</h2>
+        </Link>
+      )}
+      <div>{router.locale == "en" ? date : date_cn}</div>
+      { slug && (
+        <Link href={"/projects/" + slug.current}>
           <div>
             <Image
               src={urlFor(image.asset).url()}
@@ -51,13 +57,11 @@ export const SingleProject = ({ project }) => {
       )}
       </div>
       <div className="col mb-42">
-        { slug && (
-          <Link href={"/projects/" + slug.current}>
-            <h2 className="h2">{router.locale == "en" ? name_project : name_project_cn}</h2>
-          </Link>
-        )}
         <div className="h3 mt-30">
-          {usePortableText(router.locale == "en" ? introduction : introduction_cn)}
+          {router.locale == "en" ? artists : artists_cn}
+        </div>
+        <div className="h3 mt-30">
+          {router.locale == "en" ? location : location_cn}
         </div>
       </div>
     </article>
