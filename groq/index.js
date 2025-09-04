@@ -6,8 +6,13 @@ export {
   future_exhibitions_data,
   past_exhibitions_data,
 } from "./exhibiton";
+export {
+  projects_page_data,
+  projects_data,
+} from "./project";
 export { about_page_data } from "./about";
 export { exhibition_page_data, exhibition_data } from "./singleExhibition";
+export { project_page_data, project_data } from "./singleProject";
 export { artists_page_data, artists_data } from "./artists";
 export {
   artist_page_data,

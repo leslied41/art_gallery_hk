@@ -1,32 +1,27 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import sanityClient from "../client.js";
-import DropDownCard from "../components/dropDownCard/DropDownCard.jsx";
 import StaticCard from "../components/staticCard/StaticCard";
-import ExpoImageList from "../components/dropDownCard/ExpoImageList";
+import ProjectList from "../components/project_list/ProjectList";
 import Heads from "../components/head/Heads.jsx";
 import { usePathHistory } from "../components/context/PathHistory";
 import {
-  exhibitions_page_data,
-  current_exhibitions_data,
-  future_exhibitions_data,
-  past_exhibitions_data,
+  projects_page_data,
+  projects_data,
 } from "../groq";
 
-export default function Exhibition({
-  exPageData,
-  currentExpoData,
-  futureExpoData,
-  pastExpoData,
+export default function Project({
+  projectsData,
+  projectsPageData,
 }) {
   const router = useRouter();
   const { popup } = usePathHistory();
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();
-  const { briefSection, exhis_dropdown, seo } = exPageData[0];
+  const { briefSection, seo } = projectsPageData[0];
 
   useEffect(() => {
-    scrollTo.current.scrollIntoView();
+    // scrollTo.current.scrollIntoView();
   }, []);
 
   useEffect(() => {
@@ -35,46 +30,13 @@ export default function Exhibition({
 
   return (
     <>
-      <Heads seo={seo} name={router.locale == "en" ? "Exhibitions" : "展出"} />
+      <Heads seo={seo} name={router.locale == "en" ? "Fair Projects" : "博覽項目"} />
       <div>
         <div className="section mt-145">
           <StaticCard data={briefSection} fowardref={scrollTo} Component="h1" />
         </div>
         <div className="section mt-145">
-          <DropDownCard
-            Component="h2"
-            title={
-              router.locale == "en"
-                ? exhis_dropdown?.first_name
-                : exhis_dropdown?.first_name_cn
-            }
-          >
-            <ExpoImageList data={currentExpoData} />
-          </DropDownCard>
-        </div>
-        <div className="section mt-30">
-          <DropDownCard
-            Component="h2"
-            title={
-              router.locale == "en"
-                ? exhis_dropdown?.second_name
-                : exhis_dropdown?.second_name_cn
-            }
-          >
-            <ExpoImageList data={futureExpoData} />
-          </DropDownCard>
-        </div>
-        <div className="section mt-30 mb-145">
-          <DropDownCard
-            Component="h2"
-            title={
-              router.locale == "en"
-                ? exhis_dropdown?.third_name
-                : exhis_dropdown?.third_name_cn
-            }
-          >
-            <ExpoImageList data={pastExpoData} />
-          </DropDownCard>
+          <ProjectList projectsData={projectsData} />
         </div>
       </div>
     </>
@@ -82,41 +44,20 @@ export default function Exhibition({
 }
 
 export const getStaticProps = async ({ locale }) => {
-  const exPageDataPromise = sanityClient.fetch(exhibitions_page_data);
-  const currentExpoDataPromise = sanityClient.fetch(current_exhibitions_data);
-  const futureExpoDataPromise = sanityClient.fetch(future_exhibitions_data);
-  const pastExpoDataPromise = sanityClient.fetch(past_exhibitions_data);
+  const projectsPageDataPromise = sanityClient.fetch(projects_page_data);
+  const projectsDataPromise = sanityClient.fetch(projects_data);
 
-  const [exPageData, currentExpoData, futureExpoData, pastExpoData] =
-    await Promise.all([
-      exPageDataPromise,
-      currentExpoDataPromise,
-      futureExpoDataPromise,
-      pastExpoDataPromise,
-    ]);
-
-  currentExpoData.sort((a, b) => {
-    const timeA = new Date(a.time_for_reorder).getTime();
-    const timeB = new Date(b.time_for_reorder).getTime();
-    return timeB - timeA;
-  });
-  pastExpoData.sort((a, b) => {
-    const timeA = new Date(a.time_for_reorder).getTime();
-    const timeB = new Date(b.time_for_reorder).getTime();
-    return timeB - timeA;
-  });
-  futureExpoData.sort((a, b) => {
-    const timeA = new Date(a.time_for_reorder).getTime();
-    const timeB = new Date(b.time_for_reorder).getTime();
-    return timeB - timeA;
-  });
+  const [projectsPageData, projectsData] = await Promise.all([
+    projectsPageDataPromise,
+    projectsDataPromise,
+  ]);
 
   return {
     props: {
-      exPageData,
-      currentExpoData,
-      futureExpoData,
-      pastExpoData,
+      projectsPageData,
+      projectsData,
+
+      // Will be passed to the page component as props
     },
     revalidate: 10,
   };

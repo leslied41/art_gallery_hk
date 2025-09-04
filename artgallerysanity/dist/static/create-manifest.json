@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "createdAt": "2025-09-04T01:36:25.188Z",
+  "createdAt": "2025-09-04T03:16:06.526Z",
   "workspaces": [
     {
       "name": "art_gallery_sanity",
@@ -12,7 +12,7 @@
       "mediaLibrary": {
         "enabled": false
       },
-      "schema": "ab6a926e.create-schema.json",
+      "schema": "0232f5dc.create-schema.json",
       "tools": "56d5dc66.create-tools.json"
     }
   ]

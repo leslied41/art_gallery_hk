@@ -17,12 +17,12 @@ export default defineType({
   ],
   fields: [
     {
-      name: "name_exo",
+      name: "name_project",
       title: "Name",
       type: "string",
     },
     {
-      name: "name_exo_cn",
+      name: "name_project_cn",
       title: "Name Chinese",
       type: "string",
       fieldset: "translation",
@@ -32,11 +32,44 @@ export default defineType({
       title: "Slug",
       type: "slug",
       options: {
-        source: "name_exo",
+        source: "name_project",
         maxLength: 96,
       },
     },
-
+    {
+      name: "project_status",
+      title: "Projects Status",
+      type: "string",
+      options: {
+        list: [
+          { title: "current", value: "Current" },
+          { title: "future", value: "Future" },
+          { title: "past", value: "Past" },
+        ],
+      },
+    },
+    {
+      name: "artists",
+      title: "Artists",
+      type: "string",
+    },
+    {
+      name: "artists_cn",
+      title: "Artists Chinese",
+      type: "string",
+      fieldset: "translation",
+    },
+    {
+      name: "location",
+      title: "Location",
+      type: "string",
+    },
+    {
+      name: "location_cn",
+      title: "Location Chinese",
+      type: "string",
+      fieldset: "translation",
+    },
     {
       name: "introduction",
       title: "Introduction",
@@ -176,7 +209,7 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: "title",
+      title: "name_project",
     },
   },
 })
