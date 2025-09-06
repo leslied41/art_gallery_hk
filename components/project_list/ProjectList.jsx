@@ -41,12 +41,9 @@ const ProjectList = ({ projectsData }) => {
           </Fragment>
         );
       })}
-      <div className={styles.grid}>
-        <div className="col mb-42">
-          <LoadMoreCard loaded={loaded} loadMore={loadMore} />
+        <div className={`${styles.full} mb-42`}>
+          <LoadMoreCard loaded={loaded} loadMore={loadMore} full={true} />
         </div>
-        <div className="col mb-42"></div>
-      </div>
     </section>
   );
 };

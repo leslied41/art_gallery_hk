@@ -1,4 +1,4 @@
-import styles from "./ProjectList.jsx";
+import styles from "./ProjectList.module.css";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import Image from "next/image";
@@ -14,8 +14,6 @@ export const SingleProject = ({ project }) => {
     _id,
     name_project,
     name_project_cn,
-    project_status,
-    project_status_cn,
     artists,
     artists_cn,
     location,
@@ -33,34 +31,36 @@ export const SingleProject = ({ project }) => {
   const router = useRouter();
 
   return (
-    <article className={styles.grid} key={_id}>
-      <div className="col mb-42">
-      { slug && (
-        <Link href={"/projects/" + slug.current}>
-          <h2 className="h2">{router.locale == "en" ? name_project : name_project_cn}</h2>
-        </Link>
-      )}
-      <div>{router.locale == "en" ? date : date_cn}</div>
-      { slug && (
-        <Link href={"/projects/" + slug.current}>
-          <div>
-            <Image
-              src={urlFor(image.asset).url()}
-              alt="works"
-              objectFit="cover"
-              layout="responsive"
-              width="654"
-              height="437"
-            />
-          </div>
-        </Link>
-      )}
-      </div>
-      <div className="col mb-42">
-        <div className="h3 mt-30">
+    <article key={_id}>
+      <div className="col mb-188">
+        {slug && (
+          <Link href={"/projects/" + slug.current}>
+            <a>
+              <h2 className="h2 uppercase">{router.locale == "en" ? name_project : name_project_cn}</h2>
+            </a>
+          </Link>
+        )}
+        <h3 className="h3">{router.locale == "en" ? date : date_cn}</h3>
+        {slug && (
+          <Link href={"/projects/" + slug.current}>
+            <a>
+              <div className="mt-16">
+                <Image
+                  src={urlFor(image.asset).url()}
+                  alt="works"
+                  objectFit="cover"
+                  layout="responsive"
+                  width="654"
+                  height="437"
+                />
+              </div>
+            </a>
+          </Link>
+        )}
+        <div className="h3 mt-10">
           {router.locale == "en" ? artists : artists_cn}
         </div>
-        <div className="h3 mt-30">
+        <div className="h3">
           {router.locale == "en" ? location : location_cn}
         </div>
       </div>

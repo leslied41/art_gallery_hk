@@ -133,6 +133,18 @@ export default {
       fieldset: "headerImage",
     },
     {
+      name: "projects",
+      title: "Projects for desktop",
+      type: "image",
+      fieldset: "headerImage",
+    },
+    {
+      name: "projects_mobile",
+      title: "Projects for mobile",
+      type: "image",
+      fieldset: "headerImage",
+    },
+    {
       name: "hero_exhibition_link",
       title: "Exhibition Tab Link",
       description:

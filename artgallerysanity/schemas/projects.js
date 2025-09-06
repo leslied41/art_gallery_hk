@@ -37,18 +37,6 @@ export default defineType({
       },
     },
     {
-      name: "project_status",
-      title: "Projects Status",
-      type: "string",
-      options: {
-        list: [
-          { title: "current", value: "Current" },
-          { title: "future", value: "Future" },
-          { title: "past", value: "Past" },
-        ],
-      },
-    },
-    {
       name: "artists",
       title: "Artists",
       type: "string",

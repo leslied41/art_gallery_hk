@@ -23,6 +23,7 @@ const MobileHeader = () => {
   const news_image_mobile = settings[0]?.news_mobile;
   const about_image_mobile = settings[0]?.about_mobile;
   const landing_image_mobile = settings[0]?.landing_mobile;
+  const projects_image_mobile = settings[0]?.projects_mobile;
   const { link_font_size, cursor_font_size, mobile_link_font_size } =
     settings[0] ?? {};
 
@@ -34,6 +35,9 @@ const MobileHeader = () => {
     }
     if (pathname.indexOf("/exhibitions") == 0) {
       setheaderImage(exhibition_image_mobile);
+    }
+    if (pathname.indexOf("/projects") == 0) {
+      setheaderImage(projects_image_mobile);
     }
     if (pathname == "/") {
       setheaderImage(landing_image_mobile);

@@ -65,6 +65,7 @@ a {
   color: inherit;
   text-decoration: none;
   text-decoration-thickness: 1px;
+  cursor: pointer;
 }
 a:hover {
   color: #9a9a9a;
@@ -120,11 +121,17 @@ ul {
 .mt-5 {
   margin-top: 5px;
 }
+.mt-10 {
+  margin-top: 10px;
+}
 .mb-19 {
   margin-bottom: 19px;
 }
-.mt-22 {
-  margin-top: 22px;
+.mt-20 {
+  margin-top: 20px;
+}
+.mt-16 {
+  margin-top: 16px;
 }
 .mt-28 {
   margin-top: 28px;
@@ -164,6 +171,12 @@ ul {
 }
 .mb-145 {
   margin-bottom: 145px;
+}
+.mb-188 {
+  margin-bottom: 188px;
+}
+.uppercase {
+  text-transform: uppercase;
 }
 hr {
   border: none;
@@ -208,6 +221,9 @@ hr {
   }
   .mt-145 {
     margin-top: 65px;
+  }
+  .mb-188 {
+    margin-bottom: 72px;
   }
   .mb-145 {
     margin-bottom: 65px;

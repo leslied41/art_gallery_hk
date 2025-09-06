@@ -38,6 +38,7 @@ const PcHeader = () => {
   const news_image = settings[0]?.news;
   const about_image = settings[0]?.about;
   const landing_image = settings[0]?.landing;
+  const projects_image = settings[0]?.projects;
   const {
     link_font_size,
     cursor_font_size,
@@ -51,6 +52,9 @@ const PcHeader = () => {
     }
     if (pathname.indexOf("/exhibitions") == 0) {
       setuseXlink("#image5");
+    }
+    if (pathname.indexOf("/projects") == 0) {
+      setuseXlink("#image6");
     }
     if (pathname == "/") {
       setuseXlink("#image0");
@@ -66,6 +70,9 @@ const PcHeader = () => {
         setuseXlink();
       }
       if (pathname.indexOf("/exhibitions") == 0) {
+        setuseXlink();
+      }
+      if (pathname.indexOf("/projects") == 0) {
         setuseXlink();
       }
       if (pathname == "/") {

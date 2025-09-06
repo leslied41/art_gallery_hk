@@ -238,7 +238,6 @@ const ProjectListWorks = ({ data }) => {
 
   return (
     <>
-      {JSON.stringify(data)}
       <div className={model ? styles.open : styles.close}>
         <div className={styles.container}>
           <div
