@@ -69,6 +69,34 @@ export default defineType({
       type: "string",
     },
     {
+      name: "links_to_project",
+      title: "Link to Project",
+      type: "array",
+      of: [
+        {
+          name: "project_link",
+          title: "Project Link",
+          type: "object",
+          fields: [
+            {
+              name: "link_title",
+              title: "Link Title",
+              type: "string",
+            },
+            { name: "link_to",
+              title: "Link To",
+              type: "url"
+            },
+            {
+              name: "pdf",
+              title: "PDF",
+              type: "file",
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "time_for_reorder",
       title: "Time for Reorder",
       type: "datetime",

@@ -5,7 +5,7 @@ import ProjectListWorks from "../../components/dropDownCard/ProjectListWorks.jsx
 import ProjectStaticCard from "../../components/projects_project_staticcard/ProjectStaticCard.jsx";
 import Heads from "../../components/head/Heads.jsx";
 import { usePathHistory } from "../../components/context/PathHistory.jsx";
-import { project_data, projects_page_data } from "../../groq";
+import { project_data, project_page_data } from "../../groq";
 
 export default function Project({ projectData, projectPageData }) {
   const router = useRouter();
@@ -39,7 +39,7 @@ export default function Project({ projectData, projectPageData }) {
 
 export const getServerSideProps = async ({ locale, params }) => {
   const projectData = await sanityClient.fetch(project_data(params.slug));
-  const projectPageData = await sanityClient.fetch(projects_page_data);
+  const projectPageData = await sanityClient.fetch(project_page_data);
   return {
     props: {
       projectData,

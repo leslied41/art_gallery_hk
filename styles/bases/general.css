@@ -118,6 +118,9 @@ ul {
   color: red;
 }
 /* margin */
+.ml-40 {
+  margin-left: 40px;
+}
 .mt-5 {
   margin-top: 5px;
 }
@@ -227,6 +230,9 @@ hr {
   }
   .mb-145 {
     margin-bottom: 65px;
+  }
+  .mt-42 {
+    margin-top: 20px;
   }
   /* font size */
   .h1 {

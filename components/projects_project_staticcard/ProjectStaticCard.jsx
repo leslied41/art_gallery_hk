@@ -5,6 +5,7 @@ import VerticalLayout from "./VerticalLayout.jsx";
 import HorizontalLayout from "./HorizontalLayout.jsx";
 import { usePortableText } from "../usehooks/usePortableText.js";
 import { useRef, useState, useEffect, useLayoutEffect } from "react";
+import { useRouter } from "next/router";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -16,14 +17,18 @@ const ProjectStaticCard = ({ data, fowardref, Component = "span" }) => {
     name_project_cn,
     date,
     date_cn,
+    location,
+    location_cn,
     image,
     layout,
     image_parameter,
     introduction,
     introduction_cn,
     metadata,
+    links_to_project,
   } = data;
 
+  const router = useRouter();
   const [model, setmodel] = useState(false);
   const [targetIndex, setTargetIndex] = useState(null);
   const [iszoomed, setiszoomed] = useState(false);
@@ -285,10 +290,31 @@ const ProjectStaticCard = ({ data, fowardref, Component = "span" }) => {
         <div className="col" ref={fowardref}></div>
         <div className="col">
           <div>
-            <Component className="h1">{name_project}</Component>
+            <Component className="h1 uppercase">{name_project}</Component>
           </div>
-          <div className="mt-22">
-            <span className="h4">{date}</span>
+          <div className="mt-42">
+            <span className="h4">{router.locale == "en" ? date : date_cn}</span> <span className="h4 ml-40">{router.locale == "en" ? location : location_cn}</span>
+          </div>
+          <div className="mt-42">
+            {links_to_project && links_to_project.length > 0 && (
+              links_to_project.map((link, index) => {
+                const href = link.pdf || link.link_to;
+                return (
+                  <a 
+                    key={index}
+                    href={href} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="exhibition_btn"
+                    style={{
+                      display: "inline-block"
+                    }}
+                  >
+                    <span className="h4">{link.link_title}</span>
+                  </a>
+                );
+              })
+            )}
           </div>
         </div>
       </div>

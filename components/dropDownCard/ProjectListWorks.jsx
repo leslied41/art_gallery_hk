@@ -2,6 +2,10 @@ import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "../../client.js";
 import VerticalLayout from "../projects_project_staticcard/VerticalLayout.jsx";
 import HorizontalLayout from "../projects_project_staticcard/HorizontalLayout.jsx";
+import RightHorizontalLayout from "../projects_project_staticcard/RightHorizontalLayout.jsx";
+import VideoLayout from "../projects_project_staticcard/VideoLayout.jsx";
+import WordsLayout from "../projects_project_staticcard/WordsLayout.jsx";
+import HalfWordsLayout from "../projects_project_staticcard/HalfWordsLayout.jsx";
 import ReactPlayer from "react-player";
 import {
   useRef,
@@ -473,7 +477,22 @@ const ProjectListWorks = ({ data }) => {
 
           return (
             <div key={index}>
-              {work_image && layout == "vertical" ? (
+              {video_url ? (
+                <div key={index} className="mt-145">
+                  <VideoLayout
+                    name={name}
+                    name_cn={name_cn}
+                    image={work_image}
+                    work_parameter={work_parameter}
+                    video={video_url}
+                    introduction={introduction}
+                    introduction_cn={introduction_cn}
+                    index={index}
+                    buttons={buttons}
+                    getIndex={getIndex}
+                  />
+                </div>
+              ) : work_image && layout == "vertical" ? (
                 <div key={index} className="mt-145">
                   <VerticalLayout
                     name={name}
@@ -503,9 +522,9 @@ const ProjectListWorks = ({ data }) => {
                     buttons={buttons}
                   />
                 </div>
-              ) : (
+              ) : work_image && layout == "right_horizontal" ? (
                 <div key={index} className="mt-145">
-                  <VerticalLayout
+                  <RightHorizontalLayout
                     name={name}
                     name_cn={name_cn}
                     image={work_image}
@@ -516,6 +535,32 @@ const ProjectListWorks = ({ data }) => {
                     index={index}
                     getIndex={getIndex}
                     buttons={buttons}
+                  />
+                </div>
+              ) : !work_image && layout == "vertical" ? (
+                <div key={index} className="mt-145">
+                  <WordsLayout
+                    name={name}
+                    name_cn={name_cn}
+                    introduction={introduction}
+                    introduction_cn={introduction_cn}
+                    index={index}
+                    getIndex={getIndex}
+                    buttons={buttons}
+                    work_parameter={work_parameter}
+                  />
+                </div>
+              ) : (
+                <div key={index} className="mt-145">
+                  <HalfWordsLayout
+                    name={name}
+                    name_cn={name_cn}
+                    introduction={introduction}
+                    introduction_cn={introduction_cn}
+                    index={index}
+                    getIndex={getIndex}
+                    buttons={buttons}
+                    work_parameter={work_parameter}
                   />
                 </div>
               )}
