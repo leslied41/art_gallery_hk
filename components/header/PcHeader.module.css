@@ -14,7 +14,7 @@
   z-index: 99;
   mix-blend-mode: exclusion;
 }
-.links:hover ~ svg .study {
+.links:hover ~ svg .about {
   fill: var(--black);
 }
 
@@ -39,6 +39,9 @@
   display: none;
 }
 .pubIcon {
+  display: none;
+}
+.projectsIcon {
   display: none;
 }
 .title {
@@ -77,5 +80,9 @@
 }
 
 .news:hover {
+  fill: var(--black);
+}
+
+.projects:hover {
   fill: var(--black);
 }

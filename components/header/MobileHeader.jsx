@@ -49,6 +49,9 @@ const MobileHeader = () => {
     if (pathname == "/news") {
       setheaderImage(news_image_mobile);
     }
+    if (pathname == "/projects") {
+      setheaderImage(projects_image_mobile);
+    }
   }, [pathname, query]);
 
   return (

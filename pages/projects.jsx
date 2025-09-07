@@ -21,7 +21,7 @@ export default function Project({
   const { briefSection, seo } = projectsPageData[0];
 
   useEffect(() => {
-    // scrollTo.current.scrollIntoView();
+    scrollTo.current.scrollIntoView();
   }, []);
 
   useEffect(() => {

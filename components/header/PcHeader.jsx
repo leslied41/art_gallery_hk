@@ -24,7 +24,9 @@ const PcHeader = () => {
   const newsCursor = useRef(null);
   const artistsCursor = useRef(null);
   const studyCursor = useRef(null);
+  const projectsCursor = useRef(null);
   const studyContainer = useRef(null);
+  const projectsContainer = useRef(null);
   const aboutContainer = useRef(null);
   const exhibitionContainer = useRef(null);
   const artistsContainer = useRef(null);
@@ -120,6 +122,12 @@ const PcHeader = () => {
     studyContainer.current.addEventListener("mouseleave", () => {
       studyCursor.current.style.display = "none";
     });
+    projectsContainer.current.addEventListener("mouseover", () => {
+      projectsCursor.current.style.display = "block";
+    });
+    projectsContainer.current.addEventListener("mouseleave", () => {
+      projectsCursor.current.style.display = "none";
+    });
     newsContainer.current.addEventListener("mouseover", () => {
       newsCursor.current.style.display = "block";
     });
@@ -161,6 +169,9 @@ const PcHeader = () => {
     studyCursor.current.style.position = "fixed";
     studyCursor.current.style.left = `${toLeft + 10}px`;
     studyCursor.current.style.top = `${toTop + 10}px`;
+    projectsCursor.current.style.position = "fixed";
+    projectsCursor.current.style.left = `${toLeft + 10}px`;
+    projectsCursor.current.style.top = `${toTop + 10}px`;
   }, [toTop, toLeft]);
 
   return (
@@ -189,6 +200,10 @@ const PcHeader = () => {
 
             <span className={styles.artIcon} ref={studyCursor}>
               Study
+            </span>
+
+            <span className={styles.projectsIcon} ref={projectsCursor}>
+              Fairs & Projects
             </span>
 
             <span className={styles.newsIcon} ref={newsCursor}>
@@ -234,7 +249,7 @@ const PcHeader = () => {
             <path
               fill={pathname == "/news" ? "url(#pattern0)" : "var(--white)"}
               fillRule="evenodd"
-              d="M781.52 1v175.341c0 93.437-33.466 184.843-96.261 263.121-62.836 78.277-96.26 169.684-96.26 263.12V887H250.19V462.499h107.408c114.532 0 207.401-92.85 207.401-207.359V1H781.52z"
+              d="M782 1v175.341c0 93.437-34.244 185.381-97 263.659-62.797 78.277-96 169.564-96 263v184H251V462.499h107.341c114.461 0 207.159-92.49 207.159-206.999L566 1h216Z"
               clipRule="evenodd"
               ref={newsContainer}
               className={styles.news}
@@ -248,7 +263,7 @@ const PcHeader = () => {
                   : "var(--white)"
               }
               fillRule="evenodd"
-              d="M781.521 1h-.042v175.3c0 1.347.007 2.694.021 4.041-.941 92.043-34.341 181.96-96.24 259.121C622.424 517.739 589 609.146 589 702.582V887h385V702.541c0-93.436-33.466-184.843-96.26-263.121-61.93-77.148-95.291-167.05-96.24-259.079.014-1.333.021-2.666.021-4V1z"
+              d="M781.958 176.428c0 1.347.007 2.694.021 4.041-.941 92.043-35.08 182.37-96.979 259.531-62.836 78.277-96 169.564-96 263v184h385V702.5c0-93.436-33.206-184.722-96-263-61.93-77.148-95.072-167.002-96.021-259.031.014-1.333-.021-2.707-.021-4.041Z"
               clipRule="evenodd"
               ref={artistsContainer}
               className={styles.artists}
@@ -258,7 +273,7 @@ const PcHeader = () => {
             <path
               fill={pathname == "/about" ? "url(#pattern0)" : "var(--white)"}
               fillRule="evenodd"
-              d="M1529 290c-200.35 2.552-362 165.839-362 366.901V886.97h362V290z"
+              d="M1290 1v258c0 23.063-6.95 45.408-19.5 64.5L1209 417c-59.87 91.054-91 198.507-91 308.5V887h411V1h-239Z"
               clipRule="evenodd"
               ref={aboutContainer}
               className={styles.about}
@@ -274,12 +289,12 @@ const PcHeader = () => {
           >
             <path
               fill={
-                pathname == "/" || pathname.indexOf("/exhibitions") == 0
+                pathname.indexOf("/exhibitions") == 0
                   ? "url(#pattern0)"
                   : "var(--white)"
               }
               fillRule="evenodd"
-              d="M565 1H1v886h249.191V462.499h107.408C472.131 462.499 565 369.649 565 255.14V1z"
+              d="M974 702.5V887h144V725.5c0-109.993 31.13-217.446 91-308.5l61.5-93.5c12.55-19.092 19.5-41.437 19.5-64.5V1H782l.042 175.341c0 1.334-.007 2.667-.021 4C782.97 272.37 816.07 362.352 878 439.5c62.794 78.278 96 169.564 96 263Z"
               clipRule="evenodd"
               ref={exhibitionContainer}
               className={styles.exhibition}
@@ -288,34 +303,25 @@ const PcHeader = () => {
           <Link href="/study" exact>
             <path
               fillRule="evenodd"
-              d="M781.48 1v175.3c0 93.436 33.424 184.843 96.26 263.12 62.795 78.278 96.261 169.685 96.261 263.121V887H1167V656.931c0-201.062 161.65-364.348 362-366.901V1H781.48z"
+              d="M1 1h250v886H1V1Z"
               clipRule="evenodd"
               ref={studyContainer}
               className={styles.study}
               fill={pathname == "/study" ? "url(#pattern0)" : "var(--white)"}
             ></path>
           </Link>
+          <Link href="/projects" exact>
+            <path
+              fillRule="evenodd"
+              d="M566 1H251v461.5h107.408c114.602 0 207.092-92.615 207.092-207L566 1Z"
+              clipRule="evenodd"
+              ref={projectsContainer}
+              className={styles.projects}
+              fill={pathname == "/projects" ? "url(#pattern0)" : "var(--white)"}
+            ></path>
+          </Link>
 
-          <path
-            d="M781.48 1V.25a.75.75 0 0 0-.75.75h.75Zm96.26 438.42.585-.469-.585.469ZM974.001 887h-.75c0 .414.335.75.75.75V887ZM1167 887v.75c.42 0 .75-.336.75-.75h-.75Zm362-596.97.01.75a.75.75 0 0 0 .74-.75h-.75ZM1529 1h.75c0-.414-.33-.75-.75-.75V1ZM782.23 176.3V1h-1.5v175.3h1.5Zm96.095 262.651C815.587 360.796 782.23 269.552 782.23 176.3h-1.5c0 93.62 33.491 185.19 96.425 263.59l1.17-.939Zm96.426 263.59c0-93.62-33.533-185.19-96.426-263.59l-1.17.939c62.697 78.155 96.096 169.399 96.096 262.651h1.5Zm0 184.459V702.541h-1.5V887h1.5Zm192.249-.75H974.001v1.5H1167v-1.5Zm-.75-229.319V887h1.5V656.931h-1.5Zm362.74-367.651c-200.76 2.558-362.74 166.178-362.74 367.651h1.5c0-200.651 161.32-363.604 361.26-366.151l-.02-1.5ZM1528.25 1v289.03h1.5V1h-1.5Zm-746.77.75H1529V.25H781.48v1.5Z"
-            fill="#000"
-          />
-          <path
-            d="M781.52 1h.75a.75.75 0 0 0-.75-.75V1Zm-96.261 438.462.585.469-.585-.469ZM588.999 887v.75a.75.75 0 0 0 .75-.75h-.75Zm-338.809 0h-.75c0 .414.336.75.75.75V887Zm0-424.501v-.75a.75.75 0 0 0-.75.75h.75ZM564.999 1V.25a.75.75 0 0 0-.75.75h.75ZM780.77 1v175.341h1.5V1h-1.5Zm0 175.341c0 93.253-33.399 184.496-96.096 262.652l1.17.938c62.893-78.4 96.426-169.97 96.426-263.59h-1.5Zm-96.096 262.651c-62.934 78.401-96.425 169.97-96.425 263.59h1.5c0-93.252 33.358-184.496 96.095-262.651l-1.17-.939Zm-96.425 263.59V887h1.5V702.582h-1.5ZM250.19 887.75h338.809v-1.5H250.19v1.5Zm-.75-425.251V887h1.5V462.499h-1.5Zm108.158-.75H250.19v1.5h107.408v-1.5ZM564.249 255.14c0 114.095-92.533 206.609-206.651 206.609v1.5c114.946 0 208.151-93.185 208.151-208.109h-1.5Zm0-230.177V255.14h1.5V24.963h-1.5Zm0-23.963v23.963h1.5V1h-1.5ZM781.52.25H564.999v1.5H781.52V.25Z"
-            fill="#000"
-          />
-          <path
-            d="M781.521 1h.75a.75.75 0 0 0-.75-.75V1Zm-.042 0V.25a.75.75 0 0 0-.75.75h.75ZM685.26 439.462l.585.469-.585-.469ZM589 887h-.75c0 .414.336.75.75.75V887Zm385 0v.75a.75.75 0 0 0 .75-.75H974Zm-96.26-447.58.585-.469-.585.469ZM781.521.25h-.042v1.5h.042V.25Zm-.792.75v175.3h1.5V1h-1.5Zm0 175.3c0 1.35.007 2.699.021 4.048l1.5-.015a387.138 387.138 0 0 1-.021-4.033h-1.5Zm-94.884 263.631c61.996-77.281 95.463-167.358 96.405-259.583l-1.5-.015c-.939 91.862-34.273 181.62-96.075 258.66l1.17.938ZM589.75 702.582c0-93.252 33.358-184.496 96.095-262.651l-1.17-.939c-62.934 78.401-96.425 169.97-96.425 263.59h1.5Zm0 184.418V702.582h-1.5V887h1.5Zm-.75.75h385v-1.5H589v1.5Zm384.25-185.209V887h1.5V702.541h-1.5ZM877.155 439.89c62.696 78.155 96.095 169.399 96.095 262.651h1.5c0-93.62-33.532-185.19-96.425-263.59l-1.17.939ZM780.75 180.348c.951 92.21 34.378 182.272 96.405 259.542l1.17-.939c-61.833-77.028-95.127-166.77-96.075-258.618l-1.5.015Zm1.5 0c.014-1.335.021-2.67.021-4.007h-1.5c0 1.331-.007 2.662-.021 3.992l1.5.015Zm.021-4.007V1h-1.5v175.341h1.5Z"
-            fill="#000"
-          />
-          <path
-            d="M1529 290h.75a.759.759 0 0 0-.22-.534.773.773 0 0 0-.54-.216l.01.75Zm-362 596.97h-.75c0 .414.34.75.75.75v-.75Zm362 0v.75c.41 0 .75-.336.75-.75h-.75Zm-361.25-230.069c0-200.651 161.32-363.604 361.26-366.151l-.02-1.5c-200.76 2.558-362.74 166.178-362.74 367.651h1.5Zm0 230.069V656.901h-1.5V886.97h1.5Zm-.75.75h362v-1.5h-362v1.5Zm362.75-.75V290h-1.5v596.97h1.5Z"
-            fill="#000"
-          />
-          <path
-            d="M565 1h.5a.5.5 0 0 0-.5-.5V1ZM1 1V.5a.5.5 0 0 0-.5.5H1Zm0 886H.5a.5.5 0 0 0 .5.5v-.5Zm249.191 0v.5a.5.5 0 0 0 .5-.5h-.5Zm0-424.501v-.5a.5.5 0 0 0-.5.5h.5ZM565 .5H1v1h564v-1ZM.5 1v886h1V1h-1ZM1 887.5h249.191v-1H1v1Zm249.691-.5V462.499h-1V887h1Zm-.5-424.001h107.408v-1H250.191v1Zm107.408 0c114.808 0 207.901-93.074 207.901-207.859h-1c0 114.233-92.645 206.859-206.901 206.859v1ZM565.5 255.14V24.963h-1V255.14h1Zm0-230.177V1h-1v23.963h1Z"
-            fill="#000"
-          />
+          <path fill="#000" d="M1530 0v888H0V0h1530ZM2 886h248V2H2v884Zm564.5-630.498a212.526 212.526 0 0 1-.771 18.054C556.599 380.028 467.467 463.5 358.408 463.5H252V886h336V703c0-5.855.129-11.702.389-17.537 3.883-87.53 36.798-172.55 95.831-246.089 61.737-77.008 95.802-167.241 96.758-259.061l-.015-1.859c-.004-.675-.005-1.35-.005-2.025L781 2H566.998l-.498 253.502Zm215.47-50.848c-6.085 83.137-39.02 164.021-94.741 234.158l-.45.562c-.332.418-.665.835-.999 1.252-59.6 74.292-92.469 160.304-95.542 248.716A384.908 384.908 0 0 0 590 703v183h383V702.5c0-92.464-32.602-182.838-94.316-260.541l-1.464-1.833a480.992 480.992 0 0 1-4.23-5.347l-.519-.669c-.262-.337-.524-.673-.784-1.01l-.407-.528c-.354-.46-.709-.92-1.061-1.382l-.338-.443c-52.109-68.316-82.175-146.015-87.911-226.093Zm1.072-28.313-.005 2.006c-.003.668-.009 1.336-.016 2.005.929 89.631 32.434 177.334 91.461 253.088 1.417 1.819 2.85 3.63 4.298 5.434C941.706 517.316 975 608.82 975 702.5V886h142V725.5c0-110.181 31.19-217.826 91.16-309.05l61.5-93.5c12.45-18.934 19.34-41.088 19.34-63.95V2H783l.042 174.341ZM1291 2v257c0 23.265-7.01 45.8-19.66 65.05l-61.5 93.5C1150.08 508.435 1119 615.695 1119 725.5V886h409V2h-237ZM252 461.499h106.341c108.068 0 196.639-82.844 205.44-188.648a206.813 206.813 0 0 0 .65-11.972c.045-1.787.069-3.581.069-5.379v-.002L564.998 2H252v459.499Z"/>
 
           <defs>
             <pattern
@@ -352,6 +358,16 @@ const PcHeader = () => {
               preserveAspectRatio="xMidYMid slice"
               xlinkHref={
                 exhibition_image ? urlFor(exhibition_image.asset).url() : ""
+              }
+            ></image>
+            
+            <image
+              id="image6"
+              width="1"
+              height="1"
+              preserveAspectRatio="xMidYMid slice"
+              xlinkHref={
+                projects_image ? urlFor(projects_image.asset).url() : ""
               }
             ></image>
 
