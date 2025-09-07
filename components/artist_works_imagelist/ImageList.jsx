@@ -298,6 +298,7 @@ const ImageList = ({
                                 maxWidth: "100%",
                                 objectFit: "contain",
                                 cursor: "zoom-in",
+                                borderRadius: "0px",
                               }
                             : { display: "none" }
                         }

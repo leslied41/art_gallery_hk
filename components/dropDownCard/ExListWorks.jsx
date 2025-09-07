@@ -319,6 +319,7 @@ const ExListWorks = ({ data }) => {
                           style={
                             index == targetIndex
                               ? {
+                                  borderRadius: "0px",
                                   display: "block",
                                   maxWidth: "100%",
                                   objectFit: "contain",

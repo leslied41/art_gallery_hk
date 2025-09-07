@@ -163,6 +163,7 @@ const ProjectStaticCard = ({ data, fowardref, Component = "span" }) => {
                     maxWidth: "100%",
                     objectFit: "contain",
                     cursor: "zoom-in",
+                    borderRadius: "0px",
                   }}
                   onClick={(e) => {
                     e.preventDefault();
