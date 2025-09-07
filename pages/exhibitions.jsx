@@ -26,7 +26,9 @@ export default function Exhibition({
   const { briefSection, exhis_dropdown, seo } = exPageData[0];
 
   useEffect(() => {
-    scrollTo.current.scrollIntoView();
+    setTimeout(() => {
+      scrollTo.current.scrollIntoView();
+    }, 900);
   }, []);
 
   useEffect(() => {

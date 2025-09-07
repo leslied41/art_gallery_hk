@@ -55,7 +55,7 @@ const PcHeader = () => {
     if (pathname.indexOf("/exhibitions") == 0) {
       setuseXlink("#image5");
     }
-    if (pathname.indexOf("/projects") == 0) {
+    if (pathname.indexOf("/fairs-and-projects") == 0) {
       setuseXlink("#image6");
     }
     if (pathname == "/") {
@@ -74,7 +74,7 @@ const PcHeader = () => {
       if (pathname.indexOf("/exhibitions") == 0) {
         setuseXlink();
       }
-      if (pathname.indexOf("/projects") == 0) {
+      if (pathname.indexOf("/fairs-and-projects") == 0) {
         setuseXlink();
       }
       if (pathname == "/") {
@@ -252,7 +252,7 @@ const PcHeader = () => {
               d="M782 1v175.341c0 93.437-34.244 185.381-97 263.659-62.797 78.277-96 169.564-96 263v184H251V462.499h107.341c114.461 0 207.159-92.49 207.159-206.999L566 1h216Z"
               clipRule="evenodd"
               ref={newsContainer}
-              className={styles.news}
+              className={`${styles.news} ${pathname == "/news" ? styles.active : ""}`}
             ></path>
           </Link>
           <Link href="/artists" exact>
@@ -266,7 +266,7 @@ const PcHeader = () => {
               d="M781.958 176.428c0 1.347.007 2.694.021 4.041-.941 92.043-35.08 182.37-96.979 259.531-62.836 78.277-96 169.564-96 263v184h385V702.5c0-93.436-33.206-184.722-96-263-61.93-77.148-95.072-167.002-96.021-259.031.014-1.333-.021-2.707-.021-4.041Z"
               clipRule="evenodd"
               ref={artistsContainer}
-              className={styles.artists}
+              className={`${styles.artists} ${pathname.indexOf("/artists") == 0 ? styles.active : ""}`}
             ></path>
           </Link>
           <Link href="/about" exact>
@@ -276,7 +276,7 @@ const PcHeader = () => {
               d="M1290 1v258c0 23.063-6.95 45.408-19.5 64.5L1209 417c-59.87 91.054-91 198.507-91 308.5V887h411V1h-239Z"
               clipRule="evenodd"
               ref={aboutContainer}
-              className={styles.about}
+              className={`${styles.about} ${pathname == "/about" ? styles.active : ""}`}
             ></path>
           </Link>
           <Link
@@ -297,7 +297,7 @@ const PcHeader = () => {
               d="M974 702.5V887h144V725.5c0-109.993 31.13-217.446 91-308.5l61.5-93.5c12.55-19.092 19.5-41.437 19.5-64.5V1H782l.042 175.341c0 1.334-.007 2.667-.021 4C782.97 272.37 816.07 362.352 878 439.5c62.794 78.278 96 169.564 96 263Z"
               clipRule="evenodd"
               ref={exhibitionContainer}
-              className={styles.exhibition}
+              className={`${styles.exhibition} ${pathname.indexOf("/exhibitions") == 0 ? styles.active : ""}`}
             ></path>
           </Link>
           <Link href="/study" exact>
@@ -306,18 +306,18 @@ const PcHeader = () => {
               d="M1 1h250v886H1V1Z"
               clipRule="evenodd"
               ref={studyContainer}
-              className={styles.study}
+              className={`${styles.study} ${pathname == "/study" ? styles.active : ""}`}
               fill={pathname == "/study" ? "url(#pattern0)" : "var(--white)"}
             ></path>
           </Link>
-          <Link href="/projects" exact>
+          <Link href="/fairs-and-projects" exact>
             <path
               fillRule="evenodd"
               d="M566 1H251v461.5h107.408c114.602 0 207.092-92.615 207.092-207L566 1Z"
               clipRule="evenodd"
               ref={projectsContainer}
-              className={styles.projects}
-              fill={pathname == "/projects" ? "url(#pattern0)" : "var(--white)"}
+              className={`${styles.projects} ${pathname == "/fairs-and-projects" ? styles.active : ""}`}
+              fill={pathname == "/fairs-and-projects" ? "url(#pattern0)" : "var(--white)"}
             ></path>
           </Link>
 

@@ -18,7 +18,9 @@ export default function News({ newsPageData, newsData }) {
   const sorted_newsData = useSort(newsData, news_list_reorder);
 
   useEffect(() => {
-    scrollTo.current.scrollIntoView();
+    setTimeout(() => {
+      scrollTo.current.scrollIntoView();
+    }, 900);
   }, []);
 
   useEffect(() => {

@@ -19,7 +19,7 @@ const Links = ({ font_size, ariaLabel }) => {
           </Link>
         </li>
         <li>
-          <Link href="/projects" exact>
+          <Link href="/fairs-and-projects" exact>
             <span>{router.locale == "en" ? "Fairs & Projects" : "博覽項目"}</span>
           </Link>
         </li>

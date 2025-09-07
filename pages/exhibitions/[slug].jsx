@@ -16,7 +16,9 @@ export default function Expo({ expoData, exhiPageData }) {
   const { name_exo, name_exo_cn } = expoData[0] || {};
 
   useEffect(() => {
-    scrollTo.current.scrollIntoView();
+    setTimeout(() => {
+      scrollTo.current.scrollIntoView();
+    }, 900);
   }, []);
 
   useEffect(() => {

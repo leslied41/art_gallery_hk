@@ -16,7 +16,9 @@ export default function Artists({ data, artistsData }) {
   const [popup_path, setpopup_path] = popup;
 
   useEffect(() => {
-    scrollTo.current.scrollIntoView();
+    setTimeout(() => {
+      scrollTo.current.scrollIntoView();
+    }, 900);
   }, []);
 
   useEffect(() => {

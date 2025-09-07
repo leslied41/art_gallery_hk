@@ -16,7 +16,9 @@ export default function Project({ projectData, projectPageData }) {
   const { name_project, name_project_cn } = projectData[0] || {};
 
   useEffect(() => {
-    scrollTo.current.scrollIntoView();
+    setTimeout(() => {
+      scrollTo.current.scrollIntoView();
+    }, 900);
   }, []);
 
   useEffect(() => {
@@ -47,3 +49,5 @@ export const getServerSideProps = async ({ locale, params }) => {
     },
   };
 }
+
+
