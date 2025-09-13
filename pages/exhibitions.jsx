@@ -23,7 +23,7 @@ export default function Exhibition({
   const { popup } = usePathHistory();
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();
-  const { briefSection, exhis_dropdown, seo } = exPageData[0];
+  const { briefSection, exhis_dropdown, seo } = exPageData[0] || {};
 
   useEffect(() => {
     setTimeout(() => {
@@ -39,9 +39,11 @@ export default function Exhibition({
     <>
       <Heads seo={seo} name={router.locale == "en" ? "Exhibitions" : "展出"} />
       <div>
-        <div className="section mt-145">
-          <StaticCard data={briefSection} fowardref={scrollTo} Component="h1" />
-        </div>
+        {briefSection && (
+          <div className="section mt-145">
+            <StaticCard data={briefSection} fowardref={scrollTo} Component="h1" />
+          </div>
+        )}
         <div className="section mt-145">
           <DropDownCard
             Component="h2"

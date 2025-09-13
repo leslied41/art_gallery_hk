@@ -18,7 +18,7 @@ export default function Project({
   const { popup } = usePathHistory();
   const [popup_path, setpopup_path] = popup;
   const scrollTo = useRef();
-  const { briefSection, seo } = projectsPageData[0];
+  const { briefSection, seo } = projectsPageData[0] || {};
 
   useEffect(() => {
     setTimeout(() => {
@@ -34,9 +34,11 @@ export default function Project({
     <>
       <Heads seo={seo} name={router.locale == "en" ? "Fair Projects" : "博覽項目"} />
       <div>
-        <div className="section mt-145">
-          <StaticCard data={briefSection} fowardref={scrollTo} Component="h1" />
-        </div>
+        {briefSection && (
+          <div className="section mt-145">
+            <StaticCard data={briefSection} fowardref={scrollTo} Component="h1" />
+          </div>
+        )}
         <div className="section mt-145">
           <ProjectList projectsData={projectsData} />
         </div>

@@ -12,7 +12,7 @@ export default function Artists({ data, artistsData }) {
   const scrollTo = useRef();
   const router = useRouter();
   const { popup } = usePathHistory();
-  const { briefSection, seo, artists_list_reorder } = data[0];
+  const { briefSection, seo, artists_list_reorder } = data[0] || {};
   const [popup_path, setpopup_path] = popup;
 
   useEffect(() => {
@@ -28,15 +28,17 @@ export default function Artists({ data, artistsData }) {
     <>
       <Heads seo={seo} name={router.locale == "en" ? "Artists" : "藝術家"} />
       <div>
-        <div className="section">
-          <div className={styles.gap}>
-            <StaticCard
-              data={briefSection}
-              fowardref={scrollTo}
-              Component="h1"
-            />
+        {briefSection && (
+          <div className="section">
+            <div className={styles.gap}>
+              <StaticCard
+                data={briefSection}
+                fowardref={scrollTo}
+                Component="h1"
+              />
+            </div>
           </div>
-        </div>
+        )}
         <div className="section ">
           <div className={styles.gap}>
             <ArtistList
