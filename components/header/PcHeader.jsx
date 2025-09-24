@@ -317,7 +317,7 @@ const PcHeader = () => {
               clipRule="evenodd"
               ref={projectsContainer}
               className={`${styles.projects} ${pathname == "/fairs-and-projects" ? styles.active : ""}`}
-              fill={pathname == "/fairs-and-projects" ? "url(#pattern0)" : "var(--white)"}
+              fill={pathname.indexOf("/fairs-and-projects") == 0 ? "url(#pattern0)" : "var(--white)"}
             ></path>
           </Link>
 
