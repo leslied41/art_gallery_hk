@@ -21,7 +21,9 @@ export default function Project({
   const { briefSection, seo } = projectsPageData[0] || {};
 
   useEffect(() => {
-    // scrollTo.current.scrollIntoView();
+    setTimeout(() => {
+      scrollTo.current.scrollIntoView();
+    }, 900);
   }, []);
 
   useEffect(() => {
@@ -64,3 +66,5 @@ export const getStaticProps = async ({ locale }) => {
     revalidate: 10,
   };
 };
+
+

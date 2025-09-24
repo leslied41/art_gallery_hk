@@ -34,7 +34,7 @@ export const SingleProject = ({ project }) => {
     <article key={_id}>
       <div className="col mb-188">
         {slug && (
-          <Link href={"/projects/" + slug.current}>
+          <Link href={"/fairs-and-projects/" + slug.current}>
             <a>
               <h2 className="h2 uppercase">{router.locale == "en" ? name_project : name_project_cn}</h2>
             </a>
@@ -42,7 +42,7 @@ export const SingleProject = ({ project }) => {
         )}
         <h3 className="h3">{router.locale == "en" ? date : date_cn}</h3>
         {slug && (
-          <Link href={"/projects/" + slug.current}>
+          <Link href={"/fairs-and-projects/" + slug.current}>
             <a>
               <div className="mt-16">
                 <Image

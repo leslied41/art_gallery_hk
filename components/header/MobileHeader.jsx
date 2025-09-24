@@ -36,7 +36,7 @@ const MobileHeader = () => {
     if (pathname.indexOf("/exhibitions") == 0) {
       setheaderImage(exhibition_image_mobile);
     }
-    if (pathname.indexOf("/projects") == 0) {
+    if (pathname.indexOf("/fairs-and-projects") == 0) {
       setheaderImage(projects_image_mobile);
     }
     if (pathname == "/") {
@@ -48,6 +48,9 @@ const MobileHeader = () => {
     }
     if (pathname == "/news") {
       setheaderImage(news_image_mobile);
+    }
+    if (pathname == "/fairs-and-projects") {
+      setheaderImage(projects_image_mobile);
     }
   }, [pathname, query]);
 

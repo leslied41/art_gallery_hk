@@ -14,8 +14,8 @@
   z-index: 99;
   mix-blend-mode: exclusion;
 }
-.links:hover ~ svg .study {
-  fill: var(--black);
+.links:hover ~ svg .about {
+  fill: var(--gray);
 }
 
 /* .links:hover {
@@ -41,6 +41,9 @@
 .pubIcon {
   display: none;
 }
+.projectsIcon {
+  display: none;
+}
 .title {
   position: absolute;
   top: 20px;
@@ -54,28 +57,37 @@
   color: var(--white);
 } */
 
-.title:hover + svg .exhibition {
-  fill: var(--black);
+.title:hover + svg .study {
+  fill: var(--gray);
 }
 
 .about:hover {
-  fill: var(--black);
+  fill: var(--gray);
 }
 
 .publication:hover {
-  fill: var(--black);
+  fill: var(--gray);
 }
 .artists:hover {
-  fill: var(--black);
+  fill: var(--gray);
 }
 
 .study:hover {
-  fill: var(--black);
+  fill: var(--gray);
 }
 .exhibition:hover {
-  fill: var(--black);
+  fill: var(--gray);
 }
 
 .news:hover {
-  fill: var(--black);
+  fill: var(--gray);
+}
+
+.projects:hover {
+  fill: var(--gray);
+}
+
+/* Active page hover colors - use black instead of gray */
+.active:hover {
+  fill: var(--black) !important;
 }

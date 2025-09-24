@@ -6,6 +6,12 @@
   margin: 0;
   scroll-behavior: smooth;
 }
+
+/* Add border radius to all images except lightbox */
+img {
+  border-radius: 8px;
+}
+
 /* custom svg icon font */
 @font-face {
   font-family: "icomoon";
