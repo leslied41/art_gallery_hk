@@ -36,15 +36,7 @@ export const SingleProject = ({ project }) => {
         {slug && (
           <Link href={"/fairs-and-projects/" + slug.current}>
             <a>
-              <h2 className="h2 uppercase">{router.locale == "en" ? name_project : name_project_cn}</h2>
-            </a>
-          </Link>
-        )}
-        <h3 className="h3">{router.locale == "en" ? date : date_cn}</h3>
-        {slug && (
-          <Link href={"/fairs-and-projects/" + slug.current}>
-            <a>
-              <div className="mt-16">
+              <div className="mb-16">
                 <Image
                   src={urlFor(image.asset).url()}
                   alt="works"
@@ -57,6 +49,14 @@ export const SingleProject = ({ project }) => {
             </a>
           </Link>
         )}
+        {slug && (
+          <Link href={"/fairs-and-projects/" + slug.current}>
+            <a>
+              <h2 className="h2 uppercase">{router.locale == "en" ? name_project : name_project_cn}</h2>
+            </a>
+          </Link>
+        )}
+        <h3 className="h3">{router.locale == "en" ? date : date_cn}</h3>
         <div className="h3 mt-10">
           {router.locale == "en" ? artists : artists_cn}
         </div>
