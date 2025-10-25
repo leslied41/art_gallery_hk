@@ -44,7 +44,7 @@ export default function About({ data }) {
   useEffect(() => {
     setTimeout(() => {
       scrollTo.current.scrollIntoView();
-    }, 900);
+    }, 200);
   }, []);
 
   useEffect(() => {

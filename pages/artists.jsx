@@ -18,7 +18,7 @@ export default function Artists({ data, artistsData }) {
   useEffect(() => {
     setTimeout(() => {
       scrollTo.current.scrollIntoView();
-    }, 900);
+    }, 200);
   }, []);
 
   useEffect(() => {

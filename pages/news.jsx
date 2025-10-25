@@ -20,7 +20,7 @@ export default function News({ newsPageData, newsData }) {
   useEffect(() => {
     setTimeout(() => {
       scrollTo.current.scrollIntoView();
-    }, 900);
+    }, 200);
   }, []);
 
   useEffect(() => {

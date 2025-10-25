@@ -62,29 +62,29 @@
 }
 
 .about:hover {
-  fill: var(--gray);
+  fill: var(--black);
 }
 
 .publication:hover {
-  fill: var(--gray);
+  fill: var(--black);
 }
 .artists:hover {
-  fill: var(--gray);
+  fill: var(--black);
 }
 
 .study:hover {
-  fill: var(--gray);
+  fill: var(--black);
 }
 .exhibition:hover {
-  fill: var(--gray);
+  fill: var(--black);
 }
 
 .news:hover {
-  fill: var(--gray);
+  fill: var(--black);
 }
 
 .projects:hover {
-  fill: var(--gray);
+  fill: var(--black);
 }
 
 /* Active page hover colors - use black instead of gray */

@@ -242,7 +242,7 @@ const PcHeader = () => {
           xmlnsXlink="http://www.w3.org/1999/xlink"
           preserveAspectRatio="none"
           fill="none"
-          style={{ width: "100vw" }}
+          style={{ width: "100%" }}
           viewBox="0 0 1530 888"
         >
           <Link href="/news" exact>

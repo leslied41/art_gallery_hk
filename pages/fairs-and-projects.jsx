@@ -23,7 +23,7 @@ export default function Project({
   useEffect(() => {
     setTimeout(() => {
       scrollTo.current.scrollIntoView();
-    }, 900);
+    }, 200);
   }, []);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function Project({
 
   return (
     <>
-      <Heads seo={seo} name={router.locale == "en" ? "Fair Projects" : "博覽項目"} />
+      <Heads seo={seo} name={router.locale == "en" ? "Fair & Projects" : "博覽項目"} />
       <div>
         {briefSection && (
           <div className="section mt-145">
