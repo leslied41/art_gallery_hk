@@ -21,7 +21,7 @@ const S_mobile_header = ({ vimeo_link, shop_link }) => {
             style={{ width: "100%", height: "auto" }}
           >
             <g clipPath="url(#clip0_364_34)">
-              <rect x="4" width="749" height="2657" fill="url(#pattern0)" />
+              <rect x="4" width="749" height="2657" fill="url(#pattern1)" />
 
               <path
                 d="M762.15 0H0V2659.59H762.15V0ZM13 391.08H374.58V756.16H13V391.08ZM13 1525.34H374.58V1890.42H13V1525.34ZM749.15 2646.59H13V2281.5H749.15V2646.59ZM13 2268.5V1903.42H749.16V2268.5H13ZM387.58 1890.42V1525.34H749.16V1890.42H387.58ZM749.15 1512.34H13V1147.26H749.15V1512.34ZM13 1134.25V769.17H749.16V1134.25H13ZM387.58 756.17V391.08H749.16V756.17H387.58ZM13 378.08V13H749.15V378.08H13Z"
@@ -92,7 +92,7 @@ const S_mobile_header = ({ vimeo_link, shop_link }) => {
             </g>
             <defs>
               <pattern
-                id="pattern0"
+                id="pattern1"
                 width="1"
                 height="1"
                 patternContentUnits="objectBoundingBox"
