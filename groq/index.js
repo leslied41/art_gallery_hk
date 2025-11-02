@@ -26,4 +26,4 @@ export {
   recommended_page_data,
   recommended_settings_data,
 } from "./recommended";
-export { study_about_page_data, study_about_settings_data } from "./studyAbout";
+export { study_about_page_data, study_about_settings_data, study_page_data, study_settings_data } from "./studyAbout";
