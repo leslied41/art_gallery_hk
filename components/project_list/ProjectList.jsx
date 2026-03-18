@@ -62,18 +62,35 @@ function getStartDateTimestamp(project) {
   return 0;
 }
 
+function getReorderTimestamp(project) {
+  const value = project?.time_for_reorder;
+  if (!value) return 0;
+  // Sanity datetime is usually an ISO string. Be defensive.
+  const t = new Date(value).getTime();
+  return Number.isFinite(t) ? t : 0;
+}
+
 const ProjectList = ({ projectsData }) => {
   const [loaded, setloaded] = useState(true);
   const [slicedProjectData, setslicedProjectData] = useState([]);
   const router = useRouter();
 
-  // Memoize sorted projectsData chronologically (most recent first)
+  // Memoize sorted projectsData by time_for_reorder (latest first)
   const sortedProjectsData = useMemo(() => {
     if (!projectsData) return [];
-    // Sort descending (most recent first)
-    return [...projectsData].sort(
-      (a, b) => getStartDateTimestamp(b) - getStartDateTimestamp(a)
-    );
+    return [...projectsData].sort((a, b) => {
+      const reorderDiff = getReorderTimestamp(b) - getReorderTimestamp(a);
+      if (reorderDiff !== 0) return reorderDiff;
+      // Fallback to parsed start date (most recent first) if reorder time is missing/identical
+      const dateDiff = getStartDateTimestamp(b) - getStartDateTimestamp(a);
+      if (dateDiff !== 0) return dateDiff;
+      // Final fallback to created time for stable ordering
+      const createdDiff =
+        new Date(b?._createdAt || 0).getTime() -
+        new Date(a?._createdAt || 0).getTime();
+      if (createdDiff !== 0) return createdDiff;
+      return String(a?._id || "").localeCompare(String(b?._id || ""));
+    });
   }, [projectsData]);
 
   useEffect(() => {
