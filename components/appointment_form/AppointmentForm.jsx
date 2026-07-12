@@ -22,6 +22,7 @@ const AppointmentForm = ({ formdata }) => {
     remarks_cn,
     response,
     response_cn,
+    booking_hours,
   } = formdata;
   const router = useRouter();
   const [showRes, setShowRes] = useState(false);
@@ -98,6 +99,7 @@ const AppointmentForm = ({ formdata }) => {
                 selected={value}
                 date={date}
                 date_cn={date_cn}
+                bookingHours={booking_hours}
               />
             )}
             rules={{ required: true }}

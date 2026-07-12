@@ -7,28 +7,54 @@ import setMonth from "date-fns/setMonth";
 import setDate from "date-fns/setDate";
 import { useRouter } from "next/router";
 
-const CustomDatePicker = ({ date, date_cn, onChange, selected }) => {
+const DEFAULT_HOURS = {
+  open_days: [3, 4, 5, 6], // Wed - Sat
+  first_hour: 13,
+  last_hour: 18,
+  special_periods: [],
+};
+
+const CustomDatePicker = ({
+  date,
+  date_cn,
+  onChange,
+  selected,
+  bookingHours,
+}) => {
   const router = useRouter();
-  const filterDay = (date) => {
-    const month = date.getMonth();
-    const dateNum = date.getDate();
-    const day = date.getDay();
-    return ((day !== 0 && day !== 1 && day !== 2) || (month === 2 && dateNum >= 22 && dateNum <= 29));
+  const config = {
+    ...DEFAULT_HOURS,
+    ...Object.fromEntries(
+      Object.entries(bookingHours ?? {}).filter(([, v]) => v != null)
+    ),
   };
+
+  const findSpecialPeriod = (date) =>
+    config.special_periods.find((period) => {
+      if (!period?.start || !period?.end) return false;
+      const start = new Date(period.start);
+      start.setHours(0, 0, 0, 0);
+      const end = new Date(period.end);
+      end.setHours(23, 59, 59, 999);
+      return date >= start && date <= end;
+    });
+
+  const filterDay = (date) => {
+    const period = findSpecialPeriod(date);
+    const openDays = period?.open_days?.length
+      ? period.open_days
+      : config.open_days;
+    return openDays.includes(date.getDay());
+  };
+
   const filterTime = (date) => {
-    const month = date.getMonth();
-    const dateNum = date.getDate();
+    const period = findSpecialPeriod(date);
+    const firstHour = period?.first_hour ?? config.first_hour;
+    const lastHour = period?.last_hour ?? config.last_hour;
     const hour = date.getHours();
-    if (month === 2 && dateNum >= 22 && dateNum <= 29) {
-      return (hour >= 13 && hour <= 21)
-    } else if (month === 6 || month === 7) {
-      return (hour >= 16 && hour <= 21)
-    } else {
-      return (hour >= 13 && hour <= 18)
-    }
-  }
-      
-    
+    return hour >= firstHour && hour <= lastHour;
+  };
+
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
     <input
       aria-label="date and time"

@@ -192,6 +192,133 @@ export default {
           fieldset: "form",
         },
         {
+          name: "booking_hours",
+          title: "Booking Hours",
+          description:
+            "Controls which days and hours can be selected in the appointment form's date picker.",
+          type: "object",
+          fieldset: "form",
+          options: {
+            collapsible: true,
+            collapsed: true,
+          },
+          fields: [
+            {
+              name: "open_days",
+              title: "Open Days",
+              description: "Days of the week when booking is available.",
+              type: "array",
+              of: [{ type: "number" }],
+              options: {
+                list: [
+                  { title: "Sunday", value: 0 },
+                  { title: "Monday", value: 1 },
+                  { title: "Tuesday", value: 2 },
+                  { title: "Wednesday", value: 3 },
+                  { title: "Thursday", value: 4 },
+                  { title: "Friday", value: 5 },
+                  { title: "Saturday", value: 6 },
+                ],
+                layout: "grid",
+              },
+            },
+            {
+              name: "first_hour",
+              title: "First Bookable Hour",
+              description: "24-hour format, e.g. 13 means 1:00 PM.",
+              type: "number",
+              validation: (Rule) => Rule.min(0).max(23),
+            },
+            {
+              name: "last_hour",
+              title: "Last Bookable Hour",
+              description:
+                "24-hour format, e.g. 18 means 6:00 PM is the last selectable time.",
+              type: "number",
+              validation: (Rule) => Rule.min(0).max(23),
+            },
+            {
+              name: "special_periods",
+              title: "Special Periods",
+              description:
+                "Override the regular days/hours during a date range, e.g. art week or summer hours. Add a new one each year as needed.",
+              type: "array",
+              of: [
+                {
+                  name: "special_period",
+                  title: "Special Period",
+                  type: "object",
+                  fields: [
+                    {
+                      name: "title",
+                      title: "Title",
+                      type: "string",
+                      description: "For your own reference, e.g. Summer Hours 2026.",
+                    },
+                    {
+                      name: "start",
+                      title: "Start Date",
+                      type: "date",
+                      validation: (Rule) => Rule.required(),
+                    },
+                    {
+                      name: "end",
+                      title: "End Date",
+                      type: "date",
+                      validation: (Rule) => Rule.required(),
+                    },
+                    {
+                      name: "open_days",
+                      title: "Open Days",
+                      description:
+                        "Leave empty to keep the regular open days. Tick all seven days to open every day.",
+                      type: "array",
+                      of: [{ type: "number" }],
+                      options: {
+                        list: [
+                          { title: "Sunday", value: 0 },
+                          { title: "Monday", value: 1 },
+                          { title: "Tuesday", value: 2 },
+                          { title: "Wednesday", value: 3 },
+                          { title: "Thursday", value: 4 },
+                          { title: "Friday", value: 5 },
+                          { title: "Saturday", value: 6 },
+                        ],
+                        layout: "grid",
+                      },
+                    },
+                    {
+                      name: "first_hour",
+                      title: "First Bookable Hour",
+                      description:
+                        "24-hour format. Leave empty to keep the regular hour.",
+                      type: "number",
+                      validation: (Rule) => Rule.min(0).max(23),
+                    },
+                    {
+                      name: "last_hour",
+                      title: "Last Bookable Hour",
+                      description:
+                        "24-hour format. Leave empty to keep the regular hour.",
+                      type: "number",
+                      validation: (Rule) => Rule.min(0).max(23),
+                    },
+                  ],
+                  preview: {
+                    select: { title: "title", start: "start", end: "end" },
+                    prepare({ title, start, end }) {
+                      return {
+                        title: title || "Special Period",
+                        subtitle: `${start || "?"} → ${end || "?"}`,
+                      };
+                    },
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
           name: "response",
           title: "Response",
           type: "blockContent",
