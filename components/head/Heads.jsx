@@ -11,7 +11,9 @@ function urlFor(source) {
 const Heads = ({ seo, name, settings_data }) => {
   const settings = useGlobalSettings().settings ?? settings_data;
   const { site_name, site_name_cn } = settings[0] ?? {};
-  const keywords = seo?.keywords?.map((item) => item.value).join();
+  const keywords = seo?.keywords
+    ?.map((item) => (typeof item === "string" ? item : item?.value))
+    .join();
   const router = useRouter();
   return (
     <>
